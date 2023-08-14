@@ -1,5 +1,5 @@
 +++
-title = "nginxLinuxPackages"
+title = "nginx: Linux packages"
 date = 2023-08-14T17:08:39+08:00
 weight = 11
 type = "docs"

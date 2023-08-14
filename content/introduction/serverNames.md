@@ -1,5 +1,5 @@
 +++
-title = "serverNames"
+title = "Server names"
 date = 2023-08-14T16:55:07+08:00
 weight = 150
 type = "docs"
