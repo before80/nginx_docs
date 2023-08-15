@@ -83,9 +83,9 @@ After configuration, nginx is compiled and installed using `make`.
 
 ## 配置 - Configuration
 
-The [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive in [ngx_http_core_module](https://nginx.org/en/docs/http/ngx_http_core_module.html) module got a new parameter [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic) which enables HTTP/3 over QUIC on the specified port.
+The [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive in [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) module got a new parameter [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic) which enables HTTP/3 over QUIC on the specified port.
 
-​	在 [ngx_http_core_module](https://nginx.org/en/docs/http/ngx_http_core_module.html) 模块中的 [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 指令添加了一个新的参数 [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic)，该参数在指定的端口上启用基于 QUIC 的 HTTP/3。
+​	在 [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) 模块中的 [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 指令添加了一个新的参数 [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic)，该参数在指定的端口上启用基于 QUIC 的 HTTP/3。
 
 Along with the `quic` parameter it is also possible to specify the [reuseport](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport) parameter to make it work properly with multiple workers.
 

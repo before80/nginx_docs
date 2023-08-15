@@ -16,7 +16,7 @@ https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html
 
 The `ngx_http_upstream_conf_module` module allows configuring upstream server groups on-the-fly via a simple HTTP interface without the need of restarting nginx. The [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) server group must reside in the shared memory.
 
-This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
+This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](../ngx_http_api_module) module in 1.13.3.
 
 
 

@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_index_module.html
 
 
 
-The `ngx_http_index_module` module processes requests ending with the slash character (‘`/`’). Such requests can also be processed by the [ngx_http_autoindex_module](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html) and [ngx_http_random_index_module](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) modules.
+The `ngx_http_index_module` module processes requests ending with the slash character (‘`/`’). Such requests can also be processed by the [ngx_http_autoindex_module](../ngx_http_autoindex_module) and [ngx_http_random_index_module](../ngx_http_random_index_module) modules.
 
 
 

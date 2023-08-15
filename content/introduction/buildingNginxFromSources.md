@@ -139,51 +139,51 @@ enables building a module that provides support for [HTTP/3](https://nginx.org/e
 
 ## `--with-http_realip_module`
 
-enables building the [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) module that changes the client address to the address sent in the specified header field. This module is not built by default.
+enables building the [ngx_http_realip_module]({{< ref "/mod_ref/ngx_http_realip_module" >}}) module that changes the client address to the address sent in the specified header field. This module is not built by default.
 
-​	启用构建 [ngx_http_realip_module](https://nginx.org/en/docs/http/ngx_http_realip_module.html) 模块，将客户端地址更改为指定标头字段中发送的地址。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_realip_module]({{< ref "/mod_ref/ngx_http_realip_module" >}}) 模块，将客户端地址更改为指定标头字段中发送的地址。默认情况下，不构建此模块。
 
 ## `--with-http_addition_module`
 
-enables building the [ngx_http_addition_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html) module that adds text before and after a response. This module is not built by default.
+enables building the [ngx_http_addition_module]({{< ref "/mod_ref/ngx_http_addition_module" >}}) module that adds text before and after a response. This module is not built by default.
 
-​	启用构建 [ngx_http_addition_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html) 模块，向响应之前和之后添加文本。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_addition_module]({{< ref "/mod_ref/ngx_http_addition_module" >}}) 模块，向响应之前和之后添加文本。默认情况下，不构建此模块。
 
 ## `--with-http_xslt_module` `--with-http_xslt_module=dynamic`
 
-enables building the [ngx_http_xslt_module](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) module that transforms XML responses using one or more XSLT stylesheets. This module is not built by default. The [libxml2](http://xmlsoft.org/) and [libxslt](http://xmlsoft.org/XSLT/) libraries are required to build and run this module.
+enables building the [ngx_http_xslt_module]({{< ref "/mod_ref/ngx_http_xslt_module" >}}) module that transforms XML responses using one or more XSLT stylesheets. This module is not built by default. The [libxml2](http://xmlsoft.org/) and [libxslt](http://xmlsoft.org/XSLT/) libraries are required to build and run this module.
 
-​	启用构建 [ngx_http_xslt_module](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) 模块，使用一个或多个 XSLT 样式表转换 XML 响应。默认情况下，不构建此模块。构建和运行此模块需要 [libxml2](http://xmlsoft.org/) 和 [libxslt](http://xmlsoft.org/XSLT/) 库。
+​	启用构建 [ngx_http_xslt_module]({{< ref "/mod_ref/ngx_http_xslt_module" >}}) 模块，使用一个或多个 XSLT 样式表转换 XML 响应。默认情况下，不构建此模块。构建和运行此模块需要 [libxml2](http://xmlsoft.org/) 和 [libxslt](http://xmlsoft.org/XSLT/) 库。
 
 ## `--with-http_image_filter_module` `--with-http_image_filter_module=dynamic`
 
-enables building the [ngx_http_image_filter_module](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html) module that transforms images in JPEG, GIF, PNG, and WebP formats. This module is not built by default.
+enables building the [ngx_http_image_filter_module]({{< ref "/mod_ref/ngx_http_image_filter_module" >}}) module that transforms images in JPEG, GIF, PNG, and WebP formats. This module is not built by default.
 
-​	启用构建 [ngx_http_image_filter_module](https://nginx.org/en/docs/http/ngx_http_image_filter_module.html) 模块，转换 JPEG、GIF、PNG 和 WebP 格式的图像。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_image_filter_module]({{< ref "/mod_ref/ngx_http_image_filter_module" >}}) 模块，转换 JPEG、GIF、PNG 和 WebP 格式的图像。默认情况下，不构建此模块。
 
 ## `--with-http_geoip_module` `--with-http_geoip_module=dynamic`
 
-enables building the [ngx_http_geoip_module](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) module that creates variables depending on the client IP address and the precompiled [MaxMind](http://www.maxmind.com/) databases. This module is not built by default.
+enables building the [ngx_http_geoip_module]({{< ref "/mod_ref/ngx_http_geoip_module" >}}) module that creates variables depending on the client IP address and the precompiled [MaxMind](http://www.maxmind.com/) databases. This module is not built by default.
 
-​	启用构建 [ngx_http_geoip_module](https://nginx.org/en/docs/http/ngx_http_geoip_module.html) 模块，根据客户端 IP 地址和预编译的 [MaxMind](http://www.maxmind.com/) 数据库创建变量。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_geoip_module]({{< ref "/mod_ref/ngx_http_geoip_module" >}}) 模块，根据客户端 IP 地址和预编译的 [MaxMind](http://www.maxmind.com/) 数据库创建变量。默认情况下，不构建此模块。
 
 ## `--with-http_sub_module`
 
-enables building the [ngx_http_sub_module](https://nginx.org/en/docs/http/ngx_http_sub_module.html) module that modifies a response by replacing one specified string by another. This module is not built by default.
+enables building the [ngx_http_sub_module]({{< ref "/mod_ref/ngx_http_sub_module" >}}) module that modifies a response by replacing one specified string by another. This module is not built by default.
 
-​	启用构建 [ngx_http_sub_module](https://nginx.org/en/docs/http/ngx_http_sub_module.html) 模块，通过将一个指定的字符串替换为另一个字符串来修改响应。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_sub_module]({{< ref "/mod_ref/ngx_http_sub_module" >}}) 模块，通过将一个指定的字符串替换为另一个字符串来修改响应。默认情况下，不构建此模块。
 
 ## `--with-http_dav_module`
 
-enables building the [ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) module that provides file management automation via the WebDAV protocol. This module is not built by default.
+enables building the [ngx_http_dav_module]({{< ref "/mod_ref/ngx_http_dav_module" >}}) module that provides file management automation via the WebDAV protocol. This module is not built by default.
 
-​	启用构建 [ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) 模块，通过 WebDAV 协议提供文件管理自动化。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_dav_module]({{< ref "/mod_ref/ngx_http_dav_module" >}}) 模块，通过 WebDAV 协议提供文件管理自动化。默认情况下，不构建此模块。
 
 ## `--with-http_flv_module`
 
-enables building the [ngx_http_flv_module](https://nginx.org/en/docs/http/ngx_http_flv_module.html) module that provides pseudo-streaming server-side support for Flash Video (FLV) files. This module is not built by default.
+enables building the [ngx_http_flv_module]({{< ref "/mod_ref/ngx_http_flv_module" >}}) module that provides pseudo-streaming server-side support for Flash Video (FLV) files. This module is not built by default.
 
-​	启用构建 [ngx_http_flv_module](https://nginx.org/en/docs/http/ngx_http_flv_module.html) 模块，为 Flash Video (FLV) 文件提供伪流式服务器端支持。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_flv_module]({{< ref "/mod_ref/ngx_http_flv_module" >}}) 模块，为 Flash Video (FLV) 文件提供伪流式服务器端支持。默认情况下，不构建此模块。
 
 ## `--with-http_mp4_module`
 
@@ -193,33 +193,33 @@ enables building the [ngx_http_mp4_module](https://nginx.org/en/docs/http/ngx_ht
 
 ## `--with-http_gunzip_module`
 
-enables building the [ngx_http_gunzip_module](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html) module that decompresses responses with “`Content-Encoding: gzip`” for clients that do not support “gzip” encoding method. This module is not built by default.
+enables building the [ngx_http_gunzip_module]({{< ref "/mod_ref/ngx_http_gunzip_module" >}}) module that decompresses responses with “`Content-Encoding: gzip`” for clients that do not support “gzip” encoding method. This module is not built by default.
 
-​	启用构建 [ngx_http_gunzip_module](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html) 模块，对于不支持“gzip”编码方法的客户端，对“`Content-Encoding: gzip`”进行解压缩。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_gunzip_module]({{< ref "/mod_ref/ngx_http_gunzip_module" >}}) 模块，对于不支持“gzip”编码方法的客户端，对“`Content-Encoding: gzip`”进行解压缩。默认情况下，不构建此模块。
 
 ## `--with-http_gzip_static_module`
 
-enables building the [ngx_http_gzip_static_module](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) module that enables sending precompressed files with the “`.gz`” filename extension instead of regular files. This module is not built by default.
+enables building the [ngx_http_gzip_static_module]({{< ref "/mod_ref/ngx_http_gzip_static_module" >}}) module that enables sending precompressed files with the “`.gz`” filename extension instead of regular files. This module is not built by default.
 
-​	启用构建 [ngx_http_gzip_static_module](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html) 模块，通过“`.gz`”文件扩展名而不是常规文件发送预压缩文件。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_gzip_static_module]({{< ref "/mod_ref/ngx_http_gzip_static_module" >}}) 模块，通过“`.gz`”文件扩展名而不是常规文件发送预压缩文件。默认情况下，不构建此模块。
 
 ## `--with-http_auth_request_module`
 
-enables building the [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) module that implements client authorization based on the result of a subrequest. This module is not built by default.
+enables building the [ngx_http_auth_request_module]({{< ref "/mod_ref/ngx_http_auth_request_module" >}}) module that implements client authorization based on the result of a subrequest. This module is not built by default.
 
-​	启用构建 [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html) 模块，基于子请求的结果实现客户端授权。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_auth_request_module]({{< ref "/mod_ref/ngx_http_auth_request_module" >}}) 模块，基于子请求的结果实现客户端授权。默认情况下，不构建此模块。
 
 ## `--with-http_random_index_module`
 
-enables building the [ngx_http_random_index_module](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) module that processes requests ending with the slash character (‘`/`’) and picks a random file in a directory to serve as an index file. This module is not built by default.
+enables building the [ngx_http_random_index_module]({{< ref "/mod_ref/ngx_http_random_index_module" >}}) module that processes requests ending with the slash character (‘`/`’) and picks a random file in a directory to serve as an index file. This module is not built by default.
 
-​	启用构建 [ngx_http_random_index_module](https://nginx.org/en/docs/http/ngx_http_random_index_module.html) 模块，处理以斜杠字符（‘`/`’）结束的请求，并在目录中选择一个随机文件作为索引文件。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_random_index_module]({{< ref "/mod_ref/ngx_http_random_index_module" >}}) 模块，处理以斜杠字符（‘`/`’）结束的请求，并在目录中选择一个随机文件作为索引文件。默认情况下，不构建此模块。
 
 ## `--with-http_secure_link_module`
 
-enables building the [ngx_http_secure_link_module](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) module. This module is not built by default.
+enables building the [ngx_http_secure_link_module]({{< ref "/mod_ref/ngx_http_secure_link_module" >}}) module. This module is not built by default.
 
-​	启用构建 [ngx_http_secure_link_module](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) 模块。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_secure_link_module]({{< ref "/mod_ref/ngx_http_secure_link_module" >}}) 模块。默认情况下，不构建此模块。
 
 ## `--with-http_degradation_module`
 
@@ -229,21 +229,21 @@ enables building the `ngx_http_degradation_module` module. This module is not bu
 
 ## `--with-http_slice_module`
 
-enables building the [ngx_http_slice_module](https://nginx.org/en/docs/http/ngx_http_slice_module.html) module that splits a request into subrequests, each returning a certain range of response. The module provides more effective caching of big responses. This module is not built by default.
+enables building the [ngx_http_slice_module]({{< ref "/mod_ref/ngx_http_slice_module" >}}) module that splits a request into subrequests, each returning a certain range of response. The module provides more effective caching of big responses. This module is not built by default.
 
-​	启用构建 [ngx_http_slice_module](https://nginx.org/en/docs/http/ngx_http_slice_module.html) 模块，将请求分割成子请求，每个子请求返回一定范围的响应。该模块提供了更有效的大响应缓存。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_slice_module]({{< ref "/mod_ref/ngx_http_slice_module" >}}) 模块，将请求分割成子请求，每个子请求返回一定范围的响应。该模块提供了更有效的大响应缓存。默认情况下，不构建此模块。
 
 ## `--with-http_stub_status_module`
 
-enables building the [ngx_http_stub_status_module](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html) module that provides access to basic status information. This module is not built by default.
+enables building the [ngx_http_stub_status_module]({{< ref "/mod_ref/ngx_http_stub_status_module" >}}) module that provides access to basic status information. This module is not built by default.
 
-​	启用构建 [ngx_http_stub_status_module](https://nginx.org/en/docs/http/ngx_http_stub_status_module.html) 模块，提供基本状态信息的访问。默认情况下，不构建此模块。
+​	启用构建 [ngx_http_stub_status_module]({{< ref "/mod_ref/ngx_http_stub_status_module" >}}) 模块，提供基本状态信息的访问。默认情况下，不构建此模块。
 
 ## `--without-http_charset_module`
 
-disables building the [ngx_http_charset_module](https://nginx.org/en/docs/http/ngx_http_charset_module.html) module that adds the specified charset to the “Content-Type” response header field and can additionally convert data from one charset to another.
+disables building the [ngx_http_charset_module]({{< ref "/mod_ref/ngx_http_charset_module" >}}) module that adds the specified charset to the “Content-Type” response header field and can additionally convert data from one charset to another.
 
-​	禁用构建 [ngx_http_charset_module](https://nginx.org/en/docs/http/ngx_http_charset_module.html) 模块，将指定的字符集添加到“Content-Type”响应头字段，并可以将数据从一个字符集转换为另一个字符集。
+​	禁用构建 [ngx_http_charset_module]({{< ref "/mod_ref/ngx_http_charset_module" >}}) 模块，将指定的字符集添加到“Content-Type”响应头字段，并可以将数据从一个字符集转换为另一个字符集。
 
 ## `--without-http_gzip_module`
 
@@ -253,63 +253,63 @@ disables building a module that [compresses responses](https://nginx.org/en/docs
 
 ## `--without-http_ssi_module`
 
-disables building the [ngx_http_ssi_module](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module that processes SSI (Server Side Includes) commands in responses passing through it.
+disables building the [ngx_http_ssi_module]({{< ref "/mod_ref/ngx_http_ssi_module" >}}) module that processes SSI (Server Side Includes) commands in responses passing through it.
 
-​	禁用构建 [ngx_http_ssi_module](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) 模块，处理通过它传递的响应中的 SSI (Server Side Includes) 命令。
+​	禁用构建 [ngx_http_ssi_module]({{< ref "/mod_ref/ngx_http_ssi_module" >}}) 模块，处理通过它传递的响应中的 SSI (Server Side Includes) 命令。
 
 ## `--without-http_userid_module`
 
-disables building the [ngx_http_userid_module](https://nginx.org/en/docs/http/ngx_http_userid_module.html) module that sets cookies suitable for client identification.
+disables building the [ngx_http_userid_module]({{< ref "/mod_ref/ngx_http_userid_module" >}}) module that sets cookies suitable for client identification.
 
-​	禁用构建 [ngx_http_userid_module](https://nginx.org/en/docs/http/ngx_http_userid_module.html) 模块，设置适用于客户端标识的 cookie。
+​	禁用构建 [ngx_http_userid_module]({{< ref "/mod_ref/ngx_http_userid_module" >}}) 模块，设置适用于客户端标识的 cookie。
 
 ## `--without-http_access_module`
 
-disables building the [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html) module that allows limiting access to certain client addresses.
+disables building the [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) module that allows limiting access to certain client addresses.
 
-​	禁用构建 [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html) 模块，允许限制对某些客户端地址的访问。
+​	禁用构建 [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) 模块，允许限制对某些客户端地址的访问。
 
 ## `--without-http_auth_basic_module`
 
-disables building the [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) module that allows limiting access to resources by validating the user name and password using the “HTTP Basic Authentication” protocol.
+disables building the [ngx_http_auth_basic_module]({{< ref "/mod_ref/ngx_http_auth_basic_module" >}}) module that allows limiting access to resources by validating the user name and password using the “HTTP Basic Authentication” protocol.
 
-​	禁用构建 [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) 模块，通过验证用户名称和密码来限制对资源的访问，使用“HTTP 基本认证”协议。
+​	禁用构建 [ngx_http_auth_basic_module]({{< ref "/mod_ref/ngx_http_auth_basic_module" >}}) 模块，通过验证用户名称和密码来限制对资源的访问，使用“HTTP 基本认证”协议。
 
 ## `--without-http_mirror_module`
 
-disables building the [ngx_http_mirror_module](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) module that implements mirroring of an original request by creating background mirror subrequests.
+disables building the [ngx_http_mirror_module]({{< ref "/mod_ref/ngx_http_mirror_module" >}}) module that implements mirroring of an original request by creating background mirror subrequests.
 
-​	禁用构建 [ngx_http_mirror_module](https://nginx.org/en/docs/http/ngx_http_mirror_module.html) 模块，通过创建后台镜像子请求来实现原始请求的镜像。
+​	禁用构建 [ngx_http_mirror_module]({{< ref "/mod_ref/ngx_http_mirror_module" >}}) 模块，通过创建后台镜像子请求来实现原始请求的镜像。
 
 ## `--without-http_autoindex_module`
 
-disables building the [ngx_http_autoindex_module](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html) module that processes requests ending with the slash character (‘`/`’) and produces a directory listing in case the [ngx_http_index_module](https://nginx.org/en/docs/http/ngx_http_index_module.html) module cannot find an index file.
+disables building the [ngx_http_autoindex_module]({{< ref "/mod_ref/ngx_http_autoindex_module" >}}) module that processes requests ending with the slash character (‘`/`’) and produces a directory listing in case the [ngx_http_index_module]({{< ref "/mod_ref/ngx_http_index_module" >}}) module cannot find an index file.
 
-​	禁用构建 [ngx_http_autoindex_module](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html) 模块，处理以斜杠字符（‘`/`’）结束的请求，并在 [ngx_http_index_module](https://nginx.org/en/docs/http/ngx_http_index_module.html) 模块无法找到索引文件的情况下产生目录列表。
+​	禁用构建 [ngx_http_autoindex_module]({{< ref "/mod_ref/ngx_http_autoindex_module" >}}) 模块，处理以斜杠字符（‘`/`’）结束的请求，并在 [ngx_http_index_module]({{< ref "/mod_ref/ngx_http_index_module" >}}) 模块无法找到索引文件的情况下产生目录列表。
 
 ## `--without-http_geo_module`
 
-disables building the [ngx_http_geo_module](https://nginx.org/en/docs/http/ngx_http_geo_module.html) module that creates variables with values depending on the client IP address.
+disables building the [ngx_http_geo_module]({{< ref "/mod_ref/ngx_http_geo_module" >}}) module that creates variables with values depending on the client IP address.
 
-​	禁用构建 [ngx_http_geo_module](https://nginx.org/en/docs/http/ngx_http_geo_module.html) 模块，根据客户端 IP 地址创建值的变量。
+​	禁用构建 [ngx_http_geo_module]({{< ref "/mod_ref/ngx_http_geo_module" >}}) 模块，根据客户端 IP 地址创建值的变量。
 
 ## `--without-http_map_module`
 
-disables building the [ngx_http_map_module](https://nginx.org/en/docs/http/ngx_http_map_module.html) module that creates variables with values depending on values of other variables.
+disables building the [ngx_http_map_module]({{< ref "/mod_ref/ngx_http_map_module" >}}) module that creates variables with values depending on values of other variables.
 
-​	禁用构建 [ngx_http_map_module](https://nginx.org/en/docs/http/ngx_http_map_module.html) 模块，根据其他变量的值创建值的变量。
+​	禁用构建 [ngx_http_map_module]({{< ref "/mod_ref/ngx_http_map_module" >}}) 模块，根据其他变量的值创建值的变量。
 
 ## `--without-http_split_clients_module`
 
-disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/http/ngx_http_split_clients_module.html) module that creates variables for A/B testing.
+disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http_split_clients_module" >}}) module that creates variables for A/B testing.
 
-​	禁用构建 [ngx_http_split_clients_module](https://nginx.org/en/docs/http/ngx_http_split_clients_module.html) 模块，该模块用于创建用于 A/B 测试的变量。
+​	禁用构建 [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http_split_clients_module" >}}) 模块，该模块用于创建用于 A/B 测试的变量。
 
 ## `--without-http_referer_module`
 
-  disables building the [ngx_http_referer_module](https://nginx.org/en/docs/http/ngx_http_referer_module.html) module that can block access to a site for requests with invalid values in the “Referer” header field.
+  disables building the [ngx_http_referer_module]({{< ref "/mod_ref/ngx_http_referer_module" >}}) module that can block access to a site for requests with invalid values in the “Referer” header field.
 
-​	禁用构建 [ngx_http_referer_module](https://nginx.org/en/docs/http/ngx_http_referer_module.html) 模块，该模块用于阻止带有无效值的“Referer”请求头字段的访问。
+​	禁用构建 [ngx_http_referer_module]({{< ref "/mod_ref/ngx_http_referer_module" >}}) 模块，该模块用于阻止带有无效值的“Referer”请求头字段的访问。
 
 ## `--without-http_rewrite_module`
 
@@ -325,45 +325,45 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--without-http_fastcgi_module`
 
-  disables building the [ngx_http_fastcgi_module](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html) module that passes requests to a FastCGI server.
+  disables building the [ngx_http_fastcgi_module]({{< ref "/mod_ref/ngx_http_fastcgi_module" >}}) module that passes requests to a FastCGI server.
 
-​	禁用构建 [ngx_http_fastcgi_module](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html) 模块，该模块用于将请求传递给 FastCGI 服务器。
+​	禁用构建 [ngx_http_fastcgi_module]({{< ref "/mod_ref/ngx_http_fastcgi_module" >}}) 模块，该模块用于将请求传递给 FastCGI 服务器。
 
 ## `--without-http_uwsgi_module`
 
-  disables building the [ngx_http_uwsgi_module](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) module that passes requests to a uwsgi server.
+  disables building the [ngx_http_uwsgi_module]({{< ref "/mod_ref/ngx_http_uwsgi_module" >}}) module that passes requests to a uwsgi server.
 
-​	禁用构建 [ngx_http_uwsgi_module](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html) 模块，该模块用于将请求传递给 uwsgi 服务器。
+​	禁用构建 [ngx_http_uwsgi_module]({{< ref "/mod_ref/ngx_http_uwsgi_module" >}}) 模块，该模块用于将请求传递给 uwsgi 服务器。
 
 ## `--without-http_scgi_module`
 
-  disables building the [ngx_http_scgi_module](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) module that passes requests to an SCGI server.
+  disables building the [ngx_http_scgi_module]({{< ref "/mod_ref/ngx_http_scgi_module" >}}) module that passes requests to an SCGI server.
 
-​	禁用构建 [ngx_http_scgi_module](https://nginx.org/en/docs/http/ngx_http_scgi_module.html) 模块，该模块用于将请求传递给 SCGI 服务器。
+​	禁用构建 [ngx_http_scgi_module]({{< ref "/mod_ref/ngx_http_scgi_module" >}}) 模块，该模块用于将请求传递给 SCGI 服务器。
 
 ## `--without-http_grpc_module`
 
-  disables building the [ngx_http_grpc_module](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) module that passes requests to a gRPC server.
+  disables building the [ngx_http_grpc_module]({{< ref "/mod_ref/ngx_http_grpc_module" >}}) module that passes requests to a gRPC server.
 
-​	禁用构建 [ngx_http_grpc_module](https://nginx.org/en/docs/http/ngx_http_grpc_module.html) 模块，该模块用于将请求传递给 gRPC 服务器。
+​	禁用构建 [ngx_http_grpc_module]({{< ref "/mod_ref/ngx_http_grpc_module" >}}) 模块，该模块用于将请求传递给 gRPC 服务器。
 
 ## `--without-http_memcached_module`
 
-  disables building the [ngx_http_memcached_module](https://nginx.org/en/docs/http/ngx_http_memcached_module.html) module that obtains responses from a memcached server.
+  disables building the [ngx_http_memcached_module]({{< ref "/mod_ref/ngx_http_memcached_module" >}}) module that obtains responses from a memcached server.
 
-​	禁用构建 [ngx_http_memcached_module](https://nginx.org/en/docs/http/ngx_http_memcached_module.html) 模块，该模块用于从 memcached 服务器获取响应。
+​	禁用构建 [ngx_http_memcached_module]({{< ref "/mod_ref/ngx_http_memcached_module" >}}) 模块，该模块用于从 memcached 服务器获取响应。
 
 ## `--without-http_limit_conn_module`
 
-  disables building the [ngx_http_limit_conn_module](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html) module that limits the number of connections per key, for example, the number of connections from a single IP address.
+  disables building the [ngx_http_limit_conn_module]({{< ref "/mod_ref/ngx_http_limit_conn_module" >}}) module that limits the number of connections per key, for example, the number of connections from a single IP address.
 
-​	禁用构建 [ngx_http_limit_conn_module](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html) 模块，该模块用于限制每个键的连接数，例如来自单个 IP 地址的连接数。
+​	禁用构建 [ngx_http_limit_conn_module]({{< ref "/mod_ref/ngx_http_limit_conn_module" >}}) 模块，该模块用于限制每个键的连接数，例如来自单个 IP 地址的连接数。
 
 ## `--without-http_limit_req_module`
 
-  disables building the [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) module that limits the request processing rate per key, for example, the processing rate of requests coming from a single IP address.
+  disables building the [ngx_http_limit_req_module]({{< ref "/mod_ref/ngx_http_limit_req_module" >}}) module that limits the request processing rate per key, for example, the processing rate of requests coming from a single IP address.
 
-​	禁用构建 [ngx_http_limit_req_module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html) 模块，该模块用于限制每个键的请求处理速率，例如来自单个 IP 地址的请求处理速率。
+​	禁用构建 [ngx_http_limit_req_module]({{< ref "/mod_ref/ngx_http_limit_req_module" >}}) 模块，该模块用于限制每个键的请求处理速率，例如来自单个 IP 地址的请求处理速率。
 
 ## `--without-http_empty_gif_module`
 
@@ -373,9 +373,9 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--without-http_browser_module`
 
-  disables building the [ngx_http_browser_module](https://nginx.org/en/docs/http/ngx_http_browser_module.html) module that creates variables whose values depend on the value of the “User-Agent” request header field.
+  disables building the [ngx_http_browser_module]({{< ref "/mod_ref/ngx_http_browser_module" >}}) module that creates variables whose values depend on the value of the “User-Agent” request header field.
 
-​	禁用构建 [ngx_http_browser_module](https://nginx.org/en/docs/http/ngx_http_browser_module.html) 模块，该模块用于创建取决于“User-Agent”请求头字段值的变量。
+​	禁用构建 [ngx_http_browser_module]({{< ref "/mod_ref/ngx_http_browser_module" >}}) 模块，该模块用于创建取决于“User-Agent”请求头字段值的变量。
 
 ## `--without-http_upstream_hash_module`
 
@@ -523,63 +523,63 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--with-stream_realip_module`
 
-  enables building the [ngx_stream_realip_module](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) module that changes the client address to the address sent in the PROXY protocol header. This module is not built by default.
+  enables building the [ngx_stream_realip_module]({{< ref "/mod_ref/ngx_stream_realip_module" >}}) module that changes the client address to the address sent in the PROXY protocol header. This module is not built by default.
 
-​	启用构建 [ngx_stream_realip_module](https://nginx.org/en/docs/stream/ngx_stream_realip_module.html) 模块，该模块用于将客户端地址更改为在 PROXY 协议头中发送的地址。默认情况下，不构建此模块。
+​	启用构建 [ngx_stream_realip_module]({{< ref "/mod_ref/ngx_stream_realip_module" >}}) 模块，该模块用于将客户端地址更改为在 PROXY 协议头中发送的地址。默认情况下，不构建此模块。
 
 ## `--with-stream_geoip_module` `--with-stream_geoip_module=dynamic`
 
-  enables building the [ngx_stream_geoip_module](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html) module that creates variables depending on the client IP address and the precompiled [MaxMind](http://www.maxmind.com/) databases. This module is not built by default.
+  enables building the [ngx_stream_geoip_module]({{< ref "/mod_ref/ngx_stream_geoip_module" >}}) module that creates variables depending on the client IP address and the precompiled [MaxMind](http://www.maxmind.com/) databases. This module is not built by default.
 
-​	启用构建 [ngx_stream_geoip_module](https://nginx.org/en/docs/stream/ngx_stream_geoip_module.html) 模块，该模块根据客户端 IP 地址和预编译的 [MaxMind](http://www.maxmind.com/) 数据库创建变量。默认情况下，不构建此模块。
+​	启用构建 [ngx_stream_geoip_module]({{< ref "/mod_ref/ngx_stream_geoip_module" >}}) 模块，该模块根据客户端 IP 地址和预编译的 [MaxMind](http://www.maxmind.com/) 数据库创建变量。默认情况下，不构建此模块。
 
 ## `--with-stream_ssl_preread_module`
 
-  enables building the [ngx_stream_ssl_preread_module](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html) module that allows extracting information from the [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) message without terminating SSL/TLS. This module is not built by default.
+  enables building the [ngx_stream_ssl_preread_module]({{< ref "/mod_ref/ngx_stream_ssl_preread_module" >}}) module that allows extracting information from the [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) message without terminating SSL/TLS. This module is not built by default.
 
-​	启用构建 [ngx_stream_ssl_preread_module](https://nginx.org/en/docs/stream/ngx_stream_ssl_preread_module.html) 模块，该模块允许在不终止 SSL/TLS 的情况下从 [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) 消息中提取信息。默认情况下，不构建此模块。
+​	启用构建 [ngx_stream_ssl_preread_module]({{< ref "/mod_ref/ngx_stream_ssl_preread_module" >}}) 模块，该模块允许在不终止 SSL/TLS 的情况下从 [ClientHello](https://datatracker.ietf.org/doc/html/rfc5246#section-7.4.1.2) 消息中提取信息。默认情况下，不构建此模块。
 
 ## `--without-stream_limit_conn_module`
 
-  disables building the [ngx_stream_limit_conn_module](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) module that limits the number of connections per key, for example, the number of connections from a single IP address.
+  disables building the [ngx_stream_limit_conn_module]({{< ref "/mod_ref/ngx_stream_limit_conn_module" >}}) module that limits the number of connections per key, for example, the number of connections from a single IP address.
 
-​	禁用构建 [ngx_stream_limit_conn_module](https://nginx.org/en/docs/stream/ngx_stream_limit_conn_module.html) 模块，该模块用于限制每个键的连接数，例如来自单个 IP 地址的连接数。
+​	禁用构建 [ngx_stream_limit_conn_module]({{< ref "/mod_ref/ngx_stream_limit_conn_module" >}}) 模块，该模块用于限制每个键的连接数，例如来自单个 IP 地址的连接数。
 
 ## `--without-stream_access_module`
 
-  disables building the [ngx_stream_access_module](https://nginx.org/en/docs/stream/ngx_stream_access_module.html) module that allows limiting access to certain client addresses.
+  disables building the [ngx_stream_access_module]({{< ref "/mod_ref/ngx_stream_access_module" >}}) module that allows limiting access to certain client addresses.
 
-​	禁用构建 [ngx_stream_access_module](https://nginx.org/en/docs/stream/ngx_stream_access_module.html) 模块，该模块允许限制对某些客户端地址的访问。
+​	禁用构建 [ngx_stream_access_module]({{< ref "/mod_ref/ngx_stream_access_module" >}}) 模块，该模块允许限制对某些客户端地址的访问。
 
 ## `--without-stream_geo_module`
 
-  disables building the [ngx_stream_geo_module](https://nginx.org/en/docs/stream/ngx_stream_geo_module.html) module that creates variables with values depending on the client IP address.
+  disables building the [ngx_stream_geo_module]({{< ref "/mod_ref/ngx_stream_geo_module" >}}) module that creates variables with values depending on the client IP address.
 
-​	禁用构建 [ngx_stream_geo_module](https://nginx.org/en/docs/stream/ngx_stream_geo_module.html) 模块，该模块根据客户端 IP 地址创建值的变量。
+​	禁用构建 [ngx_stream_geo_module]({{< ref "/mod_ref/ngx_stream_geo_module" >}}) 模块，该模块根据客户端 IP 地址创建值的变量。
 
 ## `--without-stream_map_module`
 
-  disables building the [ngx_stream_map_module](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) module that creates variables with values depending on values of other variables.
+  disables building the [ngx_stream_map_module]({{< ref "/mod_ref/ngx_stream_map_module" >}}) module that creates variables with values depending on values of other variables.
 
-​	禁用构建 [ngx_stream_map_module](https://nginx.org/en/docs/stream/ngx_stream_map_module.html) 模块，该模块根据其他变量的值创建值的变量。
+​	禁用构建 [ngx_stream_map_module]({{< ref "/mod_ref/ngx_stream_map_module" >}}) 模块，该模块根据其他变量的值创建值的变量。
 
 ## `--without-stream_split_clients_module`
 
-  disables building the [ngx_stream_split_clients_module](https://nginx.org/en/docs/stream/ngx_stream_split_clients_module.html) module that creates variables for A/B testing.
+  disables building the [ngx_stream_split_clients_module]({{< ref "/mod_ref/ngx_stream_split_clients_module" >}}) module that creates variables for A/B testing.
 
-​	禁用构建 [ngx_stream_split_clients_module](https://nginx.org/en/docs/stream/ngx_stream_split_clients_module.html) 模块，该模块用于创建用于 A/B 测试的变量。
+​	禁用构建 [ngx_stream_split_clients_module]({{< ref "/mod_ref/ngx_stream_split_clients_module" >}}) 模块，该模块用于创建用于 A/B 测试的变量。
 
 ## `--without-stream_return_module`
 
-  disables building the [ngx_stream_return_module](https://nginx.org/en/docs/stream/ngx_stream_return_module.html) module that sends some specified value to the client and then closes the connection.
+  disables building the [ngx_stream_return_module]({{< ref "/mod_ref/ngx_stream_return_module" >}}) module that sends some specified value to the client and then closes the connection.
 
-​	禁用构建 [ngx_stream_return_module](https://nginx.org/en/docs/stream/ngx_stream_return_module.html) 模块，该模块向客户端发送某些指定的值，然后关闭连接。
+​	禁用构建 [ngx_stream_return_module]({{< ref "/mod_ref/ngx_stream_return_module" >}}) 模块，该模块向客户端发送某些指定的值，然后关闭连接。
 
 ## `--without-stream_set_module`
 
-  disables building the [ngx_stream_set_module](https://nginx.org/en/docs/stream/ngx_stream_set_module.html) module that sets a value for a variable.
+  disables building the [ngx_stream_set_module]({{< ref "/mod_ref/ngx_stream_set_module" >}}) module that sets a value for a variable.
 
-​	禁用构建 [ngx_stream_set_module](https://nginx.org/en/docs/stream/ngx_stream_set_module.html) 模块，该模块用于设置变量的值。
+​	禁用构建 [ngx_stream_set_module]({{< ref "/mod_ref/ngx_stream_set_module" >}}) 模块，该模块用于设置变量的值。
 
 ## `--without-stream_upstream_hash_module`
 
@@ -607,9 +607,9 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--with-google_perftools_module`
 
-  enables building the [ngx_google_perftools_module](https://nginx.org/en/docs/ngx_google_perftools_module.html) module that enables profiling of nginx worker processes using [Google Performance Tools](https://github.com/gperftools/gperftools). The module is intended for nginx developers and is not built by default.
+  enables building the [ngx_google_perftools_module]({{< ref "/mod_ref/ngx_google_perftools_module" >}}) module that enables profiling of nginx worker processes using [Google Performance Tools](https://github.com/gperftools/gperftools). The module is intended for nginx developers and is not built by default.
 
-​	启用构建 [ngx_google_perftools_module](https://nginx.org/en/docs/ngx_google_perftools_module.html) 模块，该模块使用 [Google Performance Tools](https://github.com/gperftools/gperftools) 对 nginx 工作进程进行分析。该模块针对 nginx 开发人员，不会默认构建。
+​	启用构建 [ngx_google_perftools_module]({{< ref "/mod_ref/ngx_google_perftools_module" >}}) 模块，该模块使用 [Google Performance Tools](https://github.com/gperftools/gperftools) 对 nginx 工作进程进行分析。该模块针对 nginx 开发人员，不会默认构建。
 
 ## `--with-cpp_test_module`
 
@@ -679,9 +679,9 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--with-pcre=path`
 
-  sets the path to the sources of the PCRE library. The library distribution needs to be downloaded from the [PCRE](http://www.pcre.org/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and for the [ngx_http_rewrite_module](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) module.
+  sets the path to the sources of the PCRE library. The library distribution needs to be downloaded from the [PCRE](http://www.pcre.org/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and for the [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) module.
 
-​	设置 PCRE 库源代码的路径。需要从 [PCRE](http://www.pcre.org/) 网站下载库分发包并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) 指令中支持正则表达式以及 [ngx_http_rewrite_module](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html) 模块中所需。
+​	设置 PCRE 库源代码的路径。需要从 [PCRE](http://www.pcre.org/) 网站下载库分发包并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) 指令中支持正则表达式以及 [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) 模块中所需。
 
 ## `--with-pcre-opt=parameters`
 
@@ -703,9 +703,9 @@ disables building the [ngx_http_split_clients_module](https://nginx.org/en/docs/
 
 ## `--with-zlib=path`
 
-  sets the path to the sources of the zlib library. The library distribution (version 1.1.3 — 1.2.11) needs to be downloaded from the [zlib](http://zlib.net/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for the [ngx_http_gzip_module](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) module.
+  sets the path to the sources of the zlib library. The library distribution (version 1.1.3 — 1.2.11) needs to be downloaded from the [zlib](http://zlib.net/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for the [ngx_http_gzip_module]({{< ref "/mod_ref/ngx_http_gzip_module" >}}) module.
 
-​	设置 zlib 库源代码的路径。需要从 [zlib](http://zlib.net/) 网站下载库分发包（版本 1.1.3 — 1.2.11）并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [ngx_http_gzip_module](https://nginx.org/en/docs/http/ngx_http_gzip_module.html) 模块中所需。
+​	设置 zlib 库源代码的路径。需要从 [zlib](http://zlib.net/) 网站下载库分发包（版本 1.1.3 — 1.2.11）并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [ngx_http_gzip_module]({{< ref "/mod_ref/ngx_http_gzip_module" >}}) 模块中所需。
 
 ## `--with-zlib-opt=parameters`
 

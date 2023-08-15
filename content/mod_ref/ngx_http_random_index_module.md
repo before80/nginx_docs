@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_random_index_module.html
 
 
 
-The `ngx_http_random_index_module` module processes requests ending with the slash character (‘`/`’) and picks a random file in a directory to serve as an index file. The module is processed before the [ngx_http_index_module](https://nginx.org/en/docs/http/ngx_http_index_module.html) module.
+The `ngx_http_random_index_module` module processes requests ending with the slash character (‘`/`’) and picks a random file in a directory to serve as an index file. The module is processed before the [ngx_http_index_module](../ngx_http_index_module) module.
 
 This module is not built by default, it should be enabled with the `--with-http_random_index_module` configuration parameter.
 

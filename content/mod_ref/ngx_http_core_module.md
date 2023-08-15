@@ -234,7 +234,7 @@ Sets buffer size for reading client request body. In case the request body is la
   Context: `http`, `server`, `location`
 
 
-Determines whether nginx should save the entire client request body into a file. This directive can be used during debugging, or when using the `$request_body_file` variable, or the [$r->request_body_file](https://nginx.org/en/docs/http/ngx_http_perl_module.html#methods) method of the module [ngx_http_perl_module](https://nginx.org/en/docs/http/ngx_http_perl_module.html).
+Determines whether nginx should save the entire client request body into a file. This directive can be used during debugging, or when using the `$request_body_file` variable, or the [$r->request_body_file](https://nginx.org/en/docs/http/ngx_http_perl_module.html#methods) method of the module [ngx_http_perl_module](../ngx_http_perl_module).
 
 When set to the value `on`, temporary files are not removed after request processing.
 
@@ -449,7 +449,7 @@ On systems that do not support opening of directories only for search, to use th
 
 
 
-The [ngx_http_autoindex_module](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html), [ngx_http_random_index_module](https://nginx.org/en/docs/http/ngx_http_random_index_module.html), and [ngx_http_dav_module](https://nginx.org/en/docs/http/ngx_http_dav_module.html) modules currently ignore this directive.
+The [ngx_http_autoindex_module](../ngx_http_autoindex_module), [ngx_http_random_index_module](../ngx_http_random_index_module), and [ngx_http_dav_module](../ngx_http_dav_module) modules currently ignore this directive.
 
 
 
@@ -619,7 +619,7 @@ Specifies that a given location can only be used for internal requests. For exte
 
 - requests redirected by the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page), [index](https://nginx.org/en/docs/http/ngx_http_index_module.html#index), [internal_redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html#internal_redirect), [random_index](https://nginx.org/en/docs/http/ngx_http_random_index_module.html#random_index), and [try_files](https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files) directives;
 - requests redirected by the “X-Accel-Redirect” response header field from an upstream server;
-- subrequests formed by the “`include virtual`” command of the [ngx_http_ssi_module](https://nginx.org/en/docs/http/ngx_http_ssi_module.html) module, by the [ngx_http_addition_module](https://nginx.org/en/docs/http/ngx_http_addition_module.html) module directives, and by [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) and [mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html#mirror) directives;
+- subrequests formed by the “`include virtual`” command of the [ngx_http_ssi_module](../ngx_http_ssi_module) module, by the [ngx_http_addition_module](../ngx_http_addition_module) module directives, and by [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) and [mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html#mirror) directives;
 - requests changed by the [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) directive.
 
 
@@ -736,7 +736,7 @@ If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx
   Context: `location`
 
 
-Limits allowed HTTP methods inside a location. The `method` parameter can be one of the following: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `MKCOL`, `COPY`, `MOVE`, `OPTIONS`, `PROPFIND`, `PROPPATCH`, `LOCK`, `UNLOCK`, or `PATCH`. Allowing the `GET` method makes the `HEAD` method also allowed. Access to other methods can be limited using the [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html), [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), and [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) (1.13.10) modules directives:
+Limits allowed HTTP methods inside a location. The `method` parameter can be one of the following: `GET`, `HEAD`, `POST`, `PUT`, `DELETE`, `MKCOL`, `COPY`, `MOVE`, `OPTIONS`, `PROPFIND`, `PROPPATCH`, `LOCK`, `UNLOCK`, or `PATCH`. Allowing the `GET` method makes the `HEAD` method also allowed. Access to other methods can be limited using the [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_jwt_module](../ngx_http_auth_jwt_module) (1.13.10) modules directives:
 
 ```
 limit_except GET {
@@ -1461,7 +1461,7 @@ A path to the file is constructed by merely adding a URI to the value of the `ro
   Context: `http`, `server`, `location`
 
 
-Allows access if all (`all`) or at least one (`any`) of the [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html), [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), or [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html) modules allow access.
+Allows access if all (`all`) or at least one (`any`) of the [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), [ngx_http_auth_request_module](../ngx_http_auth_request_module), or [ngx_http_auth_jwt_module](../ngx_http_auth_jwt_module) modules allow access.
 
 Example:
 

@@ -19,9 +19,9 @@ The `ngx_http_auth_jwt_module` module (1.11.3) implements client authorization b
 
 ​	`ngx_http_auth_jwt_module` 模块（1.11.3 版本）通过验证提供的 [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519)（JWT）来实现客户端授权，使用指定的密钥。该模块支持 [JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515)（JWS）、[JSON Web Encryption](https://datatracker.ietf.org/doc/html/rfc7516)（JWE）（1.19.7 版本）和嵌套 JWT（1.21.0 版本）。该模块可以用于 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 身份验证。
 
-The module may be combined with other access modules, such as [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html), [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), and [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), via the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+The module may be combined with other access modules, such as [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_request_module](../ngx_http_auth_request_module), via the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
 
-​	该模块可以与其他访问模块（如 [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html)、[ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html) 和 [ngx_http_auth_request_module](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)）结合使用，通过 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令。
+​	该模块可以与其他访问模块（如 [ngx_http_access_module](../ngx_http_access_module)、[ngx_http_auth_basic_module](../ngx_http_auth_basic_module) 和 [ngx_http_auth_request_module](../ngx_http_auth_request_module)）结合使用，通过 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令。
 
 This module is available as part of our [commercial subscription](http://nginx.com/products/).
 

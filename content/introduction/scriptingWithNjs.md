@@ -29,8 +29,8 @@ njs is a subset of the JavaScript language that allows extending nginx functiona
 - [Understanding preloaded objects](https://nginx.org/en/docs/njs/preload_objects.html)
 - [Tested OS and platforms](https://nginx.org/en/docs/njs/index.html#tested_os_and_platforms)
 
-- [ngx_http_js_module](https://nginx.org/en/docs/http/ngx_http_js_module.html)
-- [ngx_stream_js_module](https://nginx.org/en/docs/stream/ngx_stream_js_module.html)
+- [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}})
+- [ngx_stream_js_module]({{< ref "/mod_ref/ngx_stream_js_module" >}})
 
 - [Writing njs code using TypeScript definition files](https://nginx.org/en/docs/njs/typescript.html)
 - [Using node modules with njs](https://nginx.org/en/docs/njs/node_modules.html)
@@ -43,8 +43,8 @@ njs is a subset of the JavaScript language that allows extending nginx functiona
 - [命令行界面](https://nginx.org/en/docs/njs/cli.html)
 - [理解预加载对象](https://nginx.org/en/docs/njs/preload_objects.html)
 - [经过测试的操作系统和平台](https://nginx.org/en/docs/njs/index.html#tested_os_and_platforms)
-- [ngx_http_js_module](https://nginx.org/en/docs/http/ngx_http_js_module.html)
-- [ngx_stream_js_module](https://nginx.org/en/docs/stream/ngx_stream_js_module.html)
+- [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}})
+- [ngx_stream_js_module]({{< ref "/mod_ref/ngx_stream_js_module" >}})
 - [使用 TypeScript 定义文件编写 njs 代码](https://nginx.org/en/docs/njs/typescript.html)
 - [在 njs 中使用 Node 模块](https://nginx.org/en/docs/njs/node_modules.html)
 
@@ -93,9 +93,9 @@ To use njs in nginx:
 
   
 
-- in the `nginx.conf` file, enable [ngx_http_js_module](https://nginx.org/en/docs/http/ngx_http_js_module.html) module and specify the [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive with the `http.js` script file:
+- in the `nginx.conf` file, enable [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) module and specify the [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive with the `http.js` script file:
 
-- 在 `nginx.conf` 文件中，启用 [ngx_http_js_module](https://nginx.org/en/docs/http/ngx_http_js_module.html) 模块，并使用 `http.js` 脚本文件指定 [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) 指令：
+- 在 `nginx.conf` 文件中，启用 [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) 模块，并使用 `http.js` 脚本文件指定 [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) 指令：
 
   ```
   load_module modules/ngx_http_js_module.so;

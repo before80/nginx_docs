@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_autoindex_module.html
 
 
 
-The `ngx_http_autoindex_module` module processes requests ending with the slash character (‘`/`’) and produces a directory listing. Usually a request is passed to the `ngx_http_autoindex_module` module when the [ngx_http_index_module](https://nginx.org/en/docs/http/ngx_http_index_module.html) module cannot find an index file.
+The `ngx_http_autoindex_module` module processes requests ending with the slash character (‘`/`’) and produces a directory listing. Usually a request is passed to the `ngx_http_autoindex_module` module when the [ngx_http_index_module](../ngx_http_index_module) module cannot find an index file.
 
 
 
@@ -77,7 +77,7 @@ Sets the format of a directory listing.
 
 When the JSONP format is used, the name of a callback function is set with the `callback` request argument. If the argument is missing or has an empty value, then the JSON format is used.
 
-The XML output can be transformed using the [ngx_http_xslt_module](https://nginx.org/en/docs/http/ngx_http_xslt_module.html) module.
+The XML output can be transformed using the [ngx_http_xslt_module](../ngx_http_xslt_module) module.
 
 
 

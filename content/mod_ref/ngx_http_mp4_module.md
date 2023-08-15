@@ -52,7 +52,7 @@ If a third-party mp4 module was previously used, it should be disabled.
 
 
 
-A similar pseudo-streaming support for FLV files is provided by the [ngx_http_flv_module](https://nginx.org/en/docs/http/ngx_http_flv_module.html) module.
+A similar pseudo-streaming support for FLV files is provided by the [ngx_http_flv_module](../ngx_http_flv_module) module.
 
 
 

@@ -16,7 +16,7 @@ https://nginx.org/en/docs/http/ngx_http_status_module.html
 
 The `ngx_http_status_module` module provides access to various status information.
 
-This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
+This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](../ngx_http_api_module) module in 1.13.3.
 
 
 

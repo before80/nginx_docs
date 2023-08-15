@@ -19,7 +19,7 @@ The `ngx_http_api_module` module (1.13.3) provides REST API for accessing variou
 
 
 
-The module supersedes the [ngx_http_status_module](https://nginx.org/en/docs/http/ngx_http_status_module.html) and [ngx_http_upstream_conf_module](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules.
+The module supersedes the [ngx_http_status_module](../ngx_http_status_module) and [ngx_http_upstream_conf_module](../ngx_http_upstream_conf_module) modules.
 
 
 

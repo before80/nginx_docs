@@ -154,17 +154,17 @@ By default, nginx removes all environment variables inherited from its parent pr
 ​	默认情况下，nginx 会删除从其父进程继承的所有环境变量，除了 TZ 变量。此指令允许保留一些继承的变量、更改它们的值或创建新的环境变量。然后这些变量:
 
 - inherited during a [live upgrade](https://nginx.org/en/docs/control.html#upgrade) of an executable file;
-- used by the [ngx_http_perl_module](https://nginx.org/en/docs/http/ngx_http_perl_module.html) module;
+- used by the [ngx_http_perl_module](../ngx_http_perl_module) module;
 - used by worker processes. One should bear in mind that controlling system libraries in this way is not always possible as it is common for libraries to check variables only during initialization, well before they can be set using this directive. An exception from this is an above mentioned [live upgrade](https://nginx.org/en/docs/control.html#upgrade) of an executable file.
 - 在可执行文件的 [实时升级](https://nginx.org/en/docs/control.html#upgrade) 期间继承；
-- 被 [ngx_http_perl_module](https://nginx.org/en/docs/http/ngx_http_perl_module.html) 模块使用；
+- 被 [ngx_http_perl_module](../ngx_http_perl_module) 模块使用；
 - 被工作进程使用。需要记住的是，以这种方式控制系统库并不总是可能的，因为库通常只在初始化期间检查变量，而这发生在使用此指令设置变量之前。唯一的例外是上述提到的 [实时升级](https://nginx.org/en/docs/control.html#upgrade)。
 
 
 
-The TZ variable is always inherited and available to the [ngx_http_perl_module](https://nginx.org/en/docs/http/ngx_http_perl_module.html) module, unless it is configured explicitly.
+The TZ variable is always inherited and available to the [ngx_http_perl_module](../ngx_http_perl_module) module, unless it is configured explicitly.
 
-​	TZ 变量始终会被继承，并且对于 [ngx_http_perl_module](https://nginx.org/en/docs/http/ngx_http_perl_module.html) 模块始终可用，除非明确配置。
+​	TZ 变量始终会被继承，并且对于 [ngx_http_perl_module](../ngx_http_perl_module) 模块始终可用，除非明确配置。
 
 Usage example:
 

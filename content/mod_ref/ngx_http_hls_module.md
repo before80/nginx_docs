@@ -118,7 +118,7 @@ Sets the maximum `number` and `size` of buffers that are used for reading and wr
 
 This directive appeared in version 1.5.12.
 
-Adds arguments from a playlist request to URIs of fragments. This may be useful for performing client authorization at the moment of requesting a fragment, or when protecting an HLS stream with the [ngx_http_secure_link_module](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) module.
+Adds arguments from a playlist request to URIs of fragments. This may be useful for performing client authorization at the moment of requesting a fragment, or when protecting an HLS stream with the [ngx_http_secure_link_module](../ngx_http_secure_link_module) module.
 
 For example, if a client requests a playlist `http://example.com/hls/test.mp4.m3u8?a=1&b=2`, the arguments `a=1` and `b=2` will be added to URIs of fragments after the arguments `start` and `end`:
 
@@ -146,7 +146,7 @@ test.mp4.ts?start=42.583&end=52.209&a=1&b=2
 
 
 
-If an HLS stream is protected with the [ngx_http_secure_link_module](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) module, `$uri` should not be used in the [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) expression because this will cause errors when requesting the fragments. [Base URI](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) should be used instead of `$uri` (`$hls_uri` in the example):
+If an HLS stream is protected with the [ngx_http_secure_link_module](../ngx_http_secure_link_module) module, `$uri` should not be used in the [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) expression because this will cause errors when requesting the fragments. [Base URI](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) should be used instead of `$uri` (`$hls_uri` in the example):
 
 ```
 http {

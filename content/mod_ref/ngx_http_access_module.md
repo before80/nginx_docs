@@ -39,9 +39,9 @@ location / {
 }
 ```
 
-The rules are checked in sequence until the first match is found. In this example, access is allowed only for IPv4 networks `10.1.1.0/16` and `192.168.1.0/24` excluding the address `192.168.1.1`, and for IPv6 network `2001:0db8::/32`. In case of a lot of rules, the use of the [ngx_http_geo_module](https://nginx.org/en/docs/http/ngx_http_geo_module.html) module variables is preferable.
+The rules are checked in sequence until the first match is found. In this example, access is allowed only for IPv4 networks `10.1.1.0/16` and `192.168.1.0/24` excluding the address `192.168.1.1`, and for IPv6 network `2001:0db8::/32`. In case of a lot of rules, the use of the [ngx_http_geo_module](../ngx_http_geo_module) module variables is preferable.
 
-​	规则会按顺序检查，直到找到第一个匹配项。在这个示例中，只允许 IPv4 网络 `10.1.1.0/16` 和 `192.168.1.0/24` 访问，排除地址 `192.168.1.1`，以及 IPv6 网络 `2001:0db8::/32`。如果有很多规则，最好使用 [ngx_http_geo_module](https://nginx.org/en/docs/http/ngx_http_geo_module.html) 模块变量。
+​	规则会按顺序检查，直到找到第一个匹配项。在这个示例中，只允许 IPv4 网络 `10.1.1.0/16` 和 `192.168.1.0/24` 访问，排除地址 `192.168.1.1`，以及 IPv6 网络 `2001:0db8::/32`。如果有很多规则，最好使用 [ngx_http_geo_module](../ngx_http_geo_module) 模块变量。
 
 ## 指令 Directives
 
