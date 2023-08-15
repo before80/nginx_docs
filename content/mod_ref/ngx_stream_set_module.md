@@ -41,7 +41,8 @@ server {
 
   Syntax:`set $variable value;`
 
-| Default: | —                      |
+  Default: —
+
   Context: `server`
 
 

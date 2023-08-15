@@ -124,7 +124,8 @@ http://127.0.0.1/api/8/stream/upstreams/backend/servers/1
 
   Syntax:`api [write=on|off];`
 
-| Default: | —                     |
+  Default: —
+
   Context: `location`
 
 
@@ -150,7 +151,8 @@ http://127.0.0.1/api/8/nginx?fields=version,build
 
   Syntax:  `status_zone zone;`
 
-| Default: | —                                      |
+  Default: —
+
   Context: `server`, `location`, `if in location`
 
 

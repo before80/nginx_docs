@@ -60,7 +60,8 @@ The example implements [per-user](https://datatracker.ietf.org/doc/html/rfc7519#
 
   Syntax:`internal_redirect uri;`
 
-| Default: | —                        |
+  Default: —
+
   Context: `server`, `location`
 
 

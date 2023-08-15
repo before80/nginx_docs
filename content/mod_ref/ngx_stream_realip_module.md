@@ -44,7 +44,8 @@ set_real_ip_from  2001:0db8::/32;
 
   Syntax:`set_real_ip_from address | CIDR | unix:;`
 
-| Default: | —                                          |
+  Default: —
+
   Context: `stream`, `server`
 
 

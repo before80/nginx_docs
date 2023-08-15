@@ -77,7 +77,8 @@ stream {
 
   Syntax:`listen address:port [ssl] [udp] [proxy_protocol] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `server`
 
 
@@ -219,7 +220,8 @@ Specifies a `timeout` for reading the PROXY protocol header to complete. If no e
 
   Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -292,7 +294,8 @@ Before version 1.11.3, this directive was available as part of our [commercial s
 
   Syntax:`server { ... }`
 
-| Default: | —                |
+  Default: —
+
   Context: `stream`
 
 
@@ -304,7 +307,8 @@ Sets the configuration for a server.
 
   Syntax:`stream { ... }`
 
-| Default: | —                |
+  Default: —
+
   Context: `main`
 
 

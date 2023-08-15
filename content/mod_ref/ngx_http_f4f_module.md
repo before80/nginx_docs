@@ -51,7 +51,8 @@ location /video/ {
 
   Syntax:  `f4f;`
 
-| Default: | —          |
+  Default: —
+
   Context: `location`
 
 

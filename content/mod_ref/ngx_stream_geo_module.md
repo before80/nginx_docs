@@ -47,7 +47,8 @@ geo $geo {
 
   Syntax:`geo [$address] $variable { ... }`
 
-| Default: | —                                  |
+  Default: —
+
   Context: `stream`
 
 

@@ -79,7 +79,8 @@ server {
 
   Syntax:`upstream name { ... }`
 
-| Default: | —                       |
+  Default: —
+
   Context: `http`
 
 
@@ -107,7 +108,8 @@ By default, requests are distributed between the servers using a weighted round-
 
   Syntax:`server address [parameters];`
 
-| Default: | —                              |
+  Default: —
+
   Context: `upstream`
 
 
@@ -177,7 +179,8 @@ If there is only a single server in a group, `max_fails`, `fail_timeout` and `sl
 
   Syntax:`zone name [size];`
 
-| Default: | —                   |
+  Default: —
+
   Context: `upstream`
 
 
@@ -197,7 +200,8 @@ Prior to version 1.13.3, the configuration was accessible only via a special loc
 
   Syntax:`state file;`
 
-| Default: | —             |
+  Default: —
+
   Context: `upstream`
 
 
@@ -234,7 +238,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`hash key [consistent];`
 
-| Default: | —                        |
+  Default: —
+
   Context: `upstream`
 
 
@@ -250,7 +255,8 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 
   Syntax:`ip_hash;`
 
-| Default: | —          |
+  Default: —
+
   Context: `upstream`
 
 
@@ -289,7 +295,8 @@ Until versions 1.3.1 and 1.2.2, it was not possible to specify a weight for serv
 
   Syntax:`keepalive connections;`
 
-| Default: | —                        |
+  Default: —
+
   Context: `upstream`
 
 
@@ -446,7 +453,8 @@ Sets a timeout during which an idle keepalive connection to an upstream server w
 
   Syntax:  `ntlm;`
 
-| Default: | —          |
+  Default: —
+
   Context: `upstream`
 
 
@@ -495,7 +503,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`least_conn;`
 
-| Default: | —             |
+  Default: —
+
   Context: `upstream`
 
 
@@ -509,7 +518,8 @@ Specifies that a group should use a load balancing method where a request is pas
 
   Syntax:`least_time header | last_byte [inflight];`
 
-| Default: | —                                           |
+  Default: —
+
   Context: `upstream`
 
 
@@ -535,7 +545,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`queue number [timeout=time];`
 
-| Default: | —                              |
+  Default: —
+
   Context: `upstream`
 
 
@@ -561,7 +572,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`random [two [method]];`
 
-| Default: | —                        |
+  Default: —
+
   Context: `upstream`
 
 
@@ -585,7 +597,8 @@ The `least_time` method is available as a part of our [commercial subscription](
 
   Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `upstream`
 
 
@@ -660,7 +673,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`sticky cookie name [expires=time] [domain=domain] [httponly] [samesite=strict|lax|none|$variable] [secure] [path=path];` `sticky route $variable ...;` `sticky learn create=$variable lookup=$variable zone=name:size [timeout=time] [header] [sync];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `upstream`
 
 
@@ -694,7 +708,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`sticky_cookie_insert name [expires=time] [domain=domain] [path=path];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `upstream`
 
 

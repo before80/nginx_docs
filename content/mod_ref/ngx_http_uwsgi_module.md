@@ -41,7 +41,8 @@ location / {
 
   Syntax:`uwsgi_bind address [transparent] | off;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -149,7 +150,8 @@ Allows starting a background subrequest to update an expired cache item, while a
 
   Syntax:`uwsgi_cache_bypass string ...;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -168,7 +170,8 @@ Can be used along with the [uwsgi_no_cache](https://nginx.org/en/docs/http/ngx_h
 
   Syntax:  `uwsgi_cache_key string;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -235,7 +238,8 @@ Before 1.7.8, the response could be cached.
 
   Syntax:`uwsgi_cache_max_range_offset number;`
 
-| Default: | —                                      |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -275,7 +279,8 @@ Sets the `number` of requests after which the response will be cached.
 
   Syntax:`uwsgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`
 
 
@@ -343,7 +348,8 @@ In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Prev
 
   Syntax:`uwsgi_cache_purge string ...;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -429,7 +435,8 @@ To minimize the number of accesses to uwsgi servers when populating a new cache 
 
   Syntax:`uwsgi_cache_valid [code ...] time;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -503,7 +510,8 @@ Enables byte-range support for both cached and uncached responses from the uwsgi
 
   Syntax:  `uwsgi_hide_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -528,7 +536,8 @@ Determines whether the connection with a uwsgi server should be closed when a cl
 
   Syntax:`uwsgi_ignore_headers field ...;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -716,7 +725,8 @@ Limits the number of possible tries for passing a request to the [next server](h
 
   Syntax:`uwsgi_no_cache string ...;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -735,7 +745,8 @@ Can be used along with the [uwsgi_cache_bypass](https://nginx.org/en/docs/http/n
 
   Syntax:`uwsgi_param parameter value [if_not_empty];`
 
-| Default: | —                                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -766,7 +777,8 @@ uwsgi_param HTTPS $https if_not_empty;
 
   Syntax:`uwsgi_pass [protocol://]address;`
 
-| Default: | —                                  |
+  Default: —
+
   Context: `location`, `if in location`
 
 
@@ -802,7 +814,8 @@ Secured uwsgi protocol is supported since version 1.5.8.
 
   Syntax:  `uwsgi_pass_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -902,7 +915,8 @@ Configures the “TCP keepalive” behavior for outgoing connections to a uwsgi 
 
   Syntax:`uwsgi_ssl_certificate file;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -918,7 +932,8 @@ Since version 1.21.0, variables can be used in the `file` name.
 
   Syntax:`uwsgi_ssl_certificate_key file;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -953,7 +968,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`uwsgi_ssl_conf_command name value;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -979,7 +995,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `uwsgi_ssl_crl file;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1010,7 +1027,8 @@ By default, the host part from [uwsgi_pass](https://nginx.org/en/docs/http/ngx_h
 
   Syntax:`uwsgi_ssl_password_file file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1075,7 +1093,8 @@ Determines whether SSL sessions can be reused when working with a secured uwsgi 
 
   Syntax:`uwsgi_ssl_trusted_certificate file;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

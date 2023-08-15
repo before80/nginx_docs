@@ -98,11 +98,12 @@ stream {
 
 
 
-### zone_sync;`
+### zone_sync
 
   Syntax:`zone_sync;`
 
-| Default: | —            |
+  Default: —
+
   Context: `server`
 
 
@@ -185,7 +186,8 @@ Sets `size` of a per-connection receive buffer used to parse incoming stream of 
 
   Syntax:`zone_sync_server address [resolve];`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `server`
 
 
@@ -240,7 +242,8 @@ Enables the SSL/TLS protocol for connections to another cluster server.
 
   Syntax:`zone_sync_ssl_certificate file;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -252,7 +255,8 @@ Specifies a `file` with the certificate in the PEM format used for authenticatio
 
   Syntax:`zone_sync_ssl_certificate_key file;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -279,7 +283,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`zone_sync_ssl_conf_command name value;`
 
-| Default: | —                                        |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -305,7 +310,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:`zone_sync_ssl_crl file;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -334,7 +340,8 @@ By default, the host part of the [zone_sync_server](https://nginx.org/en/docs/st
 
   Syntax:`zone_sync_ssl_password_file file;`
 
-| Default: | —                                   |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -374,7 +381,8 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 
   Syntax:`zone_sync_ssl_trusted_certificate file;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `stream`, `server`
 
 

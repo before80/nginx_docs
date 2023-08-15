@@ -128,7 +128,8 @@ export default {bar, preread, req_line, header_inject, access};
 
   Syntax:`js_access function | module.function;`
 
-| Default: | —                                       |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -227,7 +228,8 @@ Defines a timeout for reading and writing for [Fetch API](https://nginx.org/en/d
 
   Syntax:`js_fetch_trusted_certificate file;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -271,7 +273,8 @@ Sets the verification depth in the HTTPS server certificates chain with [Fetch A
 
   Syntax:`js_filter function | module.function;`
 
-| Default: | —                                       |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -299,7 +302,8 @@ As the `js_filter` handler returns its result immediately, it supports only sync
 
   Syntax:`js_import module.js | export_name from module.js;`
 
-| Default: | —                                                   |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -327,7 +331,8 @@ The directive can be specified on the `server` level since [0.7.7](https://nginx
 
   Syntax:`js_include file;`
 
-| Default: | —                  |
+  Default: —
+
   Context: `stream`
 
 
@@ -358,7 +363,8 @@ The directive was made obsolete in version [0.4.0](https://nginx.org/en/docs/njs
 
   Syntax:  `js_path path;`
 
-| Default: | —                  |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -378,7 +384,8 @@ The directive can be specified on the `server` level since [0.7.7](https://nginx
 
   Syntax:`js_preload_object name.json | name from file.json;`
 
-| Default: | —                                                    |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -400,7 +407,8 @@ Several `js_preload_object` directives can be specified.
 
   Syntax:`js_preread function | module.function;`
 
-| Default: | —                                        |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -428,7 +436,8 @@ As the `js_preread` handler returns its result immediately, it supports only syn
 
   Syntax:`js_set $variable function | module.function;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -454,7 +463,8 @@ The directive can be specified on the `server` level since [0.7.7](https://nginx
 
   Syntax:`js_shared_dict_zone zone=name:size [timeout=time] [type=string|number] [evict];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `stream`
 
 
@@ -509,7 +519,8 @@ example.js:
 
   Syntax:`js_var $variable [value];`
 
-| Default: | —                           |
+  Default: —
+
   Context: `stream`, `server`
 
 

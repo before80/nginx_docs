@@ -95,7 +95,8 @@ The `if` parameter enables conditional logging. A session will not be logged if 
 
   Syntax:`log_format name [escape=default|json|none] string ...;`
 
-| Default: | —                                                        |
+  Default: —
+
   Context: `stream`
 
 

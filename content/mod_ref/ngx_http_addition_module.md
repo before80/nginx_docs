@@ -42,7 +42,8 @@ location / {
 
   Syntax:  `add_before_body uri;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -54,7 +55,8 @@ Adds the text returned as a result of processing a given subrequest before the r
 
   Syntax:  `add_after_body uri;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

@@ -106,7 +106,8 @@ ssl_buffer_size 4k;
 
   Syntax:`ssl_certificate file;`
 
-| Default: | —                       |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -156,7 +157,8 @@ It should be kept in mind that due to the HTTPS protocol limitations for maximum
 
   Syntax:`ssl_certificate_key file;`
 
-| Default: | —                           |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -203,7 +205,8 @@ The previous versions of nginx used [different](https://nginx.org/en/docs/http/c
 
   Syntax:`ssl_client_certificate file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -217,7 +220,8 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 
   Syntax:`ssl_conf_command name value;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -250,7 +254,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `ssl_crl file;`
 
-| Default: | —                |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -264,7 +269,8 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
   Syntax:`ssl_dhparam file;`
 
-| Default: | —                   |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -396,7 +402,8 @@ The `off` parameter prohibits the use of the cache.
 
   Syntax:`ssl_ocsp_responder url;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -418,7 +425,8 @@ ssl_ocsp_responder http://ocsp.example.com/;
 
   Syntax:`ssl_password_file file;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -566,7 +574,8 @@ but using only shared cache without the built-in cache should be more efficient.
 
   Syntax:`ssl_session_ticket_key file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -651,7 +660,8 @@ For a resolution of the OCSP responder hostname, the [resolver](https://nginx.or
 
   Syntax:`ssl_stapling_file file;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -667,7 +677,8 @@ The file should be in the DER format as produced by the “`openssl ocsp`” com
 
   Syntax:`ssl_stapling_responder url;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`
 
 
@@ -706,7 +717,8 @@ For verification to work, the certificate of the server certificate issuer, the 
 
   Syntax:`ssl_trusted_certificate file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `http`, `server`
 
 

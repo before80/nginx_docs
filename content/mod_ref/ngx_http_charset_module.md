@@ -78,7 +78,8 @@ In addition, a charset can be set in the “X-Accel-Charset” response header f
 
   Syntax:`charset_map charset1 charset2 { ... }`
 
-| Default: | —                                       |
+  Default: —
+
   Context: `http`
 
 
@@ -158,7 +159,8 @@ It should be noted that if a response is received in a subrequest then the conve
 
   Syntax:  `source_charset charset;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`, `if in location`
 
 

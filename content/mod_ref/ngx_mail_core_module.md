@@ -74,7 +74,8 @@ mail {
 
   Syntax:`listen address:port [ssl] [proxy_protocol] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `server`
 
 
@@ -144,7 +145,8 @@ The `listen` directive can have several additional parameters specific to socket
 
   Syntax:`mail { ... }`
 
-| Default: | —              |
+  Default: —
+
   Context: `main`
 
 
@@ -171,7 +173,8 @@ Sets the number of protocol errors after which the connection is closed.
 
   Syntax:`protocol imap | pop3 | smtp;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `server`
 
 
@@ -269,7 +272,8 @@ resolver_timeout 5s;
 
   Syntax:`server { ... }`
 
-| Default: | —                |
+  Default: —
+
   Context: `mail`
 
 

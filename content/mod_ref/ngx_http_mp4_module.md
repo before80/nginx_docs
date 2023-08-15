@@ -78,11 +78,12 @@ location /video/ {
 
 
 
-### mp4;`
+### mp4
 
   Syntax:  `mp4;`
 
-| Default: | —          |
+  Default: —
+
   Context: `location`
 
 

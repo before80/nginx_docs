@@ -42,7 +42,8 @@ location / {
 
   Syntax:`sub_filter string replacement;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

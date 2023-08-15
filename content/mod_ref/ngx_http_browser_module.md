@@ -80,7 +80,8 @@ if ($ancient_browser) {
 
   Syntax:`ancient_browser string ...;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -105,7 +106,8 @@ Sets a value for the `$ancient_browser` variables.
 
   Syntax:`modern_browser browser version;` `modern_browser unlisted;`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

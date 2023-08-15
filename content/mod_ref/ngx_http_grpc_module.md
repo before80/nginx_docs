@@ -46,7 +46,8 @@ server {
 
   Syntax:`grpc_bind address [transparent ] | off;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -94,7 +95,8 @@ Defines a timeout for establishing a connection with a gRPC server. It should be
 
   Syntax:  `grpc_hide_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -106,7 +108,8 @@ By default, nginx does not pass the header fields “Date”, “Server”, and 
 
   Syntax:`grpc_ignore_headers field ...;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -233,7 +236,8 @@ Limits the number of possible tries for passing a request to the [next server](h
 
   Syntax:  `grpc_pass address;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `location`, `if in location`
 
 
@@ -273,7 +277,8 @@ Parameter value can contain variables (1.17.8). In this case, if an address is s
 
   Syntax:  `grpc_pass_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -347,7 +352,8 @@ Configures the “TCP keepalive” behavior for outgoing connections to a gRPC s
 
   Syntax:`grpc_ssl_certificate file;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -361,7 +367,8 @@ Since version 1.21.0, variables can be used in the `file` name.
 
   Syntax:`grpc_ssl_certificate_key file;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -392,7 +399,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`grpc_ssl_conf_command name value;`
 
-| Default: | —                                   |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -418,7 +426,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `grpc_ssl_crl file;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -445,7 +454,8 @@ By default, the host part from [grpc_pass](https://nginx.org/en/docs/http/ngx_ht
 
   Syntax:`grpc_ssl_password_file file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -502,7 +512,8 @@ Determines whether SSL sessions can be reused when working with the gRPC server.
 
   Syntax:`grpc_ssl_trusted_certificate file;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

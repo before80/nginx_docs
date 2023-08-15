@@ -77,7 +77,8 @@ Sets the `size` of the buffer used for writing a modified message. By default, t
 
   Syntax:`mqtt_set_connect field value;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `server`
 
 

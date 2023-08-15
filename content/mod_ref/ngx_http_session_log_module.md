@@ -76,7 +76,8 @@ Specifies the output format of a log. The value of the `$body_bytes_sent` variab
 
   Syntax:`session_log_zone path zone=name:size [format=format] [timeout=time] [id=id] [md5=md5] ;`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`
 
 

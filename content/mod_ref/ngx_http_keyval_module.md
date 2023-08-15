@@ -59,7 +59,8 @@ http {
 
   Syntax:`keyval key $variable zone=name;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`
 
 
@@ -71,7 +72,8 @@ Creates a new `$variable` whose value is looked up by the `key` in the key-value
 
   Syntax:`keyval_zone zone=name:size [state=file] [timeout=time] [type=string|ip|prefix] [sync];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`
 
 

@@ -54,7 +54,8 @@ map $http_user_agent $mobile {
 
   Syntax:`map string $variable { ... }`
 
-| Default: | —                              |
+  Default: —
+
   Context: `http`
 
 

@@ -42,7 +42,8 @@ location / {
 
   Syntax:`proxy_bind address [transparent] | off;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -152,7 +153,8 @@ Allows starting a background subrequest to update an expired cache item, while a
 
   Syntax:`proxy_cache_bypass string ...;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -260,7 +262,8 @@ Before 1.7.8, the response could be cached.
 
   Syntax:`proxy_cache_max_range_offset number;`
 
-| Default: | —                                      |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -302,7 +305,8 @@ Sets the `number` of requests after which the response will be cached.
 
   Syntax:`proxy_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`
 
 
@@ -370,7 +374,8 @@ In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Prev
 
   Syntax:`proxy_cache_purge string ...;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -456,7 +461,8 @@ To minimize the number of accesses to proxied servers when populating a new cach
 
   Syntax:`proxy_cache_valid [code ...] time;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -682,7 +688,8 @@ Sets the maximum `size` of hash tables used by the [proxy_hide_header](https://n
 
   Syntax:  `proxy_hide_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -722,7 +729,8 @@ Determines whether the connection with a proxied server should be closed when a 
 
   Syntax:`proxy_ignore_headers field ...;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -793,7 +801,8 @@ This restriction does not apply to responses that will be [cached](https://nginx
 
   Syntax:  `proxy_method method;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -904,7 +913,8 @@ Limits the number of possible tries for passing a request to the [next server](h
 
   Syntax:`proxy_no_cache string ...;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -923,7 +933,8 @@ Can be used along with the [proxy_cache_bypass](https://nginx.org/en/docs/http/n
 
   Syntax:  `proxy_pass URL;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `location`, `if in location`, `limit_except`
 
 
@@ -1054,7 +1065,8 @@ In some cases, the part of a request URI to be replaced cannot be determined:
 
   Syntax:  `proxy_pass_header field;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1268,7 +1280,8 @@ Sets a timeout for transmitting a request to the proxied server. The timeout is 
 
   Syntax:  `proxy_set_body value;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1347,7 +1360,8 @@ Configures the “TCP keepalive” behavior for outgoing connections to a proxie
 
   Syntax:`proxy_ssl_certificate file;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1363,7 +1377,8 @@ Since version 1.21.0, variables can be used in the `file` name.
 
   Syntax:`proxy_ssl_certificate_key file;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1398,7 +1413,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`proxy_ssl_conf_command name value;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1424,7 +1440,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `proxy_ssl_crl file;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1455,7 +1472,8 @@ By default, the host part of the [proxy_pass](https://nginx.org/en/docs/http/ngx
 
   Syntax:`proxy_ssl_password_file file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1518,7 +1536,8 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 
   Syntax:`proxy_ssl_trusted_certificate file;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

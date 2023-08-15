@@ -99,7 +99,8 @@ Determines whether nginx should become a daemon. Mainly used during development.
 
   Syntax:`debug_connection address | CIDR | unix:;`
 
-| Default: | —                                          |
+  Default: —
+
   Context: `events`
 
 
@@ -131,7 +132,8 @@ For this directive to work, nginx needs to be built with `--with-debug`, see “
 
   Syntax:`debug_points abort | stop;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `main`
 
 
@@ -213,7 +215,8 @@ The directive can be specified on the `stream` level starting from version 1.7.1
 
   Syntax:`events { ... }`
 
-| Default: | —                |
+  Default: —
+
   Context: `main`
 
 
@@ -227,7 +230,8 @@ Provides the configuration file context in which the directives that affect conn
 
   Syntax:`include file | mask;`
 
-| Default: | —                      |
+  Default: —
+
   Context: `any`
 
 
@@ -250,7 +254,8 @@ include vhosts/*.conf;
 
   Syntax:`load_module file;`
 
-| Default: | —                   |
+  Default: —
+
   Context: `main`
 
 
@@ -361,7 +366,8 @@ Defines a `file` that will store the process ID of the main process.
 
   Syntax:`ssl_engine device;`
 
-| Default: | —                    |
+  Default: —
+
   Context: `main`
 
 
@@ -396,7 +402,8 @@ In the event that all threads in the pool are busy, a new task will wait in the 
 
   Syntax:`timer_resolution interval;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `main`
 
 
@@ -426,7 +433,8 @@ Internal implementation of the interval depends on the method used:
 
   Syntax:`use method;`
 
-| Default: | —             |
+  Default: —
+
   Context: `events`
 
 
@@ -489,7 +497,8 @@ It should be kept in mind that this number includes all connections (e.g. connec
 
   Syntax:`worker_cpu_affinity cpumask ...;` `worker_cpu_affinity auto [cpumask];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `main`
 
 
@@ -584,7 +593,8 @@ The `auto` parameter is supported starting from versions 1.3.8 and 1.2.5.
 
   Syntax:`worker_rlimit_core size;`
 
-| Default: | —                          |
+  Default: —
+
   Context: `main`
 
 
@@ -598,7 +608,8 @@ Changes the limit on the largest size of a core file (`RLIMIT_CORE`) for worker 
 
   Syntax:`worker_rlimit_nofile number;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `main`
 
 
@@ -612,7 +623,8 @@ Changes the limit on the maximum number of open files (`RLIMIT_NOFILE`) for work
 
   Syntax:`worker_shutdown_timeout time;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `main`
 
 
@@ -628,7 +640,8 @@ Configures a timeout for a graceful shutdown of worker processes. When the `time
 
   Syntax:`working_directory directory;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `main`
 
 

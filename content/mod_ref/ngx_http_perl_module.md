@@ -116,7 +116,8 @@ __END__
 
   Syntax:`perl module::function|'sub { ... }';`
 
-| Default: | —                                      |
+  Default: —
+
   Context: `location`, `limit_except`
 
 
@@ -128,7 +129,8 @@ Sets a Perl handler for the given location.
 
   Syntax:`perl_modules path;`
 
-| Default: | —                    |
+  Default: —
+
   Context: `http`
 
 
@@ -140,7 +142,8 @@ Sets an additional path for Perl modules.
 
   Syntax:`perl_require module;`
 
-| Default: | —                      |
+  Default: —
+
   Context: `http`
 
 
@@ -152,7 +155,8 @@ Defines the name of a module that will be loaded during each reconfiguration. Se
 
   Syntax:`perl_set $variable module::function|'sub { ... }';`
 
-| Default: | —                                                    |
+  Default: —
+
   Context: `http`
 
 

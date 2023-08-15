@@ -90,7 +90,8 @@ This configuration shows that in order for a health check to pass, the response 
 
   Syntax:`health_check [parameters];`
 
-| Default: | —                            |
+  Default: —
+
   Context: `location`
 
 
@@ -146,7 +147,8 @@ The following optional parameters are supported:
 
   Syntax:`match name { ... }`
 
-| Default: | —                    |
+  Default: —
+
   Context: `http`
 
 

@@ -49,7 +49,8 @@ http {
 
   Syntax:`limit_req zone=name [burst=number] [nodelay | delay=number];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -146,7 +147,8 @@ Sets the status code to return in response to rejected requests.
 
   Syntax:`limit_req_zone key zone=name:size rate=rate [sync];`
 
-| Default: | —                                                     |
+  Default: —
+
   Context: `http`
 
 

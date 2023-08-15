@@ -52,7 +52,8 @@ http {
 
   Syntax:`geoip_country file;`
 
-| Default: | —                     |
+  Default: —
+
   Context: `http`
 
 
@@ -78,7 +79,8 @@ Specifies a database used to determine the country depending on the client IP ad
 
   Syntax:`geoip_city file;`
 
-| Default: | —                  |
+  Default: —
+
   Context: `http`
 
 
@@ -140,7 +142,8 @@ Specifies a database used to determine the country, region, and city depending o
 
   Syntax:`geoip_org file;`
 
-| Default: | —                 |
+  Default: —
+
   Context: `http`
 
 
@@ -160,7 +163,8 @@ Specifies a database used to determine the organization depending on the client 
 
   Syntax:`geoip_proxy address | CIDR;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`
 
 

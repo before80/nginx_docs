@@ -44,7 +44,8 @@ real_ip_recursive on;
 
   Syntax:`set_real_ip_from address | CIDR | unix:;`
 
-| Default: | —                                          |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

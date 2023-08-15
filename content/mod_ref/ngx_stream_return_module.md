@@ -41,7 +41,8 @@ server {
 
   Syntax:`return value;`
 
-| Default: | —               |
+  Default: —
+
   Context: `server`
 
 

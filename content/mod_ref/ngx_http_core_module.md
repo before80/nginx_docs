@@ -137,7 +137,8 @@ If [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) is enable
 
   Syntax:`alias path;`
 
-| Default: | —             |
+  Default: —
+
   Context: `location`
 
 
@@ -458,7 +459,8 @@ The [ngx_http_autoindex_module](https://nginx.org/en/docs/http/ngx_http_autoinde
 
   Syntax:  `error_page code ... [=[response]] uri;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`, `if in location`
 
 
@@ -551,7 +553,8 @@ Enables or disables automatic generation of the “ETag” response header field
 
   Syntax:`http { ... }`
 
-| Default: | —              |
+  Default: —
+
   Context: `main`
 
 
@@ -607,7 +610,8 @@ If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx
 
   Syntax:`internal;`
 
-| Default: | —           |
+  Default: —
+
   Context: `location`
 
 
@@ -727,7 +731,8 @@ If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx
 
   Syntax:`limit_except method ... { ... }`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `location`
 
 
@@ -991,7 +996,8 @@ listen 127.0.0.1 default_server accept_filter=dataready backlog=1024;
 
   Syntax:`location [ = | ~ | ~* | ^~ ] uri { ... }` `location @name { ... }`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `server`, `location`
 
 
@@ -1093,7 +1099,8 @@ Enables or disables logging of subrequests into [access_log](https://nginx.org/e
 
   Syntax:  `max_ranges number;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1352,7 +1359,8 @@ It should be noted that timed out keep-alive connections are closed normally.
 
   Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -1551,7 +1559,8 @@ Prior to version 1.21.4, by default there was no limit.
 
   Syntax:`server { ... }`
 
-| Default: | —                |
+  Default: —
+
   Context: `http`
 
 
@@ -1795,7 +1804,8 @@ Enables or disables the use of the `TCP_NOPUSH` socket option on FreeBSD or the 
 
   Syntax:`try_files file ... uri;` `try_files file ... =code;`
 
-| Default: | —                                                     |
+  Default: —
+
   Context: `server`, `location`
 
 

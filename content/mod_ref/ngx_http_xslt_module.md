@@ -48,7 +48,8 @@ location / {
 
   Syntax:  `xml_entities path;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -83,7 +84,8 @@ By default, the header field is removed as contents of the response are modified
 
   Syntax:`xslt_param parameter value;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -99,7 +101,8 @@ There could be several `xslt_param` directives. These directives are inherited f
 
   Syntax:`xslt_string_param parameter value;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -115,7 +118,8 @@ There could be several `xslt_string_param` directives. These directives are inhe
 
   Syntax:`xslt_stylesheet stylesheet [parameter=value ...];`
 
-| Default: | —                                                   |
+  Default: —
+
   Context: `location`
 
 

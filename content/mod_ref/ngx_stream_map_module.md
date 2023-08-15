@@ -44,7 +44,8 @@ limit_conn addr 1;
 
   Syntax:`map string $variable { ... }`
 
-| Default: | —                              |
+  Default: —
+
   Context: `stream`
 
 

@@ -23,7 +23,8 @@ https://nginx.org/en/docs/mail/ngx_mail_auth_http_module.html
 
   Syntax:`auth_http URL;`
 
-| Default: | —                |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -35,7 +36,8 @@ Sets the URL of the HTTP authentication server. The protocol is described [below
 
   Syntax:`auth_http_header header value;`
 
-| Default: | —                                |
+  Default: —
+
   Context: `mail`, `server`
 
 

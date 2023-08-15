@@ -174,7 +174,8 @@ Optimized sending is supported only on Linux featuring `UDP_SEGMENT`.
 
   Syntax:`quic_host_key file;`
 
-| Default: | —                     |
+  Default: —
+
   Context: `http`, `server`
 
 

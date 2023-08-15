@@ -84,7 +84,8 @@ Health checks can also be configured to test data obtained from the server. Test
 
   Syntax:`health_check [parameters];`
 
-| Default: | —                            |
+  Default: —
+
   Context: `server`
 
 
@@ -145,7 +146,8 @@ Overrides the [proxy_timeout](https://nginx.org/en/docs/stream/ngx_stream_proxy_
 
   Syntax:`match name { ... }`
 
-| Default: | —                    |
+  Default: —
+
   Context: `stream`
 
 

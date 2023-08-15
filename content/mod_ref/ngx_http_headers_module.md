@@ -45,7 +45,8 @@ add_header Cache-Control private;
 
   Syntax:  `add_header name value [always];`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`, `if in location`
 
 
@@ -61,7 +62,8 @@ If the `always` parameter is specified (1.7.5), the header field will be added r
 
   Syntax:  `add_trailer name value [always];`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`, `if in location`
 
 

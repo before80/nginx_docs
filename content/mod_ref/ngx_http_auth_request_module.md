@@ -71,7 +71,8 @@ Enables authorization based on the result of a subrequest and sets the URI to wh
 
   Syntax:`auth_request_set $variable value;`
 
-| Default: | —                                   |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

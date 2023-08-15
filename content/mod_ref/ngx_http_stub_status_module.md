@@ -45,11 +45,12 @@ Reading: 6 Writing: 179 Waiting: 106
 
 
 
-### stub_status;`
+### stub_status
 
   Syntax:  `stub_status;`
 
-| Default: | —                    |
+  Default: —
+
   Context: `server`, `location`
 
 

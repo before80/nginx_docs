@@ -65,7 +65,8 @@ http {
 
   Syntax:`otel_exporter { ... }`
 
-| Default: | —                       |
+  Default: —
+
   Context: `http`
 
 
@@ -180,7 +181,8 @@ Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-
 
   Syntax:  `otel_span_name name;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -192,7 +194,8 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 
   Syntax:`otel_span_attr name value;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

@@ -80,7 +80,8 @@ server {
 
   Syntax:`upstream name { ... }`
 
-| Default: | —                       |
+  Default: —
+
   Context: `stream`
 
 
@@ -109,7 +110,8 @@ By default, connections are distributed between the servers using a weighted rou
 
   Syntax:`server address [parameters];`
 
-| Default: | —                              |
+  Default: —
+
   Context: `upstream`
 
 
@@ -171,7 +173,8 @@ If there is only a single server in a group, `max_fails`, `fail_timeout` and `sl
 
   Syntax:`zone name [size];`
 
-| Default: | —                   |
+  Default: —
+
   Context: `upstream`
 
 
@@ -189,7 +192,8 @@ Prior to version 1.13.3, the configuration was accessible only via a special loc
 
   Syntax:`state file;`
 
-| Default: | —             |
+  Default: —
+
   Context: `upstream`
 
 
@@ -226,7 +230,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`hash key [consistent];`
 
-| Default: | —                        |
+  Default: —
+
   Context: `upstream`
 
 
@@ -246,7 +251,8 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 
   Syntax:`least_conn;`
 
-| Default: | —             |
+  Default: —
+
   Context: `upstream`
 
 
@@ -258,7 +264,8 @@ Specifies that a group should use a load balancing method where a connection is 
 
   Syntax:`least_time connect | first_byte | last_byte [inflight];`
 
-| Default: | —                                                         |
+  Default: —
+
   Context: `upstream`
 
 
@@ -282,7 +289,8 @@ This directive is available as part of our [commercial subscription](http://ngin
 
   Syntax:`random [two [method]];`
 
-| Default: | —                        |
+  Default: —
+
   Context: `upstream`
 
 
@@ -306,7 +314,8 @@ The `least_time` method is available as a part of our [commercial subscription](
 
   Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `upstream`
 
 

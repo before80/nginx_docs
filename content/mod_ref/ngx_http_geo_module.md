@@ -49,7 +49,8 @@ geo $geo {
 
   Syntax:`geo [$address] $variable { ... }`
 
-| Default: | —                                  |
+  Default: —
+
   Context: `http`
 
 

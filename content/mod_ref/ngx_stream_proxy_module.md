@@ -59,7 +59,8 @@ server {
 
   Syntax:`proxy_bind address [transparent] | off;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -195,7 +196,8 @@ Limits the number of possible tries for passing a connection to the [next server
 
   Syntax:`proxy_pass address;`
 
-| Default: | —                     |
+  Default: —
+
   Context: `server`
 
 
@@ -259,7 +261,8 @@ Sets the number of client datagrams at which binding between a client and existi
 
   Syntax:`proxy_responses number;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -324,7 +327,8 @@ Enables the SSL/TLS protocol for connections to a proxied server.
 
   Syntax:`proxy_ssl_certificate file;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -338,7 +342,8 @@ Since version 1.21.0, variables can be used in the `file` name.
 
   Syntax:`proxy_ssl_certificate_key file;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -367,7 +372,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`proxy_ssl_conf_command name value;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -393,7 +399,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:`proxy_ssl_crl file;`
 
-| Default: | —                     |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -420,7 +427,8 @@ By default, the host part of the [proxy_pass](https://nginx.org/en/docs/stream/n
 
   Syntax:`proxy_ssl_password_file file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -477,7 +485,8 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 
   Syntax:`proxy_ssl_trusted_certificate file;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `stream`, `server`
 
 

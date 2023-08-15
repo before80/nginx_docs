@@ -59,7 +59,8 @@ Plain text authentication methods (`AUTH PLAIN` and `AUTH LOGIN`) are always ena
 
   Syntax:`smtp_capabilities extension ...;`
 
-| Default: | —                                  |
+  Default: —
+
   Context: `mail`, `server`
 
 

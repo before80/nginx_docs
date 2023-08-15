@@ -90,7 +90,8 @@ Sets a gzip compression `level` of a response. Acceptable values are in the rang
 
   Syntax:  `gzip_disable regex ...;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

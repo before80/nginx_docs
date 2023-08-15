@@ -32,11 +32,12 @@ The [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break), 
 
 
 
-### break;`
+### break
 
   Syntax:  `break;`
 
-| Default: | —                          |
+  Default: —
+
   Context: `server`, `location`, `if`
 
 
@@ -61,7 +62,8 @@ if ($slow) {
 
   Syntax:`if (condition) { ... }`
 
-| Default: | —                        |
+  Default: —
+
   Context: `server`, `location`
 
 
@@ -123,7 +125,8 @@ A value of the `$invalid_referer` embedded variable is set by the [valid_referer
 
   Syntax:`return code [text];` `return code URL;` `return URL;`
 
-| Default: | —                                                      |
+  Default: —
+
   Context: `server`, `location`, `if`
 
 
@@ -155,7 +158,8 @@ See also the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.ht
 
   Syntax:`rewrite regex replacement [flag];`
 
-| Default: | —                                   |
+  Default: —
+
   Context: `server`, `location`, `if`
 
 
@@ -236,7 +240,8 @@ Enables or disables logging of `ngx_http_rewrite_module` module directives proce
 
   Syntax:  `set $variable value;`
 
-| Default: | —                          |
+  Default: —
+
   Context: `server`, `location`, `if`
 
 

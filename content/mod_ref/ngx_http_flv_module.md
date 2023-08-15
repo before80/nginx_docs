@@ -40,11 +40,12 @@ location ~ \.flv$ {
 
 
 
-### flv;`
+### flv
 
   Syntax:  `flv;`
 
-| Default: | —          |
+  Default: —
+
   Context: `location`
 
 

@@ -108,7 +108,8 @@ The special value `off` cancels the effect of the `auth_jwt` directive inherited
 
   Syntax:`auth_jwt_claim_set $variable name ...;`
 
-| Default: | —                                        |
+  Default: —
+
   Context: `http`
 
 
@@ -139,7 +140,8 @@ Variable values for tokens encrypted with JWE are available only after decryptio
 
   Syntax:`auth_jwt_header_set $variable name ...;`
 
-| Default: | —                                         |
+  Default: —
+
   Context: `http`
 
 
@@ -172,7 +174,8 @@ Enables or disables caching of keys obtained from a [file](https://nginx.org/en/
 
   Syntax:  `auth_jwt_key_file file;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 
@@ -193,7 +196,8 @@ If at least one of the specified keys cannot be loaded or processed, nginx will 
 
   Syntax:  `auth_jwt_key_request uri;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 
@@ -265,7 +269,8 @@ Specifies which type of JSON Web Token to expect: JWS (`signed`), JWE (`encrypte
 
   Syntax:`auth_jwt_require $value ... [error=401 | 403] ;`
 
-| Default: | —                                                 |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 

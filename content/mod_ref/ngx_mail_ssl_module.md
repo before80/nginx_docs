@@ -81,7 +81,8 @@ This directive was made obsolete in version 1.15.0 and was removed in version 1.
 
   Syntax:`ssl_certificate file;`
 
-| Default: | —                       |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -119,7 +120,8 @@ The value `data`:`certificate` can be specified instead of the `file` (1.15.10),
 
   Syntax:`ssl_certificate_key file;`
 
-| Default: | —                           |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -164,7 +166,8 @@ The previous versions of nginx used [different](https://nginx.org/en/docs/http/c
 
   Syntax:`ssl_client_certificate file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -180,7 +183,8 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 
   Syntax:`ssl_conf_command name value;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -213,7 +217,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `ssl_crl file;`
 
-| Default: | —                |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -227,7 +232,8 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
   Syntax:`ssl_dhparam file;`
 
-| Default: | —                   |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -284,7 +290,8 @@ When using OpenSSL 1.0.2 or higher, this directive sets the list of curves suppo
 
   Syntax:`ssl_password_file file;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -399,7 +406,8 @@ but using only shared cache without the built-in cache should be more efficient.
 
   Syntax:`ssl_session_ticket_key file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `mail`, `server`
 
 
@@ -458,7 +466,8 @@ Specifies a time during which a client may reuse the session parameters.
 
   Syntax:`ssl_trusted_certificate file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `mail`, `server`
 
 

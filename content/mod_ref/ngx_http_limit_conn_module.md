@@ -51,7 +51,8 @@ http {
 
   Syntax:  `limit_conn zone number;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -140,7 +141,8 @@ Sets the status code to return in response to rejected requests.
 
   Syntax:`limit_conn_zone key zone=name:size;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `http`
 
 
@@ -168,7 +170,8 @@ Additionally, as part of our [commercial subscription](http://nginx.com/products
 
   Syntax:`limit_zone name $variable size;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `http`
 
 

@@ -50,7 +50,8 @@ stream {
 
   Syntax:`split_clients string $variable { ... }`
 
-| Default: | —                                        |
+  Default: —
+
   Context: `stream`
 
 

@@ -49,7 +49,8 @@ The rules are checked in sequence until the first match is found. In this exampl
 
   Syntax:  `allow address | CIDR | unix: | all;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 
@@ -61,7 +62,8 @@ Allows access for the specified network or address. If the special value `unix:`
 
   Syntax:  `deny address | CIDR | unix: | all;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 

@@ -62,7 +62,8 @@ stream {
 
   Syntax:`ssl_alpn protocol ...;`
 
-| Default: | —                        |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -91,7 +92,8 @@ server {
 
   Syntax:`ssl_certificate file;`
 
-| Default: | —                       |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -138,7 +140,8 @@ The value `data`:`$variable` can be specified instead of the `file` (1.15.10), w
 
   Syntax:`ssl_certificate_key file;`
 
-| Default: | —                           |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -179,7 +182,8 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
   Syntax:`ssl_client_certificate file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -195,7 +199,8 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 
   Syntax:`ssl_conf_command name value;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -228,7 +233,8 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
   Syntax:  `ssl_crl file;`
 
-| Default: | —                  |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -242,7 +248,8 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
   Syntax:`ssl_dhparam file;`
 
-| Default: | —                   |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -308,7 +315,8 @@ Specifies a timeout for the SSL handshake to complete.
 
   Syntax:`ssl_password_file file;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -421,7 +429,8 @@ but using only shared cache without the built-in cache should be more efficient.
 
   Syntax:`ssl_session_ticket_key file;`
 
-| Default: | —                              |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -476,7 +485,8 @@ Specifies a time during which a client may reuse the session parameters.
 
   Syntax:`ssl_trusted_certificate file;`
 
-| Default: | —                               |
+  Default: —
+
   Context: `stream`, `server`
 
 

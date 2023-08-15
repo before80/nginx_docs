@@ -145,7 +145,8 @@ export default {foo, summary, baz, hello, fetch, hash};
 
   Syntax:`js_body_filter function | module.function [buffer_type=string | buffer];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `location`, `if in location`, `limit_except`
 
 
@@ -197,7 +198,8 @@ The directive can be specified inside the [if](https://nginx.org/en/docs/http/ng
 
   Syntax:  `js_content function | module.function;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `location`, `if in location`, `limit_except`
 
 
@@ -292,7 +294,8 @@ Defines a timeout for reading and writing for [Fetch API](https://nginx.org/en/d
 
   Syntax:`js_fetch_trusted_certificate file;`
 
-| Default: | —                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -336,7 +339,8 @@ Sets the verification depth in the HTTPS server certificates chain with [Fetch A
 
   Syntax:`js_header_filter function | module.function;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `location`, `if in location`, `limit_except`
 
 
@@ -362,7 +366,8 @@ The directive can be specified inside the [if](https://nginx.org/en/docs/http/ng
 
   Syntax:`js_import module.js | export_name from module.js;`
 
-| Default: | —                                                   |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -390,7 +395,8 @@ The directive can be specified on the `server` and `location` level since [0.7.7
 
   Syntax:`js_include file;`
 
-| Default: | —                  |
+  Default: —
+
   Context: `http`
 
 
@@ -419,7 +425,8 @@ The directive was made obsolete in version [0.4.0](https://nginx.org/en/docs/njs
 
   Syntax:  `js_path path;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -439,7 +446,8 @@ The directive can be specified on the `server` and `location` level since [0.7.7
 
   Syntax:`js_preload_object name.json | name from file.json;`
 
-| Default: | —                                                    |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -461,7 +469,8 @@ Several `js_preload_object` directives can be specified.
 
   Syntax:`js_set $variable function | module.function;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -487,7 +496,8 @@ The directive can be specified on the `server` and `location` level since [0.7.7
 
   Syntax:`js_shared_dict_zone zone=name:size [timeout=time] [type=string|number] [evict];`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `http`
 
 
@@ -542,7 +552,8 @@ example.js:
 
   Syntax:  `js_var $variable [value];`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 

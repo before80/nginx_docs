@@ -81,11 +81,12 @@ http://hls.example.com/test.mp4.ts?start=1.000&end=2.200
 
 
 
-### hls;`
+### hls
 
   Syntax:  `hls;`
 
-| Default: | —          |
+  Default: —
+
   Context: `location`
 
 

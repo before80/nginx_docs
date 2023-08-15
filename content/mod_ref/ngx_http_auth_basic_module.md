@@ -57,7 +57,8 @@ Enables validation of user name and password using the “HTTP Basic Authenticat
 
   Syntax:  `auth_basic_user_file file;`
 
-| Default: | —                                            |
+  Default: —
+
   Context: `http`, `server`, `location`, `limit_except`
 
 

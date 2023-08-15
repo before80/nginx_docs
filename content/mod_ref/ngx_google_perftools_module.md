@@ -46,7 +46,8 @@ Profiles will be stored as `/path/to/profile.<worker_pid>`.
 
   Syntax:`google_perftools_profiles file;`
 
-| Default: | —                                 |
+  Default: —
+
   Context: `main`
 
 

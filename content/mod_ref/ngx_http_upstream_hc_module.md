@@ -50,11 +50,12 @@ server {
 
 
 
-### upstream_conf;`
+### upstream_conf
 
   Syntax:`upstream_conf;`
 
-| Default: | —                |
+  Default: —
+
   Context: `location`
 
 

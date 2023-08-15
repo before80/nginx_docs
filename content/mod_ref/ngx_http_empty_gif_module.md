@@ -36,11 +36,12 @@ location = /_.gif {
 
 
 
-### empty_gif;`
+### empty_gif
 
   Syntax:`empty_gif;`
 
-| Default: | —            |
+  Default: —
+
   Context: `location`
 
 

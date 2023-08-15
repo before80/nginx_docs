@@ -50,7 +50,8 @@ stream {
 
   Syntax:`limit_conn zone number;`
 
-| Default: | —                         |
+  Default: —
+
   Context: `stream`, `server`
 
 
@@ -105,7 +106,8 @@ Sets the desired logging level for cases when the server limits the number of co
 
   Syntax:`limit_conn_zone key zone=name:size;`
 
-| Default: | —                                     |
+  Default: —
+
   Context: `stream`
 
 

@@ -74,7 +74,8 @@ Sets the maximum `size` of the valid referers hash tables. The details of settin
 
   Syntax:`valid_referers none | blocked | server_names | string ...;`
 
-| Default: | —                                                            |
+  Default: —
+
   Context: `server`, `location`
 
 

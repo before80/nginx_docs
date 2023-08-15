@@ -48,7 +48,8 @@ server {
 
   Syntax:`memcached_bind address [transparent ] | off;`
 
-| Default: | —                                              |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -98,7 +99,8 @@ Defines a timeout for establishing a connection with a memcached server. It shou
 
   Syntax:  `memcached_gzip_flag flag;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -183,7 +185,8 @@ Limits the number of possible tries for passing a request to the [next server](h
 
   Syntax:  `memcached_pass address;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `location`, `if in location`
 
 

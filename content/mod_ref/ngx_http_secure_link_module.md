@@ -32,7 +32,8 @@ This module is not built by default, it should be enabled with the `--with-http_
 
   Syntax:  `secure_link expression;`
 
-| Default: | —                            |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -50,7 +51,8 @@ If a link has a limited lifetime, the expiration time is set in seconds since Ep
 
   Syntax:`secure_link_md5 expression;`
 
-| Default: | —                             |
+  Default: —
+
   Context: `http`, `server`, `location`
 
 
@@ -96,7 +98,8 @@ echo -n '2147483647/s/link127.0.0.1 secret' | \
 
   Syntax:`secure_link_secret word;`
 
-| Default: | —                          |
+  Default: —
+
   Context: `location`
 
 

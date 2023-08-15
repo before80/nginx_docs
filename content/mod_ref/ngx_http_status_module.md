@@ -112,11 +112,12 @@ The simple monitoring page is shipped with this distribution, accessible as “`
 
 
 
-### status;`
+### status
 
   Syntax:  `status;`
 
-| Default: | —          |
+  Default: —
+
   Context: `location`
 
 
@@ -143,7 +144,8 @@ Alternatively, data may be output as JSONP. The `callback` parameter specifies t
 
   Syntax:`status_zone zone;`
 
-| Default: | —                   |
+  Default: —
+
   Context: `server`
 
 
