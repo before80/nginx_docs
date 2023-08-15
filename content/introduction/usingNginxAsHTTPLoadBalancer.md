@@ -1,6 +1,7 @@
 +++
 title = "使用 Nginx 作为 HTTP 负载均衡器"
 date = 2023-08-14T17:37:07+08:00
+weight = 151
 type = "docs"
 description = ""
 isCJKLanguage = true
