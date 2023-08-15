@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_auth_jwt_module"
 date = 2023-08-15T08:12:27+08:00
+weight = 60
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -20,7 +21,7 @@ The module may be combined with other access modules, such as [ngx_http_access_m
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -39,7 +40,7 @@ JWS algorithms:
 
 
 
-> Prior to version 1.13.7, only HS256, RS256, ES256 algorithms were supported.
+Prior to version 1.13.7, only HS256, RS256, ES256 algorithms were supported.
 
 
 
@@ -65,12 +66,12 @@ JWE key management algorithms (1.19.9):
 
 
 
-> ```
-> location / {
->     auth_jwt          "closed site";
->     auth_jwt_key_file conf/keys.json;
-> }
-> ```
+```
+location / {
+    auth_jwt          "closed site";
+    auth_jwt_key_file conf/keys.json;
+}
+```
 
 
 
@@ -82,18 +83,20 @@ JWE key management algorithms (1.19.9):
 
 ### auth_jwt
 
-| Syntax:  | `auth_jwt string [token=$variable] | off;`   |
-| :------- | -------------------------------------------- |
-| Default: | `auth_jwt off;`                              |
-| Context: | `http`, `server`, `location`, `limit_except` |
+  Syntax:  `auth_jwt string [token=$variable] | off;`
+
+  Default: `auth_jwt off;`
+
+  Context: `http`, `server`, `location`, `limit_except`
+
 
 Enables validation of JSON Web Token. The specified `string` is used as a `realm`. Parameter value can contain variables.
 
 The optional `token` parameter specifies a variable that contains JSON Web Token. By default, JWT is passed in the “Authorization” header as a [Bearer Token](https://datatracker.ietf.org/doc/html/rfc6750). JWT may be also passed as a cookie or a part of a query string:
 
-> ```
-> auth_jwt "closed site" token=$cookie_auth_token;
-> ```
+```
+auth_jwt "closed site" token=$cookie_auth_token;
+```
 
 
 
@@ -103,29 +106,30 @@ The special value `off` cancels the effect of the `auth_jwt` directive inherited
 
 ### auth_jwt_claim_set
 
-| Syntax:  | `auth_jwt_claim_set $variable name ...;` |
-| :------- | ---------------------------------------- |
+  Syntax:`auth_jwt_claim_set $variable name ...;`
+
 | Default: | —                                        |
-| Context: | `http`                                   |
+  Context: `http`
+
 
 This directive appeared in version 1.11.10.
 
 Sets the `variable` to a JWT claim parameter identified by key names. Name matching starts from the top level of the JSON tree. For arrays, the variable keeps a list of array elements separated by commas.
 
-> ```
-> auth_jwt_claim_set $email info e-mail;
-> auth_jwt_claim_set $job info "job title";
-> ```
+```
+auth_jwt_claim_set $email info e-mail;
+auth_jwt_claim_set $job info "job title";
+```
 
 
 
-> Prior to version 1.13.7, only one key name could be specified, and the result was undefined for arrays.
+Prior to version 1.13.7, only one key name could be specified, and the result was undefined for arrays.
 
 
 
 
 
-> Variable values for tokens encrypted with JWE are available only after decryption which occurs during the [Access](https://nginx.org/en/docs/dev/development_guide.html#http_phases) phase.
+Variable values for tokens encrypted with JWE are available only after decryption which occurs during the [Access](https://nginx.org/en/docs/dev/development_guide.html#http_phases) phase.
 
 
 
@@ -133,16 +137,17 @@ Sets the `variable` to a JWT claim parameter identified by key names. Name match
 
 ### auth_jwt_header_set
 
-| Syntax:  | `auth_jwt_header_set $variable name ...;` |
-| :------- | ----------------------------------------- |
+  Syntax:`auth_jwt_header_set $variable name ...;`
+
 | Default: | —                                         |
-| Context: | `http`                                    |
+  Context: `http`
+
 
 This directive appeared in version 1.11.10.
 
 Sets the `variable` to a JOSE header parameter identified by key names. Name matching starts from the top level of the JSON tree. For arrays, the variable keeps a list of array elements separated by commas.
 
-> Prior to version 1.13.7, only one key name could be specified, and the result was undefined for arrays.
+Prior to version 1.13.7, only one key name could be specified, and the result was undefined for arrays.
 
 
 
@@ -150,10 +155,12 @@ Sets the `variable` to a JOSE header parameter identified by key names. Name mat
 
 ### auth_jwt_key_cache
 
-| Syntax:  | `auth_jwt_key_cache time;`   |
-| :------- | ---------------------------- |
-| Default: | `auth_jwt_key_cache 0;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `auth_jwt_key_cache time;`
+
+  Default: `auth_jwt_key_cache 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.21.4.
 
@@ -163,19 +170,20 @@ Enables or disables caching of keys obtained from a [file](https://nginx.org/en/
 
 ### auth_jwt_key_file
 
-| Syntax:  | `auth_jwt_key_file file;`                    |
-| :------- | -------------------------------------------- |
+  Syntax:  `auth_jwt_key_file file;`
+
 | Default: | —                                            |
-| Context: | `http`, `server`, `location`, `limit_except` |
+  Context: `http`, `server`, `location`, `limit_except`
+
 
 Specifies a `file` in [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517#section-5) format for validating JWT signature. Parameter value can contain variables.
 
 Several `auth_jwt_key_file` directives can be specified on the same level (1.21.1):
 
-> ```
-> auth_jwt_key_file conf/keys.json;
-> auth_jwt_key_file conf/key.jwk;
-> ```
+```
+auth_jwt_key_file conf/keys.json;
+auth_jwt_key_file conf/key.jwk;
+```
 
 If at least one of the specified keys cannot be loaded or processed, nginx will return the 500 (Internal Server Error) error.
 
@@ -183,40 +191,41 @@ If at least one of the specified keys cannot be loaded or processed, nginx will 
 
 ### auth_jwt_key_request
 
-| Syntax:  | `auth_jwt_key_request uri;`                  |
-| :------- | -------------------------------------------- |
+  Syntax:  `auth_jwt_key_request uri;`
+
 | Default: | —                                            |
-| Context: | `http`, `server`, `location`, `limit_except` |
+  Context: `http`, `server`, `location`, `limit_except`
+
 
 This directive appeared in version 1.15.6.
 
 Allows retrieving a [JSON Web Key Set](https://datatracker.ietf.org/doc/html/rfc7517#section-5) file from a subrequest for validating JWT signature and sets the URI where the subrequest will be sent to. Parameter value can contain variables. To avoid validation overhead, it is recommended to cache the key file:
 
-> ```
-> proxy_cache_path /data/nginx/cache levels=1 keys_zone=foo:10m;
-> 
-> server {
->     ...
-> 
->     location / {
->         auth_jwt             "closed site";
->         auth_jwt_key_request /jwks_uri;
->     }
-> 
->     location = /jwks_uri {
->         internal;
->         proxy_cache foo;
->         proxy_pass  http://idp.example.com/keys;
->     }
-> }
-> ```
+```
+proxy_cache_path /data/nginx/cache levels=1 keys_zone=foo:10m;
+
+server {
+    ...
+
+    location / {
+        auth_jwt             "closed site";
+        auth_jwt_key_request /jwks_uri;
+    }
+
+    location = /jwks_uri {
+        internal;
+        proxy_cache foo;
+        proxy_pass  http://idp.example.com/keys;
+    }
+}
+```
 
 Several `auth_jwt_key_request` directives can be specified on the same level (1.21.1):
 
-> ```
-> auth_jwt_key_request /jwks_uri;
-> auth_jwt_key_request /jwks2_uri;
-> ```
+```
+auth_jwt_key_request /jwks_uri;
+auth_jwt_key_request /jwks2_uri;
+```
 
 If at least one of the specified keys cannot be loaded or processed, nginx will return the 500 (Internal Server Error) error.
 
@@ -224,10 +233,12 @@ If at least one of the specified keys cannot be loaded or processed, nginx will 
 
 ### auth_jwt_leeway
 
-| Syntax:  | `auth_jwt_leeway time;`      |
-| :------- | ---------------------------- |
-| Default: | `auth_jwt_leeway 0s;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `auth_jwt_leeway time;`
+
+  Default: `auth_jwt_leeway 0s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.13.10.
 
@@ -237,10 +248,12 @@ Sets the maximum allowable leeway to compensate clock skew when verifying the [e
 
 ### auth_jwt_type
 
-| Syntax:  | `auth_jwt_type signed | encrypted | nested;` |
-| :------- | -------------------------------------------- |
-| Default: | `auth_jwt_type signed;`                      |
-| Context: | `http`, `server`, `location`, `limit_except` |
+  Syntax:`auth_jwt_type signed | encrypted | nested;`
+
+  Default: `auth_jwt_type signed;`
+
+  Context: `http`, `server`, `location`, `limit_except`
+
 
 This directive appeared in version 1.19.7.
 
@@ -250,23 +263,24 @@ Specifies which type of JSON Web Token to expect: JWS (`signed`), JWE (`encrypte
 
 ### auth_jwt_require
 
-| Syntax:  | `auth_jwt_require $value ... [error=401 | 403] ;` |
-| :------- | ------------------------------------------------- |
+  Syntax:`auth_jwt_require $value ... [error=401 | 403] ;`
+
 | Default: | —                                                 |
-| Context: | `http`, `server`, `location`, `limit_except`      |
+  Context: `http`, `server`, `location`, `limit_except`
+
 
 This directive appeared in version 1.21.2.
 
 Specifies additional checks for JWT validation. The value can contain text, variables, and their combination, and must start with a variable (1.21.7). The authentication will succeed only if all the values are not empty and are not equal to “0”.
 
-> ```
-> map $jwt_claim_iss $valid_jwt_iss {
->     "good" 1;
-> }
-> ...
-> 
-> auth_jwt_require $valid_jwt_iss;
-> ```
+```
+map $jwt_claim_iss $valid_jwt_iss {
+    "good" 1;
+}
+...
+
+auth_jwt_require $valid_jwt_iss;
+```
 
 
 

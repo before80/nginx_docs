@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_userid_module"
 date = 2023-08-15T08:20:09+08:00
+weight = 560
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,14 +22,14 @@ The `ngx_http_userid_module` module sets cookies suitable for client identificat
 
 
 
-> ```
-> userid         on;
-> userid_name    uid;
-> userid_domain  example.com;
-> userid_path    /;
-> userid_expires 365d;
-> userid_p3p     'policyref="/w3c/p3p.xml", CP="CUR ADM OUR NOR STA NID"';
-> ```
+```
+userid         on;
+userid_name    uid;
+userid_domain  example.com;
+userid_path    /;
+userid_expires 365d;
+userid_p3p     'policyref="/w3c/p3p.xml", CP="CUR ADM OUR NOR STA NID"';
+```
 
 
 
@@ -40,10 +41,12 @@ The `ngx_http_userid_module` module sets cookies suitable for client identificat
 
 ### userid
 
-| Syntax:  | `userid on | v1 | log | off;` |
-| :------- | ----------------------------- |
-| Default: | `userid off;`                 |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`userid on | v1 | log | off;`
+
+  Default: `userid off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables or disables setting cookies and logging the received cookies:
 
@@ -69,10 +72,12 @@ Enables or disables setting cookies and logging the received cookies:
 
 ### userid_domain
 
-| Syntax:  | `userid_domain name | none;` |
-| :------- | ---------------------------- |
-| Default: | `userid_domain none;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:`userid_domain name | none;`
+
+  Default: `userid_domain none;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a domain for which the cookie is set. The `none` parameter disables setting of a domain for the cookie.
 
@@ -80,10 +85,12 @@ Defines a domain for which the cookie is set. The `none` parameter disables sett
 
 ### userid_expires
 
-| Syntax:  | `userid_expires time | max | off;` |
-| :------- | ---------------------------------- |
-| Default: | `userid_expires off;`              |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`userid_expires time | max | off;`
+
+  Default: `userid_expires off;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a time during which a browser should keep the cookie. The parameter `max` will cause the cookie to expire on “`31 Dec 2037 23:55:55 GMT`”. The parameter `off` will cause the cookie to expire at the end of a browser session.
 
@@ -91,10 +98,12 @@ Sets a time during which a browser should keep the cookie. The parameter `max` w
 
 ### userid_flags
 
-| Syntax:  | `userid_flags off | flag ...;` |
-| :------- | ------------------------------ |
-| Default: | `userid_flags off;`            |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`userid_flags off | flag ...;`
+
+  Default: `userid_flags off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.19.3.
 
@@ -104,10 +113,12 @@ If the parameter is not `off`, defines one or more additional flags for the cook
 
 ### userid_mark
 
-| Syntax:  | `userid_mark letter | digit | = | off;` |
-| :------- | --------------------------------------- |
-| Default: | `userid_mark off;`                      |
-| Context: | `http`, `server`, `location`            |
+  Syntax:`userid_mark letter | digit | = | off;`
+
+  Default: `userid_mark off;`
+
+  Context: `http`, `server`, `location`
+
 
 If the parameter is not `off`, enables the cookie marking mechanism and sets the character used as a mark. This mechanism is used to add or change [userid_p3p](https://nginx.org/en/docs/http/ngx_http_userid_module.html#userid_p3p) and/or a cookie expiration time while preserving the client identifier. A mark can be any letter of the English alphabet (case-sensitive), digit, or the “`=`” character.
 
@@ -117,10 +128,12 @@ If the mark is set, it is compared with the first padding symbol in the base64 r
 
 ### userid_name
 
-| Syntax:  | `userid_name name;`          |
-| :------- | ---------------------------- |
-| Default: | `userid_name uid;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `userid_name name;`
+
+  Default: `userid_name uid;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the cookie name.
 
@@ -128,10 +141,12 @@ Sets the cookie name.
 
 ### userid_p3p
 
-| Syntax:  | `userid_p3p string | none;`  |
-| :------- | ---------------------------- |
-| Default: | `userid_p3p none;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `userid_p3p string | none;`
+
+  Default: `userid_p3p none;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a value for the “P3P” header field that will be sent along with the cookie. If the directive is set to the special value `none`, the “P3P” header will not be sent in a response.
 
@@ -139,10 +154,12 @@ Sets a value for the “P3P” header field that will be sent along with the coo
 
 ### userid_path
 
-| Syntax:  | `userid_path path;`          |
-| :------- | ---------------------------- |
-| Default: | `userid_path /;`             |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `userid_path path;`
+
+  Default: `userid_path /;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a path for which the cookie is set.
 
@@ -150,10 +167,12 @@ Defines a path for which the cookie is set.
 
 ### userid_service
 
-| Syntax:  | `userid_service number;`                   |
-| :------- | ------------------------------------------ |
-| Default: | `userid_service IP address of the server;` |
-| Context: | `http`, `server`, `location`               |
+  Syntax:  `userid_service number;`
+
+  Default: `userid_service IP address of the server;`
+
+  Context: `http`, `server`, `location`
+
 
 If identifiers are issued by multiple servers (services), each service should be assigned its own `number` to ensure that client identifiers are unique. For version 1 cookies, the default value is zero. For version 2 cookies, the default value is the number composed from the last four octets of the server’s IP address.
 

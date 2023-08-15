@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_ssi_module"
 date = 2023-08-15T08:19:00+08:00
+weight = 480
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -22,12 +23,12 @@ The `ngx_http_ssi_module` module is a filter that processes SSI (Server Side Inc
 
 
 
-> ```
-> location / {
->     ssi on;
->     ...
-> }
-> ```
+```
+location / {
+    ssi on;
+    ...
+}
+```
 
 
 
@@ -39,10 +40,12 @@ The `ngx_http_ssi_module` module is a filter that processes SSI (Server Side Inc
 
 ### ssi
 
-| Syntax:  | `ssi on | off;`                                |
-| :------- | ---------------------------------------------- |
-| Default: | `ssi off;`                                     |
-| Context: | `http`, `server`, `location`, `if in location` |
+  Syntax:  `ssi on | off;`
+
+  Default: `ssi off;`
+
+  Context: `http`, `server`, `location`, `if in location`
+
 
 Enables or disables processing of SSI commands in responses.
 
@@ -50,10 +53,12 @@ Enables or disables processing of SSI commands in responses.
 
 ### ssi_last_modified
 
-| Syntax:  | `ssi_last_modified on | off;` |
-| :------- | ----------------------------- |
-| Default: | `ssi_last_modified off;`      |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`ssi_last_modified on | off;`
+
+  Default: `ssi_last_modified off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.1.
 
@@ -65,10 +70,12 @@ By default, the header field is removed as contents of the response are modified
 
 ### ssi_min_file_chunk
 
-| Syntax:  | `ssi_min_file_chunk size;`   |
-| :------- | ---------------------------- |
-| Default: | `ssi_min_file_chunk 1k;`     |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `ssi_min_file_chunk size;`
+
+  Default: `ssi_min_file_chunk 1k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the minimum `size` for parts of a response stored on disk, starting from which it makes sense to send them using [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile).
 
@@ -76,10 +83,12 @@ Sets the minimum `size` for parts of a response stored on disk, starting from wh
 
 ### ssi_silent_errors
 
-| Syntax:  | `ssi_silent_errors on | off;` |
-| :------- | ----------------------------- |
-| Default: | `ssi_silent_errors off;`      |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`ssi_silent_errors on | off;`
+
+  Default: `ssi_silent_errors off;`
+
+  Context: `http`, `server`, `location`
+
 
 If enabled, suppresses the output of the “`[an error occurred while processing the directive]`” string if an error occurred during SSI processing.
 
@@ -87,10 +96,12 @@ If enabled, suppresses the output of the “`[an error occurred while processing
 
 ### ssi_types
 
-| Syntax:  | `ssi_types mime-type ...;`   |
-| :------- | ---------------------------- |
-| Default: | `ssi_types text/html;`       |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `ssi_types mime-type ...;`
+
+  Default: `ssi_types text/html;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables processing of SSI commands in responses with the specified MIME types in addition to “`text/html`”. The special value “`*`” matches any MIME type (0.8.29).
 
@@ -98,10 +109,12 @@ Enables processing of SSI commands in responses with the specified MIME types in
 
 ### ssi_value_length
 
-| Syntax:  | `ssi_value_length length;`   |
-| :------- | ---------------------------- |
-| Default: | `ssi_value_length 256;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `ssi_value_length length;`
+
+  Default: `ssi_value_length 256;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the maximum length of parameter values in SSI commands.
 
@@ -111,9 +124,9 @@ Sets the maximum length of parameter values in SSI commands.
 
 SSI commands have the following generic format:
 
-> ```
-> <!--# command parameter1=value1 parameter2=value2 ... -->
-> ```
+```
+<!--# command parameter1=value1 parameter2=value2 ... -->
+```
 
 
 

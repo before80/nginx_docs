@@ -1,6 +1,7 @@
 +++
 title = "ngx_mail_proxy_module"
 date = 2023-08-15T08:21:15+08:00
+weight = 650
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,10 +20,12 @@ https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html
 
 ### proxy_buffer
 
-| Syntax:  | `proxy_buffer size;`  |
-| :------- | --------------------- |
-| Default: | `proxy_buffer 4k|8k;` |
-| Context: | `mail`, `server`      |
+  Syntax:  `proxy_buffer size;`
+
+  Default: `proxy_buffer 4k|8k;`
+
+  Context: `mail`, `server`
+
 
 Sets the size of the buffer used for proxying. By default, the buffer size is equal to one memory page. Depending on a platform, it is either 4K or 8K.
 
@@ -30,10 +33,12 @@ Sets the size of the buffer used for proxying. By default, the buffer size is eq
 
 ### proxy_pass_error_message
 
-| Syntax:  | `proxy_pass_error_message on | off;` |
-| :------- | ------------------------------------ |
-| Default: | `proxy_pass_error_message off;`      |
-| Context: | `mail`, `server`                     |
+  Syntax:`proxy_pass_error_message on | off;`
+
+  Default: `proxy_pass_error_message off;`
+
+  Context: `mail`, `server`
+
 
 Indicates whether to pass the error message obtained during the authentication on the backend to the client.
 
@@ -43,10 +48,12 @@ Usually, if the authentication in nginx is a success, the backend cannot return 
 
 ### proxy_protocol
 
-| Syntax:  | `proxy_protocol on | off;` |
-| :------- | -------------------------- |
-| Default: | `proxy_protocol off;`      |
-| Context: | `mail`, `server`           |
+  Syntax:`proxy_protocol on | off;`
+
+  Default: `proxy_protocol off;`
+
+  Context: `mail`, `server`
+
 
 This directive appeared in version 1.19.8.
 
@@ -56,10 +63,12 @@ Enables the [PROXY protocol](http://www.haproxy.org/download/1.8/doc/proxy-proto
 
 ### proxy_smtp_auth
 
-| Syntax:  | `proxy_smtp_auth on | off;` |
-| :------- | --------------------------- |
-| Default: | `proxy_smtp_auth off;`      |
-| Context: | `mail`, `server`            |
+  Syntax:`proxy_smtp_auth on | off;`
+
+  Default: `proxy_smtp_auth off;`
+
+  Context: `mail`, `server`
+
 
 This directive appeared in version 1.19.4.
 
@@ -71,10 +80,12 @@ If [XCLIENT](https://nginx.org/en/docs/mail/ngx_mail_proxy_module.html#xclient) 
 
 ### proxy_timeout
 
-| Syntax:  | `proxy_timeout timeout;` |
-| :------- | ------------------------ |
-| Default: | `proxy_timeout 24h;`     |
-| Context: | `mail`, `server`         |
+  Syntax:`proxy_timeout timeout;`
+
+  Default: `proxy_timeout 24h;`
+
+  Context: `mail`, `server`
+
 
 Sets the `timeout` between two successive read or write operations on client or proxied server connections. If no data is transmitted within this time, the connection is closed.
 
@@ -82,10 +93,12 @@ Sets the `timeout` between two successive read or write operations on client or 
 
 ### xclient
 
-| Syntax:  | `xclient on | off;` |
-| :------- | ------------------- |
-| Default: | `xclient on;`       |
-| Context: | `mail`, `server`    |
+  Syntax:`xclient on | off;`
+
+  Default: `xclient on;`
+
+  Context: `mail`, `server`
+
 
 Enables or disables the passing of the [XCLIENT](http://www.postfix.org/XCLIENT_README.html) command with client parameters when connecting to the SMTP backend.
 

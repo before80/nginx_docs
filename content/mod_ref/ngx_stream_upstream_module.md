@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_upstream_module"
 date = 2023-08-15T08:24:56+08:00
+weight = 900
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -22,50 +23,50 @@ The `ngx_stream_upstream_module` module (1.9.0) is used to define groups of serv
 
 
 
-> ```
-> upstream backend {
->     hash $remote_addr consistent;
-> 
->     server backend1.example.com:12345  weight=5;
->     server backend2.example.com:12345;
->     server unix:/tmp/backend3;
-> 
->     server backup1.example.com:12345   backup;
->     server backup2.example.com:12345   backup;
-> }
-> 
-> server {
->     listen 12346;
->     proxy_pass backend;
-> }
-> ```
+```
+upstream backend {
+    hash $remote_addr consistent;
+
+    server backend1.example.com:12345  weight=5;
+    server backend2.example.com:12345;
+    server unix:/tmp/backend3;
+
+    server backup1.example.com:12345   backup;
+    server backup2.example.com:12345   backup;
+}
+
+server {
+    listen 12346;
+    proxy_pass backend;
+}
+```
 
 
 
 Dynamically configurable group with periodic [health checks](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html) is available as part of our [commercial subscription](http://nginx.com/products/):
 
-> ```
-> resolver 10.0.0.1;
-> 
-> upstream dynamic {
->     zone upstream_dynamic 64k;
-> 
->     server backend1.example.com:12345 weight=5;
->     server backend2.example.com:12345 fail_timeout=5s slow_start=30s;
->     server 192.0.2.1:12345            max_fails=3;
->     server backend3.example.com:12345 resolve;
->     server backend4.example.com       service=http resolve;
-> 
->     server backup1.example.com:12345  backup;
->     server backup2.example.com:12345  backup;
-> }
-> 
-> server {
->     listen 12346;
->     proxy_pass dynamic;
->     health_check;
-> }
-> ```
+```
+resolver 10.0.0.1;
+
+upstream dynamic {
+    zone upstream_dynamic 64k;
+
+    server backend1.example.com:12345 weight=5;
+    server backend2.example.com:12345 fail_timeout=5s slow_start=30s;
+    server 192.0.2.1:12345            max_fails=3;
+    server backend3.example.com:12345 resolve;
+    server backend4.example.com       service=http resolve;
+
+    server backup1.example.com:12345  backup;
+    server backup2.example.com:12345  backup;
+}
+
+server {
+    listen 12346;
+    proxy_pass dynamic;
+    health_check;
+}
+```
 
 
 
@@ -77,25 +78,26 @@ Dynamically configurable group with periodic [health checks](https://nginx.org/e
 
 ### upstream
 
-| Syntax:  | `upstream name { ... }` |
-| :------- | ----------------------- |
+  Syntax:`upstream name { ... }`
+
 | Default: | —                       |
-| Context: | `stream`                |
+  Context: `stream`
+
 
 Defines a group of servers. Servers can listen on different ports. In addition, servers listening on TCP and UNIX-domain sockets can be mixed.
 
 Example:
 
-> ```
-> upstream backend {
->     server backend1.example.com:12345 weight=5;
->     server 127.0.0.1:12345            max_fails=3 fail_timeout=30s;
->     server unix:/tmp/backend2;
->     server backend3.example.com:12345 resolve;
-> 
->     server backup1.example.com:12345  backup;
-> }
-> ```
+```
+upstream backend {
+    server backend1.example.com:12345 weight=5;
+    server 127.0.0.1:12345            max_fails=3 fail_timeout=30s;
+    server unix:/tmp/backend2;
+    server backend3.example.com:12345 resolve;
+
+    server backup1.example.com:12345  backup;
+}
+```
 
 
 
@@ -105,10 +107,11 @@ By default, connections are distributed between the servers using a weighted rou
 
 ### server
 
-| Syntax:  | `server address [parameters];` |
-| :------- | ------------------------------ |
+  Syntax:`server address [parameters];`
+
 | Default: | —                              |
-| Context: | `upstream`                     |
+  Context: `upstream`
+
 
 Defines the `address` and other `parameters` of a server. The address can be specified as a domain name or IP address with an obligatory port, or as a UNIX-domain socket path specified after the “`unix:`” prefix. A domain name that resolves to several IP addresses defines multiple servers at once.
 
@@ -158,7 +161,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 
 
-> If there is only a single server in a group, `max_fails`, `fail_timeout` and `slow_start` parameters are ignored, and such a server will never be considered unavailable.
+If there is only a single server in a group, `max_fails`, `fail_timeout` and `slow_start` parameters are ignored, and such a server will never be considered unavailable.
 
 
 
@@ -166,16 +169,17 @@ Additionally, the following parameters are available as part of our [commercial 
 
 ### zone
 
-| Syntax:  | `zone name [size];` |
-| :------- | ------------------- |
+  Syntax:`zone name [size];`
+
 | Default: | —                   |
-| Context: | `upstream`          |
+  Context: `upstream`
+
 
 Defines the `name` and `size` of the shared memory zone that keeps the group’s configuration and run-time state that are shared between worker processes. Several groups may share the same zone. In this case, it is enough to specify the `size` only once.
 
 Additionally, as part of our [commercial subscription](http://nginx.com/products/), such groups allow changing the group membership or modifying the settings of a particular server without the need of restarting nginx. The configuration is accessible via the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module (1.13.3).
 
-> Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
+Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
 
 
 
@@ -183,10 +187,11 @@ Additionally, as part of our [commercial subscription](http://nginx.com/products
 
 ### state
 
-| Syntax:  | `state file;` |
-| :------- | ------------- |
+  Syntax:`state file;`
+
 | Default: | —             |
-| Context: | `upstream`    |
+  Context: `upstream`
+
 
 This directive appeared in version 1.9.7.
 
@@ -194,10 +199,10 @@ Specifies a `file` that keeps the state of the dynamically configurable group.
 
 Examples:
 
-> ```
-> state /var/lib/nginx/state/servers.conf; # path for Linux
-> state /var/db/nginx/state/servers.conf;  # path for FreeBSD
-> ```
+```
+state /var/lib/nginx/state/servers.conf; # path for Linux
+state /var/db/nginx/state/servers.conf;  # path for FreeBSD
+```
 
 
 
@@ -205,13 +210,13 @@ The state is currently limited to the list of servers with their parameters. The
 
 
 
-> Changes made during [configuration reload](https://nginx.org/en/docs/control.html#reconfiguration) or [binary upgrade](https://nginx.org/en/docs/control.html#upgrade) can be lost.
+Changes made during [configuration reload](https://nginx.org/en/docs/control.html#reconfiguration) or [binary upgrade](https://nginx.org/en/docs/control.html#upgrade) can be lost.
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -219,16 +224,17 @@ The state is currently limited to the list of servers with their parameters. The
 
 ### hash
 
-| Syntax:  | `hash key [consistent];` |
-| :------- | ------------------------ |
+  Syntax:`hash key [consistent];`
+
 | Default: | —                        |
-| Context: | `upstream`               |
+  Context: `upstream`
+
 
 Specifies a load balancing method for a server group where the client-server mapping is based on the hashed `key` value. The `key` can contain text, variables, and their combinations (1.11.2). Usage example:
 
-> ```
-> hash $remote_addr;
-> ```
+```
+hash $remote_addr;
+```
 
 Note that adding or removing a server from the group may result in remapping most of the keys to different servers. The method is compatible with the [Cache::Memcached](https://metacpan.org/pod/Cache::Memcached) Perl library.
 
@@ -236,12 +242,13 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 
 
 
-### least_conn;`
+### least_conn
 
-| Syntax:  | `least_conn;` |
-| :------- | ------------- |
+  Syntax:`least_conn;`
+
 | Default: | —             |
-| Context: | `upstream`    |
+  Context: `upstream`
+
 
 Specifies that a group should use a load balancing method where a connection is passed to the server with the least number of active connections, taking into account weights of servers. If there are several such servers, they are tried in turn using a weighted round-robin balancing method.
 
@@ -249,22 +256,23 @@ Specifies that a group should use a load balancing method where a connection is 
 
 ### least_time
 
-| Syntax:  | `least_time connect | first_byte | last_byte [inflight];` |
-| :------- | --------------------------------------------------------- |
+  Syntax:`least_time connect | first_byte | last_byte [inflight];`
+
 | Default: | —                                                         |
-| Context: | `upstream`                                                |
+  Context: `upstream`
+
 
 Specifies that a group should use a load balancing method where a connection is passed to the server with the least average time and least number of active connections, taking into account weights of servers. If there are several such servers, they are tried in turn using a weighted round-robin balancing method.
 
 If the `connect` parameter is specified, time to [connect](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_connect_time) to the upstream server is used. If the `first_byte` parameter is specified, time to receive the [first byte](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_first_byte_time) of data is used. If the `last_byte` is specified, time to receive the [last byte](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_session_time) of data is used. If the `inflight` parameter is specified (1.11.6), incomplete connections are also taken into account.
 
-> Prior to version 1.11.6, incomplete connections were taken into account by default.
+Prior to version 1.11.6, incomplete connections were taken into account by default.
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -272,10 +280,11 @@ If the `connect` parameter is specified, time to [connect](https://nginx.org/en/
 
 ### random
 
-| Syntax:  | `random [two [method]];` |
-| :------- | ------------------------ |
+  Syntax:`random [two [method]];`
+
 | Default: | —                        |
-| Context: | `upstream`               |
+  Context: `upstream`
+
 
 This directive appeared in version 1.15.1.
 
@@ -287,7 +296,7 @@ The optional `two` parameter instructs nginx to randomly select [two](https://ho
 
 The `least_time` method passes a connection to a server with the least average time and least number of active connections. If `least_time=connect` parameter is specified, time to [connect](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_connect_time) to the upstream server is used. If `least_time=first_byte` parameter is specified, time to receive the [first byte](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_first_byte_time) of data is used. If `least_time=last_byte` is specified, time to receive the [last byte](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_session_time) of data is used.
 
-> The `least_time` method is available as a part of our [commercial subscription](http://nginx.com/products/).
+The `least_time` method is available as a part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -295,18 +304,19 @@ The `least_time` method passes a connection to a server with the least average t
 
 ### resolver
 
-| Syntax:  | `resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
+
 | Default: | —                                                            |
-| Context: | `upstream`                                                   |
+  Context: `upstream`
+
 
 This directive appeared in version 1.17.5.
 
 Configures name servers used to resolve names of upstream servers into addresses, for example:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353;
+```
 
 The address can be specified as a domain name or IP address, with an optional port. If port is not specified, the port 53 is used. Name servers are queried in a round-robin fashion.
 
@@ -318,13 +328,13 @@ By default, nginx will look up both IPv4 and IPv6 addresses while resolving. If 
 
 By default, nginx caches answers using the TTL value of a response. The optional `valid` parameter allows overriding it:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353 valid=30s;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353 valid=30s;
+```
 
 
 
-> To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
+To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
 
 
 
@@ -334,7 +344,7 @@ The optional `status_zone` parameter enables [collection](https://nginx.org/en/d
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -342,24 +352,26 @@ The optional `status_zone` parameter enables [collection](https://nginx.org/en/d
 
 ### resolver_timeout
 
-| Syntax:  | `resolver_timeout time;` |
-| :------- | ------------------------ |
-| Default: | `resolver_timeout 30s;`  |
-| Context: | `upstream`               |
+  Syntax:`resolver_timeout time;`
+
+  Default: `resolver_timeout 30s;`
+
+  Context: `upstream`
+
 
 This directive appeared in version 1.17.5.
 
 Sets a timeout for name resolution, for example:
 
-> ```
-> resolver_timeout 5s;
-> ```
+```
+resolver_timeout 5s;
+```
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 

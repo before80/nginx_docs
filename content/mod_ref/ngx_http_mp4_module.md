@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_mp4_module"
 date = 2023-08-15T08:16:47+08:00
+weight = 350
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,9 +20,9 @@ The `ngx_http_mp4_module` module provides pseudo-streaming server-side support f
 
 Pseudo-streaming works in alliance with a compatible media player. The player sends an HTTP request to the server with the start time specified in the query string argument (named simply `start` and specified in seconds), and the server responds with the stream such that its start position corresponds to the requested time, for example:
 
-> ```
-> http://example.com/elephants_dream.mp4?start=238.88
-> ```
+```
+http://example.com/elephants_dream.mp4?start=238.88
+```
 
 This allows performing a random seeking at any time, or starting playback in the middle of the timeline.
 
@@ -31,9 +32,9 @@ To start playback, the player first needs to read metadata. This is done by send
 
 The module also supports the `end` argument of an HTTP request (1.5.13) which sets the end point of playback. The `end` argument can be specified with the `start` argument or separately:
 
-> ```
-> http://example.com/elephants_dream.mp4?start=238.88&end=555.55
-> ```
+```
+http://example.com/elephants_dream.mp4?start=238.88&end=555.55
+```
 
 
 
@@ -47,7 +48,7 @@ If a matching request does not include the `start` and `end` arguments, there is
 
 This module is not built by default, it should be enabled with the `--with-http_mp4_module` configuration parameter.
 
-> If a third-party mp4 module was previously used, it should be disabled.
+If a third-party mp4 module was previously used, it should be disabled.
 
 
 
@@ -59,15 +60,15 @@ A similar pseudo-streaming support for FLV files is provided by the [ngx_http_fl
 
 
 
-> ```
-> location /video/ {
->     mp4;
->     mp4_buffer_size       1m;
->     mp4_max_buffer_size   5m;
->     mp4_limit_rate        on;
->     mp4_limit_rate_after  30s;
-> }
-> ```
+```
+location /video/ {
+    mp4;
+    mp4_buffer_size       1m;
+    mp4_max_buffer_size   5m;
+    mp4_limit_rate        on;
+    mp4_limit_rate_after  30s;
+}
+```
 
 
 
@@ -79,10 +80,11 @@ A similar pseudo-streaming support for FLV files is provided by the [ngx_http_fl
 
 ### mp4;`
 
-| Syntax:  | `mp4;`     |
-| :------- | ---------- |
+  Syntax:  `mp4;`
+
 | Default: | —          |
-| Context: | `location` |
+  Context: `location`
+
 
 Turns on module processing in a surrounding location.
 
@@ -90,10 +92,12 @@ Turns on module processing in a surrounding location.
 
 ### mp4_buffer_size
 
-| Syntax:  | `mp4_buffer_size size;`      |
-| :------- | ---------------------------- |
-| Default: | `mp4_buffer_size 512K;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `mp4_buffer_size size;`
+
+  Default: `mp4_buffer_size 512K;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the initial `size` of the buffer used for processing MP4 files.
 
@@ -101,17 +105,19 @@ Sets the initial `size` of the buffer used for processing MP4 files.
 
 ### mp4_max_buffer_size
 
-| Syntax:  | `mp4_max_buffer_size size;`  |
-| :------- | ---------------------------- |
-| Default: | `mp4_max_buffer_size 10M;`   |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `mp4_max_buffer_size size;`
+
+  Default: `mp4_max_buffer_size 10M;`
+
+  Context: `http`, `server`, `location`
+
 
 During metadata processing, a larger buffer may become necessary. Its size cannot exceed the specified `size`, or else nginx will return the 500 (Internal Server Error) server error, and log the following message:
 
-> ```
-> "/some/movie/file.mp4" mp4 moov atom is too large:
-> 12583268, you may want to increase mp4_max_buffer_size
-> ```
+```
+"/some/movie/file.mp4" mp4 moov atom is too large:
+12583268, you may want to increase mp4_max_buffer_size
+```
 
 
 
@@ -119,16 +125,18 @@ During metadata processing, a larger buffer may become necessary. Its size canno
 
 ### mp4_limit_rate
 
-| Syntax:  | `mp4_limit_rate on | off | factor;` |
-| :------- | ----------------------------------- |
-| Default: | `mp4_limit_rate off;`               |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`mp4_limit_rate on | off | factor;`
+
+  Default: `mp4_limit_rate off;`
+
+  Context: `http`, `server`, `location`
+
 
 Limits the rate of response transmission to a client. The rate is limited based on the average bitrate of the MP4 file served. To calculate the rate, the bitrate is multiplied by the specified `factor`. The special value “`on`” corresponds to the factor of 1.1. The special value “`off`” disables rate limiting. The limit is set per a request, and so if a client simultaneously opens two connections, the overall rate will be twice as much as the specified limit.
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -136,16 +144,18 @@ Limits the rate of response transmission to a client. The rate is limited based 
 
 ### mp4_limit_rate_after
 
-| Syntax:  | `mp4_limit_rate_after time;` |
-| :------- | ---------------------------- |
-| Default: | `mp4_limit_rate_after 60s;`  |
-| Context: | `http`, `server`, `location` |
+  Syntax:`mp4_limit_rate_after time;`
+
+  Default: `mp4_limit_rate_after 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the initial amount of media data (measured in playback time) after which the further transmission of the response to a client will be rate limited.
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -153,10 +163,12 @@ Sets the initial amount of media data (measured in playback time) after which th
 
 ### mp4_start_key_frame
 
-| Syntax:  | `mp4_start_key_frame on | off;` |
-| :------- | ------------------------------- |
-| Default: | `mp4_start_key_frame off;`      |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`mp4_start_key_frame on | off;`
+
+  Default: `mp4_start_key_frame off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.21.4.
 

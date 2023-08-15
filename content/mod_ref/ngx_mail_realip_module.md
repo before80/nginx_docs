@@ -1,6 +1,7 @@
 +++
 title = "ngx_mail_realip_module"
 date = 2023-08-15T08:21:23+08:00
+weight = 660
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,13 +22,13 @@ The `ngx_mail_realip_module` module is used to change the client address and por
 
 
 
-> ```
-> listen 110 proxy_protocol;
-> 
-> set_real_ip_from  192.168.1.0/24;
-> set_real_ip_from  192.168.2.1;
-> set_real_ip_from  2001:0db8::/32;
-> ```
+```
+listen 110 proxy_protocol;
+
+set_real_ip_from  192.168.1.0/24;
+set_real_ip_from  192.168.2.1;
+set_real_ip_from  2001:0db8::/32;
+```
 
 
 
@@ -39,9 +40,10 @@ The `ngx_mail_realip_module` module is used to change the client address and por
 
 ### set_real_ip_from
 
-| Syntax:  | `set_real_ip_from address | CIDR | unix:;` |
-| :------- | ------------------------------------------ |
+  Syntax:`set_real_ip_from address | CIDR | unix:;`
+
 | Default: | —                                          |
-| Context: | `mail`, `server`                           |
+  Context: `mail`, `server`
+
 
 Defines trusted addresses that are known to send correct replacement addresses. If the special value `unix:` is specified, all UNIX-domain sockets will be trusted.

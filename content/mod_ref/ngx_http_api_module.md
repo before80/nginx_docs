@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_api_module"
 date = 2023-08-15T08:12:07+08:00
+weight = 40
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -18,7 +19,7 @@ The `ngx_http_api_module` module (1.13.3) provides REST API for accessing variou
 
 
 
-> The module supersedes the [ngx_http_status_module](https://nginx.org/en/docs/http/ngx_http_status_module.html) and [ngx_http_upstream_conf_module](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules.
+The module supersedes the [ngx_http_status_module](https://nginx.org/en/docs/http/ngx_http_status_module.html) and [ngx_http_upstream_conf_module](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html) modules.
 
 
 
@@ -26,7 +27,7 @@ When using the `PATCH` or `POST` methods, make sure that the payload does not ex
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -36,80 +37,80 @@ When using the `PATCH` or `POST` methods, make sure that the payload does not ex
 
 
 
-> ```
-> http {
->     upstream backend {
->         zone http_backend 64k;
-> 
->         server backend1.example.com weight=5;
->         server backend2.example.com;
->     }
-> 
->     proxy_cache_path /data/nginx/cache_backend keys_zone=cache_backend:10m;
-> 
->     server {
->         server_name backend.example.com;
-> 
->         location / {
->             proxy_pass  http://backend;
->             proxy_cache cache_backend;
-> 
->             health_check;
->         }
-> 
->         status_zone server_backend;
->     }
-> 
->     keyval_zone zone=one:32k state=one.keyval;
->     keyval $arg_text $text zone=one;
-> 
->     server {
->         listen 127.0.0.1;
-> 
->         location /api {
->             api write=on;
->             allow 127.0.0.1;
->             deny all;
->         }
->     }
-> }
-> 
-> stream {
->     upstream backend {
->         zone stream_backend 64k;
-> 
->         server backend1.example.com:12345 weight=5;
->         server backend2.example.com:12345;
->     }
-> 
->     server {
->         listen      127.0.0.1:12345;
->         proxy_pass  backend;
->         status_zone server_backend;
->         health_check;
->     }
-> }
-> ```
+```
+http {
+    upstream backend {
+        zone http_backend 64k;
+
+        server backend1.example.com weight=5;
+        server backend2.example.com;
+    }
+
+    proxy_cache_path /data/nginx/cache_backend keys_zone=cache_backend:10m;
+
+    server {
+        server_name backend.example.com;
+
+        location / {
+            proxy_pass  http://backend;
+            proxy_cache cache_backend;
+
+            health_check;
+        }
+
+        status_zone server_backend;
+    }
+
+    keyval_zone zone=one:32k state=one.keyval;
+    keyval $arg_text $text zone=one;
+
+    server {
+        listen 127.0.0.1;
+
+        location /api {
+            api write=on;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
+}
+
+stream {
+    upstream backend {
+        zone stream_backend 64k;
+
+        server backend1.example.com:12345 weight=5;
+        server backend2.example.com:12345;
+    }
+
+    server {
+        listen      127.0.0.1:12345;
+        proxy_pass  backend;
+        status_zone server_backend;
+        health_check;
+    }
+}
+```
 
 All API requests include a supported API [version](https://nginx.org/en/docs/http/ngx_http_api_module.html#api_version) in the URI. Examples of API requests with this configuration:
 
-> ```
-> http://127.0.0.1/api/8/
-> http://127.0.0.1/api/8/nginx
-> http://127.0.0.1/api/8/connections
-> http://127.0.0.1/api/8/http/requests
-> http://127.0.0.1/api/8/http/server_zones/server_backend
-> http://127.0.0.1/api/8/http/caches/cache_backend
-> http://127.0.0.1/api/8/http/upstreams/backend
-> http://127.0.0.1/api/8/http/upstreams/backend/servers/
-> http://127.0.0.1/api/8/http/upstreams/backend/servers/1
-> http://127.0.0.1/api/8/http/keyvals/one?key=arg1
-> http://127.0.0.1/api/8/stream/
-> http://127.0.0.1/api/8/stream/server_zones/server_backend
-> http://127.0.0.1/api/8/stream/upstreams/
-> http://127.0.0.1/api/8/stream/upstreams/backend
-> http://127.0.0.1/api/8/stream/upstreams/backend/servers/1
-> ```
+```
+http://127.0.0.1/api/8/
+http://127.0.0.1/api/8/nginx
+http://127.0.0.1/api/8/connections
+http://127.0.0.1/api/8/http/requests
+http://127.0.0.1/api/8/http/server_zones/server_backend
+http://127.0.0.1/api/8/http/caches/cache_backend
+http://127.0.0.1/api/8/http/upstreams/backend
+http://127.0.0.1/api/8/http/upstreams/backend/servers/
+http://127.0.0.1/api/8/http/upstreams/backend/servers/1
+http://127.0.0.1/api/8/http/keyvals/one?key=arg1
+http://127.0.0.1/api/8/stream/
+http://127.0.0.1/api/8/stream/server_zones/server_backend
+http://127.0.0.1/api/8/stream/upstreams/
+http://127.0.0.1/api/8/stream/upstreams/backend
+http://127.0.0.1/api/8/stream/upstreams/backend/servers/1
+```
 
 
 
@@ -121,10 +122,11 @@ All API requests include a supported API [version](https://nginx.org/en/docs/htt
 
 ### api
 
-| Syntax:  | `api [write=on|off];` |
-| :------- | --------------------- |
+  Syntax:`api [write=on|off];`
+
 | Default: | —                     |
-| Context: | `location`            |
+  Context: `location`
+
 
 Turns on the REST API interface in the surrounding location. Access to this location should be [limited](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy).
 
@@ -136,9 +138,9 @@ All API requests should contain a supported API version in the URI. If the reque
 
 The optional “`fields`” argument in the request line specifies which fields of the requested objects will be output:
 
-> ```
-> http://127.0.0.1/api/8/nginx?fields=version,build
-> ```
+```
+http://127.0.0.1/api/8/nginx?fields=version,build
+```
 
 
 
@@ -146,10 +148,11 @@ The optional “`fields`” argument in the request line specifies which fields 
 
 ### status_zone
 
-| Syntax:  | `status_zone zone;`                    |
-| :------- | -------------------------------------- |
+  Syntax:  `status_zone zone;`
+
 | Default: | —                                      |
-| Context: | `server`, `location`, `if in location` |
+  Context: `server`, `location`, `if in location`
+
 
 This directive appeared in version 1.13.12.
 
@@ -401,20 +404,20 @@ General information about nginx:
 
 Example:
 
-> ```
-> {
->   "nginx" : {
->     "version" : "1.21.6",
->     "build" : "nginx-plus-r27",
->     "address" : "206.251.255.64",
->     "generation" : 6,
->     "load_timestamp" : "2022-06-28T11:15:44.467Z",
->     "timestamp" : "2022-06-28T09:26:07.305Z",
->     "pid" : 32212,
->     "ppid" : 32210
->   }
-> }
-> ```
+```
+{
+  "nginx" : {
+    "version" : "1.21.6",
+    "build" : "nginx-plus-r27",
+    "address" : "206.251.255.64",
+    "generation" : 6,
+    "load_timestamp" : "2022-06-28T11:15:44.467Z",
+    "timestamp" : "2022-06-28T09:26:07.305Z",
+    "pid" : 32212,
+    "ppid" : 32210
+  }
+}
+```
 
 ### Processes
 
@@ -424,11 +427,11 @@ Example:
 
 Example:
 
-> ```
-> {
->   "respawned" : 0
-> }
-> ```
+```
+{
+  "respawned" : 0
+}
+```
 
 ### Connections
 
@@ -452,14 +455,14 @@ The number of accepted, dropped, active, and idle connections.
 
 Example:
 
-> ```
-> {
->   "accepted" : 4968119,
->   "dropped" : 0,
->   "active" : 5,
->   "idle" : 117
-> }
-> ```
+```
+{
+  "accepted" : 4968119,
+  "dropped" : 0,
+  "active" : 5,
+  "idle" : 117
+}
+```
 
 ### SSL
 
@@ -497,24 +500,24 @@ Example:
 
 Example:
 
-> ```
-> {
->   "handshakes" : 79572,
->   "handshakes_failed" : 21025,
->   "session_reuses" : 15762,
->   "no_common_protocol" : 4,
->   "no_common_cipher" : 2,
->   "handshake_timeout" : 0,
->   "peer_rejected_cert" : 0,
->   "verify_failures" : {
->     "no_cert" : 0,
->     "expired_cert" : 2,
->     "revoked_cert" : 1,
->     "hostname_mismatch" : 2,
->     "other" : 1
->   }
-> }
-> ```
+```
+{
+  "handshakes" : 79572,
+  "handshakes_failed" : 21025,
+  "session_reuses" : 15762,
+  "no_common_protocol" : 4,
+  "no_common_cipher" : 2,
+  "handshake_timeout" : 0,
+  "peer_rejected_cert" : 0,
+  "verify_failures" : {
+    "no_cert" : 0,
+    "expired_cert" : 2,
+    "revoked_cert" : 1,
+    "hostname_mismatch" : 2,
+    "other" : 1
+  }
+}
+```
 
 ### Shared memory zone with slab allocator
 
@@ -530,52 +533,52 @@ Example:
 
 Example:
 
-> ```
-> {
->   "pages" : {
->     "used" : 1143,
->     "free" : 2928
->   },
->   "slots" : {
->     "8" : {
->       "used" : 0,
->       "free" : 0,
->       "reqs" : 0,
->       "fails" : 0
->     },
->     "16" : {
->       "used" : 0,
->       "free" : 0,
->       "reqs" : 0,
->       "fails" : 0
->     },
->     "32" : {
->       "used" : 0,
->       "free" : 0,
->       "reqs" : 0,
->       "fails" : 0
->     },
->     "64" : {
->       "used" : 1,
->       "free" : 63,
->       "reqs" : 1,
->       "fails" : 0
->     },
->     "128" : {
->       "used" : 0,
->       "free" : 0,
->       "reqs" : 0,
->       "fails" : 0
->     },
->     "256" : {
->       "used" : 18078,
->       "free" : 178,
->       "reqs" : 1635736,
->       "fails" : 0
->     }
->   }
-> }
-> ```
+```
+{
+  "pages" : {
+    "used" : 1143,
+    "free" : 2928
+  },
+  "slots" : {
+    "8" : {
+      "used" : 0,
+      "free" : 0,
+      "reqs" : 0,
+      "fails" : 0
+    },
+    "16" : {
+      "used" : 0,
+      "free" : 0,
+      "reqs" : 0,
+      "fails" : 0
+    },
+    "32" : {
+      "used" : 0,
+      "free" : 0,
+      "reqs" : 0,
+      "fails" : 0
+    },
+    "64" : {
+      "used" : 1,
+      "free" : 63,
+      "reqs" : 1,
+      "fails" : 0
+    },
+    "128" : {
+      "used" : 0,
+      "free" : 0,
+      "reqs" : 0,
+      "fails" : 0
+    },
+    "256" : {
+      "used" : 18078,
+      "free" : 178,
+      "reqs" : 1635736,
+      "fails" : 0
+    }
+  }
+}
+```
 
 ### Memory Slot
 

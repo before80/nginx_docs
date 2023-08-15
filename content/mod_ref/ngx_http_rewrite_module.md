@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_rewrite_module"
 date = 2023-08-15T08:18:07+08:00
+weight = 420
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -33,10 +34,11 @@ The [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break), 
 
 ### break;`
 
-| Syntax:  | `break;`                   |
-| :------- | -------------------------- |
+  Syntax:  `break;`
+
 | Default: | —                          |
-| Context: | `server`, `location`, `if` |
+  Context: `server`, `location`, `if`
+
 
 Stops processing the current set of `ngx_http_rewrite_module` directives.
 
@@ -44,12 +46,12 @@ If a directive is specified inside the [location](https://nginx.org/en/docs/http
 
 Example:
 
-> ```
-> if ($slow) {
->     limit_rate 10k;
->     break;
-> }
-> ```
+```
+if ($slow) {
+    limit_rate 10k;
+    break;
+}
+```
 
 
 
@@ -57,10 +59,11 @@ Example:
 
 ### if
 
-| Syntax:  | `if (condition) { ... }` |
-| :------- | ------------------------ |
+  Syntax:`if (condition) { ... }`
+
 | Default: | —                        |
-| Context: | `server`, `location`     |
+  Context: `server`, `location`
+
 
 The specified `condition` is evaluated. If true, this module directives specified inside the braces are executed, and the request is assigned the configuration inside the `if` directive. Configurations inside the `if` directives are inherited from the previous configuration level.
 
@@ -86,31 +89,31 @@ A condition may be any of the following:
 
 Examples:
 
-> ```
-> if ($http_user_agent ~ MSIE) {
->     rewrite ^(.*)$ /msie/$1 break;
-> }
-> 
-> if ($http_cookie ~* "id=([^;]+)(?:;|$)") {
->     set $id $1;
-> }
-> 
-> if ($request_method = POST) {
->     return 405;
-> }
-> 
-> if ($slow) {
->     limit_rate 10k;
-> }
-> 
-> if ($invalid_referer) {
->     return 403;
-> }
-> ```
+```
+if ($http_user_agent ~ MSIE) {
+    rewrite ^(.*)$ /msie/$1 break;
+}
+
+if ($http_cookie ~* "id=([^;]+)(?:;|$)") {
+    set $id $1;
+}
+
+if ($request_method = POST) {
+    return 405;
+}
+
+if ($slow) {
+    limit_rate 10k;
+}
+
+if ($invalid_referer) {
+    return 403;
+}
+```
 
 
 
-> A value of the `$invalid_referer` embedded variable is set by the [valid_referers](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers) directive.
+A value of the `$invalid_referer` embedded variable is set by the [valid_referers](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers) directive.
 
 
 
@@ -118,10 +121,11 @@ Examples:
 
 ### return
 
-| Syntax:  | `return code [text];` `return code URL;` `return URL;` |
-| :------- | ------------------------------------------------------ |
+  Syntax:`return code [text];` `return code URL;` `return URL;`
+
 | Default: | —                                                      |
-| Context: | `server`, `location`, `if`                             |
+  Context: `server`, `location`, `if`
+
 
 Stops processing and returns the specified `code` to a client. The non-standard code 444 closes a connection without sending a response header.
 
@@ -131,15 +135,15 @@ In addition, a `URL` for temporary redirect with the code 302 can be specified a
 
 
 
-> Only the following codes could be returned before version 0.7.51: 204, 400, 402 — 406, 408, 410, 411, 413, 416, and 500 — 504.
+Only the following codes could be returned before version 0.7.51: 204, 400, 402 — 406, 408, 410, 411, 413, 416, and 500 — 504.
 
 
 
-> The code 307 was not treated as a redirect until versions 1.1.16 and 1.0.13.
+The code 307 was not treated as a redirect until versions 1.1.16 and 1.0.13.
 
 
 
-> The code 308 was not treated as a redirect until version 1.13.0.
+The code 308 was not treated as a redirect until version 1.13.0.
 
 
 
@@ -149,10 +153,11 @@ See also the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.ht
 
 ### rewrite
 
-| Syntax:  | `rewrite regex replacement [flag];` |
-| :------- | ----------------------------------- |
+  Syntax:`rewrite regex replacement [flag];`
+
 | Default: | —                                   |
-| Context: | `server`, `location`, `if`          |
+  Context: `server`, `location`, `if`
+
 
 If the specified regular expression matches a request URI, URI is changed as specified in the `replacement` string. The `rewrite` directives are executed sequentially in order of their appearance in the configuration file. It is possible to terminate further processing of the directives using flags. If a replacement string starts with “`http://`”, “`https://`”, or “`$scheme`”, the processing stops and the redirect is returned to a client.
 
@@ -178,35 +183,35 @@ The full redirect URL is formed according to the request scheme (`$scheme`) and 
 
 Example:
 
-> ```
-> server {
->     ...
->     rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 last;
->     rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.ra  last;
->     return  403;
->     ...
-> }
-> ```
+```
+server {
+    ...
+    rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 last;
+    rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.ra  last;
+    return  403;
+    ...
+}
+```
 
 
 
 But if these directives are put inside the “`/download/`” location, the `last` flag should be replaced by `break`, or otherwise nginx will make 10 cycles and return the 500 error:
 
-> ```
-> location /download/ {
->     rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
->     rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.ra  break;
->     return  403;
-> }
-> ```
+```
+location /download/ {
+    rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
+    rewrite ^(/download/.*)/audio/(.*)\..*$ $1/mp3/$2.ra  break;
+    return  403;
+}
+```
 
 
 
 If a `replacement` string includes the new request arguments, the previous request arguments are appended after them. If this is undesired, putting a question mark at the end of a replacement string avoids having them appended, for example:
 
-> ```
-> rewrite ^/users/(.*)$ /show?user=$1? last;
-> ```
+```
+rewrite ^/users/(.*)$ /show?user=$1? last;
+```
 
 
 
@@ -216,10 +221,12 @@ If a regular expression includes the “`}`” or “`;`” characters, the whol
 
 ### rewrite_log
 
-| Syntax:  | `rewrite_log on | off;`            |
-| :------- | ---------------------------------- |
-| Default: | `rewrite_log off;`                 |
-| Context: | `http`, `server`, `location`, `if` |
+  Syntax:  `rewrite_log on | off;`
+
+  Default: `rewrite_log off;`
+
+  Context: `http`, `server`, `location`, `if`
+
 
 Enables or disables logging of `ngx_http_rewrite_module` module directives processing results into the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) at the `notice` level.
 
@@ -227,10 +234,11 @@ Enables or disables logging of `ngx_http_rewrite_module` module directives proce
 
 ### set
 
-| Syntax:  | `set $variable value;`     |
-| :------- | -------------------------- |
+  Syntax:  `set $variable value;`
+
 | Default: | —                          |
-| Context: | `server`, `location`, `if` |
+  Context: `server`, `location`, `if`
+
 
 Sets a `value` for the specified `variable`. The `value` can contain text, variables, and their combination.
 
@@ -238,10 +246,12 @@ Sets a `value` for the specified `variable`. The `value` can contain text, varia
 
 ### uninitialized_variable_warn
 
-| Syntax:  | `uninitialized_variable_warn on | off;` |
-| :------- | --------------------------------------- |
-| Default: | `uninitialized_variable_warn on;`       |
-| Context: | `http`, `server`, `location`, `if`      |
+  Syntax:`uninitialized_variable_warn on | off;`
+
+  Default: `uninitialized_variable_warn on;`
+
+  Context: `http`, `server`, `location`, `if`
+
 
 Controls whether warnings about uninitialized variables are logged.
 
@@ -253,38 +263,38 @@ The `ngx_http_rewrite_module` module directives are compiled at the configuratio
 
 For example, the directives
 
-> ```
-> location /download/ {
->     if ($forbidden) {
->         return 403;
->     }
-> 
->     if ($slow) {
->         limit_rate 10k;
->     }
-> 
->     rewrite ^/(download/.*)/media/(.*)\..*$ /$1/mp3/$2.mp3 break;
-> }
-> ```
+```
+location /download/ {
+    if ($forbidden) {
+        return 403;
+    }
+
+    if ($slow) {
+        limit_rate 10k;
+    }
+
+    rewrite ^/(download/.*)/media/(.*)\..*$ /$1/mp3/$2.mp3 break;
+}
+```
 
 will be translated into these instructions:
 
-> ```
-> variable $forbidden
-> check against zero
->     return 403
->     end of code
-> variable $slow
-> check against zero
-> match of regular expression
-> copy "/"
-> copy $1
-> copy "/mp3/"
-> copy $2
-> copy ".mp3"
-> end of regular expression
-> end of code
-> ```
+```
+variable $forbidden
+check against zero
+    return 403
+    end of code
+variable $slow
+check against zero
+match of regular expression
+copy "/"
+copy $1
+copy "/mp3/"
+copy $2
+copy ".mp3"
+end of regular expression
+end of code
+```
 
 
 
@@ -292,24 +302,24 @@ Note that there are no instructions for the [limit_rate](https://nginx.org/en/do
 
 The directive
 
-> ```
-> rewrite ^/(download/.*)/media/(.*)\..*$ /$1/mp3/$2.mp3 break;
-> ```
+```
+rewrite ^/(download/.*)/media/(.*)\..*$ /$1/mp3/$2.mp3 break;
+```
 
 can be made smaller by one instruction if the first slash in the regular expression is put inside the parentheses:
 
-> ```
-> rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
-> ```
+```
+rewrite ^(/download/.*)/media/(.*)\..*$ $1/mp3/$2.mp3 break;
+```
 
 The corresponding instructions will then look like this:
 
-> ```
-> match of regular expression
-> copy $1
-> copy "/mp3/"
-> copy $2
-> copy ".mp3"
-> end of regular expression
-> end of code
-> ```
+```
+match of regular expression
+copy $1
+copy "/mp3/"
+copy $2
+copy ".mp3"
+end of regular expression
+end of code
+```

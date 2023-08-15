@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_return_module"
 date = 2023-08-15T08:24:08+08:00
+weight = 840
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,12 +22,12 @@ The `ngx_stream_return_module` module (1.11.2) allows sending a specified value 
 
 
 
-> ```
-> server {
->     listen 12345;
->     return $time_iso8601;
-> }
-> ```
+```
+server {
+    listen 12345;
+    return $time_iso8601;
+}
+```
 
 
 
@@ -38,9 +39,10 @@ The `ngx_stream_return_module` module (1.11.2) allows sending a specified value 
 
 ### return
 
-| Syntax:  | `return value;` |
-| :------- | --------------- |
+  Syntax:`return value;`
+
 | Default: | —               |
-| Context: | `server`        |
+  Context: `server`
+
 
 Specifies a `value` to send to the client. The value can contain text, variables, and their combination.

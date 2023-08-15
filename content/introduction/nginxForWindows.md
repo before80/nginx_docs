@@ -60,11 +60,11 @@ nginx/Windows runs as a standard console application (not a service), and it can
 
 ​	nginx/Windows 以标准控制台应用程序（而不是服务）运行，可以使用以下命令进行管理：
 
-> | nginx -s stop   | fast shutdown 快速关闭                                       |
-> | --------------- | ------------------------------------------------------------ |
-> | nginx -s quit   | graceful shutdown 优雅关闭                                   |
-> | nginx -s reload | changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes 更改配置，使用新配置启动新的工作进程，优雅关闭旧的工作进程 |
-> | nginx -s reopen | re-opening log files 重新打开日志文件                        |
+| nginx -s stop   | fast shutdown 快速关闭                                       |
+| --------------- | ------------------------------------------------------------ |
+| nginx -s quit   | graceful shutdown 优雅关闭                                   |
+| nginx -s reload | changing configuration, starting new worker processes with a new configuration, graceful shutdown of old worker processes 更改配置，使用新配置启动新的工作进程，优雅关闭旧的工作进程 |
+| nginx -s reopen | re-opening log files 重新打开日志文件                        |
 
 
 

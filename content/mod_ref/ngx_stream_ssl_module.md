@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_ssl_module"
 date = 2023-08-15T08:24:37+08:00
+weight = 870
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -28,26 +29,26 @@ To reduce the processor load, it is recommended to
 
 
 
-> ```
-> worker_processes auto;
-> 
-> stream {
-> 
->     ...
-> 
->     server {
->         listen              12345 ssl;
-> 
->         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
->         ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;
->         ssl_certificate     /usr/local/nginx/conf/cert.pem;
->         ssl_certificate_key /usr/local/nginx/conf/cert.key;
->         ssl_session_cache   shared:SSL:10m;
->         ssl_session_timeout 10m;
-> 
->         ...
->     }
-> ```
+```
+worker_processes auto;
+
+stream {
+
+    ...
+
+    server {
+        listen              12345 ssl;
+
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;
+        ssl_certificate     /usr/local/nginx/conf/cert.pem;
+        ssl_certificate_key /usr/local/nginx/conf/cert.key;
+        ssl_session_cache   shared:SSL:10m;
+        ssl_session_timeout 10m;
+
+        ...
+    }
+```
 
 
 
@@ -59,27 +60,28 @@ To reduce the processor load, it is recommended to
 
 ### ssl_alpn
 
-| Syntax:  | `ssl_alpn protocol ...;` |
-| :------- | ------------------------ |
+  Syntax:`ssl_alpn protocol ...;`
+
 | Default: | —                        |
-| Context: | `stream`, `server`       |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.21.4.
 
 Specifies the list of supported [ALPN](https://datatracker.ietf.org/doc/html/rfc7301) protocols. One of the protocols must be [negotiated](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#var_ssl_alpn_protocol) if the client uses ALPN:
 
-> ```
-> map $ssl_alpn_protocol $proxy {
->     h2                127.0.0.1:8001;
->     http/1.1          127.0.0.1:8002;
-> }
-> 
-> server {
->     listen      12346;
->     proxy_pass  $proxy;
->     ssl_alpn    h2 http/1.1;
-> }
-> ```
+```
+map $ssl_alpn_protocol $proxy {
+    h2                127.0.0.1:8001;
+    http/1.1          127.0.0.1:8002;
+}
+
+server {
+    listen      12346;
+    proxy_pass  $proxy;
+    ssl_alpn    h2 http/1.1;
+}
+```
 
 
 
@@ -87,41 +89,42 @@ Specifies the list of supported [ALPN](https://datatracker.ietf.org/doc/html/rfc
 
 ### ssl_certificate
 
-| Syntax:  | `ssl_certificate file;` |
-| :------- | ----------------------- |
+  Syntax:`ssl_certificate file;`
+
 | Default: | —                       |
-| Context: | `stream`, `server`      |
+  Context: `stream`, `server`
+
 
 Specifies a `file` with the certificate in the PEM format for the given server. If intermediate certificates should be specified in addition to a primary certificate, they should be specified in the same file in the following order: the primary certificate comes first, then the intermediate certificates. A secret key in the PEM format may be placed in the same file.
 
 Since version 1.11.0, this directive can be specified multiple times to load certificates of different types, for example, RSA and ECDSA:
 
-> ```
-> server {
->     listen              12345 ssl;
-> 
->     ssl_certificate     example.com.rsa.crt;
->     ssl_certificate_key example.com.rsa.key;
-> 
->     ssl_certificate     example.com.ecdsa.crt;
->     ssl_certificate_key example.com.ecdsa.key;
-> 
->     ...
-> }
-> ```
+```
+server {
+    listen              12345 ssl;
+
+    ssl_certificate     example.com.rsa.crt;
+    ssl_certificate_key example.com.rsa.key;
+
+    ssl_certificate     example.com.ecdsa.crt;
+    ssl_certificate_key example.com.ecdsa.key;
+
+    ...
+}
+```
 
 
 
-> Only OpenSSL 1.0.2 or higher supports separate certificate chains for different certificates. With older versions, only one certificate chain can be used.
+Only OpenSSL 1.0.2 or higher supports separate certificate chains for different certificates. With older versions, only one certificate chain can be used.
 
 
 
 Since version 1.15.9, variables can be used in the `file` name when using OpenSSL 1.0.2 or higher:
 
-> ```
-> ssl_certificate     $ssl_server_name.crt;
-> ssl_certificate_key $ssl_server_name.key;
-> ```
+```
+ssl_certificate     $ssl_server_name.crt;
+ssl_certificate_key $ssl_server_name.key;
+```
 
 Note that using variables implies that a certificate will be loaded for each SSL handshake, and this may have a negative impact on performance.
 
@@ -133,10 +136,11 @@ The value `data`:`$variable` can be specified instead of the `file` (1.15.10), w
 
 ### ssl_certificate_key
 
-| Syntax:  | `ssl_certificate_key file;` |
-| :------- | --------------------------- |
+  Syntax:`ssl_certificate_key file;`
+
 | Default: | —                           |
-| Context: | `stream`, `server`          |
+  Context: `stream`, `server`
+
 
 Specifies a `file` with the secret key in the PEM format for the given server.
 
@@ -152,16 +156,18 @@ Since version 1.15.9, variables can be used in the `file` name when using OpenSS
 
 ### ssl_ciphers
 
-| Syntax:  | `ssl_ciphers ciphers;`          |
-| :------- | ------------------------------- |
-| Default: | `ssl_ciphers HIGH:!aNULL:!MD5;` |
-| Context: | `stream`, `server`              |
+  Syntax:  `ssl_ciphers ciphers;`
+
+  Default: `ssl_ciphers HIGH:!aNULL:!MD5;`
+
+  Context: `stream`, `server`
+
 
 Specifies the enabled ciphers. The ciphers are specified in the format understood by the OpenSSL library, for example:
 
-> ```
-> ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
-> ```
+```
+ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+```
 
 
 
@@ -171,10 +177,11 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
 ### ssl_client_certificate
 
-| Syntax:  | `ssl_client_certificate file;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_client_certificate file;`
+
 | Default: | —                              |
-| Context: | `stream`, `server`             |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.8.
 
@@ -186,31 +193,32 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 
 ### ssl_conf_command
 
-| Syntax:  | `ssl_conf_command name value;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_conf_command name value;`
+
 | Default: | —                              |
-| Context: | `stream`, `server`             |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.19.4.
 
 Sets arbitrary OpenSSL configuration [commands](https://www.openssl.org/docs/man1.1.1/man3/SSL_CONF_cmd.html).
 
-> The directive is supported when using OpenSSL 1.0.2 or higher.
+The directive is supported when using OpenSSL 1.0.2 or higher.
 
 
 
 Several `ssl_conf_command` directives can be specified on the same level:
 
-> ```
-> ssl_conf_command Options PrioritizeChaCha;
-> ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
-> ```
+```
+ssl_conf_command Options PrioritizeChaCha;
+ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
+```
 
 These directives are inherited from the previous configuration level if and only if there are no `ssl_conf_command` directives defined on the current level.
 
 
 
-> Note that configuring OpenSSL directly might result in unexpected behavior.
+Note that configuring OpenSSL directly might result in unexpected behavior.
 
 
 
@@ -218,10 +226,11 @@ These directives are inherited from the previous configuration level if and only
 
 ### ssl_crl
 
-| Syntax:  | `ssl_crl file;`    |
-| :------- | ------------------ |
+  Syntax:  `ssl_crl file;`
+
 | Default: | —                  |
-| Context: | `stream`, `server` |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.8.
 
@@ -231,16 +240,17 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
 ### ssl_dhparam
 
-| Syntax:  | `ssl_dhparam file;` |
-| :------- | ------------------- |
+  Syntax:`ssl_dhparam file;`
+
 | Default: | —                   |
-| Context: | `stream`, `server`  |
+  Context: `stream`, `server`
+
 
 Specifies a `file` with DH parameters for DHE ciphers.
 
 By default no parameters are set, and therefore DHE ciphers will not be used.
 
-> Prior to version 1.11.0, builtin parameters were used by default.
+Prior to version 1.11.0, builtin parameters were used by default.
 
 
 
@@ -248,18 +258,20 @@ By default no parameters are set, and therefore DHE ciphers will not be used.
 
 ### ssl_ecdh_curve
 
-| Syntax:  | `ssl_ecdh_curve curve;` |
-| :------- | ----------------------- |
-| Default: | `ssl_ecdh_curve auto;`  |
-| Context: | `stream`, `server`      |
+  Syntax:`ssl_ecdh_curve curve;`
+
+  Default: `ssl_ecdh_curve auto;`
+
+  Context: `stream`, `server`
+
 
 Specifies a `curve` for ECDHE ciphers.
 
 When using OpenSSL 1.0.2 or higher, it is possible to specify multiple curves (1.11.0), for example:
 
-> ```
-> ssl_ecdh_curve prime256v1:secp384r1;
-> ```
+```
+ssl_ecdh_curve prime256v1:secp384r1;
+```
 
 
 
@@ -267,13 +279,13 @@ The special value `auto` (1.11.0) instructs nginx to use a list built into the O
 
 
 
-> Prior to version 1.11.0, the `prime256v1` curve was used by default.
+Prior to version 1.11.0, the `prime256v1` curve was used by default.
 
 
 
 
 
-> When using OpenSSL 1.0.2 or higher, this directive sets the list of curves supported by the server. Thus, in order for ECDSA certificates to work, it is important to include the curves used in the certificates.
+When using OpenSSL 1.0.2 or higher, this directive sets the list of curves supported by the server. Thus, in order for ECDSA certificates to work, it is important to include the curves used in the certificates.
 
 
 
@@ -281,10 +293,12 @@ The special value `auto` (1.11.0) instructs nginx to use a list built into the O
 
 ### ssl_handshake_timeout
 
-| Syntax:  | `ssl_handshake_timeout time;` |
-| :------- | ----------------------------- |
-| Default: | `ssl_handshake_timeout 60s;`  |
-| Context: | `stream`, `server`            |
+  Syntax:`ssl_handshake_timeout time;`
+
+  Default: `ssl_handshake_timeout 60s;`
+
+  Context: `stream`, `server`
+
 
 Specifies a timeout for the SSL handshake to complete.
 
@@ -292,34 +306,35 @@ Specifies a timeout for the SSL handshake to complete.
 
 ### ssl_password_file
 
-| Syntax:  | `ssl_password_file file;` |
-| :------- | ------------------------- |
+  Syntax:`ssl_password_file file;`
+
 | Default: | —                         |
-| Context: | `stream`, `server`        |
+  Context: `stream`, `server`
+
 
 Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/stream/ngx_stream_ssl_module.html#ssl_certificate_key) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
 
 Example:
 
-> ```
-> stream {
->     ssl_password_file /etc/keys/global.pass;
->     ...
-> 
->     server {
->         listen 127.0.0.1:12345;
->         ssl_certificate_key /etc/keys/first.key;
->     }
-> 
->     server {
->         listen 127.0.0.1:12346;
-> 
->         # named pipe can also be used instead of a file
->         ssl_password_file /etc/keys/fifo;
->         ssl_certificate_key /etc/keys/second.key;
->     }
-> }
-> ```
+```
+stream {
+    ssl_password_file /etc/keys/global.pass;
+    ...
+
+    server {
+        listen 127.0.0.1:12345;
+        ssl_certificate_key /etc/keys/first.key;
+    }
+
+    server {
+        listen 127.0.0.1:12346;
+
+        # named pipe can also be used instead of a file
+        ssl_password_file /etc/keys/fifo;
+        ssl_certificate_key /etc/keys/second.key;
+    }
+}
+```
 
 
 
@@ -327,10 +342,12 @@ Example:
 
 ### ssl_prefer_server_ciphers
 
-| Syntax:  | `ssl_prefer_server_ciphers on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `ssl_prefer_server_ciphers off;`      |
-| Context: | `stream`, `server`                    |
+  Syntax:`ssl_prefer_server_ciphers on | off;`
+
+  Default: `ssl_prefer_server_ciphers off;`
+
+  Context: `stream`, `server`
+
 
 Specifies that server ciphers should be preferred over client ciphers when the SSLv3 and TLS protocols are used.
 
@@ -338,22 +355,24 @@ Specifies that server ciphers should be preferred over client ciphers when the S
 
 ### ssl_protocols
 
-| Syntax:  | `ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`               |
-| Context: | `stream`, `server`                                           |
+  Syntax:`ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
+
+  Default: `ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`
+
+  Context: `stream`, `server`
+
 
 Enables the specified protocols.
 
-> The `TLSv1.1` and `TLSv1.2` parameters work only when OpenSSL 1.0.1 or higher is used.
+The `TLSv1.1` and `TLSv1.2` parameters work only when OpenSSL 1.0.1 or higher is used.
 
 
 
-> The `TLSv1.3` parameter (1.13.0) works only when OpenSSL 1.1.1 or higher is used.
+The `TLSv1.3` parameter (1.13.0) works only when OpenSSL 1.1.1 or higher is used.
 
 
 
-> The `TLSv1.3` parameter is used by default since 1.23.4.
+The `TLSv1.3` parameter is used by default since 1.23.4.
 
 
 
@@ -361,10 +380,12 @@ Enables the specified protocols.
 
 ### ssl_session_cache
 
-| Syntax:  | `ssl_session_cache off | none | [builtin[:size]] [shared:name:size];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `ssl_session_cache none;`                                    |
-| Context: | `stream`, `server`                                           |
+  Syntax:`ssl_session_cache off | none | [builtin[:size]] [shared:name:size];`
+
+  Default: `ssl_session_cache none;`
+
+  Context: `stream`, `server`
+
 
 Sets the types and sizes of caches that store session parameters. A cache can be of any of the following types:
 
@@ -388,9 +409,9 @@ Sets the types and sizes of caches that store session parameters. A cache can be
 
 Both cache types can be used simultaneously, for example:
 
-> ```
-> ssl_session_cache builtin:1000 shared:SSL:10m;
-> ```
+```
+ssl_session_cache builtin:1000 shared:SSL:10m;
+```
 
 but using only shared cache without the built-in cache should be more efficient.
 
@@ -398,27 +419,28 @@ but using only shared cache without the built-in cache should be more efficient.
 
 ### ssl_session_ticket_key
 
-| Syntax:  | `ssl_session_ticket_key file;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_session_ticket_key file;`
+
 | Default: | —                              |
-| Context: | `stream`, `server`             |
+  Context: `stream`, `server`
+
 
 Sets a `file` with the secret key used to encrypt and decrypt TLS session tickets. The directive is necessary if the same key has to be shared between multiple servers. By default, a randomly generated key is used.
 
 If several keys are specified, only the first key is used to encrypt TLS session tickets. This allows configuring key rotation, for example:
 
-> ```
-> ssl_session_ticket_key current.key;
-> ssl_session_ticket_key previous.key;
-> ```
+```
+ssl_session_ticket_key current.key;
+ssl_session_ticket_key previous.key;
+```
 
 
 
 The `file` must contain 80 or 48 bytes of random data and can be created using the following command:
 
-> ```
-> openssl rand 80 > ticket.key
-> ```
+```
+openssl rand 80 > ticket.key
+```
 
 Depending on the file size either AES256 (for 80-byte keys, 1.11.8) or AES128 (for 48-byte keys) is used for encryption.
 
@@ -426,10 +448,12 @@ Depending on the file size either AES256 (for 80-byte keys, 1.11.8) or AES128 (f
 
 ### ssl_session_tickets
 
-| Syntax:  | `ssl_session_tickets on | off;` |
-| :------- | ------------------------------- |
-| Default: | `ssl_session_tickets on;`       |
-| Context: | `stream`, `server`              |
+  Syntax:`ssl_session_tickets on | off;`
+
+  Default: `ssl_session_tickets on;`
+
+  Context: `stream`, `server`
+
 
 Enables or disables session resumption through [TLS session tickets](https://datatracker.ietf.org/doc/html/rfc5077).
 
@@ -437,10 +461,12 @@ Enables or disables session resumption through [TLS session tickets](https://dat
 
 ### ssl_session_timeout
 
-| Syntax:  | `ssl_session_timeout time;` |
-| :------- | --------------------------- |
-| Default: | `ssl_session_timeout 5m;`   |
-| Context: | `stream`, `server`          |
+  Syntax:`ssl_session_timeout time;`
+
+  Default: `ssl_session_timeout 5m;`
+
+  Context: `stream`, `server`
+
 
 Specifies a time during which a client may reuse the session parameters.
 
@@ -448,10 +474,11 @@ Specifies a time during which a client may reuse the session parameters.
 
 ### ssl_trusted_certificate
 
-| Syntax:  | `ssl_trusted_certificate file;` |
-| :------- | ------------------------------- |
+  Syntax:`ssl_trusted_certificate file;`
+
 | Default: | —                               |
-| Context: | `stream`, `server`              |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.8.
 
@@ -463,10 +490,12 @@ In contrast to the certificate set by [ssl_client_certificate](https://nginx.org
 
 ### ssl_verify_client
 
-| Syntax:  | `ssl_verify_client on | off | optional | optional_no_ca;` |
-| :------- | --------------------------------------------------------- |
-| Default: | `ssl_verify_client off;`                                  |
-| Context: | `stream`, `server`                                        |
+  Syntax:`ssl_verify_client on | off | optional | optional_no_ca;`
+
+  Default: `ssl_verify_client off;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.8.
 
@@ -480,10 +509,12 @@ The `optional_no_ca` parameter requests the client certificate but does not requ
 
 ### ssl_verify_depth
 
-| Syntax:  | `ssl_verify_depth number;` |
-| :------- | -------------------------- |
-| Default: | `ssl_verify_depth 1;`      |
-| Context: | `stream`, `server`         |
+  Syntax:`ssl_verify_depth number;`
+
+  Default: `ssl_verify_depth 1;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.8.
 

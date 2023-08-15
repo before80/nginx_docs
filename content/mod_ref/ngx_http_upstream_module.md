@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_upstream_module"
 date = 2023-08-15T08:19:42+08:00
+weight = 550
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,13 +20,13 @@ If a health check fails, the server will be considered unhealthy. If several hea
 
 
 
-> Please note that most of the variables will have empty values when used with health checks.
+Please note that most of the variables will have empty values when used with health checks.
 
 
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -35,47 +36,47 @@ If a health check fails, the server will be considered unhealthy. If several hea
 
 
 
-> ```
-> upstream dynamic {
->     zone upstream_dynamic 64k;
-> 
->     server backend1.example.com      weight=5;
->     server backend2.example.com:8080 fail_timeout=5s slow_start=30s;
->     server 192.0.2.1                 max_fails=3;
-> 
->     server backup1.example.com:8080  backup;
->     server backup2.example.com:8080  backup;
-> }
-> 
-> server {
->     location / {
->         proxy_pass http://dynamic;
->         health_check;
->     }
-> }
-> ```
+```
+upstream dynamic {
+    zone upstream_dynamic 64k;
+
+    server backend1.example.com      weight=5;
+    server backend2.example.com:8080 fail_timeout=5s slow_start=30s;
+    server 192.0.2.1                 max_fails=3;
+
+    server backup1.example.com:8080  backup;
+    server backup2.example.com:8080  backup;
+}
+
+server {
+    location / {
+        proxy_pass http://dynamic;
+        health_check;
+    }
+}
+```
 
 With this configuration, nginx will send “`/`” requests to each server in the `backend` group every five seconds. If any communication error or timeout occurs, or a proxied server responds with the status code other than 2xx or 3xx, the health check will fail, and the server will be considered unhealthy.
 
 Health checks can be configured to test the status code of a response, presence of certain header fields and their values, and the body contents. Tests are configured separately using the [match](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) directive and referenced in the `match` parameter of the [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive:
 
-> ```
-> http {
->     server {
->     ...
->         location / {
->             proxy_pass http://backend;
->             health_check match=welcome;
->         }
->     }
-> 
->     match welcome {
->         status 200;
->         header Content-Type = text/html;
->         body ~ "Welcome to nginx!";
->     }
-> }
-> ```
+```
+http {
+    server {
+    ...
+        location / {
+            proxy_pass http://backend;
+            health_check match=welcome;
+        }
+    }
+
+    match welcome {
+        status 200;
+        header Content-Type = text/html;
+        body ~ "Welcome to nginx!";
+    }
+}
+```
 
 This configuration shows that in order for a health check to pass, the response to a health check request should succeed, have status 200, and contain “`Welcome to nginx!`” in the body.
 
@@ -87,10 +88,11 @@ This configuration shows that in order for a health check to pass, the response 
 
 ### health_check
 
-| Syntax:  | `health_check [parameters];` |
-| :------- | ---------------------------- |
+  Syntax:`health_check [parameters];`
+
 | Default: | —                            |
-| Context: | `location`                   |
+  Context: `location`
+
 
 Enables periodic health checks of the servers in a [group](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) referenced in the surrounding location.
 
@@ -142,10 +144,11 @@ The following optional parameters are supported:
 
 ### match
 
-| Syntax:  | `match name { ... }` |
-| :------- | -------------------- |
+  Syntax:`match name { ... }`
+
 | Default: | —                    |
-| Context: | `http`               |
+  Context: `http`
+
 
 Defines the named test set used to verify responses to health check requests.
 
@@ -225,52 +228,52 @@ The following items can be tested in a response:
 
 If several tests are specified, the response matches only if it matches all tests.
 
-> Only the first 256k of the response body are examined.
+Only the first 256k of the response body are examined.
 
 
 
 Examples:
 
-> ```
-> # status is 200, content type is "text/html",
-> # and body contains "Welcome to nginx!"
-> match welcome {
->     status 200;
->     header Content-Type = text/html;
->     body ~ "Welcome to nginx!";
-> }
-> ```
+```
+# status is 200, content type is "text/html",
+# and body contains "Welcome to nginx!"
+match welcome {
+    status 200;
+    header Content-Type = text/html;
+    body ~ "Welcome to nginx!";
+}
+```
 
 
 
-> ```
-> # status is not one of 301, 302, 303, or 307, and header does not have "Refresh:"
-> match not_redirect {
->     status ! 301-303 307;
->     header ! Refresh;
-> }
-> ```
+```
+# status is not one of 301, 302, 303, or 307, and header does not have "Refresh:"
+match not_redirect {
+    status ! 301-303 307;
+    header ! Refresh;
+}
+```
 
 
 
-> ```
-> # status ok and not in maintenance mode
-> match server_ok {
->     status 200-399;
->     body !~ "maintenance mode";
-> }
-> ```
+```
+# status ok and not in maintenance mode
+match server_ok {
+    status 200-399;
+    body !~ "maintenance mode";
+}
+```
 
 
 
-> ```
-> # status is 200 or 204
-> map $upstream_status $good_status {
->     200 1;
->     204 1;
-> }
-> 
-> match server_ok {
->     require $good_status;
-> }
-> ```
+```
+# status is 200 or 204
+map $upstream_status $good_status {
+    200 1;
+    204 1;
+}
+
+match server_ok {
+    require $good_status;
+}
+```

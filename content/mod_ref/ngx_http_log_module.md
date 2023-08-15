@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_log_module"
 date = 2023-08-15T08:16:14+08:00
+weight = 310
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,13 +22,13 @@ Requests are logged in the context of a location where processing ends. It may b
 
 
 
-> ```
-> log_format compression '$remote_addr - $remote_user [$time_local] '
->                        '"$request" $status $bytes_sent '
->                        '"$http_referer" "$http_user_agent" "$gzip_ratio"';
-> 
-> access_log /spool/logs/nginx-access.log compression buffer=32k;
-> ```
+```
+log_format compression '$remote_addr - $remote_user [$time_local] '
+                       '"$request" $status $bytes_sent '
+                       '"$http_referer" "$http_user_agent" "$gzip_ratio"';
+
+access_log /spool/logs/nginx-access.log compression buffer=32k;
+```
 
 
 
@@ -39,16 +40,18 @@ Requests are logged in the context of a location where processing ends. It may b
 
 ### access_log
 
-| Syntax:  | `access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]];` `access_log off;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `access_log logs/access.log combined;`                       |
-| Context: | `http`, `server`, `location`, `if in location`, `limit_except` |
+  Syntax:`access_log path [format [buffer=size] [gzip[=level]] [flush=time] [if=condition]];` `access_log off;`
+
+  Default: `access_log logs/access.log combined;`
+
+  Context: `http`, `server`, `location`, `if in location`, `limit_except`
+
 
 Sets the path, format, and configuration for a buffered log write. Several logs can be specified on the same configuration level. Logging to [syslog](https://nginx.org/en/docs/syslog.html) can be configured by specifying the “`syslog:`” prefix in the first parameter. The special value `off` cancels all `access_log` directives on the current level. If the format is not specified then the predefined “`combined`” format is used.
 
 If either the `buffer` or `gzip` (1.3.10, 1.2.7) parameter is used, writes to log will be buffered.
 
-> The buffer size must not exceed the size of an atomic write to a disk file. For FreeBSD this size is unlimited.
+The buffer size must not exceed the size of an atomic write to a disk file. For FreeBSD this size is unlimited.
 
 
 
@@ -64,15 +67,15 @@ If the `gzip` parameter is used, then the buffered data will be compressed befor
 
 Example:
 
-> ```
-> access_log /path/to/log.gz combined gzip flush=5m;
-> ```
+```
+access_log /path/to/log.gz combined gzip flush=5m;
+```
 
 
 
 
 
-> For gzip compression to work, nginx must be built with the zlib library.
+For gzip compression to work, nginx must be built with the zlib library.
 
 
 
@@ -123,14 +126,14 @@ The file path can contain variables (0.7.6+), but such logs have some constraint
 
 The `if` parameter (1.7.0) enables conditional logging. A request will not be logged if the `condition` evaluates to “0” or an empty string. In the following example, the requests with response codes 2xx and 3xx will not be logged:
 
-> ```
-> map $status $loggable {
->     ~^[23]  0;
->     default 1;
-> }
-> 
-> access_log /path/to/access.log combined if=$loggable;
-> ```
+```
+map $status $loggable {
+    ~^[23]  0;
+    default 1;
+}
+
+access_log /path/to/access.log combined if=$loggable;
+```
 
 
 
@@ -138,10 +141,12 @@ The `if` parameter (1.7.0) enables conditional logging. A request will not be lo
 
 ### log_format
 
-| Syntax:  | `log_format name [escape=default|json|none] string ...;` |
-| :------- | -------------------------------------------------------- |
-| Default: | `log_format combined "...";`                             |
-| Context: | `http`                                                   |
+  Syntax:`log_format name [escape=default|json|none] string ...;`
+
+  Default: `log_format combined "...";`
+
+  Context: `http`
+
 
 Specifies log format.
 
@@ -201,7 +206,7 @@ The log format can contain common variables, and variables that exist only at th
 
 
 
-> In the modern nginx versions variables [$status](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_status) (1.3.2, 1.2.2), [$bytes_sent](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_bytes_sent) (1.3.8, 1.2.5), [$connection](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection) (1.3.8, 1.2.5), [$connection_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection_requests) (1.3.8, 1.2.5), [$msec](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_msec) (1.3.9, 1.2.6), [$request_time](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_time) (1.3.9, 1.2.6), [$pipe](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_pipe) (1.3.12, 1.2.7), [$request_length](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_length) (1.3.12, 1.2.7), [$time_iso8601](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_iso8601) (1.3.12, 1.2.7), and [$time_local](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_local) (1.3.12, 1.2.7) are also available as common variables.
+In the modern nginx versions variables [$status](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_status) (1.3.2, 1.2.2), [$bytes_sent](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_bytes_sent) (1.3.8, 1.2.5), [$connection](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection) (1.3.8, 1.2.5), [$connection_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection_requests) (1.3.8, 1.2.5), [$msec](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_msec) (1.3.9, 1.2.6), [$request_time](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_time) (1.3.9, 1.2.6), [$pipe](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_pipe) (1.3.12, 1.2.7), [$request_length](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_length) (1.3.12, 1.2.7), [$time_iso8601](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_iso8601) (1.3.12, 1.2.7), and [$time_local](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_local) (1.3.12, 1.2.7) are also available as common variables.
 
 
 
@@ -209,11 +214,11 @@ Header lines sent to a client have the prefix “`sent_http_`”, for example, `
 
 The configuration always includes the predefined “`combined`” format:
 
-> ```
-> log_format combined '$remote_addr - $remote_user [$time_local] '
->                     '"$request" $status $body_bytes_sent '
->                     '"$http_referer" "$http_user_agent"';
-> ```
+```
+log_format combined '$remote_addr - $remote_user [$time_local] '
+                    '"$request" $status $body_bytes_sent '
+                    '"$http_referer" "$http_user_agent"';
+```
 
 
 
@@ -221,10 +226,12 @@ The configuration always includes the predefined “`combined`” format:
 
 ### open_log_file_cache
 
-| Syntax:  | `open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];` `open_log_file_cache off;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `open_log_file_cache off;`                                   |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];` `open_log_file_cache off;`
+
+  Default: `open_log_file_cache off;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a cache that stores the file descriptors of frequently used logs whose names contain variables. The directive has the following parameters:
 
@@ -252,6 +259,6 @@ Defines a cache that stores the file descriptors of frequently used logs whose n
 
 Usage example:
 
-> ```
-> open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
-> ```
+```
+open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
+```

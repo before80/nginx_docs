@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_status_module"
 date = 2023-08-15T08:19:16+08:00
+weight = 500
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -15,7 +16,7 @@ https://nginx.org/en/docs/http/ngx_http_status_module.html
 
 The `ngx_http_status_module` module provides access to various status information.
 
-> This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
+This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
 
 
 
@@ -25,81 +26,81 @@ The `ngx_http_status_module` module provides access to various status informatio
 
 
 
-> ```
-> http {
->     upstream backend {
->         zone http_backend 64k;
-> 
->         server backend1.example.com weight=5;
->         server backend2.example.com;
->     }
-> 
->     proxy_cache_path /data/nginx/cache_backend keys_zone=cache_backend:10m;
-> 
->     server {
->         server_name backend.example.com;
-> 
->         location / {
->             proxy_pass  http://backend;
->             proxy_cache cache_backend;
-> 
->             health_check;
->         }
-> 
->         status_zone server_backend;
->     }
-> 
->     server {
->         listen 127.0.0.1;
-> 
->         location /upstream_conf {
->             upstream_conf;
->         }
-> 
->         location /status {
->             status;
->         }
-> 
->         location = /status.html {
->         }
->     }
-> }
-> 
-> stream {
->     upstream backend {
->         zone stream_backend 64k;
-> 
->         server backend1.example.com:12345 weight=5;
->         server backend2.example.com:12345;
->     }
-> 
->     server {
->         listen      127.0.0.1:12345;
->         proxy_pass  backend;
->         status_zone server_backend;
->         health_check;
->     }
-> }
-> ```
+```
+http {
+    upstream backend {
+        zone http_backend 64k;
+
+        server backend1.example.com weight=5;
+        server backend2.example.com;
+    }
+
+    proxy_cache_path /data/nginx/cache_backend keys_zone=cache_backend:10m;
+
+    server {
+        server_name backend.example.com;
+
+        location / {
+            proxy_pass  http://backend;
+            proxy_cache cache_backend;
+
+            health_check;
+        }
+
+        status_zone server_backend;
+    }
+
+    server {
+        listen 127.0.0.1;
+
+        location /upstream_conf {
+            upstream_conf;
+        }
+
+        location /status {
+            status;
+        }
+
+        location = /status.html {
+        }
+    }
+}
+
+stream {
+    upstream backend {
+        zone stream_backend 64k;
+
+        server backend1.example.com:12345 weight=5;
+        server backend2.example.com:12345;
+    }
+
+    server {
+        listen      127.0.0.1:12345;
+        proxy_pass  backend;
+        status_zone server_backend;
+        health_check;
+    }
+}
+```
 
 
 
 Examples of status requests with this configuration:
 
-> ```
-> http://127.0.0.1/status
-> http://127.0.0.1/status/nginx_version
-> http://127.0.0.1/status/caches/cache_backend
-> http://127.0.0.1/status/upstreams
-> http://127.0.0.1/status/upstreams/backend
-> http://127.0.0.1/status/upstreams/backend/peers/1
-> http://127.0.0.1/status/upstreams/backend/peers/1/weight
-> http://127.0.0.1/status/stream
-> http://127.0.0.1/status/stream/upstreams
-> http://127.0.0.1/status/stream/upstreams/backend
-> http://127.0.0.1/status/stream/upstreams/backend/peers/1
-> http://127.0.0.1/status/stream/upstreams/backend/peers/1/weight
-> ```
+```
+http://127.0.0.1/status
+http://127.0.0.1/status/nginx_version
+http://127.0.0.1/status/caches/cache_backend
+http://127.0.0.1/status/upstreams
+http://127.0.0.1/status/upstreams/backend
+http://127.0.0.1/status/upstreams/backend/peers/1
+http://127.0.0.1/status/upstreams/backend/peers/1/weight
+http://127.0.0.1/status/stream
+http://127.0.0.1/status/stream/upstreams
+http://127.0.0.1/status/stream/upstreams/backend
+http://127.0.0.1/status/stream/upstreams/backend/peers/1
+http://127.0.0.1/status/stream/upstreams/backend/peers/1/weight
+```
 
 
 
@@ -113,10 +114,11 @@ The simple monitoring page is shipped with this distribution, accessible as “`
 
 ### status;`
 
-| Syntax:  | `status;`  |
-| :------- | ---------- |
+  Syntax:  `status;`
+
 | Default: | —          |
-| Context: | `location` |
+  Context: `location`
+
 
 The status information will be accessible from the surrounding location. Access to this location should be [limited](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy).
 
@@ -124,10 +126,12 @@ The status information will be accessible from the surrounding location. Access 
 
 ### status_format
 
-| Syntax:  | `status_format json;` `status_format jsonp [callback];` |
-| :------- | ------------------------------------------------------- |
-| Default: | `status_format json;`                                   |
-| Context: | `http`, `server`, `location`                            |
+  Syntax:`status_format json;` `status_format jsonp [callback];`
+
+  Default: `status_format json;`
+
+  Context: `http`, `server`, `location`
+
 
 By default, status information is output in the JSON format.
 
@@ -137,10 +141,11 @@ Alternatively, data may be output as JSONP. The `callback` parameter specifies t
 
 ### status_zone
 
-| Syntax:  | `status_zone zone;` |
-| :------- | ------------------- |
+  Syntax:`status_zone zone;`
+
 | Default: | —                   |
-| Context: | `server`            |
+  Context: `server`
+
 
 Enables collection of virtual [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) or [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#server) (1.7.11) server status information in the specified `zone`. Several servers may share the same zone.
 

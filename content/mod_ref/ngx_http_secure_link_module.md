@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_secure_link_module"
 date = 2023-08-15T08:18:22+08:00
+weight = 440
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -29,10 +30,11 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### secure_link
 
-| Syntax:  | `secure_link expression;`    |
-| :------- | ---------------------------- |
+  Syntax:  `secure_link expression;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines a string with variables from which the checksum value and lifetime of a link will be extracted.
 
@@ -46,10 +48,11 @@ If a link has a limited lifetime, the expiration time is set in seconds since Ep
 
 ### secure_link_md5
 
-| Syntax:  | `secure_link_md5 expression;` |
-| :------- | ----------------------------- |
+  Syntax:`secure_link_md5 expression;`
+
 | Default: | —                             |
-| Context: | `http`, `server`, `location`  |
+  Context: `http`, `server`, `location`
+
 
 Defines an expression for which the MD5 hash value will be computed and compared with the value passed in a request.
 
@@ -59,31 +62,31 @@ To prevent unauthorized access, the expression may contain some information abou
 
 Example:
 
-> ```
-> location /s/ {
->     secure_link $arg_md5,$arg_expires;
->     secure_link_md5 "$secure_link_expires$uri$remote_addr secret";
-> 
->     if ($secure_link = "") {
->         return 403;
->     }
-> 
->     if ($secure_link = "0") {
->         return 410;
->     }
-> 
->     ...
-> }
-> ```
+```
+location /s/ {
+    secure_link $arg_md5,$arg_expires;
+    secure_link_md5 "$secure_link_expires$uri$remote_addr secret";
+
+    if ($secure_link = "") {
+        return 403;
+    }
+
+    if ($secure_link = "0") {
+        return 410;
+    }
+
+    ...
+}
+```
 
 The “`/s/link?md5=_e4Nc3iduzkWRm01TBBNYw&expires=2147483647`” link restricts access to “`/s/link`” for the client with the IP address 127.0.0.1. The link also has the limited lifetime until January 19, 2038 (GMT).
 
 On UNIX, the `md5` request argument value can be obtained as:
 
-> ```
-> echo -n '2147483647/s/link127.0.0.1 secret' | \
->     openssl md5 -binary | openssl base64 | tr +/ -_ | tr -d =
-> ```
+```
+echo -n '2147483647/s/link127.0.0.1 secret' | \
+    openssl md5 -binary | openssl base64 | tr +/ -_ | tr -d =
+```
 
 
 
@@ -91,18 +94,19 @@ On UNIX, the `md5` request argument value can be obtained as:
 
 ### secure_link_secret
 
-| Syntax:  | `secure_link_secret word;` |
-| :------- | -------------------------- |
+  Syntax:`secure_link_secret word;`
+
 | Default: | —                          |
-| Context: | `location`                 |
+  Context: `location`
+
 
 Defines a secret `word` used to check authenticity of requested links.
 
 The full URI of a requested link looks as follows:
 
-> ```
-> /prefix/hash/link
-> ```
+```
+/prefix/hash/link
+```
 
 where `hash` is a hexadecimal representation of the MD5 hash computed for the concatenation of the link and secret word, and `prefix` is an arbitrary string without slashes.
 
@@ -110,29 +114,29 @@ If the requested link passes the authenticity check, the `$secure_link` variable
 
 Example:
 
-> ```
-> location /p/ {
->     secure_link_secret secret;
-> 
->     if ($secure_link = "") {
->         return 403;
->     }
-> 
->     rewrite ^ /secure/$secure_link;
-> }
-> 
-> location /secure/ {
->     internal;
-> }
-> ```
+```
+location /p/ {
+    secure_link_secret secret;
+
+    if ($secure_link = "") {
+        return 403;
+    }
+
+    rewrite ^ /secure/$secure_link;
+}
+
+location /secure/ {
+    internal;
+}
+```
 
 A request of “`/p/5e814704a28d9bc1914ff19fa0c4a00a/link`” will be internally redirected to “`/secure/link`”.
 
 On UNIX, the hash value for this example can be obtained as:
 
-> ```
-> echo -n 'linksecret' | openssl md5 -hex
-> ```
+```
+echo -n 'linksecret' | openssl md5 -hex
+```
 
 
 

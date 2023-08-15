@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_v2_module"
 date = 2023-08-15T08:20:32+08:00
+weight = 580
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -31,16 +32,16 @@ Before version 1.19.1, the [lingering_close](https://nginx.org/en/docs/http/ngx_
 
 
 
-> ```
-> server {
->     listen 443 ssl;
-> 
->     http2 on;
-> 
->     ssl_certificate server.crt;
->     ssl_certificate_key server.key;
-> }
-> ```
+```
+server {
+    listen 443 ssl;
+
+    http2 on;
+
+    ssl_certificate server.crt;
+    ssl_certificate_key server.key;
+}
+```
 
 Note that accepting HTTP/2 connections over TLS requires the “Application-Layer Protocol Negotiation” (ALPN) TLS extension support, which is available since [OpenSSL](http://www.openssl.org/) version 1.0.2.
 
@@ -54,10 +55,12 @@ Also note that if the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http
 
 ### http2
 
-| Syntax:  | `http2 on | off;` |
-| :------- | ----------------- |
-| Default: | `http2 off;`      |
-| Context: | `http`, `server`  |
+  Syntax:`http2 on | off;`
+
+  Default: `http2 off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.25.1.
 
@@ -67,10 +70,12 @@ Enables the [HTTP/2](https://datatracker.ietf.org/doc/html/rfc9113) protocol.
 
 ### http2_body_preread_size
 
-| Syntax:  | `http2_body_preread_size size;` |
-| :------- | ------------------------------- |
-| Default: | `http2_body_preread_size 64k;`  |
-| Context: | `http`, `server`                |
+  Syntax:`http2_body_preread_size size;`
+
+  Default: `http2_body_preread_size 64k;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.11.0.
 
@@ -80,10 +85,12 @@ Sets the `size` of the buffer per each request in which the request body may be 
 
 ### http2_chunk_size
 
-| Syntax:  | `http2_chunk_size size;`     |
-| :------- | ---------------------------- |
-| Default: | `http2_chunk_size 8k;`       |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `http2_chunk_size size;`
+
+  Default: `http2_chunk_size 8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the maximum size of chunks into which the response body is sliced. A too low value results in higher overhead. A too high value impairs prioritization due to [HOL blocking](http://en.wikipedia.org/wiki/Head-of-line_blocking).
 
@@ -91,14 +98,16 @@ Sets the maximum size of chunks into which the response body is sliced. A too lo
 
 ### http2_idle_timeout
 
-| Syntax:  | `http2_idle_timeout time;` |
-| :------- | -------------------------- |
-| Default: | `http2_idle_timeout 3m;`   |
-| Context: | `http`, `server`           |
+  Syntax:`http2_idle_timeout time;`
+
+  Default: `http2_idle_timeout 3m;`
+
+  Context: `http`, `server`
 
 
 
-> This directive is obsolete since version 1.19.7. The [keepalive_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) directive should be used instead.
+
+This directive is obsolete since version 1.19.7. The [keepalive_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) directive should be used instead.
 
 
 
@@ -108,16 +117,18 @@ Sets the timeout of inactivity after which the connection is closed.
 
 ### http2_max_concurrent_pushes
 
-| Syntax:  | `http2_max_concurrent_pushes number;` |
-| :------- | ------------------------------------- |
-| Default: | `http2_max_concurrent_pushes 10;`     |
-| Context: | `http`, `server`                      |
+  Syntax:`http2_max_concurrent_pushes number;`
+
+  Default: `http2_max_concurrent_pushes 10;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.13.9.
 
 
 
-> This directive is obsolete since version 1.25.1.
+This directive is obsolete since version 1.25.1.
 
 
 
@@ -127,10 +138,12 @@ Limits the maximum number of concurrent [push](https://nginx.org/en/docs/http/ng
 
 ### http2_max_concurrent_streams
 
-| Syntax:  | `http2_max_concurrent_streams number;` |
-| :------- | -------------------------------------- |
-| Default: | `http2_max_concurrent_streams 128;`    |
-| Context: | `http`, `server`                       |
+  Syntax:`http2_max_concurrent_streams number;`
+
+  Default: `http2_max_concurrent_streams 128;`
+
+  Context: `http`, `server`
+
 
 Sets the maximum number of concurrent HTTP/2 streams in a connection.
 
@@ -138,14 +151,16 @@ Sets the maximum number of concurrent HTTP/2 streams in a connection.
 
 ### http2_max_field_size
 
-| Syntax:  | `http2_max_field_size size;` |
-| :------- | ---------------------------- |
-| Default: | `http2_max_field_size 4k;`   |
-| Context: | `http`, `server`             |
+  Syntax:`http2_max_field_size size;`
+
+  Default: `http2_max_field_size 4k;`
+
+  Context: `http`, `server`
 
 
 
-> This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
+
+This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
 
 
 
@@ -155,14 +170,16 @@ Limits the maximum size of an [HPACK](https://datatracker.ietf.org/doc/html/rfc7
 
 ### http2_max_header_size
 
-| Syntax:  | `http2_max_header_size size;` |
-| :------- | ----------------------------- |
-| Default: | `http2_max_header_size 16k;`  |
-| Context: | `http`, `server`              |
+  Syntax:`http2_max_header_size size;`
+
+  Default: `http2_max_header_size 16k;`
+
+  Context: `http`, `server`
 
 
 
-> This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
+
+This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
 
 
 
@@ -172,16 +189,18 @@ Limits the maximum size of the entire request header list after [HPACK](https://
 
 ### http2_max_requests
 
-| Syntax:  | `http2_max_requests number;` |
-| :------- | ---------------------------- |
-| Default: | `http2_max_requests 1000;`   |
-| Context: | `http`, `server`             |
+  Syntax:`http2_max_requests number;`
+
+  Default: `http2_max_requests 1000;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.11.6.
 
 
 
-> This directive is obsolete since version 1.19.7. The [keepalive_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [keepalive_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) directive should be used instead.
 
 
 
@@ -193,24 +212,26 @@ Closing connections periodically is necessary to free per-connection memory allo
 
 ### http2_push
 
-| Syntax:  | `http2_push uri | off;`      |
-| :------- | ---------------------------- |
-| Default: | `http2_push off;`            |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `http2_push uri | off;`
+
+  Default: `http2_push off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.13.9.
 
 
 
-> This directive is obsolete since version 1.25.1.
+This directive is obsolete since version 1.25.1.
 
 
 
 Pre-emptively sends ([pushes](https://datatracker.ietf.org/doc/html/rfc9113#section-8.4)) a request to the specified `uri` along with the response to the original request. Only relative URIs with absolute path will be processed, for example:
 
-> ```
-> http2_push /static/css/main.css;
-> ```
+```
+http2_push /static/css/main.css;
+```
 
 The `uri` value can contain variables.
 
@@ -220,16 +241,18 @@ Several `http2_push` directives can be specified on the same configuration level
 
 ### http2_push_preload
 
-| Syntax:  | `http2_push_preload on | off;` |
-| :------- | ------------------------------ |
-| Default: | `http2_push_preload off;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`http2_push_preload on | off;`
+
+  Default: `http2_push_preload off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.13.9.
 
 
 
-> This directive is obsolete since version 1.25.1.
+This directive is obsolete since version 1.25.1.
 
 
 
@@ -239,10 +262,12 @@ Enables automatic conversion of [preload links](https://www.w3.org/TR/preload/#s
 
 ### http2_recv_buffer_size
 
-| Syntax:  | `http2_recv_buffer_size size;` |
-| :------- | ------------------------------ |
-| Default: | `http2_recv_buffer_size 256k;` |
-| Context: | `http`                         |
+  Syntax:`http2_recv_buffer_size size;`
+
+  Default: `http2_recv_buffer_size 256k;`
+
+  Context: `http`
+
 
 Sets the size of the per [worker](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) input buffer.
 
@@ -250,14 +275,16 @@ Sets the size of the per [worker](https://nginx.org/en/docs/ngx_core_module.html
 
 ### http2_recv_timeout
 
-| Syntax:  | `http2_recv_timeout time;` |
-| :------- | -------------------------- |
-| Default: | `http2_recv_timeout 30s;`  |
-| Context: | `http`, `server`           |
+  Syntax:`http2_recv_timeout time;`
+
+  Default: `http2_recv_timeout 30s;`
+
+  Context: `http`, `server`
 
 
 
-> This directive is obsolete since version 1.19.7. The [client_header_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout) directive should be used instead.
+
+This directive is obsolete since version 1.19.7. The [client_header_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout) directive should be used instead.
 
 
 

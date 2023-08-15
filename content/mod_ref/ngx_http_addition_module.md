@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_addition_module"
 date = 2023-08-15T08:11:45+08:00
+weight = 30
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -22,12 +23,12 @@ The `ngx_http_addition_module` module is a filter that adds text before and afte
 
 
 
-> ```
-> location / {
->     add_before_body /before_action;
->     add_after_body  /after_action;
-> }
-> ```
+```
+location / {
+    add_before_body /before_action;
+    add_after_body  /after_action;
+}
+```
 
 
 
@@ -39,10 +40,11 @@ The `ngx_http_addition_module` module is a filter that adds text before and afte
 
 ### add_before_body
 
-| Syntax:  | `add_before_body uri;`       |
-| :------- | ---------------------------- |
+  Syntax:  `add_before_body uri;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Adds the text returned as a result of processing a given subrequest before the response body. An empty string (`""`) as a parameter cancels addition inherited from the previous configuration level.
 
@@ -50,10 +52,11 @@ Adds the text returned as a result of processing a given subrequest before the r
 
 ### add_after_body
 
-| Syntax:  | `add_after_body uri;`        |
-| :------- | ---------------------------- |
+  Syntax:  `add_after_body uri;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Adds the text returned as a result of processing a given subrequest after the response body. An empty string (`""`) as a parameter cancels addition inherited from the previous configuration level.
 
@@ -61,10 +64,12 @@ Adds the text returned as a result of processing a given subrequest after the re
 
 ### addition_types
 
-| Syntax:  | `addition_types mime-type ...;` |
-| :------- | ------------------------------- |
-| Default: | `addition_types text/html;`     |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`addition_types mime-type ...;`
+
+  Default: `addition_types text/html;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.7.9.
 

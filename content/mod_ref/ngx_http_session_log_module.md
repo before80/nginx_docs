@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_session_log_module"
 date = 2023-08-15T08:18:31+08:00
+weight = 450
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_http_session_log_module` module enables logging sessions (that is, aggr
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -27,15 +28,15 @@ The `ngx_http_session_log_module` module enables logging sessions (that is, aggr
 
 The following configuration sets up a session log and maps requests to sessions according to the request client address and “User-Agent” request header field:
 
-> ```
->     session_log_zone /path/to/log format=combined
->                      zone=one:1m timeout=30s
->                      md5=$binary_remote_addr$http_user_agent;
-> 
->     location /media/ {
->         session_log one;
->     }
-> ```
+```
+    session_log_zone /path/to/log format=combined
+                     zone=one:1m timeout=30s
+                     md5=$binary_remote_addr$http_user_agent;
+
+    location /media/ {
+        session_log one;
+    }
+```
 
 
 
@@ -47,10 +48,12 @@ The following configuration sets up a session log and maps requests to sessions 
 
 ### session_log
 
-| Syntax:  | `session_log name | off;`    |
-| :------- | ---------------------------- |
-| Default: | `session_log off;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `session_log name | off;`
+
+  Default: `session_log off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables the use of the specified session log. The special value `off` cancels the effect of the `session_log` directives inherited from the previous configuration level.
 
@@ -58,10 +61,12 @@ Enables the use of the specified session log. The special value `off` cancels th
 
 ### session_log_format
 
-| Syntax:  | `session_log_format name string ...;` |
-| :------- | ------------------------------------- |
-| Default: | `session_log_format combined "...";`  |
-| Context: | `http`                                |
+  Syntax:`session_log_format name string ...;`
+
+  Default: `session_log_format combined "...";`
+
+  Context: `http`
+
 
 Specifies the output format of a log. The value of the `$body_bytes_sent` variable is aggregated across all requests in a session. The values of all other variables available for logging correspond to the first request in a session.
 
@@ -69,10 +74,11 @@ Specifies the output format of a log. The value of the `$body_bytes_sent` variab
 
 ### session_log_zone
 
-| Syntax:  | `session_log_zone path zone=name:size [format=format] [timeout=time] [id=id] [md5=md5] ;` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`session_log_zone path zone=name:size [format=format] [timeout=time] [id=id] [md5=md5] ;`
+
 | Default: | —                                                            |
-| Context: | `http`                                                       |
+  Context: `http`
+
 
 Sets the path to a log file and configures the shared memory zone that is used to store currently active sessions.
 

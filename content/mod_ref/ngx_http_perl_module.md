@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_perl_module"
 date = 2023-08-15T08:16:55+08:00
+weight = 360
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_http_perl_module` module is used to implement location and variable han
 
 This module is not built by default, it should be enabled with the `--with-http_perl_module` configuration parameter.
 
-> This module requires [Perl](https://www.perl.org/get.html) version 5.6.1 or higher. The C compiler should be compatible with the one used to build Perl.
+This module requires [Perl](https://www.perl.org/get.html) version 5.6.1 or higher. The C compiler should be compatible with the one used to build Perl.
 
 
 
@@ -29,11 +30,11 @@ The module is experimental, caveat emptor applies.
 
 In order for Perl to recompile the modified modules during reconfiguration, it should be built with the `-Dusemultiplicity=yes` or `-Dusethreads=yes` parameters. Also, to make Perl leak less memory at run time, it should be built with the `-Dusemymalloc=no` parameter. To check the values of these parameters in an already built Perl (preferred values are specified in the example), run:
 
-> ```
-> $ perl -V:usemultiplicity -V:usemymalloc
-> usemultiplicity='define';
-> usemymalloc='n';
-> ```
+```
+$ perl -V:usemultiplicity -V:usemymalloc
+usemultiplicity='define';
+usemymalloc='n';
+```
 
 
 
@@ -49,59 +50,59 @@ While the Perl module is performing a long-running operation, such as resolving 
 
 
 
-> ```
-> http {
-> 
->     perl_modules perl/lib;
->     perl_require hello.pm;
-> 
->     perl_set $msie6 '
-> 
->         sub {
->             my $r = shift;
->             my $ua = $r->header_in("User-Agent");
-> 
->             return "" if $ua =~ /Opera/;
->             return "1" if $ua =~ / MSIE [6-9]\.\d+/;
->             return "";
->         }
-> 
->     ';
-> 
->     server {
->         location / {
->             perl hello::handler;
->         }
->     }
-> ```
+```
+http {
+
+    perl_modules perl/lib;
+    perl_require hello.pm;
+
+    perl_set $msie6 '
+
+        sub {
+            my $r = shift;
+            my $ua = $r->header_in("User-Agent");
+
+            return "" if $ua =~ /Opera/;
+            return "1" if $ua =~ / MSIE [6-9]\.\d+/;
+            return "";
+        }
+
+    ';
+
+    server {
+        location / {
+            perl hello::handler;
+        }
+    }
+```
 
 
 
 The `perl/lib/hello.pm` module:
 
-> ```
-> package hello;
-> 
-> use nginx;
-> 
-> sub handler {
->     my $r = shift;
-> 
->     $r->send_http_header("text/html");
->     return OK if $r->header_only;
-> 
->     $r->print("hello!\n<br/>");
-> 
->     if (-f $r->filename or -d _) {
->         $r->print($r->uri, " exists!\n");
->     }
-> 
->     return OK;
-> }
-> 
-> 1;
-> __END__
-> ```
+```
+package hello;
+
+use nginx;
+
+sub handler {
+    my $r = shift;
+
+    $r->send_http_header("text/html");
+    return OK if $r->header_only;
+
+    $r->print("hello!\n<br/>");
+
+    if (-f $r->filename or -d _) {
+        $r->print($r->uri, " exists!\n");
+    }
+
+    return OK;
+}
+
+1;
+__END__
+```
 
 
 
@@ -113,10 +114,11 @@ The `perl/lib/hello.pm` module:
 
 ### perl
 
-| Syntax:  | `perl module::function|'sub { ... }';` |
-| :------- | -------------------------------------- |
+  Syntax:`perl module::function|'sub { ... }';`
+
 | Default: | —                                      |
-| Context: | `location`, `limit_except`             |
+  Context: `location`, `limit_except`
+
 
 Sets a Perl handler for the given location.
 
@@ -124,10 +126,11 @@ Sets a Perl handler for the given location.
 
 ### perl_modules
 
-| Syntax:  | `perl_modules path;` |
-| :------- | -------------------- |
+  Syntax:`perl_modules path;`
+
 | Default: | —                    |
-| Context: | `http`               |
+  Context: `http`
+
 
 Sets an additional path for Perl modules.
 
@@ -135,10 +138,11 @@ Sets an additional path for Perl modules.
 
 ### perl_require
 
-| Syntax:  | `perl_require module;` |
-| :------- | ---------------------- |
+  Syntax:`perl_require module;`
+
 | Default: | —                      |
-| Context: | `http`                 |
+  Context: `http`
+
 
 Defines the name of a module that will be loaded during each reconfiguration. Several `perl_require` directives can be present.
 
@@ -146,10 +150,11 @@ Defines the name of a module that will be loaded during each reconfiguration. Se
 
 ### perl_set
 
-| Syntax:  | `perl_set $variable module::function|'sub { ... }';` |
-| :------- | ---------------------------------------------------- |
+  Syntax:`perl_set $variable module::function|'sub { ... }';`
+
 | Default: | —                                                    |
-| Context: | `http`                                               |
+  Context: `http`
+
 
 Installs a Perl handler for the specified variable.
 
@@ -159,10 +164,10 @@ Calling Perl from SSI
 
 An SSI command calling Perl has the following format:
 
-> ```
-> <!--# perl sub="module::function" arg="parameter1" arg="parameter2" ...
-> -->
-> ```
+```
+<!--# perl sub="module::function" arg="parameter1" arg="parameter2" ...
+-->
+```
 
 
 

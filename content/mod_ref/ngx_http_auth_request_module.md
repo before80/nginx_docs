@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_auth_request_module"
 date = 2023-08-15T08:12:36+08:00
+weight = 70
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,7 +22,7 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 The module may be combined with other access modules, such as [ngx_http_access_module](https://nginx.org/en/docs/http/ngx_http_access_module.html), [ngx_http_auth_basic_module](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), and [ngx_http_auth_jwt_module](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html), via the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
 
-> Before version 1.7.3, responses to authorization subrequests could not be cached (using [proxy_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), [proxy_store](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store), etc.).
+Before version 1.7.3, responses to authorization subrequests could not be cached (using [proxy_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), [proxy_store](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store), etc.).
 
 
 
@@ -31,19 +32,19 @@ The module may be combined with other access modules, such as [ngx_http_access_m
 
 
 
-> ```
-> location /private/ {
->     auth_request /auth;
->     ...
-> }
-> 
-> location = /auth {
->     proxy_pass ...
->     proxy_pass_request_body off;
->     proxy_set_header Content-Length "";
->     proxy_set_header X-Original-URI $request_uri;
-> }
-> ```
+```
+location /private/ {
+    auth_request /auth;
+    ...
+}
+
+location = /auth {
+    proxy_pass ...
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+    proxy_set_header X-Original-URI $request_uri;
+}
+```
 
 
 
@@ -55,10 +56,12 @@ The module may be combined with other access modules, such as [ngx_http_access_m
 
 ### auth_request
 
-| Syntax:  | `auth_request uri | off;`    |
-| :------- | ---------------------------- |
-| Default: | `auth_request off;`          |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `auth_request uri | off;`
+
+  Default: `auth_request off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables authorization based on the result of a subrequest and sets the URI to which the subrequest will be sent.
 
@@ -66,9 +69,10 @@ Enables authorization based on the result of a subrequest and sets the URI to wh
 
 ### auth_request_set
 
-| Syntax:  | `auth_request_set $variable value;` |
-| :------- | ----------------------------------- |
+  Syntax:`auth_request_set $variable value;`
+
 | Default: | —                                   |
-| Context: | `http`, `server`, `location`        |
+  Context: `http`, `server`, `location`
+
 
 Sets the request `variable` to the given `value` after the authorization request completes. The value may contain variables from the authorization request, such as `$upstream_http_*`.

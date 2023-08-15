@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_mqtt_preread_module"
 date = 2023-08-15T08:23:24+08:00
+weight = 800
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_stream_mqtt_preread_module` module (1.23.4) allows extracting informati
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -27,10 +28,10 @@ The `ngx_stream_mqtt_preread_module` module (1.23.4) allows extracting informati
 
 
 
-> ```
-> mqtt_preread on;
-> return       $mqtt_preread_clientid;
-> ```
+```
+mqtt_preread on;
+return       $mqtt_preread_clientid;
+```
 
 
 
@@ -42,10 +43,12 @@ The `ngx_stream_mqtt_preread_module` module (1.23.4) allows extracting informati
 
 ### mqtt_preread
 
-| Syntax:  | `mqtt_preread on | off;` |
-| :------- | ------------------------ |
-| Default: | `mqtt_preread off;`      |
-| Context: | `stream`, `server`       |
+  Syntax:`mqtt_preread on | off;`
+
+  Default: `mqtt_preread off;`
+
+  Context: `stream`, `server`
+
 
 Enables extracting information from the MQTT CONNECT message at the [preread](https://nginx.org/en/docs/stream/stream_processing.html#preread_phase) phase.
 

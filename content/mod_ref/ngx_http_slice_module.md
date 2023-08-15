@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_slice_module"
 date = 2023-08-15T08:18:40+08:00
+weight = 460
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -23,16 +24,16 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location / {
->     slice             1m;
->     proxy_cache       cache;
->     proxy_cache_key   $uri$is_args$args$slice_range;
->     proxy_set_header  Range $slice_range;
->     proxy_cache_valid 200 206 1h;
->     proxy_pass        http://localhost:8000;
-> }
-> ```
+```
+location / {
+    slice             1m;
+    proxy_cache       cache;
+    proxy_cache_key   $uri$is_args$args$slice_range;
+    proxy_set_header  Range $slice_range;
+    proxy_cache_valid 200 206 1h;
+    proxy_pass        http://localhost:8000;
+}
+```
 
 In this example, the response is split into 1-megabyte cacheable slices.
 
@@ -44,10 +45,12 @@ In this example, the response is split into 1-megabyte cacheable slices.
 
 ### slice
 
-| Syntax:  | `slice size;`                |
-| :------- | ---------------------------- |
-| Default: | `slice 0;`                   |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `slice size;`
+
+  Default: `slice 0;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `size` of the slice. The zero value disables splitting responses into slices. Note that a too low value may result in excessive memory usage and opening a large number of files.
 

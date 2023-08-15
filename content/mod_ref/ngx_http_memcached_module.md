@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_memcached_module"
 date = 2023-08-15T08:16:30+08:00
+weight = 330
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,19 +22,19 @@ The `ngx_http_memcached_module` module is used to obtain responses from a memcac
 
 
 
-> ```
-> server {
->     location / {
->         set            $memcached_key "$uri?$args";
->         memcached_pass host:11211;
->         error_page     404 502 504 = @fallback;
->     }
-> 
->     location @fallback {
->         proxy_pass     http://backend;
->     }
-> }
-> ```
+```
+server {
+    location / {
+        set            $memcached_key "$uri?$args";
+        memcached_pass host:11211;
+        error_page     404 502 504 = @fallback;
+    }
+
+    location @fallback {
+        proxy_pass     http://backend;
+    }
+}
+```
 
 
 
@@ -45,10 +46,11 @@ The `ngx_http_memcached_module` module is used to obtain responses from a memcac
 
 ### memcached_bind
 
-| Syntax:  | `memcached_bind address [transparent ] | off;` |
-| :------- | ---------------------------------------------- |
+  Syntax:`memcached_bind address [transparent ] | off;`
+
 | Default: | —                                              |
-| Context: | `http`, `server`, `location`                   |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.8.22.
 
@@ -58,9 +60,9 @@ Makes outgoing connections to a memcached server originate from the specified lo
 
 The `transparent` parameter (1.11.0) allows outgoing connections to a memcached server originate from a non-local IP address, for example, from a real IP address of a client:
 
-> ```
-> memcached_bind $remote_addr transparent;
-> ```
+```
+memcached_bind $remote_addr transparent;
+```
 
 In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the memcached server.
 
@@ -68,10 +70,12 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 
 ### memcached_buffer_size
 
-| Syntax:  | `memcached_buffer_size size;`  |
-| :------- | ------------------------------ |
-| Default: | `memcached_buffer_size 4k|8k;` |
-| Context: | `http`, `server`, `location`   |
+  Syntax:  `memcached_buffer_size size;`
+
+  Default: `memcached_buffer_size 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `size` of the buffer used for reading the response received from the memcached server. The response is passed to the client synchronously, as soon as it is received.
 
@@ -79,10 +83,12 @@ Sets the `size` of the buffer used for reading the response received from the me
 
 ### memcached_connect_timeout
 
-| Syntax:  | `memcached_connect_timeout time;` |
-| :------- | --------------------------------- |
-| Default: | `memcached_connect_timeout 60s;`  |
-| Context: | `http`, `server`, `location`      |
+  Syntax:`memcached_connect_timeout time;`
+
+  Default: `memcached_connect_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for establishing a connection with a memcached server. It should be noted that this timeout cannot usually exceed 75 seconds.
 
@@ -90,10 +96,11 @@ Defines a timeout for establishing a connection with a memcached server. It shou
 
 ### memcached_gzip_flag
 
-| Syntax:  | `memcached_gzip_flag flag;`  |
-| :------- | ---------------------------- |
+  Syntax:  `memcached_gzip_flag flag;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.3.6.
 
@@ -103,10 +110,12 @@ Enables the test for the `flag` presence in the memcached server response and se
 
 ### memcached_next_upstream
 
-| Syntax:  | `memcached_next_upstream error | timeout | invalid_response | not_found | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `memcached_next_upstream error timeout;`                     |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`memcached_next_upstream error | timeout | invalid_response | not_found | off ...;`
+
+  Default: `memcached_next_upstream error timeout;`
+
+  Context: `http`, `server`, `location`
+
 
 Specifies in which cases a request should be passed to the next server:
 
@@ -142,10 +151,12 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 ### memcached_next_upstream_timeout
 
-| Syntax:  | `memcached_next_upstream_timeout time;` |
-| :------- | --------------------------------------- |
-| Default: | `memcached_next_upstream_timeout 0;`    |
-| Context: | `http`, `server`, `location`            |
+  Syntax:`memcached_next_upstream_timeout time;`
+
+  Default: `memcached_next_upstream_timeout 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -155,10 +166,12 @@ Limits the time during which a request can be passed to the [next server](https:
 
 ### memcached_next_upstream_tries
 
-| Syntax:  | `memcached_next_upstream_tries number;` |
-| :------- | --------------------------------------- |
-| Default: | `memcached_next_upstream_tries 0;`      |
-| Context: | `http`, `server`, `location`            |
+  Syntax:`memcached_next_upstream_tries number;`
+
+  Default: `memcached_next_upstream_tries 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -168,22 +181,23 @@ Limits the number of possible tries for passing a request to the [next server](h
 
 ### memcached_pass
 
-| Syntax:  | `memcached_pass address;`    |
-| :------- | ---------------------------- |
+  Syntax:  `memcached_pass address;`
+
 | Default: | —                            |
-| Context: | `location`, `if in location` |
+  Context: `location`, `if in location`
+
 
 Sets the memcached server address. The address can be specified as a domain name or IP address, and a port:
 
-> ```
-> memcached_pass localhost:11211;
-> ```
+```
+memcached_pass localhost:11211;
+```
 
 or as a UNIX-domain socket path:
 
-> ```
-> memcached_pass unix:/tmp/memcached.socket;
-> ```
+```
+memcached_pass unix:/tmp/memcached.socket;
+```
 
 
 
@@ -193,10 +207,12 @@ If a domain name resolves to several addresses, all of them will be used in a ro
 
 ### memcached_read_timeout
 
-| Syntax:  | `memcached_read_timeout time;` |
-| :------- | ------------------------------ |
-| Default: | `memcached_read_timeout 60s;`  |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`memcached_read_timeout time;`
+
+  Default: `memcached_read_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for reading a response from the memcached server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the memcached server does not transmit anything within this time, the connection is closed.
 
@@ -204,10 +220,12 @@ Defines a timeout for reading a response from the memcached server. The timeout 
 
 ### memcached_send_timeout
 
-| Syntax:  | `memcached_send_timeout time;` |
-| :------- | ------------------------------ |
-| Default: | `memcached_send_timeout 60s;`  |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`memcached_send_timeout time;`
+
+  Default: `memcached_send_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a timeout for transmitting a request to the memcached server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the memcached server does not receive anything within this time, the connection is closed.
 
@@ -215,10 +233,12 @@ Sets a timeout for transmitting a request to the memcached server. The timeout i
 
 ### memcached_socket_keepalive
 
-| Syntax:  | `memcached_socket_keepalive on | off;` |
-| :------- | -------------------------------------- |
-| Default: | `memcached_socket_keepalive off;`      |
-| Context: | `http`, `server`, `location`           |
+  Syntax:`memcached_socket_keepalive on | off;`
+
+  Default: `memcached_socket_keepalive off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.15.6.
 

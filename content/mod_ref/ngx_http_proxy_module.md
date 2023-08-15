@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_proxy_module"
 date = 2023-08-15T08:17:21+08:00
+weight = 370
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,13 +22,13 @@ The `ngx_http_proxy_module` module allows passing requests to another server.
 
 
 
-> ```
-> location / {
->     proxy_pass       http://localhost:8000;
->     proxy_set_header Host      $host;
->     proxy_set_header X-Real-IP $remote_addr;
-> }
-> ```
+```
+location / {
+    proxy_pass       http://localhost:8000;
+    proxy_set_header Host      $host;
+    proxy_set_header X-Real-IP $remote_addr;
+}
+```
 
 
 
@@ -39,10 +40,11 @@ The `ngx_http_proxy_module` module allows passing requests to another server.
 
 ### proxy_bind
 
-| Syntax:  | `proxy_bind address [transparent] | off;` |
-| :------- | ----------------------------------------- |
+  Syntax:`proxy_bind address [transparent] | off;`
+
 | Default: | —                                         |
-| Context: | `http`, `server`, `location`              |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.8.22.
 
@@ -52,9 +54,9 @@ Makes outgoing connections to a proxied server originate from the specified loca
 
 The `transparent` parameter (1.11.0) allows outgoing connections to a proxied server originate from a non-local IP address, for example, from a real IP address of a client:
 
-> ```
-> proxy_bind $remote_addr transparent;
-> ```
+```
+proxy_bind $remote_addr transparent;
+```
 
 In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the proxied server.
 
@@ -62,10 +64,12 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 
 ### proxy_buffer_size
 
-| Syntax:  | `proxy_buffer_size size;`    |
-| :------- | ---------------------------- |
-| Default: | `proxy_buffer_size 4k|8k;`   |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_buffer_size size;`
+
+  Default: `proxy_buffer_size 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `size` of the buffer used for reading the first part of the response received from the proxied server. This part usually contains a small response header. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform. It can be made smaller, however.
 
@@ -73,10 +77,12 @@ Sets the `size` of the buffer used for reading the first part of the response re
 
 ### proxy_buffering
 
-| Syntax:  | `proxy_buffering on | off;`  |
-| :------- | ---------------------------- |
-| Default: | `proxy_buffering on;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_buffering on | off;`
+
+  Default: `proxy_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables or disables buffering of responses from the proxied server.
 
@@ -90,10 +96,12 @@ Buffering can also be enabled or disabled by passing “`yes`” or “`no`” i
 
 ### proxy_buffers
 
-| Syntax:  | `proxy_buffers number size;` |
-| :------- | ---------------------------- |
-| Default: | `proxy_buffers 8 4k|8k;`     |
-| Context: | `http`, `server`, `location` |
+  Syntax:`proxy_buffers number size;`
+
+  Default: `proxy_buffers 8 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` and `size` of the buffers used for reading a response from the proxied server, for a single connection. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform.
 
@@ -101,10 +109,12 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 
 ### proxy_busy_buffers_size
 
-| Syntax:  | `proxy_busy_buffers_size size;`   |
-| :------- | --------------------------------- |
-| Default: | `proxy_busy_buffers_size 8k|16k;` |
-| Context: | `http`, `server`, `location`      |
+  Syntax:  `proxy_busy_buffers_size size;`
+
+  Default: `proxy_busy_buffers_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of responses from the proxied server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives.
 
@@ -112,10 +122,12 @@ When [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy
 
 ### proxy_cache
 
-| Syntax:  | `proxy_cache zone | off;`    |
-| :------- | ---------------------------- |
-| Default: | `proxy_cache off;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_cache zone | off;`
+
+  Default: `proxy_cache off;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a shared memory zone used for caching. The same zone can be used in several places. Parameter value can contain variables (1.7.9). The `off` parameter disables caching inherited from the previous configuration level.
 
@@ -123,10 +135,12 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 
 ### proxy_cache_background_update
 
-| Syntax:  | `proxy_cache_background_update on | off;` |
-| :------- | ----------------------------------------- |
-| Default: | `proxy_cache_background_update off;`      |
-| Context: | `http`, `server`, `location`              |
+  Syntax:`proxy_cache_background_update on | off;`
+
+  Default: `proxy_cache_background_update off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.10.
 
@@ -136,17 +150,18 @@ Allows starting a background subrequest to update an expired cache item, while a
 
 ### proxy_cache_bypass
 
-| Syntax:  | `proxy_cache_bypass string ...;` |
-| :------- | -------------------------------- |
+  Syntax:`proxy_cache_bypass string ...;`
+
 | Default: | —                                |
-| Context: | `http`, `server`, `location`     |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be taken from a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be taken from the cache:
 
-> ```
-> proxy_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
-> proxy_cache_bypass $http_pragma    $http_authorization;
-> ```
+```
+proxy_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
+proxy_cache_bypass $http_pragma    $http_authorization;
+```
 
 Can be used along with the [proxy_no_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_no_cache) directive.
 
@@ -154,10 +169,12 @@ Can be used along with the [proxy_no_cache](https://nginx.org/en/docs/http/ngx_h
 
 ### proxy_cache_convert_head
 
-| Syntax:  | `proxy_cache_convert_head on | off;` |
-| :------- | ------------------------------------ |
-| Default: | `proxy_cache_convert_head on;`       |
-| Context: | `http`, `server`, `location`         |
+  Syntax:`proxy_cache_convert_head on | off;`
+
+  Default: `proxy_cache_convert_head on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.9.7.
 
@@ -167,22 +184,24 @@ Enables or disables the conversion of the “`HEAD`” method to “`GET`” for
 
 ### proxy_cache_key
 
-| Syntax:  | `proxy_cache_key string;`                         |
-| :------- | ------------------------------------------------- |
-| Default: | `proxy_cache_key $scheme$proxy_host$request_uri;` |
-| Context: | `http`, `server`, `location`                      |
+  Syntax:  `proxy_cache_key string;`
+
+  Default: `proxy_cache_key $scheme$proxy_host$request_uri;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a key for caching, for example
 
-> ```
-> proxy_cache_key "$host$request_uri $cookie_user";
-> ```
+```
+proxy_cache_key "$host$request_uri $cookie_user";
+```
 
 By default, the directive’s value is close to the string
 
-> ```
-> proxy_cache_key $scheme$proxy_host$uri$is_args$args;
-> ```
+```
+proxy_cache_key $scheme$proxy_host$uri$is_args$args;
+```
 
 
 
@@ -190,10 +209,12 @@ By default, the directive’s value is close to the string
 
 ### proxy_cache_lock
 
-| Syntax:  | `proxy_cache_lock on | off;` |
-| :------- | ---------------------------- |
-| Default: | `proxy_cache_lock off;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:`proxy_cache_lock on | off;`
+
+  Default: `proxy_cache_lock off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
@@ -203,10 +224,12 @@ When enabled, only one request at a time will be allowed to populate a new cache
 
 ### proxy_cache_lock_age
 
-| Syntax:  | `proxy_cache_lock_age time;` |
-| :------- | ---------------------------- |
-| Default: | `proxy_cache_lock_age 5s;`   |
-| Context: | `http`, `server`, `location` |
+  Syntax:`proxy_cache_lock_age time;`
+
+  Default: `proxy_cache_lock_age 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -216,16 +239,18 @@ If the last request passed to the proxied server for populating a new cache elem
 
 ### proxy_cache_lock_timeout
 
-| Syntax:  | `proxy_cache_lock_timeout time;` |
-| :------- | -------------------------------- |
-| Default: | `proxy_cache_lock_timeout 5s;`   |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`proxy_cache_lock_timeout time;`
+
+  Default: `proxy_cache_lock_timeout 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
 Sets a timeout for [proxy_cache_lock](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock). When the `time` expires, the request will be passed to the proxied server, however, the response will not be cached.
 
-> Before 1.7.8, the response could be cached.
+Before 1.7.8, the response could be cached.
 
 
 
@@ -233,10 +258,11 @@ Sets a timeout for [proxy_cache_lock](https://nginx.org/en/docs/http/ngx_http_pr
 
 ### proxy_cache_max_range_offset
 
-| Syntax:  | `proxy_cache_max_range_offset number;` |
-| :------- | -------------------------------------- |
+  Syntax:`proxy_cache_max_range_offset number;`
+
 | Default: | —                                      |
-| Context: | `http`, `server`, `location`           |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.6.
 
@@ -246,10 +272,12 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 
 ### proxy_cache_methods
 
-| Syntax:  | `proxy_cache_methods GET | HEAD | POST ...;` |
-| :------- | -------------------------------------------- |
-| Default: | `proxy_cache_methods GET HEAD;`              |
-| Context: | `http`, `server`, `location`                 |
+  Syntax:`proxy_cache_methods GET | HEAD | POST ...;`
+
+  Default: `proxy_cache_methods GET HEAD;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.7.59.
 
@@ -259,10 +287,12 @@ If the client request method is listed in this directive then the response will 
 
 ### proxy_cache_min_uses
 
-| Syntax:  | `proxy_cache_min_uses number;` |
-| :------- | ------------------------------ |
-| Default: | `proxy_cache_min_uses 1;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`proxy_cache_min_uses number;`
+
+  Default: `proxy_cache_min_uses 1;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` of requests after which the response will be cached.
 
@@ -270,22 +300,23 @@ Sets the `number` of requests after which the response will be cached.
 
 ### proxy_cache_path
 
-| Syntax:  | `proxy_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`proxy_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];`
+
 | Default: | —                                                            |
-| Context: | `http`                                                       |
+  Context: `http`
+
 
 Sets the path and other parameters of a cache. Cache data are stored in files. The file name in a cache is a result of applying the MD5 function to the [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key). The `levels` parameter defines hierarchy levels of a cache: from 1 to 3, each level accepts values 1 or 2. For example, in the following configuration
 
-> ```
-> proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
-> ```
+```
+proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
+```
 
 file names in a cache will look like this:
 
-> ```
-> /data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
-> ```
+```
+/data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
+```
 
 
 
@@ -293,7 +324,7 @@ A cached response is first written to a temporary file, and then the file is ren
 
 In addition, all active keys and information about data are stored in a shared memory zone, whose `name` and `size` are configured by the `keys_zone` parameter. One megabyte zone can store about 8 thousand keys.
 
-> As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
+As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
 
 
 
@@ -329,7 +360,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 
 
-> In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
+In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
 
 
 
@@ -337,10 +368,11 @@ Additionally, the following parameters are available as part of our [commercial 
 
 ### proxy_cache_purge
 
-| Syntax:  | `proxy_cache_purge string ...;` |
-| :------- | ------------------------------- |
+  Syntax:`proxy_cache_purge string ...;`
+
 | Default: | —                               |
-| Context: | `http`, `server`, `location`    |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -350,28 +382,28 @@ If the [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#pro
 
 Example configuration:
 
-> ```
-> proxy_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
-> 
-> map $request_method $purge_method {
->     PURGE   1;
->     default 0;
-> }
-> 
-> server {
->     ...
->     location / {
->         proxy_pass http://backend;
->         proxy_cache cache_zone;
->         proxy_cache_key $uri;
->         proxy_cache_purge $purge_method;
->     }
-> }
-> ```
+```
+proxy_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
+
+map $request_method $purge_method {
+    PURGE   1;
+    default 0;
+}
+
+server {
+    ...
+    location / {
+        proxy_pass http://backend;
+        proxy_cache cache_zone;
+        proxy_cache_key $uri;
+        proxy_cache_purge $purge_method;
+    }
+}
+```
 
 
 
-> This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
+This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -379,10 +411,12 @@ Example configuration:
 
 ### proxy_cache_revalidate
 
-| Syntax:  | `proxy_cache_revalidate on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `proxy_cache_revalidate off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`proxy_cache_revalidate on | off;`
+
+  Default: `proxy_cache_revalidate off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -392,10 +426,12 @@ Enables revalidation of expired cache items using conditional requests with the 
 
 ### proxy_cache_use_stale
 
-| Syntax:  | `proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_cache_use_stale off;`                                 |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | off ...;`
+
+  Default: `proxy_cache_use_stale off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines in which cases a stale cached response can be used during communication with the proxied server. The directive’s parameters match the parameters of the [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive.
 
@@ -418,35 +454,36 @@ To minimize the number of accesses to proxied servers when populating a new cach
 
 ### proxy_cache_valid
 
-| Syntax:  | `proxy_cache_valid [code ...] time;` |
-| :------- | ------------------------------------ |
+  Syntax:`proxy_cache_valid [code ...] time;`
+
 | Default: | —                                    |
-| Context: | `http`, `server`, `location`         |
+  Context: `http`, `server`, `location`
+
 
 Sets caching time for different response codes. For example, the following directives
 
-> ```
-> proxy_cache_valid 200 302 10m;
-> proxy_cache_valid 404      1m;
-> ```
+```
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 404      1m;
+```
 
 set 10 minutes of caching for responses with codes 200 and 302 and 1 minute for responses with code 404.
 
 If only caching `time` is specified
 
-> ```
-> proxy_cache_valid 5m;
-> ```
+```
+proxy_cache_valid 5m;
+```
 
 then only 200, 301, and 302 responses are cached.
 
 In addition, the `any` parameter can be specified to cache any responses:
 
-> ```
-> proxy_cache_valid 200 302 10m;
-> proxy_cache_valid 301      1h;
-> proxy_cache_valid any      1m;
-> ```
+```
+proxy_cache_valid 200 302 10m;
+proxy_cache_valid 301      1h;
+proxy_cache_valid any      1m;
+```
 
 
 
@@ -463,10 +500,12 @@ Processing of one or more of these response header fields can be disabled using 
 
 ### proxy_connect_timeout
 
-| Syntax:  | `proxy_connect_timeout time;` |
-| :------- | ----------------------------- |
-| Default: | `proxy_connect_timeout 60s;`  |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`proxy_connect_timeout time;`
+
+  Default: `proxy_connect_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for establishing a connection with a proxied server. It should be noted that this timeout cannot usually exceed 75 seconds.
 
@@ -474,18 +513,20 @@ Defines a timeout for establishing a connection with a proxied server. It should
 
 ### proxy_cookie_domain
 
-| Syntax:  | `proxy_cookie_domain off;` `proxy_cookie_domain domain replacement;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_cookie_domain off;`                                   |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_cookie_domain off;` `proxy_cookie_domain domain replacement;`
+
+  Default: `proxy_cookie_domain off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.15.
 
 Sets a text that should be changed in the `domain` attribute of the “Set-Cookie” header fields of a proxied server response. Suppose a proxied server returned the “Set-Cookie” header field with the attribute “`domain=localhost`”. The directive
 
-> ```
-> proxy_cookie_domain localhost example.org;
-> ```
+```
+proxy_cookie_domain localhost example.org;
+```
 
 will rewrite this attribute to “`domain=example.org`”.
 
@@ -493,26 +534,26 @@ A dot at the beginning of the `domain` and `replacement` strings and the `domain
 
 The `domain` and `replacement` strings can contain variables:
 
-> ```
-> proxy_cookie_domain www.$host $host;
-> ```
+```
+proxy_cookie_domain www.$host $host;
+```
 
 
 
 The directive can also be specified using regular expressions. In this case, `domain` should start from the “`~`” symbol. A regular expression can contain named and positional captures, and `replacement` can reference them:
 
-> ```
-> proxy_cookie_domain ~\.(?P<sl_domain>[-0-9a-z]+\.[a-z]+)$ $sl_domain;
-> ```
+```
+proxy_cookie_domain ~\.(?P<sl_domain>[-0-9a-z]+\.[a-z]+)$ $sl_domain;
+```
 
 
 
 Several `proxy_cookie_domain` directives can be specified on the same level:
 
-> ```
-> proxy_cookie_domain localhost example.org;
-> proxy_cookie_domain ~\.([a-z]+\.[a-z]+)$ $1;
-> ```
+```
+proxy_cookie_domain localhost example.org;
+proxy_cookie_domain ~\.([a-z]+\.[a-z]+)$ $1;
+```
 
 If several directives can be applied to the cookie, the first matching directive will be chosen.
 
@@ -522,10 +563,12 @@ The `off` parameter cancels the effect of the `proxy_cookie_domain` directives i
 
 ### proxy_cookie_flags
 
-| Syntax:  | `proxy_cookie_flags off | cookie [flag ...];` |
-| :------- | --------------------------------------------- |
-| Default: | `proxy_cookie_flags off;`                     |
-| Context: | `http`, `server`, `location`                  |
+  Syntax:`proxy_cookie_flags off | cookie [flag ...];`
+
+  Default: `proxy_cookie_flags off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.19.3.
 
@@ -535,10 +578,10 @@ The cookie can also be specified using regular expressions. In this case, `cooki
 
 Several `proxy_cookie_flags` directives can be specified on the same configuration level:
 
-> ```
-> proxy_cookie_flags one httponly;
-> proxy_cookie_flags ~ nosecure samesite=strict;
-> ```
+```
+proxy_cookie_flags one httponly;
+proxy_cookie_flags ~ nosecure samesite=strict;
+```
 
 If several directives can be applied to the cookie, the first matching directive will be chosen. In the example, the `httponly` flag is added to the cookie `one`, for all other cookies the `samesite=strict` flag is added and the `secure` flag is deleted.
 
@@ -548,43 +591,45 @@ The `off` parameter cancels the effect of the `proxy_cookie_flags` directives in
 
 ### proxy_cookie_path
 
-| Syntax:  | `proxy_cookie_path off;` `proxy_cookie_path path replacement;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_cookie_path off;`                                     |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_cookie_path off;` `proxy_cookie_path path replacement;`
+
+  Default: `proxy_cookie_path off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.15.
 
 Sets a text that should be changed in the `path` attribute of the “Set-Cookie” header fields of a proxied server response. Suppose a proxied server returned the “Set-Cookie” header field with the attribute “`path=/two/some/uri/`”. The directive
 
-> ```
-> proxy_cookie_path /two/ /;
-> ```
+```
+proxy_cookie_path /two/ /;
+```
 
 will rewrite this attribute to “`path=/some/uri/`”.
 
 The `path` and `replacement` strings can contain variables:
 
-> ```
-> proxy_cookie_path $uri /some$uri;
-> ```
+```
+proxy_cookie_path $uri /some$uri;
+```
 
 
 
 The directive can also be specified using regular expressions. In this case, `path` should either start from the “`~`” symbol for a case-sensitive matching, or from the “`~*`” symbols for case-insensitive matching. The regular expression can contain named and positional captures, and `replacement` can reference them:
 
-> ```
-> proxy_cookie_path ~*^/user/([^/]+) /u/$1;
-> ```
+```
+proxy_cookie_path ~*^/user/([^/]+) /u/$1;
+```
 
 
 
 Several `proxy_cookie_path` directives can be specified on the same level:
 
-> ```
-> proxy_cookie_path /one/ /;
-> proxy_cookie_path / /two/;
-> ```
+```
+proxy_cookie_path /one/ /;
+proxy_cookie_path / /two/;
+```
 
 If several directives can be applied to the cookie, the first matching directive will be chosen.
 
@@ -594,10 +639,12 @@ The `off` parameter cancels the effect of the `proxy_cookie_path` directives inh
 
 ### proxy_force_ranges
 
-| Syntax:  | `proxy_force_ranges on | off;` |
-| :------- | ------------------------------ |
-| Default: | `proxy_force_ranges off;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`proxy_force_ranges on | off;`
+
+  Default: `proxy_force_ranges off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -607,10 +654,12 @@ Enables byte-range support for both cached and uncached responses from the proxi
 
 ### proxy_headers_hash_bucket_size
 
-| Syntax:  | `proxy_headers_hash_bucket_size size;` |
-| :------- | -------------------------------------- |
-| Default: | `proxy_headers_hash_bucket_size 64;`   |
-| Context: | `http`, `server`, `location`           |
+  Syntax:`proxy_headers_hash_bucket_size size;`
+
+  Default: `proxy_headers_hash_bucket_size 64;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the bucket `size` for hash tables used by the [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) and [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
@@ -618,10 +667,12 @@ Sets the bucket `size` for hash tables used by the [proxy_hide_header](https://n
 
 ### proxy_headers_hash_max_size
 
-| Syntax:  | `proxy_headers_hash_max_size size;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_headers_hash_max_size 512;`  |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_headers_hash_max_size size;`
+
+  Default: `proxy_headers_hash_max_size 512;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the maximum `size` of hash tables used by the [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) and [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
@@ -629,10 +680,11 @@ Sets the maximum `size` of hash tables used by the [proxy_hide_header](https://n
 
 ### proxy_hide_header
 
-| Syntax:  | `proxy_hide_header field;`   |
-| :------- | ---------------------------- |
+  Syntax:  `proxy_hide_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 By default, nginx does not pass the header fields “Date”, “Server”, “X-Pad”, and “X-Accel-...” from the response of a proxied server to a client. The `proxy_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directive can be used.
 
@@ -640,10 +692,12 @@ By default, nginx does not pass the header fields “Date”, “Server”, “X
 
 ### proxy_http_version
 
-| Syntax:  | `proxy_http_version 1.0 | 1.1;` |
-| :------- | ------------------------------- |
-| Default: | `proxy_http_version 1.0;`       |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`proxy_http_version 1.0 | 1.1;`
+
+  Default: `proxy_http_version 1.0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.4.
 
@@ -653,10 +707,12 @@ Sets the HTTP protocol version for proxying. By default, version 1.0 is used. Ve
 
 ### proxy_ignore_client_abort
 
-| Syntax:  | `proxy_ignore_client_abort on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `proxy_ignore_client_abort off;`      |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`proxy_ignore_client_abort on | off;`
+
+  Default: `proxy_ignore_client_abort off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether the connection with a proxied server should be closed when a client closes the connection without waiting for a response.
 
@@ -664,10 +720,11 @@ Determines whether the connection with a proxied server should be closed when a 
 
 ### proxy_ignore_headers
 
-| Syntax:  | `proxy_ignore_headers field ...;` |
-| :------- | --------------------------------- |
+  Syntax:`proxy_ignore_headers field ...;`
+
 | Default: | —                                 |
-| Context: | `http`, `server`, `location`      |
+  Context: `http`, `server`, `location`
+
 
 Disables processing of certain response header fields from the proxied server. The following fields can be ignored: “X-Accel-Redirect”, “X-Accel-Expires”, “X-Accel-Limit-Rate” (1.1.6), “X-Accel-Buffering” (1.1.6), “X-Accel-Charset” (1.1.6), “Expires”, “Cache-Control”, “Set-Cookie” (0.8.44), and “Vary” (1.7.7).
 
@@ -685,10 +742,12 @@ If not disabled, processing of these header fields has the following effect:
 
 ### proxy_intercept_errors
 
-| Syntax:  | `proxy_intercept_errors on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `proxy_intercept_errors off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`proxy_intercept_errors on | off;`
+
+  Default: `proxy_intercept_errors off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether proxied responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
 
@@ -696,10 +755,12 @@ Determines whether proxied responses with codes greater than or equal to 300 sho
 
 ### proxy_limit_rate
 
-| Syntax:  | `proxy_limit_rate rate;`     |
-| :------- | ---------------------------- |
-| Default: | `proxy_limit_rate 0;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_limit_rate rate;`
+
+  Default: `proxy_limit_rate 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -709,10 +770,12 @@ Limits the speed of reading the response from the proxied server. The `rate` is 
 
 ### proxy_max_temp_file_size
 
-| Syntax:  | `proxy_max_temp_file_size size;`  |
-| :------- | --------------------------------- |
-| Default: | `proxy_max_temp_file_size 1024m;` |
-| Context: | `http`, `server`, `location`      |
+  Syntax:  `proxy_max_temp_file_size size;`
+
+  Default: `proxy_max_temp_file_size 1024m;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of responses from the proxied server is enabled, and the whole response does not fit into the buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [proxy_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_file_write_size) directive.
 
@@ -720,7 +783,7 @@ The zero value disables buffering of responses to temporary files.
 
 
 
-> This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store) on disk.
+This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store) on disk.
 
 
 
@@ -728,10 +791,11 @@ The zero value disables buffering of responses to temporary files.
 
 ### proxy_method
 
-| Syntax:  | `proxy_method method;`       |
-| :------- | ---------------------------- |
+  Syntax:  `proxy_method method;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Specifies the HTTP `method` to use in requests forwarded to the proxied server instead of the method from the client request. Parameter value can contain variables (1.11.6).
 
@@ -739,10 +803,12 @@ Specifies the HTTP `method` to use in requests forwarded to the proxied server i
 
 ### proxy_next_upstream
 
-| Syntax:  | `proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_next_upstream error timeout;`                         |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;`
+
+  Default: `proxy_next_upstream error timeout;`
+
+  Context: `http`, `server`, `location`
+
 
 Specifies in which cases a request should be passed to the next server:
 
@@ -806,10 +872,12 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 ### proxy_next_upstream_timeout
 
-| Syntax:  | `proxy_next_upstream_timeout time;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_next_upstream_timeout 0;`    |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_next_upstream_timeout time;`
+
+  Default: `proxy_next_upstream_timeout 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -819,10 +887,12 @@ Limits the time during which a request can be passed to the [next server](https:
 
 ### proxy_next_upstream_tries
 
-| Syntax:  | `proxy_next_upstream_tries number;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_next_upstream_tries 0;`      |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_next_upstream_tries number;`
+
+  Default: `proxy_next_upstream_tries 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -832,17 +902,18 @@ Limits the number of possible tries for passing a request to the [next server](h
 
 ### proxy_no_cache
 
-| Syntax:  | `proxy_no_cache string ...;` |
-| :------- | ---------------------------- |
+  Syntax:`proxy_no_cache string ...;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be saved to a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be saved:
 
-> ```
-> proxy_no_cache $cookie_nocache $arg_nocache$arg_comment;
-> proxy_no_cache $http_pragma    $http_authorization;
-> ```
+```
+proxy_no_cache $cookie_nocache $arg_nocache$arg_comment;
+proxy_no_cache $http_pragma    $http_authorization;
+```
 
 Can be used along with the [proxy_cache_bypass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_bypass) directive.
 
@@ -850,22 +921,23 @@ Can be used along with the [proxy_cache_bypass](https://nginx.org/en/docs/http/n
 
 ### proxy_pass
 
-| Syntax:  | `proxy_pass URL;`                            |
-| :------- | -------------------------------------------- |
+  Syntax:  `proxy_pass URL;`
+
 | Default: | —                                            |
-| Context: | `location`, `if in location`, `limit_except` |
+  Context: `location`, `if in location`, `limit_except`
+
 
 Sets the protocol and address of a proxied server and an optional URI to which a location should be mapped. As a protocol, “`http`” or “`https`” can be specified. The address can be specified as a domain name or IP address, and an optional port:
 
-> ```
-> proxy_pass http://localhost:8000/uri/;
-> ```
+```
+proxy_pass http://localhost:8000/uri/;
+```
 
 or as a UNIX-domain socket path specified after the word “`unix`” and enclosed in colons:
 
-> ```
-> proxy_pass http://unix:/tmp/backend.socket:/uri/;
-> ```
+```
+proxy_pass http://unix:/tmp/backend.socket:/uri/;
+```
 
 
 
@@ -980,10 +1052,11 @@ In some cases, the part of a request URI to be replaced cannot be determined:
 
 ### proxy_pass_header
 
-| Syntax:  | `proxy_pass_header field;`   |
-| :------- | ---------------------------- |
+  Syntax:  `proxy_pass_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) header fields from a proxied server to a client.
 
@@ -991,22 +1064,24 @@ Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_pro
 
 ### proxy_pass_request_body
 
-| Syntax:  | `proxy_pass_request_body on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_pass_request_body on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_pass_request_body on | off;`
+
+  Default: `proxy_pass_request_body on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the original request body is passed to the proxied server.
 
-> ```
-> location /x-accel-redirect-here/ {
->     proxy_method GET;
->     proxy_pass_request_body off;
->     proxy_set_header Content-Length "";
-> 
->     proxy_pass ...
-> }
-> ```
+```
+location /x-accel-redirect-here/ {
+    proxy_method GET;
+    proxy_pass_request_body off;
+    proxy_set_header Content-Length "";
+
+    proxy_pass ...
+}
+```
 
 See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) and [proxy_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_headers) directives.
 
@@ -1014,22 +1089,24 @@ See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_mo
 
 ### proxy_pass_request_headers
 
-| Syntax:  | `proxy_pass_request_headers on | off;` |
-| :------- | -------------------------------------- |
-| Default: | `proxy_pass_request_headers on;`       |
-| Context: | `http`, `server`, `location`           |
+  Syntax:`proxy_pass_request_headers on | off;`
+
+  Default: `proxy_pass_request_headers on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the header fields of the original request are passed to the proxied server.
 
-> ```
-> location /x-accel-redirect-here/ {
->     proxy_method GET;
->     proxy_pass_request_headers off;
->     proxy_pass_request_body off;
-> 
->     proxy_pass ...
-> }
-> ```
+```
+location /x-accel-redirect-here/ {
+    proxy_method GET;
+    proxy_pass_request_headers off;
+    proxy_pass_request_body off;
+
+    proxy_pass ...
+}
+```
 
 See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) and [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directives.
 
@@ -1037,10 +1114,12 @@ See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_mo
 
 ### proxy_read_timeout
 
-| Syntax:  | `proxy_read_timeout time;`   |
-| :------- | ---------------------------- |
-| Default: | `proxy_read_timeout 60s;`    |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_read_timeout time;`
+
+  Default: `proxy_read_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for reading a response from the proxied server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the proxied server does not transmit anything within this time, the connection is closed.
 
@@ -1048,77 +1127,79 @@ Defines a timeout for reading a response from the proxied server. The timeout is
 
 ### proxy_redirect
 
-| Syntax:  | `proxy_redirect default;` `proxy_redirect off;` `proxy_redirect redirect replacement;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_redirect default;`                                    |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_redirect default;` `proxy_redirect off;` `proxy_redirect redirect replacement;`
+
+  Default: `proxy_redirect default;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the text that should be changed in the “Location” and “Refresh” header fields of a proxied server response. Suppose a proxied server returned the header field “`Location: http://localhost:8000/two/some/uri/`”. The directive
 
-> ```
-> proxy_redirect http://localhost:8000/two/ http://frontend/one/;
-> ```
+```
+proxy_redirect http://localhost:8000/two/ http://frontend/one/;
+```
 
 will rewrite this string to “`Location: http://frontend/one/some/uri/`”.
 
 A server name may be omitted in the `replacement` string:
 
-> ```
-> proxy_redirect http://localhost:8000/two/ /;
-> ```
+```
+proxy_redirect http://localhost:8000/two/ /;
+```
 
 then the primary server’s name and port, if different from 80, will be inserted.
 
 The default replacement specified by the `default` parameter uses the parameters of the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) and [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directives. Hence, the two configurations below are equivalent:
 
-> ```
-> location /one/ {
->     proxy_pass     http://upstream:port/two/;
->     proxy_redirect default;
-> ```
+```
+location /one/ {
+    proxy_pass     http://upstream:port/two/;
+    proxy_redirect default;
+```
 
 
 
-> ```
-> location /one/ {
->     proxy_pass     http://upstream:port/two/;
->     proxy_redirect http://upstream:port/two/ /one/;
-> ```
+```
+location /one/ {
+    proxy_pass     http://upstream:port/two/;
+    proxy_redirect http://upstream:port/two/ /one/;
+```
 
 The `default` parameter is not permitted if [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) is specified using variables.
 
 A `replacement` string can contain variables:
 
-> ```
-> proxy_redirect http://localhost:8000/ http://$host:$server_port/;
-> ```
+```
+proxy_redirect http://localhost:8000/ http://$host:$server_port/;
+```
 
 
 
 A `redirect` can also contain (1.1.11) variables:
 
-> ```
-> proxy_redirect http://$proxy_host:8000/ /;
-> ```
+```
+proxy_redirect http://$proxy_host:8000/ /;
+```
 
 
 
 The directive can be specified (1.1.11) using regular expressions. In this case, `redirect` should either start with the “`~`” symbol for a case-sensitive matching, or with the “`~`” symbols for case-insensitive matching. The regular expression can contain named and positional captures, and `replacement` can reference them:
 
-> ```
-> proxy_redirect ~^(http://[^:]+):\d+(/.+)$ $1$2;
-> proxy_redirect ~*/user/([^/]+)/(.+)$      http://$1.example.com/$2;
-> ```
+```
+proxy_redirect ~^(http://[^:]+):\d+(/.+)$ $1$2;
+proxy_redirect ~*/user/([^/]+)/(.+)$      http://$1.example.com/$2;
+```
 
 
 
 Several `proxy_redirect` directives can be specified on the same level:
 
-> ```
-> proxy_redirect default;
-> proxy_redirect http://localhost:8000/  /;
-> proxy_redirect http://www.example.com/ /;
-> ```
+```
+proxy_redirect default;
+proxy_redirect http://localhost:8000/  /;
+proxy_redirect http://www.example.com/ /;
+```
 
 If several directives can be applied to the header fields of a proxied server response, the first matching directive will be chosen.
 
@@ -1126,9 +1207,9 @@ The `off` parameter cancels the effect of the `proxy_redirect` directives inheri
 
 Using this directive, it is also possible to add host names to relative redirects issued by a proxied server:
 
-> ```
-> proxy_redirect / /;
-> ```
+```
+proxy_redirect / /;
+```
 
 
 
@@ -1136,10 +1217,12 @@ Using this directive, it is also possible to add host names to relative redirect
 
 ### proxy_request_buffering
 
-| Syntax:  | `proxy_request_buffering on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_request_buffering on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_request_buffering on | off;`
+
+  Default: `proxy_request_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.11.
 
@@ -1155,10 +1238,12 @@ When HTTP/1.1 chunked transfer encoding is used to send the original request bod
 
 ### proxy_send_lowat
 
-| Syntax:  | `proxy_send_lowat size;`     |
-| :------- | ---------------------------- |
-| Default: | `proxy_send_lowat 0;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_send_lowat size;`
+
+  Default: `proxy_send_lowat 0;`
+
+  Context: `http`, `server`, `location`
+
 
 If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a proxied server by using either `NOTE_LOWAT` flag of the [kqueue](https://nginx.org/en/docs/events.html#kqueue) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
 
@@ -1168,10 +1253,12 @@ This directive is ignored on Linux, Solaris, and Windows.
 
 ### proxy_send_timeout
 
-| Syntax:  | `proxy_send_timeout time;`   |
-| :------- | ---------------------------- |
-| Default: | `proxy_send_timeout 60s;`    |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `proxy_send_timeout time;`
+
+  Default: `proxy_send_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a timeout for transmitting a request to the proxied server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the proxied server does not receive anything within this time, the connection is closed.
 
@@ -1179,10 +1266,11 @@ Sets a timeout for transmitting a request to the proxied server. The timeout is 
 
 ### proxy_set_body
 
-| Syntax:  | `proxy_set_body value;`      |
-| :------- | ---------------------------- |
+  Syntax:  `proxy_set_body value;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Allows redefining the request body passed to the proxied server. The `value` can contain text, variables, and their combination.
 
@@ -1190,49 +1278,51 @@ Allows redefining the request body passed to the proxied server. The `value` can
 
 ### proxy_set_header
 
-| Syntax:  | `proxy_set_header field value;`                              |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_set_header Host $proxy_host;``proxy_set_header Connection close;` |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:  `proxy_set_header field value;`
+
+  Default: `proxy_set_header Host $proxy_host;``proxy_set_header Connection close;`
+
+  Context: `http`, `server`, `location`
+
 
 Allows redefining or appending fields to the request header [passed](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_headers) to the proxied server. The `value` can contain text, variables, and their combinations. These directives are inherited from the previous configuration level if and only if there are no `proxy_set_header` directives defined on the current level. By default, only two fields are redefined:
 
-> ```
-> proxy_set_header Host       $proxy_host;
-> proxy_set_header Connection close;
-> ```
+```
+proxy_set_header Host       $proxy_host;
+proxy_set_header Connection close;
+```
 
 If caching is enabled, the header fields “If-Modified-Since”, “If-Unmodified-Since”, “If-None-Match”, “If-Match”, “Range”, and “If-Range” from the original request are not passed to the proxied server.
 
 An unchanged “Host” request header field can be passed like this:
 
-> ```
-> proxy_set_header Host       $http_host;
-> ```
+```
+proxy_set_header Host       $http_host;
+```
 
 
 
 However, if this field is not present in a client request header then nothing will be passed. In such a case it is better to use the `$host` variable - its value equals the server name in the “Host” request header field or the primary server name if this field is not present:
 
-> ```
-> proxy_set_header Host       $host;
-> ```
+```
+proxy_set_header Host       $host;
+```
 
 
 
 In addition, the server name can be passed together with the port of the proxied server:
 
-> ```
-> proxy_set_header Host       $host:$proxy_port;
-> ```
+```
+proxy_set_header Host       $host:$proxy_port;
+```
 
 
 
 If the value of a header field is an empty string then this field will not be passed to a proxied server:
 
-> ```
-> proxy_set_header Accept-Encoding "";
-> ```
+```
+proxy_set_header Accept-Encoding "";
+```
 
 
 
@@ -1240,10 +1330,12 @@ If the value of a header field is an empty string then this field will not be pa
 
 ### proxy_socket_keepalive
 
-| Syntax:  | `proxy_socket_keepalive on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `proxy_socket_keepalive off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`proxy_socket_keepalive on | off;`
+
+  Default: `proxy_socket_keepalive off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.15.6.
 
@@ -1253,10 +1345,11 @@ Configures the “TCP keepalive” behavior for outgoing connections to a proxie
 
 ### proxy_ssl_certificate
 
-| Syntax:  | `proxy_ssl_certificate file;` |
-| :------- | ----------------------------- |
+  Syntax:`proxy_ssl_certificate file;`
+
 | Default: | —                             |
-| Context: | `http`, `server`, `location`  |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -1268,10 +1361,11 @@ Since version 1.21.0, variables can be used in the `file` name.
 
 ### proxy_ssl_certificate_key
 
-| Syntax:  | `proxy_ssl_certificate_key file;` |
-| :------- | --------------------------------- |
+  Syntax:`proxy_ssl_certificate_key file;`
+
 | Default: | —                                 |
-| Context: | `http`, `server`, `location`      |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -1285,10 +1379,12 @@ Since version 1.21.0, variables can be used in the `file` name.
 
 ### proxy_ssl_ciphers
 
-| Syntax:  | `proxy_ssl_ciphers ciphers;` |
-| :------- | ---------------------------- |
-| Default: | `proxy_ssl_ciphers DEFAULT;` |
-| Context: | `http`, `server`, `location` |
+  Syntax:`proxy_ssl_ciphers ciphers;`
+
+  Default: `proxy_ssl_ciphers DEFAULT;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.6.
 
@@ -1300,16 +1396,17 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
 ### proxy_ssl_conf_command
 
-| Syntax:  | `proxy_ssl_conf_command name value;` |
-| :------- | ------------------------------------ |
+  Syntax:`proxy_ssl_conf_command name value;`
+
 | Default: | —                                    |
-| Context: | `http`, `server`, `location`         |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.19.4.
 
 Sets arbitrary OpenSSL configuration [commands](https://www.openssl.org/docs/man1.1.1/man3/SSL_CONF_cmd.html) when establishing a connection with the proxied HTTPS server.
 
-> The directive is supported when using OpenSSL 1.0.2 or higher.
+The directive is supported when using OpenSSL 1.0.2 or higher.
 
 
 
@@ -1317,7 +1414,7 @@ Several `proxy_ssl_conf_command` directives can be specified on the same level. 
 
 
 
-> Note that configuring OpenSSL directly might result in unexpected behavior.
+Note that configuring OpenSSL directly might result in unexpected behavior.
 
 
 
@@ -1325,10 +1422,11 @@ Several `proxy_ssl_conf_command` directives can be specified on the same level. 
 
 ### proxy_ssl_crl
 
-| Syntax:  | `proxy_ssl_crl file;`        |
-| :------- | ---------------------------- |
+  Syntax:  `proxy_ssl_crl file;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1338,10 +1436,12 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
 ### proxy_ssl_name
 
-| Syntax:  | `proxy_ssl_name name;`        |
-| :------- | ----------------------------- |
-| Default: | `proxy_ssl_name $proxy_host;` |
-| Context: | `http`, `server`, `location`  |
+  Syntax:  `proxy_ssl_name name;`
+
+  Default: `proxy_ssl_name $proxy_host;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1353,10 +1453,11 @@ By default, the host part of the [proxy_pass](https://nginx.org/en/docs/http/ngx
 
 ### proxy_ssl_password_file
 
-| Syntax:  | `proxy_ssl_password_file file;` |
-| :------- | ------------------------------- |
+  Syntax:`proxy_ssl_password_file file;`
+
 | Default: | —                               |
-| Context: | `http`, `server`, `location`    |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -1366,10 +1467,12 @@ Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/
 
 ### proxy_ssl_protocols
 
-| Syntax:  | `proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`         |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`proxy_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
+
+  Default: `proxy_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.6.
 
@@ -1377,7 +1480,7 @@ Enables the specified protocols for requests to a proxied HTTPS server.
 
 
 
-> The `TLSv1.3` parameter is used by default since 1.23.4.
+The `TLSv1.3` parameter is used by default since 1.23.4.
 
 
 
@@ -1385,10 +1488,12 @@ Enables the specified protocols for requests to a proxied HTTPS server.
 
 ### proxy_ssl_server_name
 
-| Syntax:  | `proxy_ssl_server_name on | off;` |
-| :------- | --------------------------------- |
-| Default: | `proxy_ssl_server_name off;`      |
-| Context: | `http`, `server`, `location`      |
+  Syntax:`proxy_ssl_server_name on | off;`
+
+  Default: `proxy_ssl_server_name off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1398,10 +1503,12 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 
 ### proxy_ssl_session_reuse
 
-| Syntax:  | `proxy_ssl_session_reuse on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `proxy_ssl_session_reuse on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`proxy_ssl_session_reuse on | off;`
+
+  Default: `proxy_ssl_session_reuse on;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether SSL sessions can be reused when working with the proxied server. If the errors “`SSL3_GET_FINISHED:digest check failed`” appear in the logs, try disabling session reuse.
 
@@ -1409,10 +1516,11 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 
 ### proxy_ssl_trusted_certificate
 
-| Syntax:  | `proxy_ssl_trusted_certificate file;` |
-| :------- | ------------------------------------- |
+  Syntax:`proxy_ssl_trusted_certificate file;`
+
 | Default: | —                                     |
-| Context: | `http`, `server`, `location`          |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1422,10 +1530,12 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 
 ### proxy_ssl_verify
 
-| Syntax:  | `proxy_ssl_verify on | off;` |
-| :------- | ---------------------------- |
-| Default: | `proxy_ssl_verify off;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:`proxy_ssl_verify on | off;`
+
+  Default: `proxy_ssl_verify off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1435,10 +1545,12 @@ Enables or disables verification of the proxied HTTPS server certificate.
 
 ### proxy_ssl_verify_depth
 
-| Syntax:  | `proxy_ssl_verify_depth number;` |
-| :------- | -------------------------------- |
-| Default: | `proxy_ssl_verify_depth 1;`      |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`proxy_ssl_verify_depth number;`
+
+  Default: `proxy_ssl_verify_depth 1;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1448,16 +1560,18 @@ Sets the verification depth in the proxied HTTPS server certificates chain.
 
 ### proxy_store
 
-| Syntax:  | `proxy_store on | off | string;` |
-| :------- | -------------------------------- |
-| Default: | `proxy_store off;`               |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`proxy_store on | off | string;`
+
+  Default: `proxy_store off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) or [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
 
-> ```
-> proxy_store /data/www$original_uri;
-> ```
+```
+proxy_store /data/www$original_uri;
+```
 
 
 
@@ -1465,45 +1579,45 @@ The modification time of files is set according to the received “Last-Modified
 
 This directive can be used to create local copies of static unchangeable files, e.g.:
 
-> ```
-> location /images/ {
->     root               /data/www;
->     error_page         404 = /fetch$uri;
-> }
-> 
-> location /fetch/ {
->     internal;
-> 
->     proxy_pass         http://backend/;
->     proxy_store        on;
->     proxy_store_access user:rw group:rw all:r;
->     proxy_temp_path    /data/temp;
-> 
->     alias              /data/www/;
-> }
-> ```
+```
+location /images/ {
+    root               /data/www;
+    error_page         404 = /fetch$uri;
+}
+
+location /fetch/ {
+    internal;
+
+    proxy_pass         http://backend/;
+    proxy_store        on;
+    proxy_store_access user:rw group:rw all:r;
+    proxy_temp_path    /data/temp;
+
+    alias              /data/www/;
+}
+```
 
 
 
 or like this:
 
-> ```
-> location /images/ {
->     root               /data/www;
->     error_page         404 = @fetch;
-> }
-> 
-> location @fetch {
->     internal;
-> 
->     proxy_pass         http://backend;
->     proxy_store        on;
->     proxy_store_access user:rw group:rw all:r;
->     proxy_temp_path    /data/temp;
-> 
->     root               /data/www;
-> }
-> ```
+```
+location /images/ {
+    root               /data/www;
+    error_page         404 = @fetch;
+}
+
+location @fetch {
+    internal;
+
+    proxy_pass         http://backend;
+    proxy_store        on;
+    proxy_store_access user:rw group:rw all:r;
+    proxy_temp_path    /data/temp;
+
+    root               /data/www;
+}
+```
 
 
 
@@ -1511,24 +1625,26 @@ or like this:
 
 ### proxy_store_access
 
-| Syntax:  | `proxy_store_access users:permissions ...;` |
-| :------- | ------------------------------------------- |
-| Default: | `proxy_store_access user:rw;`               |
-| Context: | `http`, `server`, `location`                |
+  Syntax:`proxy_store_access users:permissions ...;`
+
+  Default: `proxy_store_access user:rw;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets access permissions for newly created files and directories, e.g.:
 
-> ```
-> proxy_store_access user:rw group:rw all:r;
-> ```
+```
+proxy_store_access user:rw group:rw all:r;
+```
 
 
 
 If any `group` or `all` access permissions are specified then `user` permissions may be omitted:
 
-> ```
-> proxy_store_access group:rw all:r;
-> ```
+```
+proxy_store_access group:rw all:r;
+```
 
 
 
@@ -1536,10 +1652,12 @@ If any `group` or `all` access permissions are specified then `user` permissions
 
 ### proxy_temp_file_write_size
 
-| Syntax:  | `proxy_temp_file_write_size size;`   |
-| :------- | ------------------------------------ |
-| Default: | `proxy_temp_file_write_size 8k|16k;` |
-| Context: | `http`, `server`, `location`         |
+  Syntax:  `proxy_temp_file_write_size size;`
+
+  Default: `proxy_temp_file_write_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 Limits the `size` of data written to a temporary file at a time, when buffering of responses from the proxied server to temporary files is enabled. By default, `size` is limited by two buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives. The maximum size of a temporary file is set by the [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive.
 
@@ -1547,22 +1665,24 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 
 ### proxy_temp_path
 
-| Syntax:  | `proxy_temp_path path [level1 [level2 [level3]]];` |
-| :------- | -------------------------------------------------- |
-| Default: | `proxy_temp_path proxy_temp;`                      |
-| Context: | `http`, `server`, `location`                       |
+  Syntax:`proxy_temp_path path [level1 [level2 [level3]]];`
+
+  Default: `proxy_temp_path proxy_temp;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a directory for storing temporary files with data received from proxied servers. Up to three-level subdirectory hierarchy can be used underneath the specified directory. For example, in the following configuration
 
-> ```
-> proxy_temp_path /spool/nginx/proxy_temp 1 2;
-> ```
+```
+proxy_temp_path /spool/nginx/proxy_temp 1 2;
+```
 
 a temporary file might look like this:
 
-> ```
-> /spool/nginx/proxy_temp/7/45/00000123457
-> ```
+```
+/spool/nginx/proxy_temp/7/45/00000123457
+```
 
 
 

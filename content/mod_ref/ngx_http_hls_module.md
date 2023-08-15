@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_hls_module"
 date = 2023-08-15T08:15:04+08:00
+weight = 230
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -43,7 +44,7 @@ For each media file, two URIs are supported:
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -53,24 +54,24 @@ For each media file, two URIs are supported:
 
 
 
-> ```
-> location / {
->     hls;
->     hls_fragment            5s;
->     hls_buffers             10 10m;
->     hls_mp4_buffer_size     1m;
->     hls_mp4_max_buffer_size 5m;
->     root /var/video/;
-> }
-> ```
+```
+location / {
+    hls;
+    hls_fragment            5s;
+    hls_buffers             10 10m;
+    hls_mp4_buffer_size     1m;
+    hls_mp4_max_buffer_size 5m;
+    root /var/video/;
+}
+```
 
 With this configuration, the following URIs are supported for the “`/var/video/test.mp4`” file:
 
-> ```
-> http://hls.example.com/test.mp4.m3u8?offset=1.000&start=1.000&end=2.200
-> http://hls.example.com/test.mp4.m3u8?len=8.000
-> http://hls.example.com/test.mp4.ts?start=1.000&end=2.200
-> ```
+```
+http://hls.example.com/test.mp4.m3u8?offset=1.000&start=1.000&end=2.200
+http://hls.example.com/test.mp4.m3u8?len=8.000
+http://hls.example.com/test.mp4.ts?start=1.000&end=2.200
+```
 
 
 
@@ -82,10 +83,11 @@ With this configuration, the following URIs are supported for the “`/var/video
 
 ### hls;`
 
-| Syntax:  | `hls;`     |
-| :------- | ---------- |
+  Syntax:  `hls;`
+
 | Default: | —          |
-| Context: | `location` |
+  Context: `location`
+
 
 Turns on HLS streaming in the surrounding location.
 
@@ -93,10 +95,12 @@ Turns on HLS streaming in the surrounding location.
 
 ### hls_buffers
 
-| Syntax:  | `hls_buffers number size;`   |
-| :------- | ---------------------------- |
-| Default: | `hls_buffers 8 2m;`          |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `hls_buffers number size;`
+
+  Default: `hls_buffers 8 2m;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the maximum `number` and `size` of buffers that are used for reading and writing data frames.
 
@@ -104,10 +108,12 @@ Sets the maximum `number` and `size` of buffers that are used for reading and wr
 
 ### hls_forward_args
 
-| Syntax:  | `hls_forward_args on | off;` |
-| :------- | ---------------------------- |
-| Default: | `hls_forward_args off;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:`hls_forward_args on | off;`
+
+  Default: `hls_forward_args off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.12.
 
@@ -115,65 +121,65 @@ Adds arguments from a playlist request to URIs of fragments. This may be useful 
 
 For example, if a client requests a playlist `http://example.com/hls/test.mp4.m3u8?a=1&b=2`, the arguments `a=1` and `b=2` will be added to URIs of fragments after the arguments `start` and `end`:
 
-> ```
-> #EXTM3U
-> #EXT-X-VERSION:3
-> #EXT-X-TARGETDURATION:15
-> #EXT-X-PLAYLIST-TYPE:VOD
-> 
-> #EXTINF:9.333,
-> test.mp4.ts?start=0.000&end=9.333&a=1&b=2
-> #EXTINF:7.167,
-> test.mp4.ts?start=9.333&end=16.500&a=1&b=2
-> #EXTINF:5.416,
-> test.mp4.ts?start=16.500&end=21.916&a=1&b=2
-> #EXTINF:5.500,
-> test.mp4.ts?start=21.916&end=27.416&a=1&b=2
-> #EXTINF:15.167,
-> test.mp4.ts?start=27.416&end=42.583&a=1&b=2
-> #EXTINF:9.626,
-> test.mp4.ts?start=42.583&end=52.209&a=1&b=2
-> 
-> #EXT-X-ENDLIST
-> ```
+```
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION:15
+#EXT-X-PLAYLIST-TYPE:VOD
+
+#EXTINF:9.333,
+test.mp4.ts?start=0.000&end=9.333&a=1&b=2
+#EXTINF:7.167,
+test.mp4.ts?start=9.333&end=16.500&a=1&b=2
+#EXTINF:5.416,
+test.mp4.ts?start=16.500&end=21.916&a=1&b=2
+#EXTINF:5.500,
+test.mp4.ts?start=21.916&end=27.416&a=1&b=2
+#EXTINF:15.167,
+test.mp4.ts?start=27.416&end=42.583&a=1&b=2
+#EXTINF:9.626,
+test.mp4.ts?start=42.583&end=52.209&a=1&b=2
+
+#EXT-X-ENDLIST
+```
 
 
 
 If an HLS stream is protected with the [ngx_http_secure_link_module](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html) module, `$uri` should not be used in the [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) expression because this will cause errors when requesting the fragments. [Base URI](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) should be used instead of `$uri` (`$hls_uri` in the example):
 
-> ```
-> http {
->     ...
-> 
->     map $uri $hls_uri {
->         ~^(?<base_uri>.*).m3u8$ $base_uri;
->         ~^(?<base_uri>.*).ts$   $base_uri;
->         default                 $uri;
->     }
-> 
->     server {
->         ...
-> 
->         location /hls/ {
->             hls;
->             hls_forward_args on;
-> 
->             alias /var/videos/;
-> 
->             secure_link $arg_md5,$arg_expires;
->             secure_link_md5 "$secure_link_expires$hls_uri$remote_addr secret";
-> 
->             if ($secure_link = "") {
->                 return 403;
->             }
-> 
->             if ($secure_link = "0") {
->                 return 410;
->             }
->         }
->     }
-> }
-> ```
+```
+http {
+    ...
+
+    map $uri $hls_uri {
+        ~^(?<base_uri>.*).m3u8$ $base_uri;
+        ~^(?<base_uri>.*).ts$   $base_uri;
+        default                 $uri;
+    }
+
+    server {
+        ...
+
+        location /hls/ {
+            hls;
+            hls_forward_args on;
+
+            alias /var/videos/;
+
+            secure_link $arg_md5,$arg_expires;
+            secure_link_md5 "$secure_link_expires$hls_uri$remote_addr secret";
+
+            if ($secure_link = "") {
+                return 403;
+            }
+
+            if ($secure_link = "0") {
+                return 410;
+            }
+        }
+    }
+}
+```
 
 
 
@@ -181,10 +187,12 @@ If an HLS stream is protected with the [ngx_http_secure_link_module](https://ngi
 
 ### hls_fragment
 
-| Syntax:  | `hls_fragment time;`         |
-| :------- | ---------------------------- |
-| Default: | `hls_fragment 5s;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `hls_fragment time;`
+
+  Default: `hls_fragment 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines the default fragment length for playlist URIs requested without the “`len`” argument.
 
@@ -192,10 +200,12 @@ Defines the default fragment length for playlist URIs requested without the “`
 
 ### hls_mp4_buffer_size
 
-| Syntax:  | `hls_mp4_buffer_size size;`  |
-| :------- | ---------------------------- |
-| Default: | `hls_mp4_buffer_size 512k;`  |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `hls_mp4_buffer_size size;`
+
+  Default: `hls_mp4_buffer_size 512k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the initial `size` of the buffer used for processing MP4 and MOV files.
 
@@ -203,14 +213,16 @@ Sets the initial `size` of the buffer used for processing MP4 and MOV files.
 
 ### hls_mp4_max_buffer_size
 
-| Syntax:  | `hls_mp4_max_buffer_size size;` |
-| :------- | ------------------------------- |
-| Default: | `hls_mp4_max_buffer_size 10m;`  |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`hls_mp4_max_buffer_size size;`
+
+  Default: `hls_mp4_max_buffer_size 10m;`
+
+  Context: `http`, `server`, `location`
+
 
 During metadata processing, a larger buffer may become necessary. Its size cannot exceed the specified `size`, or else nginx will return the server error 500 (Internal Server Error), and log the following message:
 
-> ```
-> "/some/movie/file.mp4" mp4 moov atom is too large:
-> 12583268, you may want to increase hls_mp4_max_buffer_size
-> ```
+```
+"/some/movie/file.mp4" mp4 moov atom is too large:
+12583268, you may want to increase hls_mp4_max_buffer_size
+```

@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_xslt_module"
 date = 2023-08-15T08:20:50+08:00
+weight = 600
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_http_xslt_module` (0.7.8+) is a filter that transforms XML responses us
 
 This module is not built by default, it should be enabled with the `--with-http_xslt_module` configuration parameter.
 
-> This module requires the [libxml2](http://xmlsoft.org/) and [libxslt](http://xmlsoft.org/XSLT/) libraries.
+This module requires the [libxml2](http://xmlsoft.org/) and [libxslt](http://xmlsoft.org/XSLT/) libraries.
 
 
 
@@ -27,13 +28,13 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location / {
->     xml_entities    /site/dtd/entities.dtd;
->     xslt_stylesheet /site/xslt/one.xslt param=value;
->     xslt_stylesheet /site/xslt/two.xslt;
-> }
-> ```
+```
+location / {
+    xml_entities    /site/dtd/entities.dtd;
+    xslt_stylesheet /site/xslt/one.xslt param=value;
+    xslt_stylesheet /site/xslt/two.xslt;
+}
+```
 
 
 
@@ -45,16 +46,17 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### xml_entities
 
-| Syntax:  | `xml_entities path;`         |
-| :------- | ---------------------------- |
+  Syntax:  `xml_entities path;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Specifies the DTD file that declares character entities. This file is compiled at the configuration stage. For technical reasons, the module is unable to use the external subset declared in the processed XML, so it is ignored and a specially defined file is used instead. This file should not describe the XML structure. It is enough to declare just the required character entities, for example:
 
-> ```
-> <!ENTITY nbsp "&#xa0;">
-> ```
+```
+<!ENTITY nbsp "&#xa0;">
+```
 
 
 
@@ -62,10 +64,12 @@ Specifies the DTD file that declares character entities. This file is compiled a
 
 ### xslt_last_modified
 
-| Syntax:  | `xslt_last_modified on | off;` |
-| :------- | ------------------------------ |
-| Default: | `xslt_last_modified off;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`xslt_last_modified on | off;`
+
+  Default: `xslt_last_modified off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.1.
 
@@ -77,10 +81,11 @@ By default, the header field is removed as contents of the response are modified
 
 ### xslt_param
 
-| Syntax:  | `xslt_param parameter value;` |
-| :------- | ----------------------------- |
+  Syntax:`xslt_param parameter value;`
+
 | Default: | —                             |
-| Context: | `http`, `server`, `location`  |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.18.
 
@@ -92,10 +97,11 @@ There could be several `xslt_param` directives. These directives are inherited f
 
 ### xslt_string_param
 
-| Syntax:  | `xslt_string_param parameter value;` |
-| :------- | ------------------------------------ |
+  Syntax:`xslt_string_param parameter value;`
+
 | Default: | —                                    |
-| Context: | `http`, `server`, `location`         |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.18.
 
@@ -107,31 +113,32 @@ There could be several `xslt_string_param` directives. These directives are inhe
 
 ### xslt_stylesheet
 
-| Syntax:  | `xslt_stylesheet stylesheet [parameter=value ...];` |
-| :------- | --------------------------------------------------- |
+  Syntax:`xslt_stylesheet stylesheet [parameter=value ...];`
+
 | Default: | —                                                   |
-| Context: | `location`                                          |
+  Context: `location`
+
 
 Defines the XSLT stylesheet and its optional parameters. A stylesheet is compiled at the configuration stage.
 
 Parameters can either be specified separately, or grouped in a single line using the “`:`” delimiter. If a parameter includes the “`:`” character, it should be escaped as “`%3A`”. Also, `libxslt` requires to enclose parameters that contain non-alphanumeric characters into single or double quotes, for example:
 
-> ```
-> param1='http%3A//www.example.com':param2=value2
-> ```
+```
+param1='http%3A//www.example.com':param2=value2
+```
 
 
 
 The parameters description can contain variables, for example, the whole line of parameters can be taken from a single variable:
 
-> ```
-> location / {
->     xslt_stylesheet /site/xslt/one.xslt
->                     $arg_xslt_params
->                     param1='$value1':param2=value2
->                     param3=value3;
-> }
-> ```
+```
+location / {
+    xslt_stylesheet /site/xslt/one.xslt
+                    $arg_xslt_params
+                    param1='$value1':param2=value2
+                    param3=value3;
+}
+```
 
 
 
@@ -141,9 +148,11 @@ It is possible to specify several stylesheets. They will be applied sequentially
 
 ### xslt_types
 
-| Syntax:  | `xslt_types mime-type ...;`  |
-| :------- | ---------------------------- |
-| Default: | `xslt_types text/xml;`       |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `xslt_types mime-type ...;`
+
+  Default: `xslt_types text/xml;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables transformations in responses with the specified MIME types in addition to “`text/xml`”. The special value “`*`” matches any MIME type (0.8.29). If the transformation result is an HTML response, its MIME type is changed to “`text/html`”.

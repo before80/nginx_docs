@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_stub_status_module"
 date = 2023-08-15T08:19:26+08:00
+weight = 510
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,20 +22,20 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location = /basic_status {
->     stub_status;
-> }
-> ```
+```
+location = /basic_status {
+    stub_status;
+}
+```
 
 This configuration creates a simple web page with basic status data which may look like as follows:
 
-> ```
-> Active connections: 291
-> server accepts handled requests
->  16630948 16630948 31070465
-> Reading: 6 Writing: 179 Waiting: 106
-> ```
+```
+Active connections: 291
+server accepts handled requests
+ 16630948 16630948 31070465
+Reading: 6 Writing: 179 Waiting: 106
+```
 
 
 
@@ -46,16 +47,17 @@ This configuration creates a simple web page with basic status data which may lo
 
 ### stub_status;`
 
-| Syntax:  | `stub_status;`       |
-| :------- | -------------------- |
+  Syntax:  `stub_status;`
+
 | Default: | —                    |
-| Context: | `server`, `location` |
+  Context: `server`, `location`
+
 
 The basic status information will be accessible from the surrounding location.
 
 
 
-> In versions prior to 1.7.5, the directive syntax required an arbitrary argument, for example, “`stub_status on`”.
+In versions prior to 1.7.5, the directive syntax required an arbitrary argument, for example, “`stub_status on`”.
 
 
 

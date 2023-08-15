@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_dav_module"
 date = 2023-08-15T08:13:12+08:00
+weight = 110
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,7 +20,7 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> WebDAV clients that require additional WebDAV methods to operate will not work with this module.
+WebDAV clients that require additional WebDAV methods to operate will not work with this module.
 
 
 
@@ -29,23 +30,23 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location / {
->     root                  /data/www;
-> 
->     client_body_temp_path /data/client_temp;
-> 
->     dav_methods PUT DELETE MKCOL COPY MOVE;
-> 
->     create_full_put_path  on;
->     dav_access            group:rw  all:r;
-> 
->     limit_except GET {
->         allow 192.168.1.0/32;
->         deny  all;
->     }
-> }
-> ```
+```
+location / {
+    root                  /data/www;
+
+    client_body_temp_path /data/client_temp;
+
+    dav_methods PUT DELETE MKCOL COPY MOVE;
+
+    create_full_put_path  on;
+    dav_access            group:rw  all:r;
+
+    limit_except GET {
+        allow 192.168.1.0/32;
+        deny  all;
+    }
+}
+```
 
 
 
@@ -57,10 +58,12 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### create_full_put_path
 
-| Syntax:  | `create_full_put_path on | off;` |
-| :------- | -------------------------------- |
-| Default: | `create_full_put_path off;`      |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`create_full_put_path on | off;`
+
+  Default: `create_full_put_path off;`
+
+  Context: `http`, `server`, `location`
+
 
 The WebDAV specification only allows creating files in already existing directories. This directive allows creating all needed intermediate directories.
 
@@ -68,24 +71,26 @@ The WebDAV specification only allows creating files in already existing director
 
 ### dav_access
 
-| Syntax:  | `dav_access users:permissions ...;` |
-| :------- | ----------------------------------- |
-| Default: | `dav_access user:rw;`               |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`dav_access users:permissions ...;`
+
+  Default: `dav_access user:rw;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets access permissions for newly created files and directories, e.g.:
 
-> ```
-> dav_access user:rw group:rw all:r;
-> ```
+```
+dav_access user:rw group:rw all:r;
+```
 
 
 
 If any `group` or `all` access permissions are specified then `user` permissions may be omitted:
 
-> ```
-> dav_access group:rw all:r;
-> ```
+```
+dav_access group:rw all:r;
+```
 
 
 
@@ -93,10 +98,12 @@ If any `group` or `all` access permissions are specified then `user` permissions
 
 ### dav_methods
 
-| Syntax:  | `dav_methods off | method ...;` |
-| :------- | ------------------------------- |
-| Default: | `dav_methods off;`              |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`dav_methods off | method ...;`
+
+  Default: `dav_methods off;`
+
+  Context: `http`, `server`, `location`
+
 
 Allows the specified HTTP and WebDAV methods. The parameter `off` denies all methods processed by this module. The following methods are supported: `PUT`, `DELETE`, `MKCOL`, `COPY`, and `MOVE`.
 
@@ -108,27 +115,29 @@ When creating a file with the PUT method, it is possible to specify the modifica
 
 ### min_delete_depth
 
-| Syntax:  | `min_delete_depth number;`   |
-| :------- | ---------------------------- |
-| Default: | `min_delete_depth 0;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `min_delete_depth number;`
+
+  Default: `min_delete_depth 0;`
+
+  Context: `http`, `server`, `location`
+
 
 Allows the DELETE method to remove files provided that the number of elements in a request path is not less than the specified number. For example, the directive
 
-> ```
-> min_delete_depth 4;
-> ```
+```
+min_delete_depth 4;
+```
 
 allows removing files on requests
 
-> ```
-> /users/00/00/name
-> /users/00/00/name/pic.jpg
-> /users/00/00/page.html
-> ```
+```
+/users/00/00/name
+/users/00/00/name/pic.jpg
+/users/00/00/page.html
+```
 
 and denies the removal of
 
-> ```
-> /users/00/00
-> ```
+```
+/users/00/00
+```

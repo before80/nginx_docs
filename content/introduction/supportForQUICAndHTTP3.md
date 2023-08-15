@@ -19,9 +19,8 @@ Support for [QUIC](https://datatracker.ietf.org/doc/html/rfc9000) and [HTTP/3](h
 
 ​	自 1.25.0 版本开始，nginx 支持 [QUIC](https://datatracker.ietf.org/doc/html/rfc9000) 和 [HTTP/3](https://datatracker.ietf.org/doc/html/rfc9114) 协议。此外，自 1.25.0 版本以来，QUIC 和 HTTP/3 支持在 Linux [二进制包](https://nginx.org/en/linux_packages.html)中也是可用的。
 
-> The QUIC and HTTP/3 support is experimental, caveat emptor applies.
->
-> ​	QUIC 和 HTTP/3 支持是实验性的，适用于购买者注意
+The QUIC and HTTP/3 support is experimental, caveat emptor applies.
+​	QUIC 和 HTTP/3 支持是实验性的，适用于购买者注意
 
 
 

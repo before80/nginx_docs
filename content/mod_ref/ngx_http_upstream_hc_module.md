@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_upstream_hc_module"
 date = 2023-08-15T08:20:00+08:00
+weight = 540
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -15,7 +16,7 @@ https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html
 
 The `ngx_http_upstream_conf_module` module allows configuring upstream server groups on-the-fly via a simple HTTP interface without the need of restarting nginx. The [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) server group must reside in the shared memory.
 
-> This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
+This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](https://nginx.org/en/docs/http/ngx_http_api_module.html) module in 1.13.3.
 
 
 
@@ -25,21 +26,21 @@ The `ngx_http_upstream_conf_module` module allows configuring upstream server gr
 
 
 
-> ```
-> upstream backend {
->     zone upstream_backend 64k;
-> 
->     ...
-> }
-> 
-> server {
->     location /upstream_conf {
->         upstream_conf;
->         allow 127.0.0.1;
->         deny all;
->     }
-> }
-> ```
+```
+upstream backend {
+    zone upstream_backend 64k;
+
+    ...
+}
+
+server {
+    location /upstream_conf {
+        upstream_conf;
+        allow 127.0.0.1;
+        deny all;
+    }
+}
+```
 
 
 
@@ -51,10 +52,11 @@ The `ngx_http_upstream_conf_module` module allows configuring upstream server gr
 
 ### upstream_conf;`
 
-| Syntax:  | `upstream_conf;` |
-| :------- | ---------------- |
+  Syntax:`upstream_conf;`
+
 | Default: | —                |
-| Context: | `location`       |
+  Context: `location`
+
 
 Turns on the HTTP interface of upstream configuration in the surrounding location. Access to this location should be [limited](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy).
 
@@ -66,15 +68,15 @@ Configuration commands can be used to:
 
 
 
-> Since addresses in a group are not required to be unique, specific servers in a group are referenced by their IDs. IDs are assigned automatically and shown when adding a new server or viewing the group configuration.
+Since addresses in a group are not required to be unique, specific servers in a group are referenced by their IDs. IDs are assigned automatically and shown when adding a new server or viewing the group configuration.
 
 
 
 A configuration command consists of parameters passed as request arguments, for example:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend
+```
 
 
 
@@ -152,15 +154,15 @@ The first three parameters select an object. This can be either the whole http o
 
 For example, to view the configuration of the whole group, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend
+```
 
 To view the configuration of a specific server, also specify its ID:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend&id=42
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend&id=42
+```
 
 
 
@@ -168,44 +170,44 @@ To add a new server, specify its address in the “`server=`” parameter. Witho
 
 For example, to add a new primary server, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080
-> ```
+```
+http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080
+```
 
 To add a new backup server, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?add=&upstream=backend&backup=&server=127.0.0.1:8080
-> ```
+```
+http://127.0.0.1/upstream_conf?add=&upstream=backend&backup=&server=127.0.0.1:8080
+```
 
 To add a new primary server, set its parameters to non-default values and mark it as “`down`”, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080&weight=2&down=
-> ```
+```
+http://127.0.0.1/upstream_conf?add=&upstream=backend&server=127.0.0.1:8080&weight=2&down=
+```
 
 To remove a server, specify its ID:
 
-> ```
-> http://127.0.0.1/upstream_conf?remove=&upstream=backend&id=42
-> ```
+```
+http://127.0.0.1/upstream_conf?remove=&upstream=backend&id=42
+```
 
 To mark an existing server as “`down`”, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend&id=42&down=
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend&id=42&down=
+```
 
 To modify the address of an existing server, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend&id=42&server=192.0.2.3:8123
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend&id=42&server=192.0.2.3:8123
+```
 
 To modify other parameters of an existing server, send:
 
-> ```
-> http://127.0.0.1/upstream_conf?upstream=backend&id=42&max_fails=3&weight=4
-> ```
+```
+http://127.0.0.1/upstream_conf?upstream=backend&id=42&max_fails=3&weight=4
+```
 
 The above examples are for an [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) upstream server group. Similar examples for a [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html) upstream server group require the “`stream=`” parameter.

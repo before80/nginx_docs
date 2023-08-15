@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_realip_module"
 date = 2023-08-15T08:23:59+08:00
+weight = 830
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -23,13 +24,13 @@ This module is not built by default, it should be enabled with the `--with-strea
 
 
 
-> ```
-> listen 12345 proxy_protocol;
-> 
-> set_real_ip_from  192.168.1.0/24;
-> set_real_ip_from  192.168.2.1;
-> set_real_ip_from  2001:0db8::/32;
-> ```
+```
+listen 12345 proxy_protocol;
+
+set_real_ip_from  192.168.1.0/24;
+set_real_ip_from  192.168.2.1;
+set_real_ip_from  2001:0db8::/32;
+```
 
 
 
@@ -41,10 +42,11 @@ This module is not built by default, it should be enabled with the `--with-strea
 
 ### set_real_ip_from
 
-| Syntax:  | `set_real_ip_from address | CIDR | unix:;` |
-| :------- | ------------------------------------------ |
+  Syntax:`set_real_ip_from address | CIDR | unix:;`
+
 | Default: | —                                          |
-| Context: | `stream`, `server`                         |
+  Context: `stream`, `server`
+
 
 Defines trusted addresses that are known to send correct replacement addresses. If the special value `unix:` is specified, all UNIX-domain sockets will be trusted.
 

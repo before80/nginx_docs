@@ -1,6 +1,7 @@
 +++
 title = "ngx_mail_pop3_module"
 date = 2023-08-15T08:21:48+08:00
+weight = 640
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -20,10 +21,12 @@ https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html
 
 ### pop3_auth
 
-| Syntax:  | `pop3_auth method ...;` |
-| :------- | ----------------------- |
-| Default: | `pop3_auth plain;`      |
-| Context: | `mail`, `server`        |
+  Syntax:`pop3_auth method ...;`
+
+  Default: `pop3_auth plain;`
+
+  Context: `mail`, `server`
+
 
 Sets permitted methods of authentication for POP3 clients. Supported methods are:
 
@@ -51,10 +54,12 @@ Plain text authentication methods (`USER/PASS`, `AUTH PLAIN`, and `AUTH LOGIN`) 
 
 ### pop3_capabilities
 
-| Syntax:  | `pop3_capabilities extension ...;` |
-| :------- | ---------------------------------- |
-| Default: | `pop3_capabilities TOP USER UIDL;` |
-| Context: | `mail`, `server`                   |
+  Syntax:`pop3_capabilities extension ...;`
+
+  Default: `pop3_capabilities TOP USER UIDL;`
+
+  Context: `mail`, `server`
+
 
 Sets the [POP3 protocol](https://datatracker.ietf.org/doc/html/rfc2449) extensions list that is passed to the client in response to the `CAPA` command. The authentication methods specified in the [pop3_auth](https://nginx.org/en/docs/mail/ngx_mail_pop3_module.html#pop3_auth) directive ([SASL](https://datatracker.ietf.org/doc/html/rfc2449) extension) and [STLS](https://datatracker.ietf.org/doc/html/rfc2595) are automatically added to this list depending on the [starttls](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#starttls) directive value.
 

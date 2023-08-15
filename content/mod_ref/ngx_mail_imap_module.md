@@ -1,6 +1,7 @@
 +++
 title = "ngx_mail_imap_module"
 date = 2023-08-15T08:21:39+08:00
+weight = 630
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -20,10 +21,12 @@ https://nginx.org/en/docs/mail/ngx_mail_imap_module.html
 
 ### imap_auth
 
-| Syntax:  | `imap_auth method ...;` |
-| :------- | ----------------------- |
-| Default: | `imap_auth plain;`      |
-| Context: | `mail`, `server`        |
+  Syntax:`imap_auth method ...;`
+
+  Default: `imap_auth plain;`
+
+  Context: `mail`, `server`
+
 
 Sets permitted methods of authentication for IMAP clients. Supported methods are:
 
@@ -51,10 +54,12 @@ Plain text authentication methods (the `LOGIN` command, `AUTH=PLAIN`, and `AUTH=
 
 ### imap_capabilities
 
-| Syntax:  | `imap_capabilities extension ...;`           |
-| :------- | -------------------------------------------- |
-| Default: | `imap_capabilities IMAP4 IMAP4rev1 UIDPLUS;` |
-| Context: | `mail`, `server`                             |
+  Syntax:  `imap_capabilities extension ...;`
+
+  Default: `imap_capabilities IMAP4 IMAP4rev1 UIDPLUS;`
+
+  Context: `mail`, `server`
+
 
 Sets the [IMAP protocol](https://datatracker.ietf.org/doc/html/rfc3501) extensions list that is passed to the client in response to the `CAPABILITY` command. The authentication methods specified in the [imap_auth](https://nginx.org/en/docs/mail/ngx_mail_imap_module.html#imap_auth) directive and [STARTTLS](https://datatracker.ietf.org/doc/html/rfc2595) are automatically added to this list depending on the [starttls](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#starttls) directive value.
 
@@ -66,9 +71,11 @@ The current list of standardized extensions is published at [www.iana.org](http:
 
 ### imap_client_buffer
 
-| Syntax:  | `imap_client_buffer size;`  |
-| :------- | --------------------------- |
-| Default: | `imap_client_buffer 4k|8k;` |
-| Context: | `mail`, `server`            |
+  Syntax:  `imap_client_buffer size;`
+
+  Default: `imap_client_buffer 4k|8k;`
+
+  Context: `mail`, `server`
+
 
 Sets the `size` of the buffer used for reading IMAP commands. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform.

@@ -17,9 +17,9 @@ https://nginx.org/en/docs/contributing_changes.html
 
 [Mercurial](https://www.mercurial-scm.org/) is used to store source code. The [repository](http://hg.nginx.org/nginx) can be cloned with the following command:
 
-> ```
-> hg clone http://hg.nginx.org/nginx
-> ```
+```
+hg clone http://hg.nginx.org/nginx
+```
 
 
 
@@ -33,29 +33,29 @@ Commit the changes to create a Mercurial [changeset](https://www.mercurial-scm.o
 
 The commit message should have a single-line synopsis followed by verbose description after an empty line. It is desirable that the first line is no longer than 67 symbols. The resulting changeset as a patch can be obtained using the `hg export` command:
 
-> ```
-> # HG changeset patch
-> # User Filipe Da Silva <username@example.com>
-> # Date 1368089668 -7200
-> #      Thu May 09 10:54:28 2013 +0200
-> # Node ID 2220de0521ca2c0b664a8ea1e201ce1cb90fd7a2
-> # Parent  822b82191940ef309cd1e6502f94d50d811252a1
-> Mail: removed surplus ngx_close_connection() call.
-> 
-> It is already called for a peer connection a few lines above.
-> 
-> diff -r 822b82191940 -r 2220de0521ca src/mail/ngx_mail_auth_http_module.c
-> --- a/src/mail/ngx_mail_auth_http_module.c      Wed May 15 15:04:49 2013 +0400
-> +++ b/src/mail/ngx_mail_auth_http_module.c      Thu May 09 10:54:28 2013 +0200
-> @@ -699,7 +699,6 @@ ngx_mail_auth_http_process_headers(ngx_m
-> 
->                      p = ngx_pnalloc(s->connection->pool, ctx->err.len);
->                      if (p == NULL) {
-> -                        ngx_close_connection(ctx->peer.connection);
->                          ngx_destroy_pool(ctx->pool);
->                          ngx_mail_session_internal_server_error(s);
->                          return;
-> ```
+```
+# HG changeset patch
+# User Filipe Da Silva <username@example.com>
+# Date 1368089668 -7200
+#      Thu May 09 10:54:28 2013 +0200
+# Node ID 2220de0521ca2c0b664a8ea1e201ce1cb90fd7a2
+# Parent  822b82191940ef309cd1e6502f94d50d811252a1
+Mail: removed surplus ngx_close_connection() call.
+
+It is already called for a peer connection a few lines above.
+
+diff -r 822b82191940 -r 2220de0521ca src/mail/ngx_mail_auth_http_module.c
+--- a/src/mail/ngx_mail_auth_http_module.c      Wed May 15 15:04:49 2013 +0400
++++ b/src/mail/ngx_mail_auth_http_module.c      Thu May 09 10:54:28 2013 +0200
+@@ -699,7 +699,6 @@ ngx_mail_auth_http_process_headers(ngx_m
+
+                     p = ngx_pnalloc(s->connection->pool, ctx->err.len);
+                     if (p == NULL) {
+-                        ngx_close_connection(ctx->peer.connection);
+                         ngx_destroy_pool(ctx->pool);
+                         ngx_mail_session_internal_server_error(s);
+                         return;
+```
 
 
 

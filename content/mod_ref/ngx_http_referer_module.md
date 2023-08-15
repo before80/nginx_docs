@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_referer_module"
 date = 2023-08-15T08:17:59+08:00
+weight = 410
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,15 +22,15 @@ The `ngx_http_referer_module` module is used to block access to a site for reque
 
 
 
-> ```
-> valid_referers none blocked server_names
->                *.example.com example.* www.example.org/galleries/
->                ~\.google\.;
-> 
-> if ($invalid_referer) {
->     return 403;
-> }
-> ```
+```
+valid_referers none blocked server_names
+               *.example.com example.* www.example.org/galleries/
+               ~\.google\.;
+
+if ($invalid_referer) {
+    return 403;
+}
+```
 
 
 
@@ -41,10 +42,12 @@ The `ngx_http_referer_module` module is used to block access to a site for reque
 
 ### referer_hash_bucket_size
 
-| Syntax:  | `referer_hash_bucket_size size;` |
-| :------- | -------------------------------- |
-| Default: | `referer_hash_bucket_size 64;`   |
-| Context: | `server`, `location`             |
+  Syntax:`referer_hash_bucket_size size;`
+
+  Default: `referer_hash_bucket_size 64;`
+
+  Context: `server`, `location`
+
 
 This directive appeared in version 1.0.5.
 
@@ -54,10 +57,12 @@ Sets the bucket size for the valid referers hash tables. The details of setting 
 
 ### referer_hash_max_size
 
-| Syntax:  | `referer_hash_max_size size;` |
-| :------- | ----------------------------- |
-| Default: | `referer_hash_max_size 2048;` |
-| Context: | `server`, `location`          |
+  Syntax:`referer_hash_max_size size;`
+
+  Default: `referer_hash_max_size 2048;`
+
+  Context: `server`, `location`
+
 
 This directive appeared in version 1.0.5.
 
@@ -67,10 +72,11 @@ Sets the maximum `size` of the valid referers hash tables. The details of settin
 
 ### valid_referers
 
-| Syntax:  | `valid_referers none | blocked | server_names | string ...;` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`valid_referers none | blocked | server_names | string ...;`
+
 | Default: | —                                                            |
-| Context: | `server`, `location`                                         |
+  Context: `server`, `location`
+
 
 Specifies the “Referer” request header field values that will cause the embedded `$invalid_referer` variable to be set to an empty string. Otherwise, the variable will be set to “`1`”. Search for a match is case-insensitive.
 
@@ -100,11 +106,11 @@ Parameters can be as follows:
 
 Example:
 
-> ```
-> valid_referers none blocked server_names
->                *.example.com example.* www.example.org/galleries/
->                ~\.google\.;
-> ```
+```
+valid_referers none blocked server_names
+               *.example.com example.* www.example.org/galleries/
+               ~\.google\.;
+```
 
 
 

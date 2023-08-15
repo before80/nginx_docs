@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_fastcgi_module"
 date = 2023-08-15T08:13:37+08:00
+weight = 140
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,18 +22,18 @@ The `ngx_http_fastcgi_module` module allows passing requests to a FastCGI server
 
 
 
-> ```
-> location / {
->     fastcgi_pass  localhost:9000;
->     fastcgi_index index.php;
-> 
->     fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
->     fastcgi_param QUERY_STRING    $query_string;
->     fastcgi_param REQUEST_METHOD  $request_method;
->     fastcgi_param CONTENT_TYPE    $content_type;
->     fastcgi_param CONTENT_LENGTH  $content_length;
-> }
-> ```
+```
+location / {
+    fastcgi_pass  localhost:9000;
+    fastcgi_index index.php;
+
+    fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
+    fastcgi_param QUERY_STRING    $query_string;
+    fastcgi_param REQUEST_METHOD  $request_method;
+    fastcgi_param CONTENT_TYPE    $content_type;
+    fastcgi_param CONTENT_LENGTH  $content_length;
+}
+```
 
 
 
@@ -44,10 +45,11 @@ The `ngx_http_fastcgi_module` module allows passing requests to a FastCGI server
 
 ### fastcgi_bind
 
-| Syntax:  | `fastcgi_bind address [transparent] | off;` |
-| :------- | ------------------------------------------- |
+  Syntax:`fastcgi_bind address [transparent] | off;`
+
 | Default: | —                                           |
-| Context: | `http`, `server`, `location`                |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.8.22.
 
@@ -57,9 +59,9 @@ Makes outgoing connections to a FastCGI server originate from the specified loca
 
 The `transparent` parameter (1.11.0) allows outgoing connections to a FastCGI server originate from a non-local IP address, for example, from a real IP address of a client:
 
-> ```
-> fastcgi_bind $remote_addr transparent;
-> ```
+```
+fastcgi_bind $remote_addr transparent;
+```
 
 In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the FastCGI server.
 
@@ -67,10 +69,12 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 
 ### fastcgi_buffer_size
 
-| Syntax:  | `fastcgi_buffer_size size;`  |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_buffer_size 4k|8k;` |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `fastcgi_buffer_size size;`
+
+  Default: `fastcgi_buffer_size 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `size` of the buffer used for reading the first part of the response received from the FastCGI server. This part usually contains a small response header. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform. It can be made smaller, however.
 
@@ -78,10 +82,12 @@ Sets the `size` of the buffer used for reading the first part of the response re
 
 ### fastcgi_buffering
 
-| Syntax:  | `fastcgi_buffering on | off;` |
-| :------- | ----------------------------- |
-| Default: | `fastcgi_buffering on;`       |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`fastcgi_buffering on | off;`
+
+  Default: `fastcgi_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.6.
 
@@ -97,10 +103,12 @@ Buffering can also be enabled or disabled by passing “`yes`” or “`no`” i
 
 ### fastcgi_buffers
 
-| Syntax:  | `fastcgi_buffers number size;` |
-| :------- | ------------------------------ |
-| Default: | `fastcgi_buffers 8 4k|8k;`     |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`fastcgi_buffers number size;`
+
+  Default: `fastcgi_buffers 8 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` and `size` of the buffers used for reading a response from the FastCGI server, for a single connection. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform.
 
@@ -108,10 +116,12 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 
 ### fastcgi_busy_buffers_size
 
-| Syntax:  | `fastcgi_busy_buffers_size size;`   |
-| :------- | ----------------------------------- |
-| Default: | `fastcgi_busy_buffers_size 8k|16k;` |
-| Context: | `http`, `server`, `location`        |
+  Syntax:  `fastcgi_busy_buffers_size size;`
+
+  Default: `fastcgi_busy_buffers_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of responses from the FastCGI server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives.
 
@@ -119,10 +129,12 @@ When [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fas
 
 ### fastcgi_cache
 
-| Syntax:  | `fastcgi_cache zone | off;`  |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_cache off;`         |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `fastcgi_cache zone | off;`
+
+  Default: `fastcgi_cache off;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a shared memory zone used for caching. The same zone can be used in several places. Parameter value can contain variables (1.7.9). The `off` parameter disables caching inherited from the previous configuration level.
 
@@ -130,10 +142,12 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 
 ### fastcgi_cache_background_update
 
-| Syntax:  | `fastcgi_cache_background_update on | off;` |
-| :------- | ------------------------------------------- |
-| Default: | `fastcgi_cache_background_update off;`      |
-| Context: | `http`, `server`, `location`                |
+  Syntax:`fastcgi_cache_background_update on | off;`
+
+  Default: `fastcgi_cache_background_update off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.10.
 
@@ -143,17 +157,18 @@ Allows starting a background subrequest to update an expired cache item, while a
 
 ### fastcgi_cache_bypass
 
-| Syntax:  | `fastcgi_cache_bypass string ...;` |
-| :------- | ---------------------------------- |
+  Syntax:`fastcgi_cache_bypass string ...;`
+
 | Default: | —                                  |
-| Context: | `http`, `server`, `location`       |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be taken from a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be taken from the cache:
 
-> ```
-> fastcgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
-> fastcgi_cache_bypass $http_pragma    $http_authorization;
-> ```
+```
+fastcgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
+fastcgi_cache_bypass $http_pragma    $http_authorization;
+```
 
 Can be used along with the [fastcgi_no_cache](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_no_cache) directive.
 
@@ -161,16 +176,17 @@ Can be used along with the [fastcgi_no_cache](https://nginx.org/en/docs/http/ngx
 
 ### fastcgi_cache_key
 
-| Syntax:  | `fastcgi_cache_key string;`  |
-| :------- | ---------------------------- |
+  Syntax:  `fastcgi_cache_key string;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines a key for caching, for example
 
-> ```
-> fastcgi_cache_key localhost:9000$request_uri;
-> ```
+```
+fastcgi_cache_key localhost:9000$request_uri;
+```
 
 
 
@@ -178,10 +194,12 @@ Defines a key for caching, for example
 
 ### fastcgi_cache_lock
 
-| Syntax:  | `fastcgi_cache_lock on | off;` |
-| :------- | ------------------------------ |
-| Default: | `fastcgi_cache_lock off;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`fastcgi_cache_lock on | off;`
+
+  Default: `fastcgi_cache_lock off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
@@ -191,10 +209,12 @@ When enabled, only one request at a time will be allowed to populate a new cache
 
 ### fastcgi_cache_lock_age
 
-| Syntax:  | `fastcgi_cache_lock_age time;` |
-| :------- | ------------------------------ |
-| Default: | `fastcgi_cache_lock_age 5s;`   |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`fastcgi_cache_lock_age time;`
+
+  Default: `fastcgi_cache_lock_age 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -204,16 +224,18 @@ If the last request passed to the FastCGI server for populating a new cache elem
 
 ### fastcgi_cache_lock_timeout
 
-| Syntax:  | `fastcgi_cache_lock_timeout time;` |
-| :------- | ---------------------------------- |
-| Default: | `fastcgi_cache_lock_timeout 5s;`   |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`fastcgi_cache_lock_timeout time;`
+
+  Default: `fastcgi_cache_lock_timeout 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
 Sets a timeout for [fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock). When the `time` expires, the request will be passed to the FastCGI server, however, the response will not be cached.
 
-> Before 1.7.8, the response could be cached.
+Before 1.7.8, the response could be cached.
 
 
 
@@ -221,10 +243,11 @@ Sets a timeout for [fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_
 
 ### fastcgi_cache_max_range_offset
 
-| Syntax:  | `fastcgi_cache_max_range_offset number;` |
-| :------- | ---------------------------------------- |
+  Syntax:`fastcgi_cache_max_range_offset number;`
+
 | Default: | —                                        |
-| Context: | `http`, `server`, `location`             |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.6.
 
@@ -234,10 +257,12 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 
 ### fastcgi_cache_methods
 
-| Syntax:  | `fastcgi_cache_methods GET | HEAD | POST ...;` |
-| :------- | ---------------------------------------------- |
-| Default: | `fastcgi_cache_methods GET HEAD;`              |
-| Context: | `http`, `server`, `location`                   |
+  Syntax:`fastcgi_cache_methods GET | HEAD | POST ...;`
+
+  Default: `fastcgi_cache_methods GET HEAD;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.7.59.
 
@@ -247,10 +272,12 @@ If the client request method is listed in this directive then the response will 
 
 ### fastcgi_cache_min_uses
 
-| Syntax:  | `fastcgi_cache_min_uses number;` |
-| :------- | -------------------------------- |
-| Default: | `fastcgi_cache_min_uses 1;`      |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`fastcgi_cache_min_uses number;`
+
+  Default: `fastcgi_cache_min_uses 1;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` of requests after which the response will be cached.
 
@@ -258,22 +285,23 @@ Sets the `number` of requests after which the response will be cached.
 
 ### fastcgi_cache_path
 
-| Syntax:  | `fastcgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`fastcgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];`
+
 | Default: | —                                                            |
-| Context: | `http`                                                       |
+  Context: `http`
+
 
 Sets the path and other parameters of a cache. Cache data are stored in files. Both the key and file name in a cache are a result of applying the MD5 function to the proxied URL. The `levels` parameter defines hierarchy levels of a cache: from 1 to 3, each level accepts values 1 or 2. For example, in the following configuration
 
-> ```
-> fastcgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
-> ```
+```
+fastcgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
+```
 
 file names in a cache will look like this:
 
-> ```
-> /data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
-> ```
+```
+/data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
+```
 
 
 
@@ -281,7 +309,7 @@ A cached response is first written to a temporary file, and then the file is ren
 
 In addition, all active keys and information about data are stored in a shared memory zone, whose `name` and `size` are configured by the `keys_zone` parameter. One megabyte zone can store about 8 thousand keys.
 
-> As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
+As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
 
 
 
@@ -317,7 +345,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 
 
-> In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
+In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
 
 
 
@@ -325,10 +353,11 @@ Additionally, the following parameters are available as part of our [commercial 
 
 ### fastcgi_cache_purge
 
-| Syntax:  | `fastcgi_cache_purge string ...;` |
-| :------- | --------------------------------- |
+  Syntax:`fastcgi_cache_purge string ...;`
+
 | Default: | —                                 |
-| Context: | `http`, `server`, `location`      |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -338,28 +367,28 @@ If the [cache key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#f
 
 Example configuration:
 
-> ```
-> fastcgi_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
-> 
-> map $request_method $purge_method {
->     PURGE   1;
->     default 0;
-> }
-> 
-> server {
->     ...
->     location / {
->         fastcgi_pass        backend;
->         fastcgi_cache       cache_zone;
->         fastcgi_cache_key   $uri;
->         fastcgi_cache_purge $purge_method;
->     }
-> }
-> ```
+```
+fastcgi_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
+
+map $request_method $purge_method {
+    PURGE   1;
+    default 0;
+}
+
+server {
+    ...
+    location / {
+        fastcgi_pass        backend;
+        fastcgi_cache       cache_zone;
+        fastcgi_cache_key   $uri;
+        fastcgi_cache_purge $purge_method;
+    }
+}
+```
 
 
 
-> This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
+This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -367,10 +396,12 @@ Example configuration:
 
 ### fastcgi_cache_revalidate
 
-| Syntax:  | `fastcgi_cache_revalidate on | off;` |
-| :------- | ------------------------------------ |
-| Default: | `fastcgi_cache_revalidate off;`      |
-| Context: | `http`, `server`, `location`         |
+  Syntax:`fastcgi_cache_revalidate on | off;`
+
+  Default: `fastcgi_cache_revalidate off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -380,10 +411,12 @@ Enables revalidation of expired cache items using conditional requests with the 
 
 ### fastcgi_cache_use_stale
 
-| Syntax:  | `fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `fastcgi_cache_use_stale off;`                               |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`fastcgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;`
+
+  Default: `fastcgi_cache_use_stale off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines in which cases a stale cached response can be used when an error occurs during communication with the FastCGI server. The directive’s parameters match the parameters of the [fastcgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream) directive.
 
@@ -406,35 +439,36 @@ To minimize the number of accesses to FastCGI servers when populating a new cach
 
 ### fastcgi_cache_valid
 
-| Syntax:  | `fastcgi_cache_valid [code ...] time;` |
-| :------- | -------------------------------------- |
+  Syntax:`fastcgi_cache_valid [code ...] time;`
+
 | Default: | —                                      |
-| Context: | `http`, `server`, `location`           |
+  Context: `http`, `server`, `location`
+
 
 Sets caching time for different response codes. For example, the following directives
 
-> ```
-> fastcgi_cache_valid 200 302 10m;
-> fastcgi_cache_valid 404      1m;
-> ```
+```
+fastcgi_cache_valid 200 302 10m;
+fastcgi_cache_valid 404      1m;
+```
 
 set 10 minutes of caching for responses with codes 200 and 302 and 1 minute for responses with code 404.
 
 If only caching `time` is specified
 
-> ```
-> fastcgi_cache_valid 5m;
-> ```
+```
+fastcgi_cache_valid 5m;
+```
 
 then only 200, 301, and 302 responses are cached.
 
 In addition, the `any` parameter can be specified to cache any responses:
 
-> ```
-> fastcgi_cache_valid 200 302 10m;
-> fastcgi_cache_valid 301      1h;
-> fastcgi_cache_valid any      1m;
-> ```
+```
+fastcgi_cache_valid 200 302 10m;
+fastcgi_cache_valid 301      1h;
+fastcgi_cache_valid any      1m;
+```
 
 
 
@@ -451,21 +485,22 @@ Processing of one or more of these response header fields can be disabled using 
 
 ### fastcgi_catch_stderr
 
-| Syntax:  | `fastcgi_catch_stderr string;` |
-| :------- | ------------------------------ |
+  Syntax:`fastcgi_catch_stderr string;`
+
 | Default: | —                              |
-| Context: | `http`, `server`, `location`   |
+  Context: `http`, `server`, `location`
+
 
 Sets a string to search for in the error stream of a response received from a FastCGI server. If the `string` is found then it is considered that the FastCGI server has returned an [invalid response](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream). This allows handling application errors in nginx, for example:
 
-> ```
-> location /php/ {
->     fastcgi_pass backend:9000;
->     ...
->     fastcgi_catch_stderr "PHP Fatal error";
->     fastcgi_next_upstream error timeout invalid_header;
-> }
-> ```
+```
+location /php/ {
+    fastcgi_pass backend:9000;
+    ...
+    fastcgi_catch_stderr "PHP Fatal error";
+    fastcgi_next_upstream error timeout invalid_header;
+}
+```
 
 
 
@@ -473,10 +508,12 @@ Sets a string to search for in the error stream of a response received from a Fa
 
 ### fastcgi_connect_timeout
 
-| Syntax:  | `fastcgi_connect_timeout time;` |
-| :------- | ------------------------------- |
-| Default: | `fastcgi_connect_timeout 60s;`  |
-| Context: | `http`, `server`, `location`    |
+  Syntax:`fastcgi_connect_timeout time;`
+
+  Default: `fastcgi_connect_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for establishing a connection with a FastCGI server. It should be noted that this timeout cannot usually exceed 75 seconds.
 
@@ -484,10 +521,12 @@ Defines a timeout for establishing a connection with a FastCGI server. It should
 
 ### fastcgi_force_ranges
 
-| Syntax:  | `fastcgi_force_ranges on | off;` |
-| :------- | -------------------------------- |
-| Default: | `fastcgi_force_ranges off;`      |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`fastcgi_force_ranges on | off;`
+
+  Default: `fastcgi_force_ranges off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -497,10 +536,11 @@ Enables byte-range support for both cached and uncached responses from the FastC
 
 ### fastcgi_hide_header
 
-| Syntax:  | `fastcgi_hide_header field;` |
-| :------- | ---------------------------- |
+  Syntax:`fastcgi_hide_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 By default, nginx does not pass the header fields “Status” and “X-Accel-...” from the response of a FastCGI server to a client. The `fastcgi_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [fastcgi_pass_header](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_header) directive can be used.
 
@@ -508,10 +548,12 @@ By default, nginx does not pass the header fields “Status” and “X-Accel-..
 
 ### fastcgi_ignore_client_abort
 
-| Syntax:  | `fastcgi_ignore_client_abort on | off;` |
-| :------- | --------------------------------------- |
-| Default: | `fastcgi_ignore_client_abort off;`      |
-| Context: | `http`, `server`, `location`            |
+  Syntax:`fastcgi_ignore_client_abort on | off;`
+
+  Default: `fastcgi_ignore_client_abort off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether the connection with a FastCGI server should be closed when a client closes the connection without waiting for a response.
 
@@ -519,10 +561,11 @@ Determines whether the connection with a FastCGI server should be closed when a 
 
 ### fastcgi_ignore_headers
 
-| Syntax:  | `fastcgi_ignore_headers field ...;` |
-| :------- | ----------------------------------- |
+  Syntax:`fastcgi_ignore_headers field ...;`
+
 | Default: | —                                   |
-| Context: | `http`, `server`, `location`        |
+  Context: `http`, `server`, `location`
+
 
 Disables processing of certain response header fields from the FastCGI server. The following fields can be ignored: “X-Accel-Redirect”, “X-Accel-Expires”, “X-Accel-Limit-Rate” (1.1.6), “X-Accel-Buffering” (1.1.6), “X-Accel-Charset” (1.1.6), “Expires”, “Cache-Control”, “Set-Cookie” (0.8.44), and “Vary” (1.7.7).
 
@@ -540,17 +583,18 @@ If not disabled, processing of these header fields has the following effect:
 
 ### fastcgi_index
 
-| Syntax:  | `fastcgi_index name;`        |
-| :------- | ---------------------------- |
+  Syntax:  `fastcgi_index name;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Sets a file name that will be appended after a URI that ends with a slash, in the value of the `$fastcgi_script_name` variable. For example, with these settings
 
-> ```
-> fastcgi_index index.php;
-> fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
-> ```
+```
+fastcgi_index index.php;
+fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
+```
 
 and the “`/page.php`” request, the `SCRIPT_FILENAME` parameter will be equal to “`/home/www/scripts/php/page.php`”, and with the “`/`” request it will be equal to “`/home/www/scripts/php/index.php`”.
 
@@ -558,10 +602,12 @@ and the “`/page.php`” request, the `SCRIPT_FILENAME` parameter will be equal
 
 ### fastcgi_intercept_errors
 
-| Syntax:  | `fastcgi_intercept_errors on | off;` |
-| :------- | ------------------------------------ |
-| Default: | `fastcgi_intercept_errors off;`      |
-| Context: | `http`, `server`, `location`         |
+  Syntax:`fastcgi_intercept_errors on | off;`
+
+  Default: `fastcgi_intercept_errors off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether FastCGI server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
 
@@ -569,10 +615,12 @@ Determines whether FastCGI server responses with codes greater than or equal to 
 
 ### fastcgi_keep_conn
 
-| Syntax:  | `fastcgi_keep_conn on | off;` |
-| :------- | ----------------------------- |
-| Default: | `fastcgi_keep_conn off;`      |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`fastcgi_keep_conn on | off;`
+
+  Default: `fastcgi_keep_conn off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.4.
 
@@ -582,10 +630,12 @@ By default, a FastCGI server will close a connection right after sending the res
 
 ### fastcgi_limit_rate
 
-| Syntax:  | `fastcgi_limit_rate rate;`   |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_limit_rate 0;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `fastcgi_limit_rate rate;`
+
+  Default: `fastcgi_limit_rate 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -595,10 +645,12 @@ Limits the speed of reading the response from the FastCGI server. The `rate` is 
 
 ### fastcgi_max_temp_file_size
 
-| Syntax:  | `fastcgi_max_temp_file_size size;`  |
-| :------- | ----------------------------------- |
-| Default: | `fastcgi_max_temp_file_size 1024m;` |
-| Context: | `http`, `server`, `location`        |
+  Syntax:  `fastcgi_max_temp_file_size size;`
+
+  Default: `fastcgi_max_temp_file_size 1024m;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size) directive.
 
@@ -606,7 +658,7 @@ The zero value disables buffering of responses to temporary files.
 
 
 
-> This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_store) on disk.
+This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_store) on disk.
 
 
 
@@ -614,10 +666,12 @@ The zero value disables buffering of responses to temporary files.
 
 ### fastcgi_next_upstream
 
-| Syntax:  | `fastcgi_next_upstream error | timeout | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `fastcgi_next_upstream error timeout;`                       |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`fastcgi_next_upstream error | timeout | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;`
+
+  Default: `fastcgi_next_upstream error timeout;`
+
+  Context: `http`, `server`, `location`
+
 
 Specifies in which cases a request should be passed to the next server:
 
@@ -673,10 +727,12 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 ### fastcgi_next_upstream_timeout
 
-| Syntax:  | `fastcgi_next_upstream_timeout time;` |
-| :------- | ------------------------------------- |
-| Default: | `fastcgi_next_upstream_timeout 0;`    |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`fastcgi_next_upstream_timeout time;`
+
+  Default: `fastcgi_next_upstream_timeout 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -686,10 +742,12 @@ Limits the time during which a request can be passed to the [next server](https:
 
 ### fastcgi_next_upstream_tries
 
-| Syntax:  | `fastcgi_next_upstream_tries number;` |
-| :------- | ------------------------------------- |
-| Default: | `fastcgi_next_upstream_tries 0;`      |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`fastcgi_next_upstream_tries number;`
+
+  Default: `fastcgi_next_upstream_tries 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -699,17 +757,18 @@ Limits the number of possible tries for passing a request to the [next server](h
 
 ### fastcgi_no_cache
 
-| Syntax:  | `fastcgi_no_cache string ...;` |
-| :------- | ------------------------------ |
+  Syntax:`fastcgi_no_cache string ...;`
+
 | Default: | —                              |
-| Context: | `http`, `server`, `location`   |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be saved to a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be saved:
 
-> ```
-> fastcgi_no_cache $cookie_nocache $arg_nocache$arg_comment;
-> fastcgi_no_cache $http_pragma    $http_authorization;
-> ```
+```
+fastcgi_no_cache $cookie_nocache $arg_nocache$arg_comment;
+fastcgi_no_cache $http_pragma    $http_authorization;
+```
 
 Can be used along with the [fastcgi_cache_bypass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_bypass) directive.
 
@@ -717,19 +776,20 @@ Can be used along with the [fastcgi_cache_bypass](https://nginx.org/en/docs/http
 
 ### fastcgi_param
 
-| Syntax:  | `fastcgi_param parameter value [if_not_empty];` |
-| :------- | ----------------------------------------------- |
+  Syntax:`fastcgi_param parameter value [if_not_empty];`
+
 | Default: | —                                               |
-| Context: | `http`, `server`, `location`                    |
+  Context: `http`, `server`, `location`
+
 
 Sets a `parameter` that should be passed to the FastCGI server. The `value` can contain text, variables, and their combination. These directives are inherited from the previous configuration level if and only if there are no `fastcgi_param` directives defined on the current level.
 
 The following example shows the minimum required settings for PHP:
 
-> ```
-> fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
-> fastcgi_param QUERY_STRING    $query_string;
-> ```
+```
+fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
+fastcgi_param QUERY_STRING    $query_string;
+```
 
 
 
@@ -737,27 +797,27 @@ The `SCRIPT_FILENAME` parameter is used in PHP for determining the script name, 
 
 For scripts that process `POST` requests, the following three parameters are also required:
 
-> ```
-> fastcgi_param REQUEST_METHOD  $request_method;
-> fastcgi_param CONTENT_TYPE    $content_type;
-> fastcgi_param CONTENT_LENGTH  $content_length;
-> ```
+```
+fastcgi_param REQUEST_METHOD  $request_method;
+fastcgi_param CONTENT_TYPE    $content_type;
+fastcgi_param CONTENT_LENGTH  $content_length;
+```
 
 
 
 If PHP was built with the `--enable-force-cgi-redirect` configuration parameter, the `REDIRECT_STATUS` parameter should also be passed with the value “200”:
 
-> ```
-> fastcgi_param REDIRECT_STATUS 200;
-> ```
+```
+fastcgi_param REDIRECT_STATUS 200;
+```
 
 
 
 If the directive is specified with `if_not_empty` (1.1.11) then such a parameter will be passed to the server only if its value is not empty:
 
-> ```
-> fastcgi_param HTTPS           $https if_not_empty;
-> ```
+```
+fastcgi_param HTTPS           $https if_not_empty;
+```
 
 
 
@@ -765,22 +825,23 @@ If the directive is specified with `if_not_empty` (1.1.11) then such a parameter
 
 ### fastcgi_pass
 
-| Syntax:  | `fastcgi_pass address;`      |
-| :------- | ---------------------------- |
+  Syntax:  `fastcgi_pass address;`
+
 | Default: | —                            |
-| Context: | `location`, `if in location` |
+  Context: `location`, `if in location`
+
 
 Sets the address of a FastCGI server. The address can be specified as a domain name or IP address, and a port:
 
-> ```
-> fastcgi_pass localhost:9000;
-> ```
+```
+fastcgi_pass localhost:9000;
+```
 
 or as a UNIX-domain socket path:
 
-> ```
-> fastcgi_pass unix:/tmp/fastcgi.socket;
-> ```
+```
+fastcgi_pass unix:/tmp/fastcgi.socket;
+```
 
 
 
@@ -792,10 +853,11 @@ Parameter value can contain variables. In this case, if an address is specified 
 
 ### fastcgi_pass_header
 
-| Syntax:  | `fastcgi_pass_header field;` |
-| :------- | ---------------------------- |
+  Syntax:`fastcgi_pass_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_hide_header) header fields from a FastCGI server to a client.
 
@@ -803,10 +865,12 @@ Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_fas
 
 ### fastcgi_pass_request_body
 
-| Syntax:  | `fastcgi_pass_request_body on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `fastcgi_pass_request_body on;`       |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`fastcgi_pass_request_body on | off;`
+
+  Default: `fastcgi_pass_request_body on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the original request body is passed to the FastCGI server. See also the [fastcgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_headers) directive.
 
@@ -814,10 +878,12 @@ Indicates whether the original request body is passed to the FastCGI server. See
 
 ### fastcgi_pass_request_headers
 
-| Syntax:  | `fastcgi_pass_request_headers on | off;` |
-| :------- | ---------------------------------------- |
-| Default: | `fastcgi_pass_request_headers on;`       |
-| Context: | `http`, `server`, `location`             |
+  Syntax:`fastcgi_pass_request_headers on | off;`
+
+  Default: `fastcgi_pass_request_headers on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the header fields of the original request are passed to the FastCGI server. See also the [fastcgi_pass_request_body](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_body) directive.
 
@@ -825,10 +891,12 @@ Indicates whether the header fields of the original request are passed to the Fa
 
 ### fastcgi_read_timeout
 
-| Syntax:  | `fastcgi_read_timeout time;` |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_read_timeout 60s;`  |
-| Context: | `http`, `server`, `location` |
+  Syntax:`fastcgi_read_timeout time;`
+
+  Default: `fastcgi_read_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for reading a response from the FastCGI server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the FastCGI server does not transmit anything within this time, the connection is closed.
 
@@ -836,10 +904,12 @@ Defines a timeout for reading a response from the FastCGI server. The timeout is
 
 ### fastcgi_request_buffering
 
-| Syntax:  | `fastcgi_request_buffering on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `fastcgi_request_buffering on;`       |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`fastcgi_request_buffering on | off;`
+
+  Default: `fastcgi_request_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.11.
 
@@ -853,10 +923,12 @@ When buffering is disabled, the request body is sent to the FastCGI server immed
 
 ### fastcgi_send_lowat
 
-| Syntax:  | `fastcgi_send_lowat size;`   |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_send_lowat 0;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `fastcgi_send_lowat size;`
+
+  Default: `fastcgi_send_lowat 0;`
+
+  Context: `http`, `server`, `location`
+
 
 If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a FastCGI server by using either `NOTE_LOWAT` flag of the [kqueue](https://nginx.org/en/docs/events.html#kqueue) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
 
@@ -866,10 +938,12 @@ This directive is ignored on Linux, Solaris, and Windows.
 
 ### fastcgi_send_timeout
 
-| Syntax:  | `fastcgi_send_timeout time;` |
-| :------- | ---------------------------- |
-| Default: | `fastcgi_send_timeout 60s;`  |
-| Context: | `http`, `server`, `location` |
+  Syntax:`fastcgi_send_timeout time;`
+
+  Default: `fastcgi_send_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a timeout for transmitting a request to the FastCGI server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the FastCGI server does not receive anything within this time, the connection is closed.
 
@@ -877,10 +951,12 @@ Sets a timeout for transmitting a request to the FastCGI server. The timeout is 
 
 ### fastcgi_socket_keepalive
 
-| Syntax:  | `fastcgi_socket_keepalive on | off;` |
-| :------- | ------------------------------------ |
-| Default: | `fastcgi_socket_keepalive off;`      |
-| Context: | `http`, `server`, `location`         |
+  Syntax:`fastcgi_socket_keepalive on | off;`
+
+  Default: `fastcgi_socket_keepalive off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.15.6.
 
@@ -890,19 +966,20 @@ Configures the “TCP keepalive” behavior for outgoing connections to a FastCG
 
 ### fastcgi_split_path_info
 
-| Syntax:  | `fastcgi_split_path_info regex;` |
-| :------- | -------------------------------- |
+  Syntax:`fastcgi_split_path_info regex;`
+
 | Default: | —                                |
-| Context: | `location`                       |
+  Context: `location`
+
 
 Defines a regular expression that captures a value for the `$fastcgi_path_info` variable. The regular expression should have two captures: the first becomes a value of the `$fastcgi_script_name` variable, the second becomes a value of the `$fastcgi_path_info` variable. For example, with these settings
 
-> ```
-> location ~ ^(.+\.php)(.*)$ {
->     fastcgi_split_path_info       ^(.+\.php)(.*)$;
->     fastcgi_param SCRIPT_FILENAME /path/to/php$fastcgi_script_name;
->     fastcgi_param PATH_INFO       $fastcgi_path_info;
-> ```
+```
+location ~ ^(.+\.php)(.*)$ {
+    fastcgi_split_path_info       ^(.+\.php)(.*)$;
+    fastcgi_param SCRIPT_FILENAME /path/to/php$fastcgi_script_name;
+    fastcgi_param PATH_INFO       $fastcgi_path_info;
+```
 
 and the “`/show.php/article/0001`” request, the `SCRIPT_FILENAME` parameter will be equal to “`/path/to/php/show.php`”, and the `PATH_INFO` parameter will be equal to “`/article/0001`”.
 
@@ -910,16 +987,18 @@ and the “`/show.php/article/0001`” request, the `SCRIPT_FILENAME` parameter 
 
 ### fastcgi_store
 
-| Syntax:  | `fastcgi_store on | off | string;` |
-| :------- | ---------------------------------- |
-| Default: | `fastcgi_store off;`               |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`fastcgi_store on | off | string;`
+
+  Default: `fastcgi_store off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) or [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
 
-> ```
-> fastcgi_store /data/www$original_uri;
-> ```
+```
+fastcgi_store /data/www$original_uri;
+```
 
 
 
@@ -927,25 +1006,25 @@ The modification time of files is set according to the received “Last-Modified
 
 This directive can be used to create local copies of static unchangeable files, e.g.:
 
-> ```
-> location /images/ {
->     root                 /data/www;
->     error_page           404 = /fetch$uri;
-> }
-> 
-> location /fetch/ {
->     internal;
-> 
->     fastcgi_pass         backend:9000;
->     ...
-> 
->     fastcgi_store        on;
->     fastcgi_store_access user:rw group:rw all:r;
->     fastcgi_temp_path    /data/temp;
-> 
->     alias                /data/www/;
-> }
-> ```
+```
+location /images/ {
+    root                 /data/www;
+    error_page           404 = /fetch$uri;
+}
+
+location /fetch/ {
+    internal;
+
+    fastcgi_pass         backend:9000;
+    ...
+
+    fastcgi_store        on;
+    fastcgi_store_access user:rw group:rw all:r;
+    fastcgi_temp_path    /data/temp;
+
+    alias                /data/www/;
+}
+```
 
 
 
@@ -953,24 +1032,26 @@ This directive can be used to create local copies of static unchangeable files, 
 
 ### fastcgi_store_access
 
-| Syntax:  | `fastcgi_store_access users:permissions ...;` |
-| :------- | --------------------------------------------- |
-| Default: | `fastcgi_store_access user:rw;`               |
-| Context: | `http`, `server`, `location`                  |
+  Syntax:`fastcgi_store_access users:permissions ...;`
+
+  Default: `fastcgi_store_access user:rw;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets access permissions for newly created files and directories, e.g.:
 
-> ```
-> fastcgi_store_access user:rw group:rw all:r;
-> ```
+```
+fastcgi_store_access user:rw group:rw all:r;
+```
 
 
 
 If any `group` or `all` access permissions are specified then `user` permissions may be omitted:
 
-> ```
-> fastcgi_store_access group:rw all:r;
-> ```
+```
+fastcgi_store_access group:rw all:r;
+```
 
 
 
@@ -978,10 +1059,12 @@ If any `group` or `all` access permissions are specified then `user` permissions
 
 ### fastcgi_temp_file_write_size
 
-| Syntax:  | `fastcgi_temp_file_write_size size;`   |
-| :------- | -------------------------------------- |
-| Default: | `fastcgi_temp_file_write_size 8k|16k;` |
-| Context: | `http`, `server`, `location`           |
+  Syntax:  `fastcgi_temp_file_write_size size;`
+
+  Default: `fastcgi_temp_file_write_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 Limits the `size` of data written to a temporary file at a time, when buffering of responses from the FastCGI server to temporary files is enabled. By default, `size` is limited by two buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives. The maximum size of a temporary file is set by the [fastcgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_max_temp_file_size) directive.
 
@@ -989,22 +1072,24 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 
 ### fastcgi_temp_path
 
-| Syntax:  | `fastcgi_temp_path path [level1 [level2 [level3]]];` |
-| :------- | ---------------------------------------------------- |
-| Default: | `fastcgi_temp_path fastcgi_temp;`                    |
-| Context: | `http`, `server`, `location`                         |
+  Syntax:`fastcgi_temp_path path [level1 [level2 [level3]]];`
+
+  Default: `fastcgi_temp_path fastcgi_temp;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a directory for storing temporary files with data received from FastCGI servers. Up to three-level subdirectory hierarchy can be used underneath the specified directory. For example, in the following configuration
 
-> ```
-> fastcgi_temp_path /spool/nginx/fastcgi_temp 1 2;
-> ```
+```
+fastcgi_temp_path /spool/nginx/fastcgi_temp 1 2;
+```
 
 a temporary file might look like this:
 
-> ```
-> /spool/nginx/fastcgi_temp/7/45/00000123457
-> ```
+```
+/spool/nginx/fastcgi_temp/7/45/00000123457
+```
 
 
 

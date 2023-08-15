@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_ssl_module"
 date = 2023-08-15T08:19:07+08:00
+weight = 490
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_http_ssl_module` module provides the necessary support for HTTPS.
 
 This module is not built by default, it should be enabled with the `--with-http_ssl_module` configuration parameter.
 
-> This module requires the [OpenSSL](http://www.openssl.org/) library.
+This module requires the [OpenSSL](http://www.openssl.org/) library.
 
 
 
@@ -35,27 +36,27 @@ To reduce the processor load it is recommended to
 
 
 
-> ```
-> worker_processes auto;
-> 
-> http {
-> 
->     ...
-> 
->     server {
->         listen              443 ssl;
->         keepalive_timeout   70;
-> 
->         ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
->         ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;
->         ssl_certificate     /usr/local/nginx/conf/cert.pem;
->         ssl_certificate_key /usr/local/nginx/conf/cert.key;
->         ssl_session_cache   shared:SSL:10m;
->         ssl_session_timeout 10m;
-> 
->         ...
->     }
-> ```
+```
+worker_processes auto;
+
+http {
+
+    ...
+
+    server {
+        listen              443 ssl;
+        keepalive_timeout   70;
+
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;
+        ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5;
+        ssl_certificate     /usr/local/nginx/conf/cert.pem;
+        ssl_certificate_key /usr/local/nginx/conf/cert.key;
+        ssl_session_cache   shared:SSL:10m;
+        ssl_session_timeout 10m;
+
+        ...
+    }
+```
 
 
 
@@ -67,10 +68,12 @@ To reduce the processor load it is recommended to
 
 ### ssl
 
-| Syntax:  | `ssl on | off;`  |
-| :------- | ---------------- |
-| Default: | `ssl off;`       |
-| Context: | `http`, `server` |
+  Syntax:  `ssl on | off;`
+
+  Default: `ssl off;`
+
+  Context: `http`, `server`
+
 
 This directive was made obsolete in version 1.15.0 and was removed in version 1.25.1. The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive should be used instead.
 
@@ -78,10 +81,12 @@ This directive was made obsolete in version 1.15.0 and was removed in version 1.
 
 ### ssl_buffer_size
 
-| Syntax:  | `ssl_buffer_size size;` |
-| :------- | ----------------------- |
-| Default: | `ssl_buffer_size 16k;`  |
-| Context: | `http`, `server`        |
+  Syntax:`ssl_buffer_size size;`
+
+  Default: `ssl_buffer_size 16k;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.5.9.
 
@@ -89,9 +94,9 @@ Sets the size of the buffer used for sending data.
 
 By default, the buffer size is 16k, which corresponds to minimal overhead when sending big responses. To minimize Time To First Byte it may be beneficial to use smaller values, for example:
 
-> ```
-> ssl_buffer_size 4k;
-> ```
+```
+ssl_buffer_size 4k;
+```
 
 
 
@@ -99,42 +104,43 @@ By default, the buffer size is 16k, which corresponds to minimal overhead when s
 
 ### ssl_certificate
 
-| Syntax:  | `ssl_certificate file;` |
-| :------- | ----------------------- |
+  Syntax:`ssl_certificate file;`
+
 | Default: | —                       |
-| Context: | `http`, `server`        |
+  Context: `http`, `server`
+
 
 Specifies a `file` with the certificate in the PEM format for the given virtual server. If intermediate certificates should be specified in addition to a primary certificate, they should be specified in the same file in the following order: the primary certificate comes first, then the intermediate certificates. A secret key in the PEM format may be placed in the same file.
 
 Since version 1.11.0, this directive can be specified multiple times to load certificates of different types, for example, RSA and ECDSA:
 
-> ```
-> server {
->     listen              443 ssl;
->     server_name         example.com;
-> 
->     ssl_certificate     example.com.rsa.crt;
->     ssl_certificate_key example.com.rsa.key;
-> 
->     ssl_certificate     example.com.ecdsa.crt;
->     ssl_certificate_key example.com.ecdsa.key;
-> 
->     ...
-> }
-> ```
+```
+server {
+    listen              443 ssl;
+    server_name         example.com;
+
+    ssl_certificate     example.com.rsa.crt;
+    ssl_certificate_key example.com.rsa.key;
+
+    ssl_certificate     example.com.ecdsa.crt;
+    ssl_certificate_key example.com.ecdsa.key;
+
+    ...
+}
+```
 
 
 
-> Only OpenSSL 1.0.2 or higher supports separate [certificate chains](https://nginx.org/en/docs/http/configuring_https_servers.html#chains) for different certificates. With older versions, only one certificate chain can be used.
+Only OpenSSL 1.0.2 or higher supports separate [certificate chains](https://nginx.org/en/docs/http/configuring_https_servers.html#chains) for different certificates. With older versions, only one certificate chain can be used.
 
 
 
 Since version 1.15.9, variables can be used in the `file` name when using OpenSSL 1.0.2 or higher:
 
-> ```
-> ssl_certificate     $ssl_server_name.crt;
-> ssl_certificate_key $ssl_server_name.key;
-> ```
+```
+ssl_certificate     $ssl_server_name.crt;
+ssl_certificate_key $ssl_server_name.key;
+```
 
 Note that using variables implies that a certificate will be loaded for each SSL handshake, and this may have a negative impact on performance.
 
@@ -148,10 +154,11 @@ It should be kept in mind that due to the HTTPS protocol limitations for maximum
 
 ### ssl_certificate_key
 
-| Syntax:  | `ssl_certificate_key file;` |
-| :------- | --------------------------- |
+  Syntax:`ssl_certificate_key file;`
+
 | Default: | —                           |
-| Context: | `http`, `server`            |
+  Context: `http`, `server`
+
 
 Specifies a `file` with the secret key in the PEM format for the given virtual server.
 
@@ -167,16 +174,18 @@ Since version 1.15.9, variables can be used in the `file` name when using OpenSS
 
 ### ssl_ciphers
 
-| Syntax:  | `ssl_ciphers ciphers;`          |
-| :------- | ------------------------------- |
-| Default: | `ssl_ciphers HIGH:!aNULL:!MD5;` |
-| Context: | `http`, `server`                |
+  Syntax:  `ssl_ciphers ciphers;`
+
+  Default: `ssl_ciphers HIGH:!aNULL:!MD5;`
+
+  Context: `http`, `server`
+
 
 Specifies the enabled ciphers. The ciphers are specified in the format understood by the OpenSSL library, for example:
 
-> ```
-> ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
-> ```
+```
+ssl_ciphers ALL:!aNULL:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP;
+```
 
 
 
@@ -184,7 +193,7 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
 
 
-> The previous versions of nginx used [different](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility) ciphers by default.
+The previous versions of nginx used [different](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility) ciphers by default.
 
 
 
@@ -192,10 +201,11 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
 ### ssl_client_certificate
 
-| Syntax:  | `ssl_client_certificate file;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_client_certificate file;`
+
 | Default: | —                              |
-| Context: | `http`, `server`               |
+  Context: `http`, `server`
+
 
 Specifies a `file` with trusted CA certificates in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) client certificates and OCSP responses if [ssl_stapling](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling) is enabled.
 
@@ -205,31 +215,32 @@ The list of certificates will be sent to clients. If this is not desired, the [s
 
 ### ssl_conf_command
 
-| Syntax:  | `ssl_conf_command name value;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_conf_command name value;`
+
 | Default: | —                              |
-| Context: | `http`, `server`               |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.19.4.
 
 Sets arbitrary OpenSSL configuration [commands](https://www.openssl.org/docs/man1.1.1/man3/SSL_CONF_cmd.html).
 
-> The directive is supported when using OpenSSL 1.0.2 or higher.
+The directive is supported when using OpenSSL 1.0.2 or higher.
 
 
 
 Several `ssl_conf_command` directives can be specified on the same level:
 
-> ```
-> ssl_conf_command Options PrioritizeChaCha;
-> ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
-> ```
+```
+ssl_conf_command Options PrioritizeChaCha;
+ssl_conf_command Ciphersuites TLS_CHACHA20_POLY1305_SHA256;
+```
 
 These directives are inherited from the previous configuration level if and only if there are no `ssl_conf_command` directives defined on the current level.
 
 
 
-> Note that configuring OpenSSL directly might result in unexpected behavior.
+Note that configuring OpenSSL directly might result in unexpected behavior.
 
 
 
@@ -237,10 +248,11 @@ These directives are inherited from the previous configuration level if and only
 
 ### ssl_crl
 
-| Syntax:  | `ssl_crl file;`  |
-| :------- | ---------------- |
+  Syntax:  `ssl_crl file;`
+
 | Default: | —                |
-| Context: | `http`, `server` |
+  Context: `http`, `server`
+
 
 This directive appeared in version 0.8.7.
 
@@ -250,10 +262,11 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
 ### ssl_dhparam
 
-| Syntax:  | `ssl_dhparam file;` |
-| :------- | ------------------- |
+  Syntax:`ssl_dhparam file;`
+
 | Default: | —                   |
-| Context: | `http`, `server`    |
+  Context: `http`, `server`
+
 
 This directive appeared in version 0.7.2.
 
@@ -261,7 +274,7 @@ Specifies a `file` with DH parameters for DHE ciphers.
 
 By default no parameters are set, and therefore DHE ciphers will not be used.
 
-> Prior to version 1.11.0, builtin parameters were used by default.
+Prior to version 1.11.0, builtin parameters were used by default.
 
 
 
@@ -269,26 +282,28 @@ By default no parameters are set, and therefore DHE ciphers will not be used.
 
 ### ssl_early_data
 
-| Syntax:  | `ssl_early_data on | off;` |
-| :------- | -------------------------- |
-| Default: | `ssl_early_data off;`      |
-| Context: | `http`, `server`           |
+  Syntax:`ssl_early_data on | off;`
+
+  Default: `ssl_early_data off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.15.3.
 
 Enables or disables TLS 1.3 [early data](https://datatracker.ietf.org/doc/html/rfc8446#section-2.3).
 
-> Requests sent within early data are subject to [replay attacks](https://datatracker.ietf.org/doc/html/rfc8470). To protect against such attacks at the application layer, the [$ssl_early_data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_early_data) variable should be used.
+Requests sent within early data are subject to [replay attacks](https://datatracker.ietf.org/doc/html/rfc8470). To protect against such attacks at the application layer, the [$ssl_early_data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_early_data) variable should be used.
 
 
 
-> ```
-> proxy_set_header Early-Data $ssl_early_data;
-> ```
+```
+proxy_set_header Early-Data $ssl_early_data;
+```
 
 
 
-> The directive is supported when using OpenSSL 1.1.1 or higher (1.15.4) and [BoringSSL](https://boringssl.googlesource.com/boringssl/).
+The directive is supported when using OpenSSL 1.1.1 or higher (1.15.4) and [BoringSSL](https://boringssl.googlesource.com/boringssl/).
 
 
 
@@ -296,10 +311,12 @@ Enables or disables TLS 1.3 [early data](https://datatracker.ietf.org/doc/html/r
 
 ### ssl_ecdh_curve
 
-| Syntax:  | `ssl_ecdh_curve curve;` |
-| :------- | ----------------------- |
-| Default: | `ssl_ecdh_curve auto;`  |
-| Context: | `http`, `server`        |
+  Syntax:`ssl_ecdh_curve curve;`
+
+  Default: `ssl_ecdh_curve auto;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in versions 1.1.0 and 1.0.6.
 
@@ -307,9 +324,9 @@ Specifies a `curve` for ECDHE ciphers.
 
 When using OpenSSL 1.0.2 or higher, it is possible to specify multiple curves (1.11.0), for example:
 
-> ```
-> ssl_ecdh_curve prime256v1:secp384r1;
-> ```
+```
+ssl_ecdh_curve prime256v1:secp384r1;
+```
 
 
 
@@ -317,13 +334,13 @@ The special value `auto` (1.11.0) instructs nginx to use a list built into the O
 
 
 
-> Prior to version 1.11.0, the `prime256v1` curve was used by default.
+Prior to version 1.11.0, the `prime256v1` curve was used by default.
 
 
 
 
 
-> When using OpenSSL 1.0.2 or higher, this directive sets the list of curves supported by the server. Thus, in order for ECDSA certificates to work, it is important to include the curves used in the certificates.
+When using OpenSSL 1.0.2 or higher, this directive sets the list of curves supported by the server. Thus, in order for ECDSA certificates to work, it is important to include the curves used in the certificates.
 
 
 
@@ -331,10 +348,12 @@ The special value `auto` (1.11.0) instructs nginx to use a list built into the O
 
 ### ssl_ocsp
 
-| Syntax:  | `ssl_ocsp on | off | leaf;` |
-| :------- | --------------------------- |
-| Default: | `ssl_ocsp off;`             |
-| Context: | `http`, `server`            |
+  Syntax:`ssl_ocsp on | off | leaf;`
+
+  Default: `ssl_ocsp off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.19.0.
 
@@ -346,11 +365,11 @@ To resolve the OCSP responder hostname, the [resolver](https://nginx.org/en/docs
 
 Example:
 
-> ```
-> ssl_verify_client on;
-> ssl_ocsp          on;
-> resolver          192.0.2.1;
-> ```
+```
+ssl_verify_client on;
+ssl_ocsp          on;
+resolver          192.0.2.1;
+```
 
 
 
@@ -358,10 +377,12 @@ Example:
 
 ### ssl_ocsp_cache
 
-| Syntax:  | `ssl_ocsp_cache off | [shared:name:size];` |
-| :------- | ------------------------------------------ |
-| Default: | `ssl_ocsp_cache off;`                      |
-| Context: | `http`, `server`                           |
+  Syntax:`ssl_ocsp_cache off | [shared:name:size];`
+
+  Default: `ssl_ocsp_cache off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.19.0.
 
@@ -373,10 +394,11 @@ The `off` parameter prohibits the use of the cache.
 
 ### ssl_ocsp_responder
 
-| Syntax:  | `ssl_ocsp_responder url;` |
-| :------- | ------------------------- |
+  Syntax:`ssl_ocsp_responder url;`
+
 | Default: | —                         |
-| Context: | `http`, `server`          |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.19.0.
 
@@ -384,9 +406,9 @@ Overrides the URL of the OCSP responder specified in the “[Authority Informati
 
 Only “`http://`” OCSP responders are supported:
 
-> ```
-> ssl_ocsp_responder http://ocsp.example.com/;
-> ```
+```
+ssl_ocsp_responder http://ocsp.example.com/;
+```
 
 
 
@@ -394,10 +416,11 @@ Only “`http://`” OCSP responders are supported:
 
 ### ssl_password_file
 
-| Syntax:  | `ssl_password_file file;` |
-| :------- | ------------------------- |
+  Syntax:`ssl_password_file file;`
+
 | Default: | —                         |
-| Context: | `http`, `server`          |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.7.3.
 
@@ -405,25 +428,25 @@ Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/
 
 Example:
 
-> ```
-> http {
->     ssl_password_file /etc/keys/global.pass;
->     ...
-> 
->     server {
->         server_name www1.example.com;
->         ssl_certificate_key /etc/keys/first.key;
->     }
-> 
->     server {
->         server_name www2.example.com;
-> 
->         # named pipe can also be used instead of a file
->         ssl_password_file /etc/keys/fifo;
->         ssl_certificate_key /etc/keys/second.key;
->     }
-> }
-> ```
+```
+http {
+    ssl_password_file /etc/keys/global.pass;
+    ...
+
+    server {
+        server_name www1.example.com;
+        ssl_certificate_key /etc/keys/first.key;
+    }
+
+    server {
+        server_name www2.example.com;
+
+        # named pipe can also be used instead of a file
+        ssl_password_file /etc/keys/fifo;
+        ssl_certificate_key /etc/keys/second.key;
+    }
+}
+```
 
 
 
@@ -431,10 +454,12 @@ Example:
 
 ### ssl_prefer_server_ciphers
 
-| Syntax:  | `ssl_prefer_server_ciphers on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `ssl_prefer_server_ciphers off;`      |
-| Context: | `http`, `server`                      |
+  Syntax:`ssl_prefer_server_ciphers on | off;`
+
+  Default: `ssl_prefer_server_ciphers off;`
+
+  Context: `http`, `server`
+
 
 Specifies that server ciphers should be preferred over client ciphers when using the SSLv3 and TLS protocols.
 
@@ -442,22 +467,24 @@ Specifies that server ciphers should be preferred over client ciphers when using
 
 ### ssl_protocols
 
-| Syntax:  | `ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`               |
-| Context: | `http`, `server`                                             |
+  Syntax:`ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
+
+  Default: `ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`
+
+  Context: `http`, `server`
+
 
 Enables the specified protocols.
 
-> The `TLSv1.1` and `TLSv1.2` parameters (1.1.13, 1.0.12) work only when OpenSSL 1.0.1 or higher is used.
+The `TLSv1.1` and `TLSv1.2` parameters (1.1.13, 1.0.12) work only when OpenSSL 1.0.1 or higher is used.
 
 
 
-> The `TLSv1.3` parameter (1.13.0) works only when OpenSSL 1.1.1 or higher is used.
+The `TLSv1.3` parameter (1.13.0) works only when OpenSSL 1.1.1 or higher is used.
 
 
 
-> The `TLSv1.3` parameter is used by default since 1.23.4.
+The `TLSv1.3` parameter is used by default since 1.23.4.
 
 
 
@@ -465,10 +492,12 @@ Enables the specified protocols.
 
 ### ssl_reject_handshake
 
-| Syntax:  | `ssl_reject_handshake on | off;` |
-| :------- | -------------------------------- |
-| Default: | `ssl_reject_handshake off;`      |
-| Context: | `http`, `server`                 |
+  Syntax:`ssl_reject_handshake on | off;`
+
+  Default: `ssl_reject_handshake off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.19.4.
 
@@ -476,19 +505,19 @@ If enabled, SSL handshakes in the [server](https://nginx.org/en/docs/http/ngx_ht
 
 For example, in the following configuration, SSL handshakes with server names other than `example.com` are rejected:
 
-> ```
-> server {
->     listen               443 ssl default_server;
->     ssl_reject_handshake on;
-> }
-> 
-> server {
->     listen              443 ssl;
->     server_name         example.com;
->     ssl_certificate     example.com.crt;
->     ssl_certificate_key example.com.key;
-> }
-> ```
+```
+server {
+    listen               443 ssl default_server;
+    ssl_reject_handshake on;
+}
+
+server {
+    listen              443 ssl;
+    server_name         example.com;
+    ssl_certificate     example.com.crt;
+    ssl_certificate_key example.com.key;
+}
+```
 
 
 
@@ -496,10 +525,12 @@ For example, in the following configuration, SSL handshakes with server names ot
 
 ### ssl_session_cache
 
-| Syntax:  | `ssl_session_cache off | none | [builtin[:size]] [shared:name:size];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `ssl_session_cache none;`                                    |
-| Context: | `http`, `server`                                             |
+  Syntax:`ssl_session_cache off | none | [builtin[:size]] [shared:name:size];`
+
+  Default: `ssl_session_cache none;`
+
+  Context: `http`, `server`
+
 
 Sets the types and sizes of caches that store session parameters. A cache can be of any of the following types:
 
@@ -523,9 +554,9 @@ Sets the types and sizes of caches that store session parameters. A cache can be
 
 Both cache types can be used simultaneously, for example:
 
-> ```
-> ssl_session_cache builtin:1000 shared:SSL:10m;
-> ```
+```
+ssl_session_cache builtin:1000 shared:SSL:10m;
+```
 
 but using only shared cache without the built-in cache should be more efficient.
 
@@ -533,10 +564,11 @@ but using only shared cache without the built-in cache should be more efficient.
 
 ### ssl_session_ticket_key
 
-| Syntax:  | `ssl_session_ticket_key file;` |
-| :------- | ------------------------------ |
+  Syntax:`ssl_session_ticket_key file;`
+
 | Default: | —                              |
-| Context: | `http`, `server`               |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.5.7.
 
@@ -544,18 +576,18 @@ Sets a `file` with the secret key used to encrypt and decrypt TLS session ticket
 
 If several keys are specified, only the first key is used to encrypt TLS session tickets. This allows configuring key rotation, for example:
 
-> ```
-> ssl_session_ticket_key current.key;
-> ssl_session_ticket_key previous.key;
-> ```
+```
+ssl_session_ticket_key current.key;
+ssl_session_ticket_key previous.key;
+```
 
 
 
 The `file` must contain 80 or 48 bytes of random data and can be created using the following command:
 
-> ```
-> openssl rand 80 > ticket.key
-> ```
+```
+openssl rand 80 > ticket.key
+```
 
 Depending on the file size either AES256 (for 80-byte keys, 1.11.8) or AES128 (for 48-byte keys) is used for encryption.
 
@@ -563,10 +595,12 @@ Depending on the file size either AES256 (for 80-byte keys, 1.11.8) or AES128 (f
 
 ### ssl_session_tickets
 
-| Syntax:  | `ssl_session_tickets on | off;` |
-| :------- | ------------------------------- |
-| Default: | `ssl_session_tickets on;`       |
-| Context: | `http`, `server`                |
+  Syntax:`ssl_session_tickets on | off;`
+
+  Default: `ssl_session_tickets on;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.5.9.
 
@@ -576,10 +610,12 @@ Enables or disables session resumption through [TLS session tickets](https://dat
 
 ### ssl_session_timeout
 
-| Syntax:  | `ssl_session_timeout time;` |
-| :------- | --------------------------- |
-| Default: | `ssl_session_timeout 5m;`   |
-| Context: | `http`, `server`            |
+  Syntax:`ssl_session_timeout time;`
+
+  Default: `ssl_session_timeout 5m;`
+
+  Context: `http`, `server`
+
 
 Specifies a time during which a client may reuse the session parameters.
 
@@ -587,19 +623,21 @@ Specifies a time during which a client may reuse the session parameters.
 
 ### ssl_stapling
 
-| Syntax:  | `ssl_stapling on | off;` |
-| :------- | ------------------------ |
-| Default: | `ssl_stapling off;`      |
-| Context: | `http`, `server`         |
+  Syntax:`ssl_stapling on | off;`
+
+  Default: `ssl_stapling off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.3.7.
 
 Enables or disables [stapling of OCSP responses](https://datatracker.ietf.org/doc/html/rfc6066#section-8) by the server. Example:
 
-> ```
-> ssl_stapling on;
-> resolver 192.0.2.1;
-> ```
+```
+ssl_stapling on;
+resolver 192.0.2.1;
+```
 
 
 
@@ -611,10 +649,11 @@ For a resolution of the OCSP responder hostname, the [resolver](https://nginx.or
 
 ### ssl_stapling_file
 
-| Syntax:  | `ssl_stapling_file file;` |
-| :------- | ------------------------- |
+  Syntax:`ssl_stapling_file file;`
+
 | Default: | —                         |
-| Context: | `http`, `server`          |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.3.7.
 
@@ -626,10 +665,11 @@ The file should be in the DER format as produced by the “`openssl ocsp`” com
 
 ### ssl_stapling_responder
 
-| Syntax:  | `ssl_stapling_responder url;` |
-| :------- | ----------------------------- |
+  Syntax:`ssl_stapling_responder url;`
+
 | Default: | —                             |
-| Context: | `http`, `server`              |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.3.7.
 
@@ -637,9 +677,9 @@ Overrides the URL of the OCSP responder specified in the “[Authority Informati
 
 Only “`http://`” OCSP responders are supported:
 
-> ```
-> ssl_stapling_responder http://ocsp.example.com/;
-> ```
+```
+ssl_stapling_responder http://ocsp.example.com/;
+```
 
 
 
@@ -647,10 +687,12 @@ Only “`http://`” OCSP responders are supported:
 
 ### ssl_stapling_verify
 
-| Syntax:  | `ssl_stapling_verify on | off;` |
-| :------- | ------------------------------- |
-| Default: | `ssl_stapling_verify off;`      |
-| Context: | `http`, `server`                |
+  Syntax:`ssl_stapling_verify on | off;`
+
+  Default: `ssl_stapling_verify off;`
+
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.3.7.
 
@@ -662,10 +704,11 @@ For verification to work, the certificate of the server certificate issuer, the 
 
 ### ssl_trusted_certificate
 
-| Syntax:  | `ssl_trusted_certificate file;` |
-| :------- | ------------------------------- |
+  Syntax:`ssl_trusted_certificate file;`
+
 | Default: | —                               |
-| Context: | `http`, `server`                |
+  Context: `http`, `server`
+
 
 This directive appeared in version 1.3.7.
 
@@ -677,10 +720,12 @@ In contrast to the certificate set by [ssl_client_certificate](https://nginx.org
 
 ### ssl_verify_client
 
-| Syntax:  | `ssl_verify_client on | off | optional | optional_no_ca;` |
-| :------- | --------------------------------------------------------- |
-| Default: | `ssl_verify_client off;`                                  |
-| Context: | `http`, `server`                                          |
+  Syntax:`ssl_verify_client on | off | optional | optional_no_ca;`
+
+  Default: `ssl_verify_client off;`
+
+  Context: `http`, `server`
+
 
 Enables verification of client certificates. The verification result is stored in the [$ssl_client_verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_verify) variable.
 
@@ -692,10 +737,12 @@ The `optional_no_ca` parameter (1.3.8, 1.2.5) requests the client certificate bu
 
 ### ssl_verify_depth
 
-| Syntax:  | `ssl_verify_depth number;` |
-| :------- | -------------------------- |
-| Default: | `ssl_verify_depth 1;`      |
-| Context: | `http`, `server`           |
+  Syntax:`ssl_verify_depth number;`
+
+  Default: `ssl_verify_depth 1;`
+
+  Context: `http`, `server`
+
 
 Sets the verification depth in the client certificates chain.
 

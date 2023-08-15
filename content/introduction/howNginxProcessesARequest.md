@@ -55,9 +55,8 @@ server {
 
 
 
-> The `default_server` parameter has been available since version 0.8.21. In earlier versions the `default` parameter should be used instead.
->
-> ​	`default_server` 参数自版本 0.8.21 可用。在早期版本中，应使用 `default` 参数。
+The `default_server` parameter has been available since version 0.8.21. In earlier versions the `default` parameter should be used instead.
+​	`default_server` 参数自版本 0.8.21 可用。在早期版本中，应使用 `default` 参数。
 
 Note that the default server is a property of the listen port and not of the server name. More about this later.
 
@@ -85,9 +84,8 @@ Here, the server name is set to an empty string that will match requests without
 
 ​	在这里，服务器名称设置为空字符串，将与不带 “Host” 标头字段的请求匹配，并返回特殊的非标准 nginx 代码 444，从而关闭连接。
 
-> Since version 0.8.48, this is the default setting for the server name, so the `server_name ""` can be omitted. In earlier versions, the machine’s *hostname* was used as a default server name.
->
-> ​	自版本 0.8.48 起，这是服务器名称的默认设置，因此可以省略 `server_name ""`。在早期版本中，机器的 *主机名* 用作默认服务器名称。
+Since version 0.8.48, this is the default setting for the server name, so the `server_name ""` can be omitted. In earlier versions, the machine’s *hostname* was used as a default server name.
+​	自版本 0.8.48 起，这是服务器名称的默认设置，因此可以省略 `server_name ""`。在早期版本中，机器的 *主机名* 用作默认服务器名称。
 
 
 

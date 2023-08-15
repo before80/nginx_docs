@@ -35,9 +35,9 @@ To start nginx, run the executable file. Once nginx is started, it can be contro
 
 ​	要启动nginx，运行可执行文件。一旦nginx启动，就可以通过使用带有`-s`参数调用可执行文件来控制它。使用以下语法：
 
-> ```
-> nginx -s signal
-> ```
+```
+nginx -s signal
+```
 
 Where *signal* may be one of the following:
 
@@ -56,21 +56,20 @@ For example, to stop nginx processes with waiting for the worker processes to fi
 
 ​	例如，要停止nginx进程并等待工作进程完成当前请求服务，可以执行以下命令：
 
-> ```
-> nginx -s quit
-> ```
+```
+nginx -s quit
+```
 
-> This command should be executed under the same user that started nginx.
->
-> ​	此命令应在启动nginx的同一用户下执行。
+This command should be executed under the same user that started nginx.
+​	此命令应在启动nginx的同一用户下执行。
 
 Changes made in the configuration file will not be applied until the command to reload configuration is sent to nginx or it is restarted. To reload configuration, execute:
 
 ​	在配置文件中进行的更改只有在发送重新加载配置的命令或重新启动nginx后才会生效。要重新加载配置，执行：
 
-> ```
-> nginx -s reload
-> ```
+```
+nginx -s reload
+```
 
 Once the master process receives the signal to reload configuration, it checks the syntax validity of the new configuration file and tries to apply the configuration provided in it. If this is a success, the master process starts new worker processes and sends messages to old worker processes, requesting them to shut down. Otherwise, the master process rolls back the changes and continues to work with the old configuration. Old worker processes, receiving a command to shut down, stop accepting new connections and continue to service current requests until all such requests are serviced. After that, the old worker processes exit.
 
@@ -80,17 +79,17 @@ A signal may also be sent to nginx processes with the help of Unix tools such as
 
 ​	也可以使用类似于`kill`实用程序的Unix工具向nginx进程发送信号。在这种情况下，信号直接发送给具有给定进程ID的进程。nginx主进程的进程ID默认情况下写入目录`/usr/local/nginx/logs`或`/var/run`中的`nginx.pid`文件。例如，如果主进程ID为1628，要发送QUIT信号以导致nginx优雅关闭，执行：
 
-> ```
-> kill -s QUIT 1628
-> ```
+```
+kill -s QUIT 1628
+```
 
 For getting the list of all running nginx processes, the `ps` utility may be used, for example, in the following way:
 
 ​	要获取所有运行中的nginx进程列表，可以使用`ps`实用程序，例如：
 
-> ```
-> ps -ax | grep nginx
-> ```
+```
+ps -ax | grep nginx
+```
 
 For more information on sending signals to nginx, see [Controlling nginx](https://nginx.org/en/docs/control.html).
 
@@ -128,12 +127,12 @@ Next, open the configuration file. The default configuration file already includ
 
 ​	接下来，打开配置文件。默认配置文件已经包含了几个`server`块的示例，大多数都被注释掉了。现在，注释掉所有这些块，并开始一个新的`server`块：
 
-> ```
-> http {
->     server {
->     }
-> }
-> ```
+```
+http {
+    server {
+    }
+}
+```
 
 Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) to and by [server names](https://nginx.org/en/docs/http/server_names.html). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
 
@@ -143,11 +142,11 @@ Add the following `location` block to the `server` block:
 
 ​	将以下`location`块添加到`server`块中：
 
-> ```
-> location / {
->     root /data/www;
-> }
-> ```
+```
+location / {
+    root /data/www;
+}
+```
 
 This `location` block specifies the “`/`” prefix compared with the URI from the request. For matching requests, the URI will be added to the path specified in the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, that is, to `/data/www`, to form the path to the requested file on the local file system. If there are several matching `location` blocks nginx selects the one with the longest prefix. The `location` block above provides the shortest prefix, of length one, and so only if all other `location` blocks fail to provide a match, this block will be used.
 
@@ -157,11 +156,11 @@ Next, add the second `location` block:
 
 ​	接下来，添加第二个`location`块：
 
-> ```
-> location /images/ {
->     root /data;
-> }
-> ```
+```
+location /images/ {
+    root /data;
+}
+```
 
 It will be a match for requests starting with `/images/` (`location /` also matches such requests, but has shorter prefix).
 
@@ -171,17 +170,17 @@ The resulting configuration of the `server` block should look like this:
 
 ​	`server`块的最终配置应如下所示：
 
-> ```
-> server {
->     location / {
->         root /data/www;
->     }
-> 
->     location /images/ {
->         root /data;
->     }
-> }
-> ```
+```
+server {
+    location / {
+        root /data/www;
+    }
+
+    location /images/ {
+        root /data;
+    }
+}
+```
 
 This is already a working configuration of a server that listens on the standard port 80 and is accessible on the local machine at `http://localhost/`. In response to requests with URIs starting with `/images/`, the server will send files from the `/data/images` directory. For example, in response to the `http://localhost/images/example.png` request nginx will send the `/data/images/example.png` file. If such file does not exist, nginx will send a response indicating the 404 error. Requests with URIs not starting with `/images/` will be mapped onto the `/data/www` directory. For example, in response to the `http://localhost/some/example.html` request nginx will send the `/data/www/some/example.html` file.
 
@@ -191,13 +190,12 @@ To apply the new configuration, start nginx if it is not yet started or send the
 
 ​	要应用新的配置，如果尚未启动nginx，则启动它，或者通过执行以下命令向nginx的主进程发送`reload`信号：
 
-> ```
-> nginx -s reload
-> ```
+```
+nginx -s reload
+```
 
-> In case something does not work as expected, you may try to find out the reason in `access.log` and `error.log` files in the directory `/usr/local/nginx/logs` or `/var/log/nginx`.
->
-> ​	如果某些事情不按预期工作，您可以尝试在目录`/usr/local/nginx/logs`或`/var/log/nginx`中查找`access.log`和`error.log`文件中的原因。
+In case something does not work as expected, you may try to find out the reason in `access.log` and `error.log` files in the directory `/usr/local/nginx/logs` or `/var/log/nginx`.
+​	如果某些事情不按预期工作，您可以尝试在目录`/usr/local/nginx/logs`或`/var/log/nginx`中查找`access.log`和`error.log`文件中的原因。
 
 ## 设置简单代理服务器 - Setting Up a Simple Proxy Server
 
@@ -213,15 +211,15 @@ First, define the proxied server by adding one more `server` block to the nginx�
 
 ​	首先，通过在nginx的配置文件中添加另一个`server`块来定义代理服务器，内容如下：
 
-> ```
-> server {
->     listen 8080;
->     root /data/up1;
-> 
->     location / {
->     }
-> }
-> ```
+```
+server {
+    listen 8080;
+    root /data/up1;
+
+    location / {
+    }
+}
+```
 
 This will be a simple server that listens on the port 8080 (previously, the `listen` directive has not been specified since the standard port 80 was used) and maps all requests to the `/data/up1` directory on the local file system. Create this directory and put the `index.html` file into it. Note that the `root` directive is placed in the `server` context. Such `root` directive is used when the `location` block selected for serving a request does not include its own `root` directive.
 
@@ -231,27 +229,27 @@ Next, use the server configuration from the previous section and modify it to ma
 
 ​	接下来，使用上一节中的服务器配置，并对其进行修改，使其成为代理服务器配置。在第一个`location`块中，使用[proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)指令，指定参数中指定的协议、名称和代理服务器的端口（在我们的示例中为`http://localhost:8080`）：
 
-> ```
-> server {
->     location / {
->         proxy_pass http://localhost:8080;
->     }
-> 
->     location /images/ {
->         root /data;
->     }
-> }
-> ```
+```
+server {
+    location / {
+        proxy_pass http://localhost:8080;
+    }
+
+    location /images/ {
+        root /data;
+    }
+}
+```
 
 We will modify the second `location` block, which currently maps requests with the `/images/` prefix to the files under the `/data/images` directory, to make it match the requests of images with typical file extensions. The modified `location` block looks like this:
 
 ​	我们将修改第二个`location`块，该块当前将具有`/images/`前缀的请求映射到`/data/images`目录下的文件，以使其与具有典型文件扩展名的图像请求匹配。修改后的`location`块如下：
 
-> ```
-> location ~ \.(gif|jpg|png)$ {
->     root /data/images;
-> }
-> ```
+```
+location ~ \.(gif|jpg|png)$ {
+    root /data/images;
+}
+```
 
 The parameter is a regular expression matching all URIs ending with `.gif`, `.jpg`, or `.png`. A regular expression should be preceded with `~`. The corresponding requests will be mapped to the `/data/images` directory.
 
@@ -265,17 +263,17 @@ The resulting configuration of a proxy server will look like this:
 
 ​	代理服务器的最终配置如下所示：
 
-> ```
-> server {
->     location / {
->         proxy_pass http://localhost:8080/;
->     }
-> 
->     location ~ \.(gif|jpg|png)$ {
->         root /data/images;
->     }
-> }
-> ```
+```
+server {
+    location / {
+        proxy_pass http://localhost:8080/;
+    }
+
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
 
 This server will filter requests ending with `.gif`, `.jpg`, or `.png` and map them to the `/data/images` directory (by adding URI to the `root` directive’s parameter) and pass all other requests to the proxied server configured above.
 
@@ -301,19 +299,19 @@ The most basic nginx configuration to work with a FastCGI server includes using 
 
 ​	与FastCGI服务器配合工作的最基本的nginx配置包括使用[fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass)指令代替`proxy_pass`指令，以及使用[fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param)指令来设置传递给FastCGI服务器的参数。假设FastCGI服务器可在`localhost:9000`上访问。以前一节中的代理配置为基础，将`proxy_pass`指令替换为`fastcgi_pass`指令，并将参数更改为`localhost:9000`。在PHP中，`SCRIPT_FILENAME`参数用于确定脚本名称，`QUERY_STRING`参数用于传递请求参数。结果配置如下所示：
 
-> ```
-> server {
->     location / {
->         fastcgi_pass  localhost:9000;
->         fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
->         fastcgi_param QUERY_STRING    $query_string;
->     }
-> 
->     location ~ \.(gif|jpg|png)$ {
->         root /data/images;
->     }
-> }
-> ```
+```
+server {
+    location / {
+        fastcgi_pass  localhost:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_param QUERY_STRING    $query_string;
+    }
+
+    location ~ \.(gif|jpg|png)$ {
+        root /data/images;
+    }
+}
+```
 
 This will set up a server that will route all requests except for requests for static images to the proxied server operating on `localhost:9000` through the FastCGI protocol.
 

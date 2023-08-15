@@ -60,6 +60,5 @@ access_log syslog:server=unix:/var/log/nginx.sock,nohostname;
 access_log syslog:server=[2001:db8::1]:12345,facility=local7,tag=nginx,severity=info combined;
 ```
 
-> Logging to syslog is available since version 1.7.1. As part of our [commercial subscription](http://nginx.com/products/) logging to syslog is available since version 1.5.3.
->
-> ​	从版本 1.7.1 开始，支持将日志记录到 syslog。作为我们 [商业订阅](http://nginx.com/products/) 的一部分，从版本 1.5.3 开始支持将日志记录到 syslog。
+Logging to syslog is available since version 1.7.1. As part of our [commercial subscription](http://nginx.com/products/) logging to syslog is available since version 1.5.3.
+​	从版本 1.7.1 开始，支持将日志记录到 syslog。作为我们 [商业订阅](http://nginx.com/products/) 的一部分，从版本 1.5.3 开始支持将日志记录到 syslog。

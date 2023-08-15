@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_gzip_static_module"
 date = 2023-08-15T08:14:46+08:00
+weight = 210
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -23,10 +24,10 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> gzip_static  on;
-> gzip_proxied expired no-cache no-store private auth;
-> ```
+```
+gzip_static  on;
+gzip_proxied expired no-cache no-store private auth;
+```
 
 
 
@@ -38,10 +39,12 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### gzip_static
 
-| Syntax:  | `gzip_static on | off | always;` |
-| :------- | -------------------------------- |
-| Default: | `gzip_static off;`               |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`gzip_static on | off | always;`
+
+  Default: `gzip_static off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables (“`on`”) or disables (“`off`”) checking the existence of precompressed files. The following directives are also taken into account: [gzip_http_version](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_http_version), [gzip_proxied](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_proxied), [gzip_disable](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_disable), and [gzip_vary](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_vary).
 

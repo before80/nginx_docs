@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_limit_req_module"
 date = 2023-08-15T08:16:06+08:00
+weight = 300
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,20 +22,20 @@ The `ngx_http_limit_req_module` module (0.7.21) is used to limit the request pro
 
 
 
-> ```
-> http {
->     limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
-> 
->     ...
-> 
->     server {
-> 
->         ...
-> 
->         location /search/ {
->             limit_req zone=one burst=5;
->         }
-> ```
+```
+http {
+    limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+
+    ...
+
+    server {
+
+        ...
+
+        location /search/ {
+            limit_req zone=one burst=5;
+        }
+```
 
 
 
@@ -46,29 +47,30 @@ The `ngx_http_limit_req_module` module (0.7.21) is used to limit the request pro
 
 ### limit_req
 
-| Syntax:  | `limit_req zone=name [burst=number] [nodelay | delay=number];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`limit_req zone=name [burst=number] [nodelay | delay=number];`
+
 | Default: | —                                                            |
-| Context: | `http`, `server`, `location`                                 |
+  Context: `http`, `server`, `location`
+
 
 Sets the shared memory zone and the maximum burst size of requests. If the requests rate exceeds the rate configured for a zone, their processing is delayed such that requests are processed at a defined rate. Excessive requests are delayed until their number exceeds the maximum burst size in which case the request is terminated with an [error](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status). By default, the maximum burst size is equal to zero. For example, the directives
 
-> ```
-> limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
-> 
-> server {
->     location /search/ {
->         limit_req zone=one burst=5;
->     }
-> ```
+```
+limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+
+server {
+    location /search/ {
+        limit_req zone=one burst=5;
+    }
+```
 
 allow not more than 1 request per second at an average, with bursts not exceeding 5 requests.
 
 If delaying of excessive requests while requests are being limited is not desired, the parameter `nodelay` should be used:
 
-> ```
-> limit_req zone=one burst=5 nodelay;
-> ```
+```
+limit_req zone=one burst=5 nodelay;
+```
 
 
 
@@ -78,16 +80,16 @@ The `delay` parameter (1.15.7) specifies a limit at which excessive requests bec
 
 There could be several `limit_req` directives. For example, the following configuration will limit the processing rate of requests coming from a single IP address and, at the same time, the request processing rate by the virtual server:
 
-> ```
-> limit_req_zone $binary_remote_addr zone=perip:10m rate=1r/s;
-> limit_req_zone $server_name zone=perserver:10m rate=10r/s;
-> 
-> server {
->     ...
->     limit_req zone=perip burst=5 nodelay;
->     limit_req zone=perserver burst=10;
-> }
-> ```
+```
+limit_req_zone $binary_remote_addr zone=perip:10m rate=1r/s;
+limit_req_zone $server_name zone=perserver:10m rate=10r/s;
+
+server {
+    ...
+    limit_req zone=perip burst=5 nodelay;
+    limit_req zone=perserver burst=10;
+}
+```
 
 
 
@@ -97,10 +99,12 @@ These directives are inherited from the previous configuration level if and only
 
 ### limit_req_dry_run
 
-| Syntax:  | `limit_req_dry_run on | off;` |
-| :------- | ----------------------------- |
-| Default: | `limit_req_dry_run off;`      |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`limit_req_dry_run on | off;`
+
+  Default: `limit_req_dry_run off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.17.1.
 
@@ -110,10 +114,12 @@ Enables the dry run mode. In this mode, requests processing rate is not limited,
 
 ### limit_req_log_level
 
-| Syntax:  | `limit_req_log_level info | notice | warn | error;` |
-| :------- | --------------------------------------------------- |
-| Default: | `limit_req_log_level error;`                        |
-| Context: | `http`, `server`, `location`                        |
+  Syntax:`limit_req_log_level info | notice | warn | error;`
+
+  Default: `limit_req_log_level error;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 0.8.18.
 
@@ -123,10 +129,12 @@ Sets the desired logging level for cases when the server refuses to process requ
 
 ### limit_req_status
 
-| Syntax:  | `limit_req_status code;`     |
-| :------- | ---------------------------- |
-| Default: | `limit_req_status 503;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `limit_req_status code;`
+
+  Default: `limit_req_status 503;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.3.15.
 
@@ -136,20 +144,21 @@ Sets the status code to return in response to rejected requests.
 
 ### limit_req_zone
 
-| Syntax:  | `limit_req_zone key zone=name:size rate=rate [sync];` |
-| :------- | ----------------------------------------------------- |
+  Syntax:`limit_req_zone key zone=name:size rate=rate [sync];`
+
 | Default: | —                                                     |
-| Context: | `http`                                                |
+  Context: `http`
+
 
 Sets parameters for a shared memory zone that will keep states for various keys. In particular, the state stores the current number of excessive requests. The `key` can contain text, variables, and their combination. Requests with an empty key value are not accounted.
 
-> Prior to version 1.7.6, a `key` could contain exactly one variable.
+Prior to version 1.7.6, a `key` could contain exactly one variable.
 
 Usage example:
 
-> ```
-> limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
-> ```
+```
+limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
+```
 
 
 
@@ -165,13 +174,13 @@ The rate is specified in requests per second (r/s). If a rate of less than one r
 
 The `sync` parameter (1.15.3) enables [synchronization](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) of the shared memory zone.
 
-> The `sync` parameter is available as part of our [commercial subscription](http://nginx.com/products/).
+The `sync` parameter is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
 
 
-> Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getHttpLimitReqZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteHttpLimitReqZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
+Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getHttpLimitReqZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteHttpLimitReqZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
 
 
 

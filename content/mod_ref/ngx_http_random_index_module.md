@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_random_index_module"
 date = 2023-08-15T08:17:40+08:00
+weight = 390
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -23,11 +24,11 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location / {
->     random_index on;
-> }
-> ```
+```
+location / {
+    random_index on;
+}
+```
 
 
 
@@ -39,9 +40,11 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### random_index
 
-| Syntax:  | `random_index on | off;` |
-| :------- | ------------------------ |
-| Default: | `random_index off;`      |
-| Context: | `location`               |
+  Syntax:`random_index on | off;`
+
+  Default: `random_index off;`
+
+  Context: `location`
+
 
 Enables or disables module processing in a surrounding location.

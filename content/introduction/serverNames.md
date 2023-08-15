@@ -119,10 +119,10 @@ The PCRE library supports named captures using the following syntax:
 
 ​	PCRE 库支持使用以下语法进行命名捕获：
 
-> | `?<*name*>`  | Perl 5.10 compatible syntax, supported since PCRE-7.0 与 Perl 5.10 兼容的语法，自 PCRE-7.0 起支持 |
-> | ------------ | ------------------------------------------------------------ |
-> | `?'*name*'`  | Perl 5.10 compatible syntax, supported since PCRE-7.0 与 Perl 5.10 兼容的语法，自 PCRE-7.0 起支持 |
-> | `?P<*name*>` | Python compatible syntax, supported since PCRE-4.0 与 Python 兼容的语法，自 PCRE-4.0 起支持 |
+| `?<*name*>`  | Perl 5.10 compatible syntax, supported since PCRE-7.0 与 Perl 5.10 兼容的语法，自 PCRE-7.0 起支持 |
+| ------------ | ------------------------------------------------------------ |
+| `?'*name*'`  | Perl 5.10 compatible syntax, supported since PCRE-7.0 与 Perl 5.10 兼容的语法，自 PCRE-7.0 起支持 |
+| `?P<*name*>` | Python compatible syntax, supported since PCRE-4.0 与 Python 兼容的语法，自 PCRE-4.0 起支持 |
 
 If nginx fails to start and displays the error message:
 
@@ -172,9 +172,8 @@ If no [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#ser
 
 ​	如果在 [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) 块中没有定义 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)，则 nginx 将使用空名称作为服务器名称。
 
-> nginx versions up to 0.8.48 used the machine’s hostname as the server name in this case.
->
-> ​	在 0.8.48 版本之前的 nginx 版本中，此情况下使用的是主机名作为服务器名称。
+nginx versions up to 0.8.48 used the machine’s hostname as the server name in this case.
+​	在 0.8.48 版本之前的 nginx 版本中，此情况下使用的是主机名作为服务器名称。
 
 If a server name is defined as “`$hostname`” (0.9.4), the machine’s hostname is used.
 

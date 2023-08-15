@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_core_module"
 date = 2023-08-15T08:22:03+08:00
+weight = 710
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,48 +22,48 @@ The `ngx_stream_core_module` module is available since version 1.9.0. This modul
 
 
 
-> ```
-> worker_processes auto;
-> 
-> error_log /var/log/nginx/error.log info;
-> 
-> events {
->     worker_connections  1024;
-> }
-> 
-> stream {
->     upstream backend {
->         hash $remote_addr consistent;
-> 
->         server backend1.example.com:12345 weight=5;
->         server 127.0.0.1:12345            max_fails=3 fail_timeout=30s;
->         server unix:/tmp/backend3;
->     }
-> 
->     upstream dns {
->        server 192.168.0.1:53535;
->        server dns.example.com:53;
->     }
-> 
->     server {
->         listen 12345;
->         proxy_connect_timeout 1s;
->         proxy_timeout 3s;
->         proxy_pass backend;
->     }
-> 
->     server {
->         listen 127.0.0.1:53 udp reuseport;
->         proxy_timeout 20s;
->         proxy_pass dns;
->     }
-> 
->     server {
->         listen [::1]:12345;
->         proxy_pass unix:/tmp/stream.socket;
->     }
-> }
-> ```
+```
+worker_processes auto;
+
+error_log /var/log/nginx/error.log info;
+
+events {
+    worker_connections  1024;
+}
+
+stream {
+    upstream backend {
+        hash $remote_addr consistent;
+
+        server backend1.example.com:12345 weight=5;
+        server 127.0.0.1:12345            max_fails=3 fail_timeout=30s;
+        server unix:/tmp/backend3;
+    }
+
+    upstream dns {
+       server 192.168.0.1:53535;
+       server dns.example.com:53;
+    }
+
+    server {
+        listen 12345;
+        proxy_connect_timeout 1s;
+        proxy_timeout 3s;
+        proxy_pass backend;
+    }
+
+    server {
+        listen 127.0.0.1:53 udp reuseport;
+        proxy_timeout 20s;
+        proxy_pass dns;
+    }
+
+    server {
+        listen [::1]:12345;
+        proxy_pass unix:/tmp/stream.socket;
+    }
+}
+```
 
 
 
@@ -74,32 +75,33 @@ The `ngx_stream_core_module` module is available since version 1.9.0. This modul
 
 ### listen
 
-| Syntax:  | `listen address:port [ssl] [udp] [proxy_protocol] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`listen address:port [ssl] [udp] [proxy_protocol] [fastopen=number] [backlog=number] [rcvbuf=size] [sndbuf=size] [bind] [ipv6only=on|off] [reuseport] [so_keepalive=on|off|[keepidle]:[keepintvl]:[keepcnt]];`
+
 | Default: | —                                                            |
-| Context: | `server`                                                     |
+  Context: `server`
+
 
 Sets the `address` and `port` for the socket on which the server will accept connections. It is possible to specify just the port. The address can also be a hostname, for example:
 
-> ```
-> listen 127.0.0.1:12345;
-> listen *:12345;
-> listen 12345;     # same as *:12345
-> listen localhost:12345;
-> ```
+```
+listen 127.0.0.1:12345;
+listen *:12345;
+listen 12345;     # same as *:12345
+listen localhost:12345;
+```
 
 IPv6 addresses are specified in square brackets:
 
-> ```
-> listen [::1]:12345;
-> listen [::]:12345;
-> ```
+```
+listen [::1]:12345;
+listen [::]:12345;
+```
 
 UNIX-domain sockets are specified with the “`unix:`” prefix:
 
-> ```
-> listen unix:/var/run/nginx.sock;
-> ```
+```
+listen unix:/var/run/nginx.sock;
+```
 
 
 
@@ -107,10 +109,10 @@ UNIX-domain sockets are specified with the “`unix:`” prefix:
 
 Port ranges (1.15.10) are specified with the first and last port separated by a hyphen:
 
-> ```
-> listen 127.0.0.1:12345-12399;
-> listen 12345-12399;
-> ```
+```
+listen 127.0.0.1:12345-12399;
+listen 12345-12399;
+```
 
 
 
@@ -124,7 +126,7 @@ The `udp` parameter configures a listening socket for working with datagrams (1.
 
 The `proxy_protocol` parameter (1.11.4) allows specifying that all connections accepted on this port should use the [PROXY protocol](http://www.haproxy.org/download/1.8/doc/proxy-protocol.txt).
 
-> The PROXY protocol version 2 is supported since version 1.13.11.
+The PROXY protocol version 2 is supported since version 1.13.11.
 
 
 
@@ -170,10 +172,12 @@ Different servers must listen on different `address`:`port` pairs.
 
 ### preread_buffer_size
 
-| Syntax:  | `preread_buffer_size size;` |
-| :------- | --------------------------- |
-| Default: | `preread_buffer_size 16k;`  |
-| Context: | `stream`, `server`          |
+  Syntax:`preread_buffer_size size;`
+
+  Default: `preread_buffer_size 16k;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.5.
 
@@ -183,10 +187,12 @@ Specifies a `size` of the [preread](https://nginx.org/en/docs/stream/stream_proc
 
 ### preread_timeout
 
-| Syntax:  | `preread_timeout timeout;` |
-| :------- | -------------------------- |
-| Default: | `preread_timeout 30s;`     |
-| Context: | `stream`, `server`         |
+  Syntax:`preread_timeout timeout;`
+
+  Default: `preread_timeout 30s;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.5.
 
@@ -196,10 +202,12 @@ Specifies a `timeout` of the [preread](https://nginx.org/en/docs/stream/stream_p
 
 ### proxy_protocol_timeout
 
-| Syntax:  | `proxy_protocol_timeout timeout;` |
-| :------- | --------------------------------- |
-| Default: | `proxy_protocol_timeout 30s;`     |
-| Context: | `stream`, `server`                |
+  Syntax:`proxy_protocol_timeout timeout;`
+
+  Default: `proxy_protocol_timeout 30s;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.4.
 
@@ -209,18 +217,19 @@ Specifies a `timeout` for reading the PROXY protocol header to complete. If no e
 
 ### resolver
 
-| Syntax:  | `resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
+
 | Default: | —                                                            |
-| Context: | `stream`, `server`                                           |
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.3.
 
 Configures name servers used to resolve names of upstream servers into addresses, for example:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353;
+```
 
 The address can be specified as a domain name or IP address, with an optional port. If port is not specified, the port 53 is used. Name servers are queried in a round-robin fashion.
 
@@ -232,13 +241,13 @@ By default, nginx will look up both IPv4 and IPv6 addresses while resolving. If 
 
 By default, nginx caches answers using the TTL value of a response. The optional `valid` parameter allows overriding it:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353 valid=30s;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353 valid=30s;
+```
 
 
 
-> To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
+To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
 
 
 
@@ -248,7 +257,7 @@ The optional `status_zone` parameter (1.17.1) enables [collection](https://nginx
 
 
 
-> Before version 1.11.3, this directive was available as part of our [commercial subscription](http://nginx.com/products/).
+Before version 1.11.3, this directive was available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -256,22 +265,24 @@ The optional `status_zone` parameter (1.17.1) enables [collection](https://nginx
 
 ### resolver_timeout
 
-| Syntax:  | `resolver_timeout time;` |
-| :------- | ------------------------ |
-| Default: | `resolver_timeout 30s;`  |
-| Context: | `stream`, `server`       |
+  Syntax:`resolver_timeout time;`
+
+  Default: `resolver_timeout 30s;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.11.3.
 
 Sets a timeout for name resolution, for example:
 
-> ```
-> resolver_timeout 5s;
-> ```
+```
+resolver_timeout 5s;
+```
 
 
 
-> Before version 1.11.3, this directive was available as part of our [commercial subscription](http://nginx.com/products/).
+Before version 1.11.3, this directive was available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -279,10 +290,11 @@ Sets a timeout for name resolution, for example:
 
 ### server
 
-| Syntax:  | `server { ... }` |
-| :------- | ---------------- |
+  Syntax:`server { ... }`
+
 | Default: | —                |
-| Context: | `stream`         |
+  Context: `stream`
+
 
 Sets the configuration for a server.
 
@@ -290,10 +302,11 @@ Sets the configuration for a server.
 
 ### stream
 
-| Syntax:  | `stream { ... }` |
-| :------- | ---------------- |
+  Syntax:`stream { ... }`
+
 | Default: | —                |
-| Context: | `main`           |
+  Context: `main`
+
 
 Provides the configuration file context in which the stream server directives are specified.
 
@@ -301,10 +314,12 @@ Provides the configuration file context in which the stream server directives ar
 
 ### tcp_nodelay
 
-| Syntax:  | `tcp_nodelay on | off;` |
-| :------- | ----------------------- |
-| Default: | `tcp_nodelay on;`       |
-| Context: | `stream`, `server`      |
+  Syntax:`tcp_nodelay on | off;`
+
+  Default: `tcp_nodelay on;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.9.4.
 
@@ -314,10 +329,12 @@ Enables or disables the use of the `TCP_NODELAY` option. The option is enabled f
 
 ### variables_hash_bucket_size
 
-| Syntax:  | `variables_hash_bucket_size size;` |
-| :------- | ---------------------------------- |
-| Default: | `variables_hash_bucket_size 64;`   |
-| Context: | `stream`                           |
+  Syntax:`variables_hash_bucket_size size;`
+
+  Default: `variables_hash_bucket_size 64;`
+
+  Context: `stream`
+
 
 This directive appeared in version 1.11.2.
 
@@ -327,10 +344,12 @@ Sets the bucket size for the variables hash table. The details of setting up has
 
 ### variables_hash_max_size
 
-| Syntax:  | `variables_hash_max_size size;` |
-| :------- | ------------------------------- |
-| Default: | `variables_hash_max_size 1024;` |
-| Context: | `stream`                        |
+  Syntax:`variables_hash_max_size size;`
+
+  Default: `variables_hash_max_size 1024;`
+
+  Context: `stream`
+
 
 This directive appeared in version 1.11.2.
 

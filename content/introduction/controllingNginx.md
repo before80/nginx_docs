@@ -19,13 +19,13 @@ nginx can be controlled with signals. The process ID of the master process is wr
 
 ​	nginx可以通过信号进行控制。默认情况下，主进程的进程ID会写入文件 `/usr/local/nginx/logs/nginx.pid`。在配置时可以更改这个名称，或者在 `nginx.conf` 中使用 [pid](https://nginx.org/en/docs/ngx_core_module.html#pid) 指令进行更改。主进程支持以下信号：
 
-> | TERM, INT | fast shutdown 快速关闭                                       |
-> | --------- | ------------------------------------------------------------ |
-> | QUIT      | graceful shutdown 优雅关闭                                   |
-> | HUP       | changing configuration, keeping up with a changed time zone (only for FreeBSD and Linux), starting new worker processes with a new configuration, graceful shutdown of old worker processes  更改配置，跟踪更改的时区（仅适用于FreeBSD和Linux），使用新配置启动新的工作进程，优雅关闭旧的工作进程 |
-> | USR1      | re-opening log files 重新打开日志文件                        |
-> | USR2      | upgrading an executable file 更新可执行文件                  |
-> | WINCH     | graceful shutdown of worker processes 优雅关闭工作进程       |
+| TERM, INT | fast shutdown 快速关闭                                       |
+| --------- | ------------------------------------------------------------ |
+| QUIT      | graceful shutdown 优雅关闭                                   |
+| HUP       | changing configuration, keeping up with a changed time zone (only for FreeBSD and Linux), starting new worker processes with a new configuration, graceful shutdown of old worker processes  更改配置，跟踪更改的时区（仅适用于FreeBSD和Linux），使用新配置启动新的工作进程，优雅关闭旧的工作进程 |
+| USR1      | re-opening log files 重新打开日志文件                        |
+| USR2      | upgrading an executable file 更新可执行文件                  |
+| WINCH     | graceful shutdown of worker processes 优雅关闭工作进程       |
 
 
 
@@ -33,11 +33,11 @@ Individual worker processes can be controlled with signals as well, though it is
 
 ​	每个独立的工作进程也可以通过信号进行控制，尽管这不是必需的。支持的信号有：
 
-> | TERM, INT | fast shutdown 快速关闭                                       |
-> | --------- | ------------------------------------------------------------ |
-> | QUIT      | graceful shutdown 优雅关闭                                   |
-> | USR1      | re-opening log files 重新打开日志文件                        |
-> | WINCH     | abnormal termination for debugging (requires [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points) to be enabled) 异常终止以进行调试（需要启用 [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points)） |
+| TERM, INT | fast shutdown 快速关闭                                       |
+| --------- | ------------------------------------------------------------ |
+| QUIT      | graceful shutdown 优雅关闭                                   |
+| USR1      | re-opening log files 重新打开日志文件                        |
+| WINCH     | abnormal termination for debugging (requires [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points) to be enabled) 异常终止以进行调试（需要启用 [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points)） |
 
 ## 更改配置 - Changing Configuration
 

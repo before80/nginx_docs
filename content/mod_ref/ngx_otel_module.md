@@ -1,6 +1,7 @@
 +++
 title = "ngx_otel_module"
 date = 2023-08-15T08:25:32+08:00
+weight = 690
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_otel_module` module (1.23.4) provides [OpenTelemetry](https://opentelem
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/) in `nginx-plus-module-otel` package. After installation, the module can be loaded [dynamically](https://nginx.org/en/docs/ngx_core_module.html#load_module).
+This module is available as part of our [commercial subscription](http://nginx.com/products/) in `nginx-plus-module-otel` package. After installation, the module can be loaded [dynamically](https://nginx.org/en/docs/ngx_core_module.html#load_module).
 
 
 
@@ -27,30 +28,30 @@ The `ngx_otel_module` module (1.23.4) provides [OpenTelemetry](https://opentelem
 
 
 
-> ```
-> load_module modules/ngx_otel_module.so;
-> 
-> events {
-> }
-> 
-> http {
-> 
->     otel_exporter {
->         endpoint localhost:4317;
->     }
-> 
->     server {
->         listen 127.0.0.1:8080;
-> 
->         location / {
->             otel_trace         on;
->             otel_trace_context inject;
-> 
->             proxy_pass http://backend;
->         }
->     }
-> }
-> ```
+```
+load_module modules/ngx_otel_module.so;
+
+events {
+}
+
+http {
+
+    otel_exporter {
+        endpoint localhost:4317;
+    }
+
+    server {
+        listen 127.0.0.1:8080;
+
+        location / {
+            otel_trace         on;
+            otel_trace_context inject;
+
+            proxy_pass http://backend;
+        }
+    }
+}
+```
 
 
 
@@ -62,10 +63,11 @@ The `ngx_otel_module` module (1.23.4) provides [OpenTelemetry](https://opentelem
 
 ### otel_exporter
 
-| Syntax:  | `otel_exporter { ... }` |
-| :------- | ----------------------- |
+  Syntax:`otel_exporter { ... }`
+
 | Default: | —                       |
-| Context: | `http`                  |
+  Context: `http`
+
 
 Specifies OTel data export parameters:
 
@@ -87,14 +89,14 @@ Specifies OTel data export parameters:
 
 Example:
 
-> ```
-> otel_exporter {
->     endpoint    localhost:4317;
->     interval    5s;
->     batch_size  512;
->     batch_count 4;
-> }
-> ```
+```
+otel_exporter {
+    endpoint    localhost:4317;
+    interval    5s;
+    batch_size  512;
+    batch_count 4;
+}
+```
 
 
 
@@ -102,10 +104,12 @@ Example:
 
 ### otel_service_name
 
-| Syntax:  | `otel_service_name name;`                  |
-| :------- | ------------------------------------------ |
-| Default: | `otel_service_name unknown_service:nginx;` |
-| Context: | `http`                                     |
+  Syntax:  `otel_service_name name;`
+
+  Default: `otel_service_name unknown_service:nginx;`
+
+  Context: `http`
+
 
 Sets the “[`service.name`](https://opentelemetry.io/docs/reference/specification/resource/semantic_conventions/#service)” attribute of the OTel resource.
 
@@ -113,27 +117,29 @@ Sets the “[`service.name`](https://opentelemetry.io/docs/reference/specificati
 
 ### otel_trace
 
-| Syntax:  | `otel_trace on | off | $variable;` |
-| :------- | ---------------------------------- |
-| Default: | `otel_trace off;`                  |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`otel_trace on | off | $variable;`
+
+  Default: `otel_trace off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables or disables OpenTelemetry tracing. The directive can also be enabled by specifying a variable:
 
-> ```
-> split_clients "$otel_trace_id" $ratio_sampler {
->               10%              on;
->               *                off;
-> }
-> 
-> server {
->     location / {
->         otel_trace         $ratio_sampler;
->         otel_trace_context inject;
->         proxy_pass         http://backend;
->     }
-> }
-> ```
+```
+split_clients "$otel_trace_id" $ratio_sampler {
+              10%              on;
+              *                off;
+}
+
+server {
+    location / {
+        otel_trace         $ratio_sampler;
+        otel_trace_context inject;
+        proxy_pass         http://backend;
+    }
+}
+```
 
 
 
@@ -141,10 +147,12 @@ Enables or disables OpenTelemetry tracing. The directive can also be enabled by 
 
 ### otel_trace_context
 
-| Syntax:  | `otel_trace_context extract | inject | propagate | ignore;` |
-| :------- | ----------------------------------------------------------- |
-| Default: | `otel_trace_context ignore;`                                |
-| Context: | `http`, `server`, `location`                                |
+  Syntax:`otel_trace_context extract | inject | propagate | ignore;`
+
+  Default: `otel_trace_context ignore;`
+
+  Context: `http`, `server`, `location`
+
 
 Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-context/#design-overview) headers:
 
@@ -170,10 +178,11 @@ Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-
 
 ### otel_span_name
 
-| Syntax:  | `otel_span_name name;`       |
-| :------- | ---------------------------- |
+  Syntax:  `otel_span_name name;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/observability-primer/#spans). By default, it is a name of the location for a request. The name can contain variables.
 
@@ -181,10 +190,11 @@ Defines the name of the OTel [span](https://opentelemetry.io/docs/concepts/obser
 
 ### otel_span_attr
 
-| Syntax:  | `otel_span_attr name value;` |
-| :------- | ---------------------------- |
+  Syntax:`otel_span_attr name value;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Adds a custom OTel span attribute. The value can contain variables.
 

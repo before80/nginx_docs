@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_upstream_hc_module"
 date = 2023-08-15T08:25:06+08:00
+weight = 890
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,7 +20,7 @@ If a health check fails, the server will be considered unhealthy. If several hea
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -29,45 +30,45 @@ If a health check fails, the server will be considered unhealthy. If several hea
 
 
 
-> ```
-> upstream tcp {
->     zone upstream_tcp 64k;
-> 
->     server backend1.example.com:12345 weight=5;
->     server backend2.example.com:12345 fail_timeout=5s slow_start=30s;
->     server 192.0.2.1:12345            max_fails=3;
-> 
->     server backup1.example.com:12345  backup;
->     server backup2.example.com:12345  backup;
-> }
-> 
-> server {
->     listen     12346;
->     proxy_pass tcp;
->     health_check;
-> }
-> ```
+```
+upstream tcp {
+    zone upstream_tcp 64k;
+
+    server backend1.example.com:12345 weight=5;
+    server backend2.example.com:12345 fail_timeout=5s slow_start=30s;
+    server 192.0.2.1:12345            max_fails=3;
+
+    server backup1.example.com:12345  backup;
+    server backup2.example.com:12345  backup;
+}
+
+server {
+    listen     12346;
+    proxy_pass tcp;
+    health_check;
+}
+```
 
 With this configuration, nginx will check the ability to establish a TCP connection to each server in the `tcp` group every five seconds. When a connection to the server cannot be established, the health check will fail, and the server will be considered unhealthy.
 
 Health checks can be configured for the UDP protocol:
 
-> ```
-> upstream dns_upstream {
-> 
->     zone   dns_zone 64k;
-> 
->     server dns1.example.com:53;
->     server dns2.example.com:53;
->     server dns3.example.com:53;
-> }
-> 
-> server {
->     listen       53 udp;
->     proxy_pass   dns_upstream;
->     health_check udp;
-> }
-> ```
+```
+upstream dns_upstream {
+
+    zone   dns_zone 64k;
+
+    server dns1.example.com:53;
+    server dns2.example.com:53;
+    server dns3.example.com:53;
+}
+
+server {
+    listen       53 udp;
+    proxy_pass   dns_upstream;
+    health_check udp;
+}
+```
 
 In this case, the absence of ICMP “`Destination Unreachable`” message is expected in reply to the sent string “`nginx health check`”.
 
@@ -81,10 +82,11 @@ Health checks can also be configured to test data obtained from the server. Test
 
 ### health_check
 
-| Syntax:  | `health_check [parameters];` |
-| :------- | ---------------------------- |
+  Syntax:`health_check [parameters];`
+
 | Default: | —                            |
-| Context: | `server`                     |
+  Context: `server`
+
 
 Enables periodic health checks of the servers in a [group](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#upstream).
 
@@ -128,10 +130,12 @@ The following optional parameters are supported:
 
 ### health_check_timeout
 
-| Syntax:  | `health_check_timeout timeout;` |
-| :------- | ------------------------------- |
-| Default: | `health_check_timeout 5s;`      |
-| Context: | `stream`, `server`              |
+  Syntax:`health_check_timeout timeout;`
+
+  Default: `health_check_timeout 5s;`
+
+  Context: `stream`, `server`
+
 
 Overrides the [proxy_timeout](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_timeout) value for health checks.
 
@@ -139,10 +143,11 @@ Overrides the [proxy_timeout](https://nginx.org/en/docs/stream/ngx_stream_proxy_
 
 ### match
 
-| Syntax:  | `match name { ... }` |
-| :------- | -------------------- |
+  Syntax:`match name { ... }`
+
 | Default: | —                    |
-| Context: | `stream`             |
+  Context: `stream`
+
 
 Defines the named test set used to verify server responses to health checks.
 
@@ -169,26 +174,26 @@ Health check is passed if:
 
 Example:
 
-> ```
-> upstream backend {
->     zone     upstream_backend 10m;
->     server   127.0.0.1:12345;
-> }
-> 
-> match http {
->     send     "GET / HTTP/1.0\r\nHost: localhost\r\n\r\n";
->     expect ~ "200 OK";
-> }
-> 
-> server {
->     listen       12346;
->     proxy_pass   backend;
->     health_check match=http;
-> }
-> ```
+```
+upstream backend {
+    zone     upstream_backend 10m;
+    server   127.0.0.1:12345;
+}
+
+match http {
+    send     "GET / HTTP/1.0\r\nHost: localhost\r\n\r\n";
+    expect ~ "200 OK";
+}
+
+server {
+    listen       12346;
+    proxy_pass   backend;
+    health_check match=http;
+}
+```
 
 
 
 
 
-> Only the first [proxy_buffer_size](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_buffer_size) bytes of data obtained from the server are examined.
+Only the first [proxy_buffer_size](https://nginx.org/en/docs/stream/ngx_stream_proxy_module.html#proxy_buffer_size) bytes of data obtained from the server are examined.

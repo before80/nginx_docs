@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_access_module"
 date = 2023-08-15T08:22:11+08:00
+weight = 700
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,16 +22,16 @@ The `ngx_stream_access_module` module (1.9.2) allows limiting access to certain 
 
 
 
-> ```
-> server {
->     ...
->     deny  192.168.1.1;
->     allow 192.168.1.0/24;
->     allow 10.1.1.0/16;
->     allow 2001:0db8::/32;
->     deny  all;
-> }
-> ```
+```
+server {
+    ...
+    deny  192.168.1.1;
+    allow 192.168.1.0/24;
+    allow 10.1.1.0/16;
+    allow 2001:0db8::/32;
+    deny  all;
+}
+```
 
 
 
@@ -44,10 +45,11 @@ The rules are checked in sequence until the first match is found. In this exampl
 
 ### allow
 
-| Syntax:  | `allow address | CIDR | unix: | all;` |
-| :------- | ------------------------------------- |
+  Syntax:`allow address | CIDR | unix: | all;`
+
 | Default: | —                                     |
-| Context: | `stream`, `server`                    |
+  Context: `stream`, `server`
+
 
 Allows access for the specified network or address. If the special value `unix:` is specified, allows access for all UNIX-domain sockets.
 
@@ -55,9 +57,10 @@ Allows access for the specified network or address. If the special value `unix:`
 
 ### deny
 
-| Syntax:  | `deny address | CIDR | unix: | all;` |
-| :------- | ------------------------------------ |
+  Syntax:`deny address | CIDR | unix: | all;`
+
 | Default: | —                                    |
-| Context: | `stream`, `server`                   |
+  Context: `stream`, `server`
+
 
 Denies access for the specified network or address. If the special value `unix:` is specified, denies access for all UNIX-domain sockets.

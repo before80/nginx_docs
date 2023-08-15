@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_limit_conn_module"
 date = 2023-08-15T08:22:57+08:00
+weight = 760
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,21 +22,21 @@ The `ngx_stream_limit_conn_module` module (1.9.3) is used to limit the number of
 
 
 
-> ```
-> stream {
->     limit_conn_zone $binary_remote_addr zone=addr:10m;
-> 
->     ...
-> 
->     server {
-> 
->         ...
-> 
->         limit_conn           addr 1;
->         limit_conn_log_level error;
->     }
-> }
-> ```
+```
+stream {
+    limit_conn_zone $binary_remote_addr zone=addr:10m;
+
+    ...
+
+    server {
+
+        ...
+
+        limit_conn           addr 1;
+        limit_conn_log_level error;
+    }
+}
+```
 
 
 
@@ -47,21 +48,22 @@ The `ngx_stream_limit_conn_module` module (1.9.3) is used to limit the number of
 
 ### limit_conn
 
-| Syntax:  | `limit_conn zone number;` |
-| :------- | ------------------------- |
+  Syntax:`limit_conn zone number;`
+
 | Default: | —                         |
-| Context: | `stream`, `server`        |
+  Context: `stream`, `server`
+
 
 Sets the shared memory zone and the maximum allowed number of connections for a given key value. When this limit is exceeded, the server will close the connection. For example, the directives
 
-> ```
-> limit_conn_zone $binary_remote_addr zone=addr:10m;
-> 
-> server {
->     ...
->     limit_conn addr 1;
-> }
-> ```
+```
+limit_conn_zone $binary_remote_addr zone=addr:10m;
+
+server {
+    ...
+    limit_conn addr 1;
+}
+```
 
 allow only one connection per an IP address at a time.
 
@@ -73,10 +75,12 @@ These directives are inherited from the previous configuration level if and only
 
 ### limit_conn_dry_run
 
-| Syntax:  | `limit_conn_dry_run on | off;` |
-| :------- | ------------------------------ |
-| Default: | `limit_conn_dry_run off;`      |
-| Context: | `stream`, `server`             |
+  Syntax:`limit_conn_dry_run on | off;`
+
+  Default: `limit_conn_dry_run off;`
+
+  Context: `stream`, `server`
+
 
 This directive appeared in version 1.17.6.
 
@@ -86,10 +90,12 @@ Enables the dry run mode. In this mode, the number of connections is not limited
 
 ### limit_conn_log_level
 
-| Syntax:  | `limit_conn_log_level info | notice | warn | error;` |
-| :------- | ---------------------------------------------------- |
-| Default: | `limit_conn_log_level error;`                        |
-| Context: | `stream`, `server`                                   |
+  Syntax:`limit_conn_log_level info | notice | warn | error;`
+
+  Default: `limit_conn_log_level error;`
+
+  Context: `stream`, `server`
+
 
 Sets the desired logging level for cases when the server limits the number of connections.
 
@@ -97,22 +103,23 @@ Sets the desired logging level for cases when the server limits the number of co
 
 ### limit_conn_zone
 
-| Syntax:  | `limit_conn_zone key zone=name:size;` |
-| :------- | ------------------------------------- |
+  Syntax:`limit_conn_zone key zone=name:size;`
+
 | Default: | —                                     |
-| Context: | `stream`                              |
+  Context: `stream`
+
 
 Sets parameters for a shared memory zone that will keep states for various keys. In particular, the state includes the current number of connections. The `key` can contain text, variables, and their combinations (1.11.2). Connections with an empty key value are not accounted. Usage example:
 
-> ```
-> limit_conn_zone $binary_remote_addr zone=addr:10m;
-> ```
+```
+limit_conn_zone $binary_remote_addr zone=addr:10m;
+```
 
 Here, the key is a client IP address set by the `$binary_remote_addr` variable. The size of `$binary_remote_addr` is 4 bytes for IPv4 addresses or 16 bytes for IPv6 addresses. The stored state always occupies 32 or 64 bytes on 32-bit platforms and 64 bytes on 64-bit platforms. One megabyte zone can keep about 32 thousand 32-byte states or about 16 thousand 64-byte states. If the zone storage is exhausted, the server will close the connection.
 
 
 
-> Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getStreamLimitConnZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamLimitConnZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
+Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getStreamLimitConnZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamLimitConnZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
 
 
 

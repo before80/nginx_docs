@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_geoip_module"
 date = 2023-08-15T08:14:03+08:00
+weight = 170
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -19,7 +20,7 @@ When using the databases with IPv6 support (1.3.12, 1.2.7), IPv4 addresses are l
 
 This module is not built by default, it should be enabled with the `--with-http_geoip_module` configuration parameter.
 
-> This module requires the [MaxMind GeoIP](http://www.maxmind.com/app/c) library.
+This module requires the [MaxMind GeoIP](http://www.maxmind.com/app/c) library.
 
 
 
@@ -29,15 +30,15 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> http {
->     geoip_country         GeoIP.dat;
->     geoip_city            GeoLiteCity.dat;
->     geoip_proxy           192.168.100.0/24;
->     geoip_proxy           2001:0db8::/32;
->     geoip_proxy_recursive on;
->     ...
-> ```
+```
+http {
+    geoip_country         GeoIP.dat;
+    geoip_city            GeoLiteCity.dat;
+    geoip_proxy           192.168.100.0/24;
+    geoip_proxy           2001:0db8::/32;
+    geoip_proxy_recursive on;
+    ...
+```
 
 
 
@@ -49,10 +50,11 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### geoip_country
 
-| Syntax:  | `geoip_country file;` |
-| :------- | --------------------- |
+  Syntax:`geoip_country file;`
+
 | Default: | —                     |
-| Context: | `http`                |
+  Context: `http`
+
 
 Specifies a database used to determine the country depending on the client IP address. The following variables are available when using this database:
 
@@ -74,10 +76,11 @@ Specifies a database used to determine the country depending on the client IP ad
 
 ### geoip_city
 
-| Syntax:  | `geoip_city file;` |
-| :------- | ------------------ |
+  Syntax:`geoip_city file;`
+
 | Default: | —                  |
-| Context: | `http`             |
+  Context: `http`
+
 
 Specifies a database used to determine the country, region, and city depending on the client IP address. The following variables are available when using this database:
 
@@ -135,10 +138,11 @@ Specifies a database used to determine the country, region, and city depending o
 
 ### geoip_org
 
-| Syntax:  | `geoip_org file;` |
-| :------- | ----------------- |
+  Syntax:`geoip_org file;`
+
 | Default: | —                 |
-| Context: | `http`            |
+  Context: `http`
+
 
 This directive appeared in version 1.0.3.
 
@@ -154,10 +158,11 @@ Specifies a database used to determine the organization depending on the client 
 
 ### geoip_proxy
 
-| Syntax:  | `geoip_proxy address | CIDR;` |
-| :------- | ----------------------------- |
+  Syntax:`geoip_proxy address | CIDR;`
+
 | Default: | —                             |
-| Context: | `http`                        |
+  Context: `http`
+
 
 This directive appeared in versions 1.3.0 and 1.2.1.
 
@@ -167,10 +172,12 @@ Defines trusted addresses. When a request comes from a trusted address, an addre
 
 ### geoip_proxy_recursive
 
-| Syntax:  | `geoip_proxy_recursive on | off;` |
-| :------- | --------------------------------- |
-| Default: | `geoip_proxy_recursive off;`      |
-| Context: | `http`                            |
+  Syntax:`geoip_proxy_recursive on | off;`
+
+  Default: `geoip_proxy_recursive off;`
+
+  Context: `http`
+
 
 This directive appeared in versions 1.3.0 and 1.2.1.
 

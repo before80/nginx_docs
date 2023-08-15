@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_flv_module"
 date = 2023-08-15T08:13:45+08:00
+weight = 150
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -25,11 +26,11 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> location ~ \.flv$ {
->     flv;
-> }
-> ```
+```
+location ~ \.flv$ {
+    flv;
+}
+```
 
 
 
@@ -41,9 +42,10 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### flv;`
 
-| Syntax:  | `flv;`     |
-| :------- | ---------- |
+  Syntax:  `flv;`
+
 | Default: | —          |
-| Context: | `location` |
+  Context: `location`
+
 
 Turns on module processing in a surrounding location.

@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_headers_module"
 date = 2023-08-15T08:14:54+08:00
+weight = 220
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,16 +22,16 @@ The `ngx_http_headers_module` module allows adding the “Expires” and “Cach
 
 
 
-> ```
-> expires    24h;
-> expires    modified +24h;
-> expires    @24h;
-> expires    0;
-> expires    -1;
-> expires    epoch;
-> expires    $expires;
-> add_header Cache-Control private;
-> ```
+```
+expires    24h;
+expires    modified +24h;
+expires    @24h;
+expires    0;
+expires    -1;
+expires    epoch;
+expires    $expires;
+add_header Cache-Control private;
+```
 
 
 
@@ -42,10 +43,11 @@ The `ngx_http_headers_module` module allows adding the “Expires” and “Cach
 
 ### add_header
 
-| Syntax:  | `add_header name value [always];`              |
-| :------- | ---------------------------------------------- |
+  Syntax:  `add_header name value [always];`
+
 | Default: | —                                              |
-| Context: | `http`, `server`, `location`, `if in location` |
+  Context: `http`, `server`, `location`, `if in location`
+
 
 Adds the specified field to a response header provided that the response code equals 200, 201 (1.3.10), 204, 206, 301, 302, 303, 304, 307 (1.1.16, 1.0.13), or 308 (1.13.0). Parameter value can contain variables.
 
@@ -57,10 +59,11 @@ If the `always` parameter is specified (1.7.5), the header field will be added r
 
 ### add_trailer
 
-| Syntax:  | `add_trailer name value [always];`             |
-| :------- | ---------------------------------------------- |
+  Syntax:  `add_trailer name value [always];`
+
 | Default: | —                                              |
-| Context: | `http`, `server`, `location`, `if in location` |
+  Context: `http`, `server`, `location`, `if in location`
+
 
 This directive appeared in version 1.13.2.
 
@@ -74,10 +77,12 @@ If the `always` parameter is specified the specified field will be added regardl
 
 ### expires
 
-| Syntax:  | `expires [modified] time;` `expires epoch | max | off;` |
-| :------- | ------------------------------------------------------- |
-| Default: | `expires off;`                                          |
-| Context: | `http`, `server`, `location`, `if in location`          |
+  Syntax:`expires [modified] time;` `expires epoch | max | off;`
+
+  Default: `expires off;`
+
+  Context: `http`, `server`, `location`, `if in location`
+
 
 Enables or disables adding or modifying the “Expires” and “Cache-Control” response header fields provided that the response code equals 200, 201 (1.3.10), 204, 206, 301, 302, 303, 304, 307 (1.1.16, 1.0.13), or 308 (1.13.0). The parameter can be a positive or negative [time](https://nginx.org/en/docs/syntax.html).
 
@@ -85,9 +90,9 @@ The time in the “Expires” field is computed as a sum of the current time and
 
 In addition, it is possible to specify a time of day using the “`@`” prefix (0.7.9, 0.6.34):
 
-> ```
-> expires @15h30m;
-> ```
+```
+expires @15h30m;
+```
 
 
 
@@ -106,12 +111,12 @@ The `off` parameter disables adding or modifying the “Expires” and “Cache-
 
 The last parameter value can contain variables (1.7.9):
 
-> ```
-> map $sent_http_content_type $expires {
->     default         off;
->     application/pdf 42d;
->     ~image/         max;
-> }
-> 
-> expires $expires;
-> ```
+```
+map $sent_http_content_type $expires {
+    default         off;
+    application/pdf 42d;
+    ~image/         max;
+}
+
+expires $expires;
+```

@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_proxy_protocol_vendor_module"
 date = 2023-08-15T08:17:29+08:00
+weight = 380
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -27,7 +28,7 @@ The PROXY protocol must be previously enabled by setting the `proxy_protocol` pa
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -37,15 +38,15 @@ The PROXY protocol must be previously enabled by setting the `proxy_protocol` pa
 
 
 
-> ```
-> proxy_set_header X-Conn-ID $proxy_protocol_tlv_gcp_conn_id;
-> 
-> server {
->     listen 80   proxy_protocol;
->     listen 443  ssl proxy_protocol;
->     ...
-> }
-> ```
+```
+proxy_set_header X-Conn-ID $proxy_protocol_tlv_gcp_conn_id;
+
+server {
+    listen 80   proxy_protocol;
+    listen 443  ssl proxy_protocol;
+    ...
+}
+```
 
 
 

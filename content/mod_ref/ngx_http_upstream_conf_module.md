@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_upstream_conf_module"
 date = 2023-08-15T08:19:51+08:00
+weight = 530
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,50 +22,50 @@ The `ngx_http_upstream_module` module is used to define groups of servers that c
 
 
 
-> ```
-> upstream backend {
->     server backend1.example.com       weight=5;
->     server backend2.example.com:8080;
->     server unix:/tmp/backend3;
-> 
->     server backup1.example.com:8080   backup;
->     server backup2.example.com:8080   backup;
-> }
-> 
-> server {
->     location / {
->         proxy_pass http://backend;
->     }
-> }
-> ```
+```
+upstream backend {
+    server backend1.example.com       weight=5;
+    server backend2.example.com:8080;
+    server unix:/tmp/backend3;
+
+    server backup1.example.com:8080   backup;
+    server backup2.example.com:8080   backup;
+}
+
+server {
+    location / {
+        proxy_pass http://backend;
+    }
+}
+```
 
 
 
 Dynamically configurable group with periodic [health checks](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html) is available as part of our [commercial subscription](http://nginx.com/products/):
 
-> ```
-> resolver 10.0.0.1;
-> 
-> upstream dynamic {
->     zone upstream_dynamic 64k;
-> 
->     server backend1.example.com      weight=5;
->     server backend2.example.com:8080 fail_timeout=5s slow_start=30s;
->     server 192.0.2.1                 max_fails=3;
->     server backend3.example.com      resolve;
->     server backend4.example.com      service=http resolve;
-> 
->     server backup1.example.com:8080  backup;
->     server backup2.example.com:8080  backup;
-> }
-> 
-> server {
->     location / {
->         proxy_pass http://dynamic;
->         health_check;
->     }
-> }
-> ```
+```
+resolver 10.0.0.1;
+
+upstream dynamic {
+    zone upstream_dynamic 64k;
+
+    server backend1.example.com      weight=5;
+    server backend2.example.com:8080 fail_timeout=5s slow_start=30s;
+    server 192.0.2.1                 max_fails=3;
+    server backend3.example.com      resolve;
+    server backend4.example.com      service=http resolve;
+
+    server backup1.example.com:8080  backup;
+    server backup2.example.com:8080  backup;
+}
+
+server {
+    location / {
+        proxy_pass http://dynamic;
+        health_check;
+    }
+}
+```
 
 
 
@@ -76,24 +77,25 @@ Dynamically configurable group with periodic [health checks](https://nginx.org/e
 
 ### upstream
 
-| Syntax:  | `upstream name { ... }` |
-| :------- | ----------------------- |
+  Syntax:`upstream name { ... }`
+
 | Default: | —                       |
-| Context: | `http`                  |
+  Context: `http`
+
 
 Defines a group of servers. Servers can listen on different ports. In addition, servers listening on TCP and UNIX-domain sockets can be mixed.
 
 Example:
 
-> ```
-> upstream backend {
->     server backend1.example.com weight=5;
->     server 127.0.0.1:8080       max_fails=3 fail_timeout=30s;
->     server unix:/tmp/backend3;
-> 
->     server backup1.example.com  backup;
-> }
-> ```
+```
+upstream backend {
+    server backend1.example.com weight=5;
+    server 127.0.0.1:8080       max_fails=3 fail_timeout=30s;
+    server unix:/tmp/backend3;
+
+    server backup1.example.com  backup;
+}
+```
 
 
 
@@ -103,10 +105,11 @@ By default, requests are distributed between the servers using a weighted round-
 
 ### server
 
-| Syntax:  | `server address [parameters];` |
-| :------- | ------------------------------ |
+  Syntax:`server address [parameters];`
+
 | Default: | —                              |
-| Context: | `upstream`                     |
+  Context: `upstream`
+
 
 Defines the `address` and other `parameters` of a server. The address can be specified as a domain name or IP address, with an optional port, or as a UNIX-domain socket path specified after the “`unix:`” prefix. If a port is not specified, the port 80 is used. A domain name that resolves to several IP addresses defines multiple servers at once.
 
@@ -164,7 +167,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 
 
-> If there is only a single server in a group, `max_fails`, `fail_timeout` and `slow_start` parameters are ignored, and such a server will never be considered unavailable.
+If there is only a single server in a group, `max_fails`, `fail_timeout` and `slow_start` parameters are ignored, and such a server will never be considered unavailable.
 
 
 
@@ -172,10 +175,11 @@ Additionally, the following parameters are available as part of our [commercial 
 
 ### zone
 
-| Syntax:  | `zone name [size];` |
-| :------- | ------------------- |
+  Syntax:`zone name [size];`
+
 | Default: | —                   |
-| Context: | `upstream`          |
+  Context: `upstream`
+
 
 This directive appeared in version 1.9.0.
 
@@ -183,7 +187,7 @@ Defines the `name` and `size` of the shared memory zone that keeps the group’s
 
 Additionally, as part of our [commercial subscription](http://nginx.com/products/), such groups allow changing the group membership or modifying the settings of a particular server without the need of restarting nginx. The configuration is accessible via the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module (1.13.3).
 
-> Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
+Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
 
 
 
@@ -191,10 +195,11 @@ Additionally, as part of our [commercial subscription](http://nginx.com/products
 
 ### state
 
-| Syntax:  | `state file;` |
-| :------- | ------------- |
+  Syntax:`state file;`
+
 | Default: | —             |
-| Context: | `upstream`    |
+  Context: `upstream`
+
 
 This directive appeared in version 1.9.7.
 
@@ -202,10 +207,10 @@ Specifies a `file` that keeps the state of the dynamically configurable group.
 
 Examples:
 
-> ```
-> state /var/lib/nginx/state/servers.conf; # path for Linux
-> state /var/db/nginx/state/servers.conf;  # path for FreeBSD
-> ```
+```
+state /var/lib/nginx/state/servers.conf; # path for Linux
+state /var/db/nginx/state/servers.conf;  # path for FreeBSD
+```
 
 
 
@@ -213,13 +218,13 @@ The state is currently limited to the list of servers with their parameters. The
 
 
 
-> Changes made during [configuration reload](https://nginx.org/en/docs/control.html#reconfiguration) or [binary upgrade](https://nginx.org/en/docs/control.html#upgrade) can be lost.
+Changes made during [configuration reload](https://nginx.org/en/docs/control.html#reconfiguration) or [binary upgrade](https://nginx.org/en/docs/control.html#upgrade) can be lost.
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -227,10 +232,11 @@ The state is currently limited to the list of servers with their parameters. The
 
 ### hash
 
-| Syntax:  | `hash key [consistent];` |
-| :------- | ------------------------ |
+  Syntax:`hash key [consistent];`
+
 | Default: | —                        |
-| Context: | `upstream`               |
+  Context: `upstream`
+
 
 This directive appeared in version 1.7.2.
 
@@ -240,16 +246,17 @@ If the `consistent` parameter is specified, the [ketama](https://www.metabrew.co
 
 
 
-### ip_hash;`
+### ip_hash
 
-| Syntax:  | `ip_hash;` |
-| :------- | ---------- |
+  Syntax:`ip_hash;`
+
 | Default: | —          |
-| Context: | `upstream` |
+  Context: `upstream`
+
 
 Specifies that a group should use a load balancing method where requests are distributed between servers based on client IP addresses. The first three octets of the client IPv4 address, or the entire IPv6 address, are used as a hashing key. The method ensures that requests from the same client will always be passed to the same server except when this server is unavailable. In the latter case client requests will be passed to another server. Most probably, it will always be the same server as well.
 
-> IPv6 addresses are supported starting from versions 1.3.2 and 1.2.2.
+IPv6 addresses are supported starting from versions 1.3.2 and 1.2.2.
 
 
 
@@ -257,22 +264,22 @@ If one of the servers needs to be temporarily removed, it should be marked with 
 
 Example:
 
-> ```
-> upstream backend {
->     ip_hash;
-> 
->     server backend1.example.com;
->     server backend2.example.com;
->     server backend3.example.com down;
->     server backend4.example.com;
-> }
-> ```
+```
+upstream backend {
+    ip_hash;
+
+    server backend1.example.com;
+    server backend2.example.com;
+    server backend3.example.com down;
+    server backend4.example.com;
+}
+```
 
 
 
 
 
-> Until versions 1.3.1 and 1.2.2, it was not possible to specify a weight for servers using the `ip_hash` load balancing method.
+Until versions 1.3.1 and 1.2.2, it was not possible to specify a weight for servers using the `ip_hash` load balancing method.
 
 
 
@@ -280,10 +287,11 @@ Example:
 
 ### keepalive
 
-| Syntax:  | `keepalive connections;` |
-| :------- | ------------------------ |
+  Syntax:`keepalive connections;`
+
 | Default: | —                        |
-| Context: | `upstream`               |
+  Context: `upstream`
+
 
 This directive appeared in version 1.1.4.
 
@@ -291,91 +299,91 @@ Activates the cache for connections to upstream servers.
 
 The `connections` parameter sets the maximum number of idle keepalive connections to upstream servers that are preserved in the cache of each worker process. When this number is exceeded, the least recently used connections are closed.
 
-> It should be particularly noted that the `keepalive` directive does not limit the total number of connections to upstream servers that an nginx worker process can open. The `connections` parameter should be set to a number small enough to let upstream servers process new incoming connections as well.
+It should be particularly noted that the `keepalive` directive does not limit the total number of connections to upstream servers that an nginx worker process can open. The `connections` parameter should be set to a number small enough to let upstream servers process new incoming connections as well.
 
 
 
-> When using load balancing methods other than the default round-robin method, it is necessary to activate them before the `keepalive` directive.
+When using load balancing methods other than the default round-robin method, it is necessary to activate them before the `keepalive` directive.
 
 
 
 Example configuration of memcached upstream with keepalive connections:
 
-> ```
-> upstream memcached_backend {
->     server 127.0.0.1:11211;
->     server 10.0.0.2:11211;
-> 
->     keepalive 32;
-> }
-> 
-> server {
->     ...
-> 
->     location /memcached/ {
->         set $memcached_key $uri;
->         memcached_pass memcached_backend;
->     }
-> 
-> }
-> ```
+```
+upstream memcached_backend {
+    server 127.0.0.1:11211;
+    server 10.0.0.2:11211;
+
+    keepalive 32;
+}
+
+server {
+    ...
+
+    location /memcached/ {
+        set $memcached_key $uri;
+        memcached_pass memcached_backend;
+    }
+
+}
+```
 
 
 
 For HTTP, the [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
 
-> ```
-> upstream http_backend {
->     server 127.0.0.1:8080;
-> 
->     keepalive 16;
-> }
-> 
-> server {
->     ...
-> 
->     location /http/ {
->         proxy_pass http://http_backend;
->         proxy_http_version 1.1;
->         proxy_set_header Connection "";
->         ...
->     }
-> }
-> ```
+```
+upstream http_backend {
+    server 127.0.0.1:8080;
+
+    keepalive 16;
+}
+
+server {
+    ...
+
+    location /http/ {
+        proxy_pass http://http_backend;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        ...
+    }
+}
+```
 
 
 
 
 
-> Alternatively, HTTP/1.0 persistent connections can be used by passing the “Connection: Keep-Alive” header field to an upstream server, though this method is not recommended.
+Alternatively, HTTP/1.0 persistent connections can be used by passing the “Connection: Keep-Alive” header field to an upstream server, though this method is not recommended.
 
 
 
 For FastCGI servers, it is required to set [fastcgi_keep_conn](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_keep_conn) for keepalive connections to work:
 
-> ```
-> upstream fastcgi_backend {
->     server 127.0.0.1:9000;
-> 
->     keepalive 8;
-> }
-> 
-> server {
->     ...
-> 
->     location /fastcgi/ {
->         fastcgi_pass fastcgi_backend;
->         fastcgi_keep_conn on;
->         ...
->     }
-> }
-> ```
+```
+upstream fastcgi_backend {
+    server 127.0.0.1:9000;
+
+    keepalive 8;
+}
+
+server {
+    ...
+
+    location /fastcgi/ {
+        fastcgi_pass fastcgi_backend;
+        fastcgi_keep_conn on;
+        ...
+    }
+}
+```
 
 
 
 
 
-> SCGI and uwsgi protocols do not have a notion of keepalive connections.
+SCGI and uwsgi protocols do not have a notion of keepalive connections.
 
 
 
@@ -383,10 +391,12 @@ For FastCGI servers, it is required to set [fastcgi_keep_conn](https://nginx.org
 
 ### keepalive_requests
 
-| Syntax:  | `keepalive_requests number;` |
-| :------- | ---------------------------- |
-| Default: | `keepalive_requests 1000;`   |
-| Context: | `upstream`                   |
+  Syntax:`keepalive_requests number;`
+
+  Default: `keepalive_requests 1000;`
+
+  Context: `upstream`
+
 
 This directive appeared in version 1.15.3.
 
@@ -396,7 +406,7 @@ Closing connections periodically is necessary to free per-connection memory allo
 
 
 
-> Prior to version 1.19.10, the default value was 100.
+Prior to version 1.19.10, the default value was 100.
 
 
 
@@ -404,10 +414,12 @@ Closing connections periodically is necessary to free per-connection memory allo
 
 ### keepalive_time
 
-| Syntax:  | `keepalive_time time;` |
-| :------- | ---------------------- |
-| Default: | `keepalive_time 1h;`   |
-| Context: | `upstream`             |
+  Syntax:`keepalive_time time;`
+
+  Default: `keepalive_time 1h;`
+
+  Context: `upstream`
+
 
 This directive appeared in version 1.19.10.
 
@@ -417,10 +429,12 @@ Limits the maximum time during which requests can be processed through one keepa
 
 ### keepalive_timeout
 
-| Syntax:  | `keepalive_timeout timeout;` |
-| :------- | ---------------------------- |
-| Default: | `keepalive_timeout 60s;`     |
-| Context: | `upstream`                   |
+  Syntax:`keepalive_timeout timeout;`
+
+  Default: `keepalive_timeout 60s;`
+
+  Context: `upstream`
+
 
 This directive appeared in version 1.15.3.
 
@@ -428,12 +442,13 @@ Sets a timeout during which an idle keepalive connection to an upstream server w
 
 
 
-### ntlm;`
+### ntlm
 
-| Syntax:  | `ntlm;`    |
-| :------- | ---------- |
+  Syntax:  `ntlm;`
+
 | Default: | —          |
-| Context: | `upstream` |
+  Context: `upstream`
+
 
 This directive appeared in version 1.9.2.
 
@@ -441,47 +456,48 @@ Allows proxying requests with [NTLM Authentication](https://en.wikipedia.org/wik
 
 In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers. The [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
 
-> ```
-> upstream http_backend {
->     server 127.0.0.1:8080;
-> 
->     ntlm;
-> }
-> 
-> server {
->     ...
-> 
->     location /http/ {
->         proxy_pass http://http_backend;
->         proxy_http_version 1.1;
->         proxy_set_header Connection "";
->         ...
->     }
-> }
-> ```
+```
+upstream http_backend {
+    server 127.0.0.1:8080;
+
+    ntlm;
+}
+
+server {
+    ...
+
+    location /http/ {
+        proxy_pass http://http_backend;
+        proxy_http_version 1.1;
+        proxy_set_header Connection "";
+        ...
+    }
+}
+```
 
 
 
 
 
-> When using load balancer methods other than the default round-robin method, it is necessary to activate them before the `ntlm` directive.
+When using load balancer methods other than the default round-robin method, it is necessary to activate them before the `ntlm` directive.
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
 
 
-### least_conn;`
+### least_conn
 
-| Syntax:  | `least_conn;` |
-| :------- | ------------- |
+  Syntax:`least_conn;`
+
 | Default: | —             |
-| Context: | `upstream`    |
+  Context: `upstream`
+
 
 This directive appeared in versions 1.3.1 and 1.2.2.
 
@@ -491,10 +507,11 @@ Specifies that a group should use a load balancing method where a request is pas
 
 ### least_time
 
-| Syntax:  | `least_time header | last_byte [inflight];` |
-| :------- | ------------------------------------------- |
+  Syntax:`least_time header | last_byte [inflight];`
+
 | Default: | —                                           |
-| Context: | `upstream`                                  |
+  Context: `upstream`
+
 
 This directive appeared in version 1.7.10.
 
@@ -502,13 +519,13 @@ Specifies that a group should use a load balancing method where a request is pas
 
 If the `header` parameter is specified, time to receive the [response header](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) is used. If the `last_byte` parameter is specified, time to receive the [full response](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) is used. If the `inflight` parameter is specified (1.11.6), incomplete requests are also taken into account.
 
-> Prior to version 1.11.6, incomplete requests were taken into account by default.
+Prior to version 1.11.6, incomplete requests were taken into account by default.
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -516,10 +533,11 @@ If the `header` parameter is specified, time to receive the [response header](ht
 
 ### queue
 
-| Syntax:  | `queue number [timeout=time];` |
-| :------- | ------------------------------ |
+  Syntax:`queue number [timeout=time];`
+
 | Default: | —                              |
-| Context: | `upstream`                     |
+  Context: `upstream`
+
 
 This directive appeared in version 1.5.12.
 
@@ -529,11 +547,11 @@ The default value of the `timeout` parameter is 60 seconds.
 
 
 
-> When using load balancer methods other than the default round-robin method, it is necessary to activate them before the `queue` directive.
+When using load balancer methods other than the default round-robin method, it is necessary to activate them before the `queue` directive.
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -541,10 +559,11 @@ The default value of the `timeout` parameter is 60 seconds.
 
 ### random
 
-| Syntax:  | `random [two [method]];` |
-| :------- | ------------------------ |
+  Syntax:`random [two [method]];`
+
 | Default: | —                        |
-| Context: | `upstream`               |
+  Context: `upstream`
+
 
 This directive appeared in version 1.15.1.
 
@@ -556,7 +575,7 @@ The optional `two` parameter instructs nginx to randomly select [two](https://ho
 
 The `least_time` method passes a request to a server with the least average response time and least number of active connections. If `least_time=header` is specified, the time to receive the [response header](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) is used. If `least_time=last_byte` is specified, the time to receive the [full response](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) is used.
 
-> The `least_time` method is available as a part of our [commercial subscription](http://nginx.com/products/).
+The `least_time` method is available as a part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -564,18 +583,19 @@ The `least_time` method passes a request to a server with the least average resp
 
 ### resolver
 
-| Syntax:  | `resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`resolver address ... [valid=time] [ipv4=on|off] [ipv6=on|off] [status_zone=zone];`
+
 | Default: | —                                                            |
-| Context: | `upstream`                                                   |
+  Context: `upstream`
+
 
 This directive appeared in version 1.17.5.
 
 Configures name servers used to resolve names of upstream servers into addresses, for example:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353;
+```
 
 The address can be specified as a domain name or IP address, with an optional port. If port is not specified, the port 53 is used. Name servers are queried in a round-robin fashion.
 
@@ -587,13 +607,13 @@ By default, nginx will look up both IPv4 and IPv6 addresses while resolving. If 
 
 By default, nginx caches answers using the TTL value of a response. An optional `valid` parameter allows overriding it:
 
-> ```
-> resolver 127.0.0.1 [::1]:5353 valid=30s;
-> ```
+```
+resolver 127.0.0.1 [::1]:5353 valid=30s;
+```
 
 
 
-> To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
+To prevent DNS spoofing, it is recommended configuring DNS servers in a properly secured trusted local network.
 
 
 
@@ -603,7 +623,7 @@ The optional `status_zone` parameter enables [collection](https://nginx.org/en/d
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -611,24 +631,26 @@ The optional `status_zone` parameter enables [collection](https://nginx.org/en/d
 
 ### resolver_timeout
 
-| Syntax:  | `resolver_timeout time;` |
-| :------- | ------------------------ |
-| Default: | `resolver_timeout 30s;`  |
-| Context: | `upstream`               |
+  Syntax:`resolver_timeout time;`
+
+  Default: `resolver_timeout 30s;`
+
+  Context: `upstream`
+
 
 This directive appeared in version 1.17.5.
 
 Sets a timeout for name resolution, for example:
 
-> ```
-> resolver_timeout 5s;
-> ```
+```
+resolver_timeout 5s;
+```
 
 
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -636,10 +658,11 @@ Sets a timeout for name resolution, for example:
 
 ### sticky
 
-| Syntax:  | `sticky cookie name [expires=time] [domain=domain] [httponly] [samesite=strict|lax|none|$variable] [secure] [path=path];` `sticky route $variable ...;` `sticky learn create=$variable lookup=$variable zone=name:size [timeout=time] [header] [sync];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`sticky cookie name [expires=time] [domain=domain] [httponly] [samesite=strict|lax|none|$variable] [secure] [path=path];` `sticky route $variable ...;` `sticky learn create=$variable lookup=$variable zone=name:size [timeout=time] [header] [sync];`
+
 | Default: | —                                                            |
-| Context: | `upstream`                                                   |
+  Context: `upstream`
+
 
 This directive appeared in version 1.5.7.
 
@@ -661,7 +684,7 @@ Enables session affinity, which causes requests from the same client to be passe
 
 
 
-> This directive is available as part of our [commercial subscription](http://nginx.com/products/).
+This directive is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -669,14 +692,15 @@ Enables session affinity, which causes requests from the same client to be passe
 
 ### sticky_cookie_insert
 
-| Syntax:  | `sticky_cookie_insert name [expires=time] [domain=domain] [path=path];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`sticky_cookie_insert name [expires=time] [domain=domain] [path=path];`
+
 | Default: | —                                                            |
-| Context: | `upstream`                                                   |
+  Context: `upstream`
+
 
 This directive is obsolete since version 1.5.7. An equivalent [sticky](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive with a new syntax should be used instead:
 
-> `sticky cookie` `name` [`expires=``time`] [`domain=``domain`] [`path=``path`];
+`sticky cookie` `name` [`expires=``time`] [`domain=``domain`] [`path=``path`];
 
 
 

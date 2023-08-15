@@ -755,15 +755,15 @@ Example of parameters usage (all of this needs to be typed in one line):
 
 ​	以下是一个参数使用示例（所有内容需要在一行中输入）：
 
-> ```
-> ./configure
->     --sbin-path=/usr/local/nginx/nginx
->     --conf-path=/usr/local/nginx/nginx.conf
->     --pid-path=/usr/local/nginx/nginx.pid
->     --with-http_ssl_module
->     --with-pcre=../pcre2-10.39
->     --with-zlib=../zlib-1.2.11
-> ```
+```
+./configure
+    --sbin-path=/usr/local/nginx/nginx
+    --conf-path=/usr/local/nginx/nginx.conf
+    --pid-path=/usr/local/nginx/nginx.pid
+    --with-http_ssl_module
+    --with-pcre=../pcre2-10.39
+    --with-zlib=../zlib-1.2.11
+```
 
 After configuration, nginx is compiled and installed using `make`.
 

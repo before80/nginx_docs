@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_uwsgi_module"
 date = 2023-08-15T08:20:23+08:00
+weight = 570
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,12 +22,12 @@ The `ngx_http_uwsgi_module` module allows passing requests to a uwsgi server.
 
 
 
-> ```
-> location / {
->     include    uwsgi_params;
->     uwsgi_pass localhost:9000;
-> }
-> ```
+```
+location / {
+    include    uwsgi_params;
+    uwsgi_pass localhost:9000;
+}
+```
 
 
 
@@ -38,10 +39,11 @@ The `ngx_http_uwsgi_module` module allows passing requests to a uwsgi server.
 
 ### uwsgi_bind
 
-| Syntax:  | `uwsgi_bind address [transparent] | off;` |
-| :------- | ----------------------------------------- |
+  Syntax:`uwsgi_bind address [transparent] | off;`
+
 | Default: | —                                         |
-| Context: | `http`, `server`, `location`              |
+  Context: `http`, `server`, `location`
+
 
 Makes outgoing connections to a uwsgi server originate from the specified local IP address with an optional port (1.11.2). Parameter value can contain variables (1.3.12). The special value `off` (1.3.12) cancels the effect of the `uwsgi_bind` directive inherited from the previous configuration level, which allows the system to auto-assign the local IP address and port.
 
@@ -49,9 +51,9 @@ Makes outgoing connections to a uwsgi server originate from the specified local 
 
 The `transparent` parameter (1.11.0) allows outgoing connections to a uwsgi server originate from a non-local IP address, for example, from a real IP address of a client:
 
-> ```
-> uwsgi_bind $remote_addr transparent;
-> ```
+```
+uwsgi_bind $remote_addr transparent;
+```
 
 In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the uwsgi server.
 
@@ -59,10 +61,12 @@ In order for this parameter to work, it is usually necessary to run nginx worker
 
 ### uwsgi_buffer_size
 
-| Syntax:  | `uwsgi_buffer_size size;`    |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_buffer_size 4k|8k;`   |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_buffer_size size;`
+
+  Default: `uwsgi_buffer_size 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `size` of the buffer used for reading the first part of the response received from the uwsgi server. This part usually contains a small response header. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform. It can be made smaller, however.
 
@@ -70,10 +74,12 @@ Sets the `size` of the buffer used for reading the first part of the response re
 
 ### uwsgi_buffering
 
-| Syntax:  | `uwsgi_buffering on | off;`  |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_buffering on;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_buffering on | off;`
+
+  Default: `uwsgi_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables or disables buffering of responses from the uwsgi server.
 
@@ -87,10 +93,12 @@ Buffering can also be enabled or disabled by passing “`yes`” or “`no`” i
 
 ### uwsgi_buffers
 
-| Syntax:  | `uwsgi_buffers number size;` |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_buffers 8 4k|8k;`     |
-| Context: | `http`, `server`, `location` |
+  Syntax:`uwsgi_buffers number size;`
+
+  Default: `uwsgi_buffers 8 4k|8k;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` and `size` of the buffers used for reading a response from the uwsgi server, for a single connection. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform.
 
@@ -98,10 +106,12 @@ Sets the `number` and `size` of the buffers used for reading a response from the
 
 ### uwsgi_busy_buffers_size
 
-| Syntax:  | `uwsgi_busy_buffers_size size;`   |
-| :------- | --------------------------------- |
-| Default: | `uwsgi_busy_buffers_size 8k|16k;` |
-| Context: | `http`, `server`, `location`      |
+  Syntax:  `uwsgi_busy_buffers_size size;`
+
+  Default: `uwsgi_busy_buffers_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffering) of responses from the uwsgi server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [uwsgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) and [uwsgi_buffers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) directives.
 
@@ -109,10 +119,12 @@ When [buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi
 
 ### uwsgi_cache
 
-| Syntax:  | `uwsgi_cache zone | off;`    |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_cache off;`           |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_cache zone | off;`
+
+  Default: `uwsgi_cache off;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a shared memory zone used for caching. The same zone can be used in several places. Parameter value can contain variables (1.7.9). The `off` parameter disables caching inherited from the previous configuration level.
 
@@ -120,10 +132,12 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 
 ### uwsgi_cache_background_update
 
-| Syntax:  | `uwsgi_cache_background_update on | off;` |
-| :------- | ----------------------------------------- |
-| Default: | `uwsgi_cache_background_update off;`      |
-| Context: | `http`, `server`, `location`              |
+  Syntax:`uwsgi_cache_background_update on | off;`
+
+  Default: `uwsgi_cache_background_update off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.10.
 
@@ -133,17 +147,18 @@ Allows starting a background subrequest to update an expired cache item, while a
 
 ### uwsgi_cache_bypass
 
-| Syntax:  | `uwsgi_cache_bypass string ...;` |
-| :------- | -------------------------------- |
+  Syntax:`uwsgi_cache_bypass string ...;`
+
 | Default: | —                                |
-| Context: | `http`, `server`, `location`     |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be taken from a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be taken from the cache:
 
-> ```
-> uwsgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
-> uwsgi_cache_bypass $http_pragma    $http_authorization;
-> ```
+```
+uwsgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
+uwsgi_cache_bypass $http_pragma    $http_authorization;
+```
 
 Can be used along with the [uwsgi_no_cache](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_no_cache) directive.
 
@@ -151,16 +166,17 @@ Can be used along with the [uwsgi_no_cache](https://nginx.org/en/docs/http/ngx_h
 
 ### uwsgi_cache_key
 
-| Syntax:  | `uwsgi_cache_key string;`    |
-| :------- | ---------------------------- |
+  Syntax:  `uwsgi_cache_key string;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines a key for caching, for example
 
-> ```
-> uwsgi_cache_key localhost:9000$request_uri;
-> ```
+```
+uwsgi_cache_key localhost:9000$request_uri;
+```
 
 
 
@@ -168,10 +184,12 @@ Defines a key for caching, for example
 
 ### uwsgi_cache_lock
 
-| Syntax:  | `uwsgi_cache_lock on | off;` |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_cache_lock off;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:`uwsgi_cache_lock on | off;`
+
+  Default: `uwsgi_cache_lock off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
@@ -181,10 +199,12 @@ When enabled, only one request at a time will be allowed to populate a new cache
 
 ### uwsgi_cache_lock_age
 
-| Syntax:  | `uwsgi_cache_lock_age time;` |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_cache_lock_age 5s;`   |
-| Context: | `http`, `server`, `location` |
+  Syntax:`uwsgi_cache_lock_age time;`
+
+  Default: `uwsgi_cache_lock_age 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -194,16 +214,18 @@ If the last request passed to the uwsgi server for populating a new cache elemen
 
 ### uwsgi_cache_lock_timeout
 
-| Syntax:  | `uwsgi_cache_lock_timeout time;` |
-| :------- | -------------------------------- |
-| Default: | `uwsgi_cache_lock_timeout 5s;`   |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`uwsgi_cache_lock_timeout time;`
+
+  Default: `uwsgi_cache_lock_timeout 5s;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.1.12.
 
 Sets a timeout for [uwsgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_cache_lock). When the `time` expires, the request will be passed to the uwsgi server, however, the response will not be cached.
 
-> Before 1.7.8, the response could be cached.
+Before 1.7.8, the response could be cached.
 
 
 
@@ -211,10 +233,11 @@ Sets a timeout for [uwsgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_uw
 
 ### uwsgi_cache_max_range_offset
 
-| Syntax:  | `uwsgi_cache_max_range_offset number;` |
-| :------- | -------------------------------------- |
+  Syntax:`uwsgi_cache_max_range_offset number;`
+
 | Default: | —                                      |
-| Context: | `http`, `server`, `location`           |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.11.6.
 
@@ -224,10 +247,12 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 
 ### uwsgi_cache_methods
 
-| Syntax:  | `uwsgi_cache_methods GET | HEAD | POST ...;` |
-| :------- | -------------------------------------------- |
-| Default: | `uwsgi_cache_methods GET HEAD;`              |
-| Context: | `http`, `server`, `location`                 |
+  Syntax:`uwsgi_cache_methods GET | HEAD | POST ...;`
+
+  Default: `uwsgi_cache_methods GET HEAD;`
+
+  Context: `http`, `server`, `location`
+
 
 If the client request method is listed in this directive then the response will be cached. “`GET`” and “`HEAD`” methods are always added to the list, though it is recommended to specify them explicitly. See also the [uwsgi_no_cache](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_no_cache) directive.
 
@@ -235,10 +260,12 @@ If the client request method is listed in this directive then the response will 
 
 ### uwsgi_cache_min_uses
 
-| Syntax:  | `uwsgi_cache_min_uses number;` |
-| :------- | ------------------------------ |
-| Default: | `uwsgi_cache_min_uses 1;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`uwsgi_cache_min_uses number;`
+
+  Default: `uwsgi_cache_min_uses 1;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the `number` of requests after which the response will be cached.
 
@@ -246,22 +273,23 @@ Sets the `number` of requests after which the response will be cached.
 
 ### uwsgi_cache_path
 
-| Syntax:  | `uwsgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`uwsgi_cache_path path [levels=levels] [use_temp_path=on|off] keys_zone=name:size [inactive=time] [max_size=size] [min_free=size] [manager_files=number] [manager_sleep=time] [manager_threshold=time] [loader_files=number] [loader_sleep=time] [loader_threshold=time] [purger=on|off] [purger_files=number] [purger_sleep=time] [purger_threshold=time];`
+
 | Default: | —                                                            |
-| Context: | `http`                                                       |
+  Context: `http`
+
 
 Sets the path and other parameters of a cache. Cache data are stored in files. The file name in a cache is a result of applying the MD5 function to the [cache key](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_cache_key). The `levels` parameter defines hierarchy levels of a cache: from 1 to 3, each level accepts values 1 or 2. For example, in the following configuration
 
-> ```
-> uwsgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
-> ```
+```
+uwsgi_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
+```
 
 file names in a cache will look like this:
 
-> ```
-> /data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
-> ```
+```
+/data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
+```
 
 
 
@@ -269,7 +297,7 @@ A cached response is first written to a temporary file, and then the file is ren
 
 In addition, all active keys and information about data are stored in a shared memory zone, whose `name` and `size` are configured by the `keys_zone` parameter. One megabyte zone can store about 8 thousand keys.
 
-> As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
+As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
 
 
 
@@ -305,7 +333,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 
 
-> In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
+In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Previously cached responses will be considered invalid after upgrading to a newer nginx version.
 
 
 
@@ -313,10 +341,11 @@ Additionally, the following parameters are available as part of our [commercial 
 
 ### uwsgi_cache_purge
 
-| Syntax:  | `uwsgi_cache_purge string ...;` |
-| :------- | ------------------------------- |
+  Syntax:`uwsgi_cache_purge string ...;`
+
 | Default: | —                               |
-| Context: | `http`, `server`, `location`    |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -326,28 +355,28 @@ If the [cache key](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uws
 
 Example configuration:
 
-> ```
-> uwsgi_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
-> 
-> map $request_method $purge_method {
->     PURGE   1;
->     default 0;
-> }
-> 
-> server {
->     ...
->     location / {
->         uwsgi_pass        backend;
->         uwsgi_cache       cache_zone;
->         uwsgi_cache_key   $uri;
->         uwsgi_cache_purge $purge_method;
->     }
-> }
-> ```
+```
+uwsgi_cache_path /data/nginx/cache keys_zone=cache_zone:10m;
+
+map $request_method $purge_method {
+    PURGE   1;
+    default 0;
+}
+
+server {
+    ...
+    location / {
+        uwsgi_pass        backend;
+        uwsgi_cache       cache_zone;
+        uwsgi_cache_key   $uri;
+        uwsgi_cache_purge $purge_method;
+    }
+}
+```
 
 
 
-> This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
+This functionality is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -355,10 +384,12 @@ Example configuration:
 
 ### uwsgi_cache_revalidate
 
-| Syntax:  | `uwsgi_cache_revalidate on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `uwsgi_cache_revalidate off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`uwsgi_cache_revalidate on | off;`
+
+  Default: `uwsgi_cache_revalidate off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.7.
 
@@ -368,10 +399,12 @@ Enables revalidation of expired cache items using conditional requests with the 
 
 ### uwsgi_cache_use_stale
 
-| Syntax:  | `uwsgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `uwsgi_cache_use_stale off;`                                 |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`uwsgi_cache_use_stale error | timeout | invalid_header | updating | http_500 | http_503 | http_403 | http_404 | http_429 | off ...;`
+
+  Default: `uwsgi_cache_use_stale off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines in which cases a stale cached response can be used when an error occurs during communication with the uwsgi server. The directive’s parameters match the parameters of the [uwsgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_next_upstream) directive.
 
@@ -394,35 +427,36 @@ To minimize the number of accesses to uwsgi servers when populating a new cache 
 
 ### uwsgi_cache_valid
 
-| Syntax:  | `uwsgi_cache_valid [code ...] time;` |
-| :------- | ------------------------------------ |
+  Syntax:`uwsgi_cache_valid [code ...] time;`
+
 | Default: | —                                    |
-| Context: | `http`, `server`, `location`         |
+  Context: `http`, `server`, `location`
+
 
 Sets caching time for different response codes. For example, the following directives
 
-> ```
-> uwsgi_cache_valid 200 302 10m;
-> uwsgi_cache_valid 404      1m;
-> ```
+```
+uwsgi_cache_valid 200 302 10m;
+uwsgi_cache_valid 404      1m;
+```
 
 set 10 minutes of caching for responses with codes 200 and 302 and 1 minute for responses with code 404.
 
 If only caching `time` is specified
 
-> ```
-> uwsgi_cache_valid 5m;
-> ```
+```
+uwsgi_cache_valid 5m;
+```
 
 then only 200, 301, and 302 responses are cached.
 
 In addition, the `any` parameter can be specified to cache any responses:
 
-> ```
-> uwsgi_cache_valid 200 302 10m;
-> uwsgi_cache_valid 301      1h;
-> uwsgi_cache_valid any      1m;
-> ```
+```
+uwsgi_cache_valid 200 302 10m;
+uwsgi_cache_valid 301      1h;
+uwsgi_cache_valid any      1m;
+```
 
 
 
@@ -439,10 +473,12 @@ Processing of one or more of these response header fields can be disabled using 
 
 ### uwsgi_connect_timeout
 
-| Syntax:  | `uwsgi_connect_timeout time;` |
-| :------- | ----------------------------- |
-| Default: | `uwsgi_connect_timeout 60s;`  |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`uwsgi_connect_timeout time;`
+
+  Default: `uwsgi_connect_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for establishing a connection with a uwsgi server. It should be noted that this timeout cannot usually exceed 75 seconds.
 
@@ -450,10 +486,12 @@ Defines a timeout for establishing a connection with a uwsgi server. It should b
 
 ### uwsgi_force_ranges
 
-| Syntax:  | `uwsgi_force_ranges on | off;` |
-| :------- | ------------------------------ |
-| Default: | `uwsgi_force_ranges off;`      |
-| Context: | `http`, `server`, `location`   |
+  Syntax:`uwsgi_force_ranges on | off;`
+
+  Default: `uwsgi_force_ranges off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -463,10 +501,11 @@ Enables byte-range support for both cached and uncached responses from the uwsgi
 
 ### uwsgi_hide_header
 
-| Syntax:  | `uwsgi_hide_header field;`   |
-| :------- | ---------------------------- |
+  Syntax:  `uwsgi_hide_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 By default, nginx does not pass the header fields “Status” and “X-Accel-...” from the response of a uwsgi server to a client. The `uwsgi_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [uwsgi_pass_header](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass_header) directive can be used.
 
@@ -474,10 +513,12 @@ By default, nginx does not pass the header fields “Status” and “X-Accel-..
 
 ### uwsgi_ignore_client_abort
 
-| Syntax:  | `uwsgi_ignore_client_abort on | off;` |
-| :------- | ------------------------------------- |
-| Default: | `uwsgi_ignore_client_abort off;`      |
-| Context: | `http`, `server`, `location`          |
+  Syntax:`uwsgi_ignore_client_abort on | off;`
+
+  Default: `uwsgi_ignore_client_abort off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether the connection with a uwsgi server should be closed when a client closes the connection without waiting for a response.
 
@@ -485,10 +526,11 @@ Determines whether the connection with a uwsgi server should be closed when a cl
 
 ### uwsgi_ignore_headers
 
-| Syntax:  | `uwsgi_ignore_headers field ...;` |
-| :------- | --------------------------------- |
+  Syntax:`uwsgi_ignore_headers field ...;`
+
 | Default: | —                                 |
-| Context: | `http`, `server`, `location`      |
+  Context: `http`, `server`, `location`
+
 
 Disables processing of certain response header fields from the uwsgi server. The following fields can be ignored: “X-Accel-Redirect”, “X-Accel-Expires”, “X-Accel-Limit-Rate” (1.1.6), “X-Accel-Buffering” (1.1.6), “X-Accel-Charset” (1.1.6), “Expires”, “Cache-Control”, “Set-Cookie” (0.8.44), and “Vary” (1.7.7).
 
@@ -506,10 +548,12 @@ If not disabled, processing of these header fields has the following effect:
 
 ### uwsgi_intercept_errors
 
-| Syntax:  | `uwsgi_intercept_errors on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `uwsgi_intercept_errors off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`uwsgi_intercept_errors on | off;`
+
+  Default: `uwsgi_intercept_errors off;`
+
+  Context: `http`, `server`, `location`
+
 
 Determines whether a uwsgi server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
 
@@ -517,10 +561,12 @@ Determines whether a uwsgi server responses with codes greater than or equal to 
 
 ### uwsgi_limit_rate
 
-| Syntax:  | `uwsgi_limit_rate rate;`     |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_limit_rate 0;`        |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_limit_rate rate;`
+
+  Default: `uwsgi_limit_rate 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.7.
 
@@ -530,10 +576,12 @@ Limits the speed of reading the response from the uwsgi server. The `rate` is sp
 
 ### uwsgi_max_temp_file_size
 
-| Syntax:  | `uwsgi_max_temp_file_size size;`  |
-| :------- | --------------------------------- |
-| Default: | `uwsgi_max_temp_file_size 1024m;` |
-| Context: | `http`, `server`, `location`      |
+  Syntax:  `uwsgi_max_temp_file_size size;`
+
+  Default: `uwsgi_max_temp_file_size 1024m;`
+
+  Context: `http`, `server`, `location`
+
 
 When [buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffering) of responses from the uwsgi server is enabled, and the whole response does not fit into the buffers set by the [uwsgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) and [uwsgi_buffers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [uwsgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_temp_file_write_size) directive.
 
@@ -541,7 +589,7 @@ The zero value disables buffering of responses to temporary files.
 
 
 
-> This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_store) on disk.
+This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_store) on disk.
 
 
 
@@ -549,10 +597,12 @@ The zero value disables buffering of responses to temporary files.
 
 ### uwsgi_modifier1
 
-| Syntax:  | `uwsgi_modifier1 number;`    |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_modifier1 0;`         |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_modifier1 number;`
+
+  Default: `uwsgi_modifier1 0;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the value of the `modifier1` field in the [uwsgi packet header](http://uwsgi-docs.readthedocs.org/en/latest/Protocol.html#uwsgi-packet-header).
 
@@ -560,10 +610,12 @@ Sets the value of the `modifier1` field in the [uwsgi packet header](http://uwsg
 
 ### uwsgi_modifier2
 
-| Syntax:  | `uwsgi_modifier2 number;`    |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_modifier2 0;`         |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_modifier2 number;`
+
+  Default: `uwsgi_modifier2 0;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets the value of the `modifier2` field in the [uwsgi packet header](http://uwsgi-docs.readthedocs.org/en/latest/Protocol.html#uwsgi-packet-header).
 
@@ -571,10 +623,12 @@ Sets the value of the `modifier2` field in the [uwsgi packet header](http://uwsg
 
 ### uwsgi_next_upstream
 
-| Syntax:  | `uwsgi_next_upstream error | timeout | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `uwsgi_next_upstream error timeout;`                         |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`uwsgi_next_upstream error | timeout | invalid_header | http_500 | http_503 | http_403 | http_404 | http_429 | non_idempotent | off ...;`
+
+  Default: `uwsgi_next_upstream error timeout;`
+
+  Context: `http`, `server`, `location`
+
 
 Specifies in which cases a request should be passed to the next server:
 
@@ -630,10 +684,12 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 ### uwsgi_next_upstream_timeout
 
-| Syntax:  | `uwsgi_next_upstream_timeout time;` |
-| :------- | ----------------------------------- |
-| Default: | `uwsgi_next_upstream_timeout 0;`    |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`uwsgi_next_upstream_timeout time;`
+
+  Default: `uwsgi_next_upstream_timeout 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -643,10 +699,12 @@ Limits the time during which a request can be passed to the [next server](https:
 
 ### uwsgi_next_upstream_tries
 
-| Syntax:  | `uwsgi_next_upstream_tries number;` |
-| :------- | ----------------------------------- |
-| Default: | `uwsgi_next_upstream_tries 0;`      |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`uwsgi_next_upstream_tries number;`
+
+  Default: `uwsgi_next_upstream_tries 0;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.5.
 
@@ -656,17 +714,18 @@ Limits the number of possible tries for passing a request to the [next server](h
 
 ### uwsgi_no_cache
 
-| Syntax:  | `uwsgi_no_cache string ...;` |
-| :------- | ---------------------------- |
+  Syntax:`uwsgi_no_cache string ...;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Defines conditions under which the response will not be saved to a cache. If at least one value of the string parameters is not empty and is not equal to “0” then the response will not be saved:
 
-> ```
-> uwsgi_no_cache $cookie_nocache $arg_nocache$arg_comment;
-> uwsgi_no_cache $http_pragma    $http_authorization;
-> ```
+```
+uwsgi_no_cache $cookie_nocache $arg_nocache$arg_comment;
+uwsgi_no_cache $http_pragma    $http_authorization;
+```
 
 Can be used along with the [uwsgi_cache_bypass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_cache_bypass) directive.
 
@@ -674,29 +733,30 @@ Can be used along with the [uwsgi_cache_bypass](https://nginx.org/en/docs/http/n
 
 ### uwsgi_param
 
-| Syntax:  | `uwsgi_param parameter value [if_not_empty];` |
-| :------- | --------------------------------------------- |
+  Syntax:`uwsgi_param parameter value [if_not_empty];`
+
 | Default: | —                                             |
-| Context: | `http`, `server`, `location`                  |
+  Context: `http`, `server`, `location`
+
 
 Sets a `parameter` that should be passed to the uwsgi server. The `value` can contain text, variables, and their combination. These directives are inherited from the previous configuration level if and only if there are no `uwsgi_param` directives defined on the current level.
 
 Standard [CGI environment variables](https://datatracker.ietf.org/doc/html/rfc3875#section-4.1) should be provided as uwsgi headers, see the `uwsgi_params` file provided in the distribution:
 
-> ```
-> location / {
->     include uwsgi_params;
->     ...
-> }
-> ```
+```
+location / {
+    include uwsgi_params;
+    ...
+}
+```
 
 
 
 If the directive is specified with `if_not_empty` (1.1.11) then such a parameter will be passed to the server only if its value is not empty:
 
-> ```
-> uwsgi_param HTTPS $https if_not_empty;
-> ```
+```
+uwsgi_param HTTPS $https if_not_empty;
+```
 
 
 
@@ -704,24 +764,25 @@ If the directive is specified with `if_not_empty` (1.1.11) then such a parameter
 
 ### uwsgi_pass
 
-| Syntax:  | `uwsgi_pass [protocol://]address;` |
-| :------- | ---------------------------------- |
+  Syntax:`uwsgi_pass [protocol://]address;`
+
 | Default: | —                                  |
-| Context: | `location`, `if in location`       |
+  Context: `location`, `if in location`
+
 
 Sets the protocol and address of a uwsgi server. As a `protocol`, “`uwsgi`” or “`suwsgi`” (secured uwsgi, uwsgi over SSL) can be specified. The address can be specified as a domain name or IP address, and a port:
 
-> ```
-> uwsgi_pass localhost:9000;
-> uwsgi_pass uwsgi://localhost:9000;
-> uwsgi_pass suwsgi://[2001:db8::1]:9090;
-> ```
+```
+uwsgi_pass localhost:9000;
+uwsgi_pass uwsgi://localhost:9000;
+uwsgi_pass suwsgi://[2001:db8::1]:9090;
+```
 
 or as a UNIX-domain socket path:
 
-> ```
-> uwsgi_pass unix:/tmp/uwsgi.socket;
-> ```
+```
+uwsgi_pass unix:/tmp/uwsgi.socket;
+```
 
 
 
@@ -731,7 +792,7 @@ Parameter value can contain variables. In this case, if an address is specified 
 
 
 
-> Secured uwsgi protocol is supported since version 1.5.8.
+Secured uwsgi protocol is supported since version 1.5.8.
 
 
 
@@ -739,10 +800,11 @@ Parameter value can contain variables. In this case, if an address is specified 
 
 ### uwsgi_pass_header
 
-| Syntax:  | `uwsgi_pass_header field;`   |
-| :------- | ---------------------------- |
+  Syntax:  `uwsgi_pass_header field;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_hide_header) header fields from a uwsgi server to a client.
 
@@ -750,10 +812,12 @@ Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_uws
 
 ### uwsgi_pass_request_body
 
-| Syntax:  | `uwsgi_pass_request_body on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `uwsgi_pass_request_body on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`uwsgi_pass_request_body on | off;`
+
+  Default: `uwsgi_pass_request_body on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the original request body is passed to the uwsgi server. See also the [uwsgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass_request_headers) directive.
 
@@ -761,10 +825,12 @@ Indicates whether the original request body is passed to the uwsgi server. See a
 
 ### uwsgi_pass_request_headers
 
-| Syntax:  | `uwsgi_pass_request_headers on | off;` |
-| :------- | -------------------------------------- |
-| Default: | `uwsgi_pass_request_headers on;`       |
-| Context: | `http`, `server`, `location`           |
+  Syntax:`uwsgi_pass_request_headers on | off;`
+
+  Default: `uwsgi_pass_request_headers on;`
+
+  Context: `http`, `server`, `location`
+
 
 Indicates whether the header fields of the original request are passed to the uwsgi server. See also the [uwsgi_pass_request_body](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass_request_body) directive.
 
@@ -772,10 +838,12 @@ Indicates whether the header fields of the original request are passed to the uw
 
 ### uwsgi_read_timeout
 
-| Syntax:  | `uwsgi_read_timeout time;`   |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_read_timeout 60s;`    |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_read_timeout time;`
+
+  Default: `uwsgi_read_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a timeout for reading a response from the uwsgi server. The timeout is set only between two successive read operations, not for the transmission of the whole response. If the uwsgi server does not transmit anything within this time, the connection is closed.
 
@@ -783,10 +851,12 @@ Defines a timeout for reading a response from the uwsgi server. The timeout is s
 
 ### uwsgi_request_buffering
 
-| Syntax:  | `uwsgi_request_buffering on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `uwsgi_request_buffering on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`uwsgi_request_buffering on | off;`
+
+  Default: `uwsgi_request_buffering on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.11.
 
@@ -802,10 +872,12 @@ When HTTP/1.1 chunked transfer encoding is used to send the original request bod
 
 ### uwsgi_send_timeout
 
-| Syntax:  | `uwsgi_send_timeout time;`   |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_send_timeout 60s;`    |
-| Context: | `http`, `server`, `location` |
+  Syntax:  `uwsgi_send_timeout time;`
+
+  Default: `uwsgi_send_timeout 60s;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets a timeout for transmitting a request to the uwsgi server. The timeout is set only between two successive write operations, not for the transmission of the whole request. If the uwsgi server does not receive anything within this time, the connection is closed.
 
@@ -813,10 +885,12 @@ Sets a timeout for transmitting a request to the uwsgi server. The timeout is se
 
 ### uwsgi_socket_keepalive
 
-| Syntax:  | `uwsgi_socket_keepalive on | off;` |
-| :------- | ---------------------------------- |
-| Default: | `uwsgi_socket_keepalive off;`      |
-| Context: | `http`, `server`, `location`       |
+  Syntax:`uwsgi_socket_keepalive on | off;`
+
+  Default: `uwsgi_socket_keepalive off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.15.6.
 
@@ -826,10 +900,11 @@ Configures the “TCP keepalive” behavior for outgoing connections to a uwsgi 
 
 ### uwsgi_ssl_certificate
 
-| Syntax:  | `uwsgi_ssl_certificate file;` |
-| :------- | ----------------------------- |
+  Syntax:`uwsgi_ssl_certificate file;`
+
 | Default: | —                             |
-| Context: | `http`, `server`, `location`  |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -841,10 +916,11 @@ Since version 1.21.0, variables can be used in the `file` name.
 
 ### uwsgi_ssl_certificate_key
 
-| Syntax:  | `uwsgi_ssl_certificate_key file;` |
-| :------- | --------------------------------- |
+  Syntax:`uwsgi_ssl_certificate_key file;`
+
 | Default: | —                                 |
-| Context: | `http`, `server`, `location`      |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -858,10 +934,12 @@ Since version 1.21.0, variables can be used in the `file` name.
 
 ### uwsgi_ssl_ciphers
 
-| Syntax:  | `uwsgi_ssl_ciphers ciphers;` |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_ssl_ciphers DEFAULT;` |
-| Context: | `http`, `server`, `location` |
+  Syntax:`uwsgi_ssl_ciphers ciphers;`
+
+  Default: `uwsgi_ssl_ciphers DEFAULT;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.8.
 
@@ -873,16 +951,17 @@ The full list can be viewed using the “`openssl ciphers`” command.
 
 ### uwsgi_ssl_conf_command
 
-| Syntax:  | `uwsgi_ssl_conf_command name value;` |
-| :------- | ------------------------------------ |
+  Syntax:`uwsgi_ssl_conf_command name value;`
+
 | Default: | —                                    |
-| Context: | `http`, `server`, `location`         |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.19.4.
 
 Sets arbitrary OpenSSL configuration [commands](https://www.openssl.org/docs/man1.1.1/man3/SSL_CONF_cmd.html) when establishing a connection with the secured uwsgi server.
 
-> The directive is supported when using OpenSSL 1.0.2 or higher.
+The directive is supported when using OpenSSL 1.0.2 or higher.
 
 
 
@@ -890,7 +969,7 @@ Several `uwsgi_ssl_conf_command` directives can be specified on the same level. 
 
 
 
-> Note that configuring OpenSSL directly might result in unexpected behavior.
+Note that configuring OpenSSL directly might result in unexpected behavior.
 
 
 
@@ -898,10 +977,11 @@ Several `uwsgi_ssl_conf_command` directives can be specified on the same level. 
 
 ### uwsgi_ssl_crl
 
-| Syntax:  | `uwsgi_ssl_crl file;`        |
-| :------- | ---------------------------- |
+  Syntax:  `uwsgi_ssl_crl file;`
+
 | Default: | —                            |
-| Context: | `http`, `server`, `location` |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -911,10 +991,12 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
 ### uwsgi_ssl_name
 
-| Syntax:  | `uwsgi_ssl_name name;`                 |
-| :------- | -------------------------------------- |
-| Default: | `uwsgi_ssl_name host from uwsgi_pass;` |
-| Context: | `http`, `server`, `location`           |
+  Syntax:  `uwsgi_ssl_name name;`
+
+  Default: `uwsgi_ssl_name host from uwsgi_pass;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -926,10 +1008,11 @@ By default, the host part from [uwsgi_pass](https://nginx.org/en/docs/http/ngx_h
 
 ### uwsgi_ssl_password_file
 
-| Syntax:  | `uwsgi_ssl_password_file file;` |
-| :------- | ------------------------------- |
+  Syntax:`uwsgi_ssl_password_file file;`
+
 | Default: | —                               |
-| Context: | `http`, `server`, `location`    |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.8.
 
@@ -939,10 +1022,12 @@ Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/
 
 ### uwsgi_ssl_protocols
 
-| Syntax:  | `uwsgi_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `uwsgi_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`         |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`uwsgi_ssl_protocols [SSLv2] [SSLv3] [TLSv1] [TLSv1.1] [TLSv1.2] [TLSv1.3];`
+
+  Default: `uwsgi_ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.8.
 
@@ -950,7 +1035,7 @@ Enables the specified protocols for requests to a secured uwsgi server.
 
 
 
-> The `TLSv1.3` parameter is used by default since 1.23.4.
+The `TLSv1.3` parameter is used by default since 1.23.4.
 
 
 
@@ -958,10 +1043,12 @@ Enables the specified protocols for requests to a secured uwsgi server.
 
 ### uwsgi_ssl_server_name
 
-| Syntax:  | `uwsgi_ssl_server_name on | off;` |
-| :------- | --------------------------------- |
-| Default: | `uwsgi_ssl_server_name off;`      |
-| Context: | `http`, `server`, `location`      |
+  Syntax:`uwsgi_ssl_server_name on | off;`
+
+  Default: `uwsgi_ssl_server_name off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -971,10 +1058,12 @@ Enables or disables passing of the server name through [TLS Server Name Indicati
 
 ### uwsgi_ssl_session_reuse
 
-| Syntax:  | `uwsgi_ssl_session_reuse on | off;` |
-| :------- | ----------------------------------- |
-| Default: | `uwsgi_ssl_session_reuse on;`       |
-| Context: | `http`, `server`, `location`        |
+  Syntax:`uwsgi_ssl_session_reuse on | off;`
+
+  Default: `uwsgi_ssl_session_reuse on;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.5.8.
 
@@ -984,10 +1073,11 @@ Determines whether SSL sessions can be reused when working with a secured uwsgi 
 
 ### uwsgi_ssl_trusted_certificate
 
-| Syntax:  | `uwsgi_ssl_trusted_certificate file;` |
-| :------- | ------------------------------------- |
+  Syntax:`uwsgi_ssl_trusted_certificate file;`
+
 | Default: | —                                     |
-| Context: | `http`, `server`, `location`          |
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -997,10 +1087,12 @@ Specifies a `file` with trusted CA certificates in the PEM format used to [verif
 
 ### uwsgi_ssl_verify
 
-| Syntax:  | `uwsgi_ssl_verify on | off;` |
-| :------- | ---------------------------- |
-| Default: | `uwsgi_ssl_verify off;`      |
-| Context: | `http`, `server`, `location` |
+  Syntax:`uwsgi_ssl_verify on | off;`
+
+  Default: `uwsgi_ssl_verify off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1010,10 +1102,12 @@ Enables or disables verification of the secured uwsgi server certificate.
 
 ### uwsgi_ssl_verify_depth
 
-| Syntax:  | `uwsgi_ssl_verify_depth number;` |
-| :------- | -------------------------------- |
-| Default: | `uwsgi_ssl_verify_depth 1;`      |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`uwsgi_ssl_verify_depth number;`
+
+  Default: `uwsgi_ssl_verify_depth 1;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in version 1.7.0.
 
@@ -1023,16 +1117,18 @@ Sets the verification depth in the secured uwsgi server certificates chain.
 
 ### uwsgi_store
 
-| Syntax:  | `uwsgi_store on | off | string;` |
-| :------- | -------------------------------- |
-| Default: | `uwsgi_store off;`               |
-| Context: | `http`, `server`, `location`     |
+  Syntax:`uwsgi_store on | off | string;`
+
+  Default: `uwsgi_store off;`
+
+  Context: `http`, `server`, `location`
+
 
 Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) or [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
 
-> ```
-> uwsgi_store /data/www$original_uri;
-> ```
+```
+uwsgi_store /data/www$original_uri;
+```
 
 
 
@@ -1040,25 +1136,25 @@ The modification time of files is set according to the received “Last-Modified
 
 This directive can be used to create local copies of static unchangeable files, e.g.:
 
-> ```
-> location /images/ {
->     root               /data/www;
->     error_page         404 = /fetch$uri;
-> }
-> 
-> location /fetch/ {
->     internal;
-> 
->     uwsgi_pass         backend:9000;
->     ...
-> 
->     uwsgi_store        on;
->     uwsgi_store_access user:rw group:rw all:r;
->     uwsgi_temp_path    /data/temp;
-> 
->     alias              /data/www/;
-> }
-> ```
+```
+location /images/ {
+    root               /data/www;
+    error_page         404 = /fetch$uri;
+}
+
+location /fetch/ {
+    internal;
+
+    uwsgi_pass         backend:9000;
+    ...
+
+    uwsgi_store        on;
+    uwsgi_store_access user:rw group:rw all:r;
+    uwsgi_temp_path    /data/temp;
+
+    alias              /data/www/;
+}
+```
 
 
 
@@ -1066,24 +1162,26 @@ This directive can be used to create local copies of static unchangeable files, 
 
 ### uwsgi_store_access
 
-| Syntax:  | `uwsgi_store_access users:permissions ...;` |
-| :------- | ------------------------------------------- |
-| Default: | `uwsgi_store_access user:rw;`               |
-| Context: | `http`, `server`, `location`                |
+  Syntax:`uwsgi_store_access users:permissions ...;`
+
+  Default: `uwsgi_store_access user:rw;`
+
+  Context: `http`, `server`, `location`
+
 
 Sets access permissions for newly created files and directories, e.g.:
 
-> ```
-> uwsgi_store_access user:rw group:rw all:r;
-> ```
+```
+uwsgi_store_access user:rw group:rw all:r;
+```
 
 
 
 If any `group` or `all` access permissions are specified then `user` permissions may be omitted:
 
-> ```
-> uwsgi_store_access group:rw all:r;
-> ```
+```
+uwsgi_store_access group:rw all:r;
+```
 
 
 
@@ -1091,10 +1189,12 @@ If any `group` or `all` access permissions are specified then `user` permissions
 
 ### uwsgi_temp_file_write_size
 
-| Syntax:  | `uwsgi_temp_file_write_size size;`   |
-| :------- | ------------------------------------ |
-| Default: | `uwsgi_temp_file_write_size 8k|16k;` |
-| Context: | `http`, `server`, `location`         |
+  Syntax:  `uwsgi_temp_file_write_size size;`
+
+  Default: `uwsgi_temp_file_write_size 8k|16k;`
+
+  Context: `http`, `server`, `location`
+
 
 Limits the `size` of data written to a temporary file at a time, when buffering of responses from the uwsgi server to temporary files is enabled. By default, `size` is limited by two buffers set by the [uwsgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) and [uwsgi_buffers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) directives. The maximum size of a temporary file is set by the [uwsgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_max_temp_file_size) directive.
 
@@ -1102,22 +1202,24 @@ Limits the `size` of data written to a temporary file at a time, when buffering 
 
 ### uwsgi_temp_path
 
-| Syntax:  | `uwsgi_temp_path path [level1 [level2 [level3]]];` |
-| :------- | -------------------------------------------------- |
-| Default: | `uwsgi_temp_path uwsgi_temp;`                      |
-| Context: | `http`, `server`, `location`                       |
+  Syntax:`uwsgi_temp_path path [level1 [level2 [level3]]];`
+
+  Default: `uwsgi_temp_path uwsgi_temp;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines a directory for storing temporary files with data received from uwsgi servers. Up to three-level subdirectory hierarchy can be used underneath the specified directory. For example, in the following configuration
 
-> ```
-> uwsgi_temp_path /spool/nginx/uwsgi_temp 1 2;
-> ```
+```
+uwsgi_temp_path /spool/nginx/uwsgi_temp 1 2;
+```
 
 a temporary file might look like this:
 
-> ```
-> /spool/nginx/uwsgi_temp/7/45/00000123457
-> ```
+```
+/spool/nginx/uwsgi_temp/7/45/00000123457
+```
 
 
 

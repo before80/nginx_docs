@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_realip_module"
 date = 2023-08-15T08:17:51+08:00
+weight = 400
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -23,13 +24,13 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 
 
-> ```
-> set_real_ip_from  192.168.1.0/24;
-> set_real_ip_from  192.168.2.1;
-> set_real_ip_from  2001:0db8::/32;
-> real_ip_header    X-Forwarded-For;
-> real_ip_recursive on;
-> ```
+```
+set_real_ip_from  192.168.1.0/24;
+set_real_ip_from  192.168.2.1;
+set_real_ip_from  2001:0db8::/32;
+real_ip_header    X-Forwarded-For;
+real_ip_recursive on;
+```
 
 
 
@@ -41,14 +42,15 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ### set_real_ip_from
 
-| Syntax:  | `set_real_ip_from address | CIDR | unix:;` |
-| :------- | ------------------------------------------ |
+  Syntax:`set_real_ip_from address | CIDR | unix:;`
+
 | Default: | —                                          |
-| Context: | `http`, `server`, `location`               |
+  Context: `http`, `server`, `location`
+
 
 Defines trusted addresses that are known to send correct replacement addresses. If the special value `unix:` is specified, all UNIX-domain sockets will be trusted. Trusted addresses may also be specified using a hostname (1.13.1).
 
-> IPv6 addresses are supported starting from versions 1.3.0 and 1.2.1.
+IPv6 addresses are supported starting from versions 1.3.0 and 1.2.1.
 
 
 
@@ -56,10 +58,12 @@ Defines trusted addresses that are known to send correct replacement addresses. 
 
 ### real_ip_header
 
-| Syntax:  | `real_ip_header field | X-Real-IP | X-Forwarded-For | proxy_protocol;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `real_ip_header X-Real-IP;`                                  |
-| Context: | `http`, `server`, `location`                                 |
+  Syntax:`real_ip_header field | X-Real-IP | X-Forwarded-For | proxy_protocol;`
+
+  Default: `real_ip_header X-Real-IP;`
+
+  Context: `http`, `server`, `location`
+
 
 Defines the request header field whose value will be used to replace the client address.
 
@@ -71,10 +75,12 @@ The `proxy_protocol` parameter (1.5.12) changes the client address to the one fr
 
 ### real_ip_recursive
 
-| Syntax:  | `real_ip_recursive on | off;` |
-| :------- | ----------------------------- |
-| Default: | `real_ip_recursive off;`      |
-| Context: | `http`, `server`, `location`  |
+  Syntax:`real_ip_recursive on | off;`
+
+  Default: `real_ip_recursive off;`
+
+  Context: `http`, `server`, `location`
+
 
 This directive appeared in versions 1.3.0 and 1.2.1.
 

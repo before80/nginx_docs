@@ -1,6 +1,7 @@
 +++
 title = "ngx_http_map_module"
 date = 2023-08-15T08:16:22+08:00
+weight = 320
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,25 +22,25 @@ The `ngx_http_map_module` module creates variables whose values depend on values
 
 
 
-> ```
-> map $http_host $name {
->     hostnames;
-> 
->     default       0;
-> 
->     example.com   1;
->     *.example.com 1;
->     example.org   2;
->     *.example.org 2;
->     .example.net  3;
->     wap.*         4;
-> }
-> 
-> map $http_user_agent $mobile {
->     default       0;
->     "~Opera Mini" 1;
-> }
-> ```
+```
+map $http_host $name {
+    hostnames;
+
+    default       0;
+
+    example.com   1;
+    *.example.com 1;
+    example.org   2;
+    *.example.org 2;
+    .example.net  3;
+    wap.*         4;
+}
+
+map $http_user_agent $mobile {
+    default       0;
+    "~Opera Mini" 1;
+}
+```
 
 
 
@@ -51,20 +52,21 @@ The `ngx_http_map_module` module creates variables whose values depend on values
 
 ### map
 
-| Syntax:  | `map string $variable { ... }` |
-| :------- | ------------------------------ |
+  Syntax:`map string $variable { ... }`
+
 | Default: | —                              |
-| Context: | `http`                         |
+  Context: `http`
+
 
 Creates a new variable whose value depends on values of one or more of the source variables specified in the first parameter.
 
-> Before version 0.9.0 only a single variable could be specified in the first parameter.
+Before version 0.9.0 only a single variable could be specified in the first parameter.
 
 
 
 
 
-> Since variables are evaluated only when they are used, the mere declaration even of a large number of “`map`” variables does not add any extra costs to request processing.
+Since variables are evaluated only when they are used, the mere declaration even of a large number of “`map`” variables does not add any extra costs to request processing.
 
 
 
@@ -134,10 +136,12 @@ If the source value matches more than one of the specified variants, e.g. both a
 
 ### map_hash_bucket_size
 
-| Syntax:  | `map_hash_bucket_size size;`      |
-| :------- | --------------------------------- |
-| Default: | `map_hash_bucket_size 32|64|128;` |
-| Context: | `http`                            |
+  Syntax:  `map_hash_bucket_size size;`
+
+  Default: `map_hash_bucket_size 32|64|128;`
+
+  Context: `http`
+
 
 Sets the bucket size for the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) variables hash tables. Default value depends on the processor’s cache line size. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
@@ -145,9 +149,11 @@ Sets the bucket size for the [map](https://nginx.org/en/docs/http/ngx_http_map_m
 
 ### map_hash_max_size
 
-| Syntax:  | `map_hash_max_size size;` |
-| :------- | ------------------------- |
-| Default: | `map_hash_max_size 2048;` |
-| Context: | `http`                    |
+  Syntax:`map_hash_max_size size;`
+
+  Default: `map_hash_max_size 2048;`
+
+  Context: `http`
+
 
 Sets the maximum `size` of the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) variables hash tables. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).

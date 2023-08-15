@@ -55,13 +55,12 @@ server {
 
 
 
-> On versions prior to 0.9.1, redirects can be made with:
->
-> ```
->     rewrite      ^ http://www.example.org$request_uri?;
-> ```
->
-> 
+On versions prior to 0.9.1, redirects can be made with:
+
+```
+    rewrite      ^ http://www.example.org$request_uri?;
+```
+
 
 
 
@@ -91,13 +90,12 @@ server {
 
 
 
-> On versions prior to 0.9.1, redirects can be made with:
->
-> ```
->     rewrite      ^ http://example.com$request_uri?;
-> ```
->
-> 
+On versions prior to 0.9.1, redirects can be made with:
+
+```
+    rewrite      ^ http://example.com$request_uri?;
+```
+
 
 
 

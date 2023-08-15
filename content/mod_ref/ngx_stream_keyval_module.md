@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_keyval_module"
 date = 2023-08-15T08:22:48+08:00
+weight = 750
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -17,7 +18,7 @@ The `ngx_stream_keyval_module` module (1.13.7) creates variables with values tak
 
 
 
-> This module is available as part of our [commercial subscription](http://nginx.com/products/).
+This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -27,30 +28,30 @@ The `ngx_stream_keyval_module` module (1.13.7) creates variables with values tak
 
 
 
-> ```
-> http {
-> 
->     server {
->         ...
->         location /api {
->             api write=on;
->         }
->     }
-> }
-> 
-> stream {
-> 
->     keyval_zone zone=one:32k state=/var/lib/nginx/state/one.keyval;
->     keyval      $ssl_server_name $name zone=one;
-> 
->     server {
->         listen              12345 ssl;
->         proxy_pass          $name;
->         ssl_certificate     /usr/local/nginx/conf/cert.pem;
->         ssl_certificate_key /usr/local/nginx/conf/cert.key;
->     }
-> }
-> ```
+```
+http {
+
+    server {
+        ...
+        location /api {
+            api write=on;
+        }
+    }
+}
+
+stream {
+
+    keyval_zone zone=one:32k state=/var/lib/nginx/state/one.keyval;
+    keyval      $ssl_server_name $name zone=one;
+
+    server {
+        listen              12345 ssl;
+        proxy_pass          $name;
+        ssl_certificate     /usr/local/nginx/conf/cert.pem;
+        ssl_certificate_key /usr/local/nginx/conf/cert.key;
+    }
+}
+```
 
 
 
@@ -62,10 +63,11 @@ The `ngx_stream_keyval_module` module (1.13.7) creates variables with values tak
 
 ### keyval
 
-| Syntax:  | `keyval key $variable zone=name;` |
-| :------- | --------------------------------- |
+  Syntax:`keyval key $variable zone=name;`
+
 | Default: | —                                 |
-| Context: | `stream`                          |
+  Context: `stream`
+
 
 Creates a new `$variable` whose value is looked up by the `key` in the key-value database. Matching rules are defined by the [`type`](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_type) parameter of the [`keyval_zone`](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval_zone) directive. The database is stored in a shared memory zone specified by the `zone` parameter.
 
@@ -73,10 +75,11 @@ Creates a new `$variable` whose value is looked up by the `key` in the key-value
 
 ### keyval_zone
 
-| Syntax:  | `keyval_zone zone=name:size [state=file] [timeout=time] [type=string|ip|prefix] [sync];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`keyval_zone zone=name:size [state=file] [timeout=time] [type=string|ip|prefix] [sync];`
+
 | Default: | —                                                            |
-| Context: | `stream`                                                     |
+  Context: `stream`
+
 
 Sets the `name` and `size` of the shared memory zone that keeps the key-value database. Key-value pairs are managed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_).
 
@@ -86,10 +89,10 @@ The optional `state` parameter specifies a `file` that keeps the current state o
 
 Examples:
 
-> ```
-> keyval_zone zone=one:32k state=/var/lib/nginx/state/one.keyval; # path for Linux
-> keyval_zone zone=one:32k state=/var/db/nginx/state/one.keyval;  # path for FreeBSD
-> ```
+```
+keyval_zone zone=one:32k state=/var/lib/nginx/state/one.keyval; # path for Linux
+keyval_zone zone=one:32k state=/var/db/nginx/state/one.keyval;  # path for FreeBSD
+```
 
 
 
@@ -101,7 +104,7 @@ The optional `timeout` parameter (1.15.0) sets the time after which key-value pa
 
 The optional `type` parameter (1.17.1) activates an extra index optimized for matching the key of a certain type and defines matching rules when evaluating a [keyval](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html#keyval) `$variable`.
 
-> The index is stored in the same shared memory zone and thus requires additional storage.
+The index is stored in the same shared memory zone and thus requires additional storage.
 
 
 
@@ -123,4 +126,4 @@ The optional `type` parameter (1.17.1) activates an extra index optimized for ma
 
 The optional `sync` parameter (1.15.0) enables [synchronization](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) of the shared memory zone. The synchronization requires the `timeout` parameter to be set.
 
-> If the synchronization is enabled, removal of key-value pairs (no matter [one](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchStreamKeyvalZoneKeyValue) or [all](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamKeyvalZoneData)) will be performed only on a target cluster node. The same key-value pairs on other cluster nodes will be removed upon `timeout`.
+If the synchronization is enabled, removal of key-value pairs (no matter [one](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchStreamKeyvalZoneKeyValue) or [all](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamKeyvalZoneData)) will be performed only on a target cluster node. The same key-value pairs on other cluster nodes will be removed upon `timeout`.

@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_log_module"
 date = 2023-08-15T08:23:09+08:00
+weight = 770
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,13 +22,13 @@ The `ngx_stream_log_module` module (1.11.4) writes session logs in the specified
 
 
 
-> ```
-> log_format basic '$remote_addr [$time_local] '
->                  '$protocol $status $bytes_sent $bytes_received '
->                  '$session_time';
-> 
-> access_log /spool/logs/nginx-access.log basic buffer=32k;
-> ```
+```
+log_format basic '$remote_addr [$time_local] '
+                 '$protocol $status $bytes_sent $bytes_received '
+                 '$session_time';
+
+access_log /spool/logs/nginx-access.log basic buffer=32k;
+```
 
 
 
@@ -39,16 +40,18 @@ The `ngx_stream_log_module` module (1.11.4) writes session logs in the specified
 
 ### access_log
 
-| Syntax:  | `access_log path format [buffer=size] [gzip[=level]] [flush=time] [if=condition];` `access_log off;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `access_log off;`                                            |
-| Context: | `stream`, `server`                                           |
+  Syntax:`access_log path format [buffer=size] [gzip[=level]] [flush=time] [if=condition];` `access_log off;`
+
+  Default: `access_log off;`
+
+  Context: `stream`, `server`
+
 
 Sets the path, [format](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#log_format), and configuration for a buffered log write. Several logs can be specified on the same configuration level. Logging to [syslog](https://nginx.org/en/docs/syslog.html) can be configured by specifying the “`syslog:`” prefix in the first parameter. The special value `off` cancels all `access_log` directives on the current level.
 
 If either the `buffer` or `gzip` parameter is used, writes to log will be buffered.
 
-> The buffer size must not exceed the size of an atomic write to a disk file. For FreeBSD this size is unlimited.
+The buffer size must not exceed the size of an atomic write to a disk file. For FreeBSD this size is unlimited.
 
 
 
@@ -64,15 +67,15 @@ If the `gzip` parameter is used, then the buffered data will be compressed befor
 
 Example:
 
-> ```
-> access_log /path/to/log.gz basic gzip flush=5m;
-> ```
+```
+access_log /path/to/log.gz basic gzip flush=5m;
+```
 
 
 
 
 
-> For gzip compression to work, nginx must be built with the zlib library.
+For gzip compression to work, nginx must be built with the zlib library.
 
 
 
@@ -90,19 +93,20 @@ The `if` parameter enables conditional logging. A session will not be logged if 
 
 ### log_format
 
-| Syntax:  | `log_format name [escape=default|json|none] string ...;` |
-| :------- | -------------------------------------------------------- |
+  Syntax:`log_format name [escape=default|json|none] string ...;`
+
 | Default: | —                                                        |
-| Context: | `stream`                                                 |
+  Context: `stream`
+
 
 Specifies the log format, for example:
 
-> ```
-> log_format proxy '$remote_addr [$time_local] '
->                  '$protocol $status $bytes_sent $bytes_received '
->                  '$session_time "$upstream_addr" '
->                  '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
-> ```
+```
+log_format proxy '$remote_addr [$time_local] '
+                 '$protocol $status $bytes_sent $bytes_received '
+                 '$session_time "$upstream_addr" '
+                 '"$upstream_bytes_sent" "$upstream_bytes_received" "$upstream_connect_time"';
+```
 
 
 
@@ -122,10 +126,12 @@ For `json` escaping, all characters not allowed in JSON [strings](https://datatr
 
 ### open_log_file_cache
 
-| Syntax:  | `open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];` `open_log_file_cache off;` |
-| :------- | ------------------------------------------------------------ |
-| Default: | `open_log_file_cache off;`                                   |
-| Context: | `stream`, `server`                                           |
+  Syntax:`open_log_file_cache max=N [inactive=time] [min_uses=N] [valid=time];` `open_log_file_cache off;`
+
+  Default: `open_log_file_cache off;`
+
+  Context: `stream`, `server`
+
 
 Defines a cache that stores the file descriptors of frequently used logs whose names contain variables. The directive has the following parameters:
 
@@ -153,6 +159,6 @@ Defines a cache that stores the file descriptors of frequently used logs whose n
 
 Usage example:
 
-> ```
-> open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
-> ```
+```
+open_log_file_cache max=1000 inactive=20s valid=1m min_uses=2;
+```

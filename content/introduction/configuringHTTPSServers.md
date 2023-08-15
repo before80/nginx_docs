@@ -149,9 +149,8 @@ i:/L=ValiCert Validation Network/O=ValiCert, Inc.
 
 
 
-> When testing configurations with [SNI](https://nginx.org/en/docs/http/configuring_https_servers.html#sni), it is important to specify the `-servername` option as `openssl` does not use SNI by default.
->
-> ​	在测试配置时，使用 [SNI](https://nginx.org/en/docs/http/configuring_https_servers.html#sni) 时，重要的是要将 `-servername` 选项指定为 `openssl` 默认不使用 SNI。
+When testing configurations with [SNI](https://nginx.org/en/docs/http/configuring_https_servers.html#sni), it is important to specify the `-servername` option as `openssl` does not use SNI by default.
+​	在测试配置时，使用 [SNI](https://nginx.org/en/docs/http/configuring_https_servers.html#sni) 时，重要的是要将 `-servername` 选项指定为 `openssl` 默认不使用 SNI。
 
 In this example the subject (“*s*”) of the `www.GoDaddy.com` server certificate #0 is signed by an issuer (“*i*”) which itself is the subject of the certificate #1, which is signed by an issuer which itself is the subject of the certificate #2, which signed by the well-known issuer *ValiCert, Inc.* whose certificate is stored in the browsers’ built-in certificate base (that lay in the house that Jack built).
 
@@ -182,9 +181,8 @@ server {
 
 
 
-> Prior to 0.7.14 SSL could not be enabled selectively for individual listening sockets, as shown above. SSL could only be enabled for the entire server using the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive, making it impossible to set up a single HTTP/HTTPS server. The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive was added to solve this issue. The use of the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive in modern versions is thus discouraged.
->
-> ​	在版本 0.7.14 之前，不能选择性地为单个监听 socket 启用 SSL，如上所示。只能使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令为整个服务器启用 SSL，从而无法设置单一的 HTTP/HTTPS 服务器。在现代版本中使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令因此被不建议。
+Prior to 0.7.14 SSL could not be enabled selectively for individual listening sockets, as shown above. SSL could only be enabled for the entire server using the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive, making it impossible to set up a single HTTP/HTTPS server. The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive was added to solve this issue. The use of the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive in modern versions is thus discouraged.
+​	在版本 0.7.14 之前，不能选择性地为单个监听 socket 启用 SSL，如上所示。只能使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令为整个服务器启用 SSL，从而无法设置单一的 HTTP/HTTPS 服务器。在现代版本中使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令因此被不建议。
 
 
 
@@ -281,9 +279,8 @@ A more generic solution for running several HTTPS servers on a single IP address
 
 ​	在单个 IP 地址上运行多个 HTTPS 服务器的更通用的解决方案是 [TLS Server Name Indication 扩展](http://en.wikipedia.org/wiki/Server_Name_Indication) (SNI, RFC 6066)，它允许浏览器在 SSL 握手期间传递请求的服务器名称，因此服务器将知道它应该使用哪个证书进行连接。SNI 目前由大多数现代浏览器[支持](http://en.wikipedia.org/wiki/Server_Name_Indication#Support)，尽管某些旧版本或特殊客户端可能不使用。
 
-> Only domain names can be passed in SNI, however some browsers may erroneously pass an IP address of the server as its name if a request includes literal IP address. One should not rely on this.
->
-> ​	只能传递域名到 SNI 中，但是如果请求包括字面 IP 地址，一些浏览器可能会错误地将服务器的 IP 地址作为其名称传递。不能依赖这一点。
+Only domain names can be passed in SNI, however some browsers may erroneously pass an IP address of the server as its name if a request includes literal IP address. One should not rely on this.
+​	只能传递域名到 SNI 中，但是如果请求包括字面 IP 地址，一些浏览器可能会错误地将服务器的 IP 地址作为其名称传递。不能依赖这一点。
 
 
 

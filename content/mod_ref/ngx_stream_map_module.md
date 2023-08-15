@@ -1,6 +1,7 @@
 +++
 title = "ngx_stream_map_module"
 date = 2023-08-15T08:23:16+08:00
+weight = 780
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -21,15 +22,15 @@ The `ngx_stream_map_module` module (1.11.2) creates variables whose values depen
 
 
 
-> ```
-> map $remote_addr $limit {
->     127.0.0.1    "";
->     default      $binary_remote_addr;
-> }
-> 
-> limit_conn_zone $limit zone=addr:10m;
-> limit_conn addr 1;
-> ```
+```
+map $remote_addr $limit {
+    127.0.0.1    "";
+    default      $binary_remote_addr;
+}
+
+limit_conn_zone $limit zone=addr:10m;
+limit_conn addr 1;
+```
 
 
 
@@ -41,16 +42,17 @@ The `ngx_stream_map_module` module (1.11.2) creates variables whose values depen
 
 ### map
 
-| Syntax:  | `map string $variable { ... }` |
-| :------- | ------------------------------ |
+  Syntax:`map string $variable { ... }`
+
 | Default: | —                              |
-| Context: | `stream`                       |
+  Context: `stream`
+
 
 Creates a new variable whose value depends on values of one or more of the source variables specified in the first parameter.
 
 
 
-> Since variables are evaluated only when they are used, the mere declaration even of a large number of “`map`” variables does not add any extra costs to connection processing.
+Since variables are evaluated only when they are used, the mere declaration even of a large number of “`map`” variables does not add any extra costs to connection processing.
 
 
 
@@ -120,10 +122,12 @@ If the source value matches more than one of the specified variants, e.g. both a
 
 ### map_hash_bucket_size
 
-| Syntax:  | `map_hash_bucket_size size;`      |
-| :------- | --------------------------------- |
-| Default: | `map_hash_bucket_size 32|64|128;` |
-| Context: | `stream`                          |
+  Syntax:  `map_hash_bucket_size size;`
+
+  Default: `map_hash_bucket_size 32|64|128;`
+
+  Context: `stream`
+
 
 Sets the bucket size for the [map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html#map) variables hash tables. Default value depends on the processor’s cache line size. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
@@ -131,9 +135,11 @@ Sets the bucket size for the [map](https://nginx.org/en/docs/stream/ngx_stream_m
 
 ### map_hash_max_size
 
-| Syntax:  | `map_hash_max_size size;` |
-| :------- | ------------------------- |
-| Default: | `map_hash_max_size 2048;` |
-| Context: | `stream`                  |
+  Syntax:`map_hash_max_size size;`
+
+  Default: `map_hash_max_size 2048;`
+
+  Context: `stream`
+
 
 Sets the maximum `size` of the [map](https://nginx.org/en/docs/stream/ngx_stream_map_module.html#map) variables hash tables. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).

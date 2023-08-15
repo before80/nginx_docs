@@ -1,6 +1,7 @@
 +++
 title = "core_functionality"
 date = 2023-08-15T08:06:13+08:00
+weight = 10
 type = "docs"
 description = ""
 isCJKLanguage = true
@@ -43,10 +44,12 @@ events {
 
 ### accept_mutex
 
-| Syntax:  | `accept_mutex on | off;` |
-| :------- | ------------------------ |
-| Default: | `accept_mutex off;`      |
-| Context: | `events`                 |
+  Syntax:`accept_mutex on | off;`
+
+  Default: `accept_mutex off;`
+
+  Context: `events`
+
 
 If `accept_mutex` is enabled, worker processes will accept new connections by turn. Otherwise, all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
 
@@ -64,10 +67,12 @@ Prior to version 1.11.3, the default value was `on`.
 
 ### accept_mutex_delay
 
-| Syntax:  | `accept_mutex_delay time;`  |
-| :------- | --------------------------- |
-| Default: | `accept_mutex_delay 500ms;` |
-| Context: | `events`                    |
+  Syntax:  `accept_mutex_delay time;`
+
+  Default: `accept_mutex_delay 500ms;`
+
+  Context: `events`
+
 
 If [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) is enabled, specifies the maximum time during which a worker process will try to restart accepting new connections if another worker process is currently accepting new connections.
 
@@ -77,10 +82,12 @@ If [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) i
 
 ### daemon
 
-| Syntax:  | `daemon on | off;` |
-| :------- | ------------------ |
-| Default: | `daemon on;`       |
-| Context: | `main`             |
+  Syntax:`daemon on | off;`
+
+  Default: `daemon on;`
+
+  Context: `main`
+
 
 Determines whether nginx should become a daemon. Mainly used during development.
 
@@ -90,10 +97,11 @@ Determines whether nginx should become a daemon. Mainly used during development.
 
 ### debug_connection
 
-| Syntax:  | `debug_connection address | CIDR | unix:;` |
-| :------- | ------------------------------------------ |
+  Syntax:`debug_connection address | CIDR | unix:;`
+
 | Default: | —                                          |
-| Context: | `events`                                   |
+  Context: `events`
+
 
 Enables debugging log for selected client connections. Other connections will use logging level set by the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive. Debugged connections are specified by IPv4 or IPv6 (1.3.0, 1.2.1) address or network. A connection may also be specified using a hostname. For connections using UNIX-domain sockets (1.3.0, 1.2.1), debugging log is enabled by the “`unix:`” parameter.
 
@@ -121,10 +129,11 @@ For this directive to work, nginx needs to be built with `--with-debug`, see “
 
 ### debug_points
 
-| Syntax:  | `debug_points abort | stop;` |
-| :------- | ---------------------------- |
+  Syntax:`debug_points abort | stop;`
+
 | Default: | —                            |
-| Context: | `main`                       |
+  Context: `main`
+
 
 This directive is used for debugging.
 
@@ -136,10 +145,12 @@ When internal error is detected, e.g. the leak of sockets on restart of working 
 
 ### env
 
-| Syntax:  | `env variable[=value];` |
-| :------- | ----------------------- |
-| Default: | `env TZ;`               |
-| Context: | `main`                  |
+  Syntax:`env variable[=value];`
+
+  Default: `env TZ;`
+
+  Context: `main`
+
 
 By default, nginx removes all environment variables inherited from its parent process except the TZ variable. This directive allows preserving some of the inherited variables, changing their values, or creating new environment variables. These variables are then:
 
@@ -173,10 +184,12 @@ The NGINX environment variable is used internally by nginx and should not be set
 
 ### error_log
 
-| Syntax:  | `error_log file [level];`                              |
-| :------- | ------------------------------------------------------ |
-| Default: | `error_log logs/error.log error;`                      |
-| Context: | `main`, `http`, `mail`, `stream`, `server`, `location` |
+  Syntax:  `error_log file [level];`
+
+  Default: `error_log logs/error.log error;`
+
+  Context: `main`, `http`, `mail`, `stream`, `server`, `location`
+
 
 Configures logging. Several logs can be specified on the same configuration level (1.5.2). If on the `main` configuration level writing a log to a file is not explicitly defined, the default file will be used.
 
@@ -198,10 +211,11 @@ The directive can be specified on the `stream` level starting from version 1.7.1
 
 ### events
 
-| Syntax:  | `events { ... }` |
-| :------- | ---------------- |
+  Syntax:`events { ... }`
+
 | Default: | —                |
-| Context: | `main`           |
+  Context: `main`
+
 
 Provides the configuration file context in which the directives that affect connection processing are specified.
 
@@ -211,10 +225,11 @@ Provides the configuration file context in which the directives that affect conn
 
 ### include
 
-| Syntax:  | `include file | mask;` |
-| :------- | ---------------------- |
+  Syntax:`include file | mask;`
+
 | Default: | —                      |
-| Context: | `any`                  |
+  Context: `any`
+
 
 Includes another `file`, or files matching the specified `mask`, into configuration. Included files should consist of syntactically correct directives and blocks.
 
@@ -233,10 +248,11 @@ include vhosts/*.conf;
 
 ### load_module
 
-| Syntax:  | `load_module file;` |
-| :------- | ------------------- |
+  Syntax:`load_module file;`
+
 | Default: | —                   |
-| Context: | `main`              |
+  Context: `main`
+
 
 This directive appeared in version 1.9.11.
 
@@ -256,10 +272,12 @@ load_module modules/ngx_mail_module.so;
 
 ### lock_file
 
-| Syntax:  | `lock_file file;`            |
-| :------- | ---------------------------- |
-| Default: | `lock_file logs/nginx.lock;` |
-| Context: | `main`                       |
+  Syntax:  `lock_file file;`
+
+  Default: `lock_file logs/nginx.lock;`
+
+  Context: `main`
+
 
 nginx uses the locking mechanism to implement [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) and serialize access to shared memory. On most systems the locks are implemented using atomic operations, and this directive is ignored. On other systems the “lock file” mechanism is used. This directive specifies a prefix for the names of lock files.
 
@@ -269,10 +287,12 @@ nginx uses the locking mechanism to implement [accept_mutex](https://nginx.org/e
 
 ### master_process
 
-| Syntax:  | `master_process on | off;` |
-| :------- | -------------------------- |
-| Default: | `master_process on;`       |
-| Context: | `main`                     |
+  Syntax:`master_process on | off;`
+
+  Default: `master_process on;`
+
+  Context: `main`
+
 
 Determines whether worker processes are started. This directive is intended for nginx developers.
 
@@ -282,10 +302,12 @@ Determines whether worker processes are started. This directive is intended for 
 
 ### multi_accept
 
-| Syntax:  | `multi_accept on | off;` |
-| :------- | ------------------------ |
-| Default: | `multi_accept off;`      |
-| Context: | `events`                 |
+  Syntax:`multi_accept on | off;`
+
+  Default: `multi_accept off;`
+
+  Context: `events`
+
 
 If `multi_accept` is disabled, a worker process will accept one new connection at a time. Otherwise, a worker process will accept all new connections at a time.
 
@@ -299,10 +321,12 @@ The directive is ignored if [kqueue](https://nginx.org/en/docs/events.html#kqueu
 
 ### pcre_jit
 
-| Syntax:  | `pcre_jit on | off;` |
-| :------- | -------------------- |
-| Default: | `pcre_jit off;`      |
-| Context: | `main`               |
+  Syntax:`pcre_jit on | off;`
+
+  Default: `pcre_jit off;`
+
+  Context: `main`
+
 
 This directive appeared in version 1.1.12.
 
@@ -320,10 +344,12 @@ The JIT is available in PCRE libraries starting from version 8.20 built with the
 
 ### pid
 
-| Syntax:  | `pid file;`           |
-| :------- | --------------------- |
-| Default: | `pid logs/nginx.pid;` |
-| Context: | `main`                |
+  Syntax:  `pid file;`
+
+  Default: `pid logs/nginx.pid;`
+
+  Context: `main`
+
 
 Defines a `file` that will store the process ID of the main process.
 
@@ -333,10 +359,11 @@ Defines a `file` that will store the process ID of the main process.
 
 ### ssl_engine
 
-| Syntax:  | `ssl_engine device;` |
-| :------- | -------------------- |
+  Syntax:`ssl_engine device;`
+
 | Default: | —                    |
-| Context: | `main`               |
+  Context: `main`
+
 
 Defines the name of the hardware SSL accelerator.
 
@@ -346,10 +373,12 @@ Defines the name of the hardware SSL accelerator.
 
 ### thread_pool
 
-| Syntax:  | `thread_pool name threads=number [max_queue=number];` |
-| :------- | ----------------------------------------------------- |
-| Default: | `thread_pool default threads=32 max_queue=65536;`     |
-| Context: | `main`                                                |
+  Syntax:`thread_pool name threads=number [max_queue=number];`
+
+  Default: `thread_pool default threads=32 max_queue=65536;`
+
+  Context: `main`
+
 
 This directive appeared in version 1.7.11.
 
@@ -365,10 +394,11 @@ In the event that all threads in the pool are busy, a new task will wait in the 
 
 ### timer_resolution
 
-| Syntax:  | `timer_resolution interval;` |
-| :------- | ---------------------------- |
+  Syntax:`timer_resolution interval;`
+
 | Default: | —                            |
-| Context: | `main`                       |
+  Context: `main`
+
 
 Reduces timer resolution in worker processes, thus reducing the number of `gettimeofday()` system calls made. By default, `gettimeofday()` is called each time a kernel event is received. With reduced resolution, `gettimeofday()` is only called once per specified `interval`.
 
@@ -394,10 +424,11 @@ Internal implementation of the interval depends on the method used:
 
 ### use
 
-| Syntax:  | `use method;` |
-| :------- | ------------- |
+  Syntax:`use method;`
+
 | Default: | —             |
-| Context: | `events`      |
+  Context: `events`
+
 
 Specifies the [connection processing](https://nginx.org/en/docs/events.html) `method` to use. There is normally no need to specify it explicitly, because nginx will by default use the most efficient method.
 
@@ -407,10 +438,12 @@ Specifies the [connection processing](https://nginx.org/en/docs/events.html) `me
 
 ### user
 
-| Syntax:  | `user user [group];`  |
-| :------- | --------------------- |
-| Default: | `user nobody nobody;` |
-| Context: | `main`                |
+  Syntax:  `user user [group];`
+
+  Default: `user nobody nobody;`
+
+  Context: `main`
+
 
 Defines `user` and `group` credentials used by worker processes. If `group` is omitted, a group whose name equals that of `user` is used.
 
@@ -420,10 +453,12 @@ Defines `user` and `group` credentials used by worker processes. If `group` is o
 
 ### worker_aio_requests
 
-| Syntax:  | `worker_aio_requests number;` |
-| :------- | ----------------------------- |
-| Default: | `worker_aio_requests 32;`     |
-| Context: | `events`                      |
+  Syntax:`worker_aio_requests number;`
+
+  Default: `worker_aio_requests 32;`
+
+  Context: `events`
+
 
 This directive appeared in versions 1.1.4 and 1.0.7.
 
@@ -435,10 +470,12 @@ When using [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) w
 
 ### worker_connections
 
-| Syntax:  | `worker_connections number;` |
-| :------- | ---------------------------- |
-| Default: | `worker_connections 512;`    |
-| Context: | `events`                     |
+  Syntax:`worker_connections number;`
+
+  Default: `worker_connections 512;`
+
+  Context: `events`
+
 
 Sets the maximum number of simultaneous connections that can be opened by a worker process.
 
@@ -450,10 +487,11 @@ It should be kept in mind that this number includes all connections (e.g. connec
 
 ### worker_cpu_affinity
 
-| Syntax:  | `worker_cpu_affinity cpumask ...;` `worker_cpu_affinity auto [cpumask];` |
-| :------- | ------------------------------------------------------------ |
+  Syntax:`worker_cpu_affinity cpumask ...;` `worker_cpu_affinity auto [cpumask];`
+
 | Default: | —                                                            |
-| Context: | `main`                                                       |
+  Context: `main`
+
 
 Binds worker processes to the sets of CPUs. Each CPU set is represented by a bitmask of allowed CPUs. There should be a separate set defined for each of the worker processes. By default, worker processes are not bound to any specific CPUs.
 
@@ -500,10 +538,12 @@ The directive is only available on FreeBSD and Linux.
 
 ### worker_priority
 
-| Syntax:  | `worker_priority number;` |
-| :------- | ------------------------- |
-| Default: | `worker_priority 0;`      |
-| Context: | `main`                    |
+  Syntax:`worker_priority number;`
+
+  Default: `worker_priority 0;`
+
+  Context: `main`
+
 
 Defines the scheduling priority for worker processes like it is done by the `nice` command: a negative `number` means higher priority. Allowed range normally varies from -20 to 20.
 
@@ -521,10 +561,12 @@ worker_priority -10;
 
 ### worker_processes
 
-| Syntax:  | `worker_processes number | auto;` |
-| :------- | --------------------------------- |
-| Default: | `worker_processes 1;`             |
-| Context: | `main`                            |
+  Syntax:`worker_processes number | auto;`
+
+  Default: `worker_processes 1;`
+
+  Context: `main`
+
 
 Defines the number of worker processes.
 
@@ -540,10 +582,11 @@ The `auto` parameter is supported starting from versions 1.3.8 and 1.2.5.
 
 ### worker_rlimit_core
 
-| Syntax:  | `worker_rlimit_core size;` |
-| :------- | -------------------------- |
+  Syntax:`worker_rlimit_core size;`
+
 | Default: | —                          |
-| Context: | `main`                     |
+  Context: `main`
+
 
 Changes the limit on the largest size of a core file (`RLIMIT_CORE`) for worker processes. Used to increase the limit without restarting the main process.
 
@@ -553,10 +596,11 @@ Changes the limit on the largest size of a core file (`RLIMIT_CORE`) for worker 
 
 ### worker_rlimit_nofile
 
-| Syntax:  | `worker_rlimit_nofile number;` |
-| :------- | ------------------------------ |
+  Syntax:`worker_rlimit_nofile number;`
+
 | Default: | —                              |
-| Context: | `main`                         |
+  Context: `main`
+
 
 Changes the limit on the maximum number of open files (`RLIMIT_NOFILE`) for worker processes. Used to increase the limit without restarting the main process.
 
@@ -566,10 +610,11 @@ Changes the limit on the maximum number of open files (`RLIMIT_NOFILE`) for work
 
 ### worker_shutdown_timeout
 
-| Syntax:  | `worker_shutdown_timeout time;` |
-| :------- | ------------------------------- |
+  Syntax:`worker_shutdown_timeout time;`
+
 | Default: | —                               |
-| Context: | `main`                          |
+  Context: `main`
+
 
 This directive appeared in version 1.11.11.
 
@@ -581,9 +626,10 @@ Configures a timeout for a graceful shutdown of worker processes. When the `time
 
 ### working_directory
 
-| Syntax:  | `working_directory directory;` |
-| :------- | ------------------------------ |
+  Syntax:`working_directory directory;`
+
 | Default: | —                              |
-| Context: | `main`                         |
+  Context: `main`
+
 
 Defines the current working directory for a worker process. It is primarily used when writing a core-file, in which case a worker process should have write permission for the specified directory.
