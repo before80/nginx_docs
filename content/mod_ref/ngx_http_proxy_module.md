@@ -1257,7 +1257,7 @@ When HTTP/1.1 chunked transfer encoding is used to send the original request bod
   Context: `http`, `server`, `location`
 
 
-If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a proxied server by using either `NOTE_LOWAT` flag of the [kqueue](https://nginx.org/en/docs/events.html#kqueue) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
+If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a proxied server by using either `NOTE_LOWAT` flag of the [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
 
 This directive is ignored on Linux, Solaris, and Windows.
 

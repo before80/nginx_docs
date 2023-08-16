@@ -51,9 +51,9 @@ If `accept_mutex` is enabled, worker processes will accept new connections by tu
 
 ​	如果启用了 `accept_mutex`，工作进程将轮流接受新连接。否则，所有工作进程将被通知有关新连接的情况，如果新连接的数量较低，一些工作进程可能会浪费系统资源。
 
-There is no need to enable `accept_mutex` on systems that support the [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) flag (1.11.3) or when using [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}).
+There is no need to enable `accept_mutex` on systems that support the [EPOLLEXCLUSIVE]({{< ref "/introduction/connectionProcessingMethods#epoll">}}) flag (1.11.3) or when using [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}).
 
-​	在支持 [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) 标志（1.11.3 版本）的系统上或使用 [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}) 时，无需启用 `accept_mutex`。
+​	在支持 [EPOLLEXCLUSIVE]({{< ref "/introduction/connectionProcessingMethods#epoll">}}) 标志（1.11.3 版本）的系统上或使用 [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}) 时，无需启用 `accept_mutex`。
 
 
 
@@ -317,9 +317,9 @@ If `multi_accept` is disabled, a worker process will accept one new connection a
 
 ​	如果禁用了 `multi_accept`，一个工作进程将一次接受一个新连接。否则，一个工作进程将一次接受所有新连接。
 
-The directive is ignored if [kqueue](https://nginx.org/en/docs/events.html#kqueue) connection processing method is used, because it reports the number of new connections waiting to be accepted.
+The directive is ignored if [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}) connection processing method is used, because it reports the number of new connections waiting to be accepted.
 
-​	如果使用 [kqueue](https://nginx.org/en/docs/events.html#kqueue) 连接处理方法，则此指令将被忽略，因为它会报告等待被接受的新连接数量。
+​	如果使用 [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}) 连接处理方法，则此指令将被忽略，因为它会报告等待被接受的新连接数量。
 
 
 
@@ -480,9 +480,9 @@ This directive appeared in versions 1.1.4 and 1.0.7.
 
 ​	此指令于版本 1.1.4 和 1.0.7 中出现。
 
-When using [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) with the [epoll](https://nginx.org/en/docs/events.html#epoll) connection processing method, sets the maximum `number` of outstanding asynchronous I/O operations for a single worker process.
+When using [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) with the [epoll]({{< ref "/introduction/connectionProcessingMethods#epoll">}}) connection processing method, sets the maximum `number` of outstanding asynchronous I/O operations for a single worker process.
 
-​	在使用 [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) 和 [epoll](https://nginx.org/en/docs/events.html#epoll) 连接处理方法时，设置单个工作进程的最大异步 I/O 操作数。
+​	在使用 [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) 和 [epoll]({{< ref "/introduction/connectionProcessingMethods#epoll">}}) 连接处理方法时，设置单个工作进程的最大异步 I/O 操作数。
 
 ### worker_connections
 

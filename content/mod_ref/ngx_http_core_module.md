@@ -112,7 +112,7 @@ Read and send file operations are offloaded to threads of the specified [pool]({
 aio threads=pool$disk;
 ```
 
-By default, multi-threading is disabled, it should be enabled with the `--with-threads` configuration parameter. Currently, multi-threading is compatible only with the [epoll](https://nginx.org/en/docs/events.html#epoll), [kqueue](https://nginx.org/en/docs/events.html#kqueue), and [eventport](https://nginx.org/en/docs/events.html#eventport) methods. Multi-threaded sending of files is only supported on Linux.
+By default, multi-threading is disabled, it should be enabled with the `--with-threads` configuration parameter. Currently, multi-threading is compatible only with the [epoll]({{< ref "/introduction/connectionProcessingMethods#epoll">}}), [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}), and [eventport]({{< ref "/introduction/connectionProcessingMethods#eventport">}}) methods. Multi-threaded sending of files is only supported on Linux.
 
 See also the [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) directive.
 
@@ -1490,7 +1490,7 @@ location / {
   Context: `http`, `server`, `location`
 
 
-If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on client sockets by using either `NOTE_LOWAT` flag of the [kqueue](https://nginx.org/en/docs/events.html#kqueue) method or the `SO_SNDLOWAT` socket option. In both cases the specified `size` is used.
+If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on client sockets by using either `NOTE_LOWAT` flag of the [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}) method or the `SO_SNDLOWAT` socket option. In both cases the specified `size` is used.
 
 This directive is ignored on Linux, Solaris, and Windows.
 

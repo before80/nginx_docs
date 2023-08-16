@@ -110,3 +110,16 @@ $1
 ({{< ref "/mod_ref/$2$3">}})
 ```
 
+
+
+## 替换其他一些链接
+
+```
+// 查找匹配如下正则表达式
+\(https:\/\/nginx\.org\/en\/docs\/events.html(#[a-z\_]+)\)
+
+// 替换成
+({{< ref "/introduction/connectionProcessingMethods$1">}})
+
+```
+

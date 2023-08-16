@@ -1063,7 +1063,7 @@ When buffering is disabled, the request body is sent to the FastCGI server immed
 
   Context: `http`, `server`, `location`
 
-If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a FastCGI server by using either `NOTE_LOWAT` flag of the [kqueue](https://nginx.org/en/docs/events.html#kqueue) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
+If the directive is set to a non-zero value, nginx will try to minimize the number of send operations on outgoing connections to a FastCGI server by using either `NOTE_LOWAT` flag of the [kqueue]({{< ref "/introduction/connectionProcessingMethods#kqueue">}}) method, or the `SO_SNDLOWAT` socket option, with the specified `size`.
 
 ​	如果将此指令设置为非零值，则 nginx 将尝试通过使用 `kqueue` 方法的 `NOTE_LOWAT` 标志或使用指定的 `size` 的 `SO_SNDLOWAT` 套接字选项来减少传出连接到 FastCGI 服务器的发送操作次数。
 
