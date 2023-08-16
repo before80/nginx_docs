@@ -13,9 +13,9 @@ draft = false
 
 https://nginx.org/en/docs/syslog.html
 
-The [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) and [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directives support logging to syslog. The following parameters configure logging to syslog:
+The [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) and [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}) directives support logging to syslog. The following parameters configure logging to syslog:
 
-​	[error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) 和 [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) 指令支持将日志记录到 syslog。以下参数用于配置日志记录到 syslog：
+​	[error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 和 [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}) 指令支持将日志记录到 syslog。以下参数用于配置日志记录到 syslog：
 
 ## `server=address`
 
@@ -31,9 +31,9 @@ Sets facility of syslog messages, as defined in [RFC 3164](https://datatracker.i
 
 ## `severity=string`
 
-Sets severity of syslog messages for [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log), as defined in [RFC 3164](https://datatracker.ietf.org/doc/html/rfc3164#section-4.1.1). Possible values are the same as for the second parameter (level) of the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive. Default is “`info`”.Severity of error messages is determined by nginx, thus the parameter is ignored in the `error_log` directive.
+Sets severity of syslog messages for [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}), as defined in [RFC 3164](https://datatracker.ietf.org/doc/html/rfc3164#section-4.1.1). Possible values are the same as for the second parameter (level) of the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) directive. Default is “`info`”.Severity of error messages is determined by nginx, thus the parameter is ignored in the `error_log` directive.
 
-​	为 [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) 设置 syslog 消息的严重性，如 [RFC 3164](https://datatracker.ietf.org/doc/html/rfc3164#section-4.1.1) 中定义。可能的值与 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) 指令的第二个参数（级别）的可能值相同。默认为 “`info`”。错误消息的严重性由nginx确定，因此在 `error_log` 指令中此参数将被忽略。
+​	为 [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}) 设置 syslog 消息的严重性，如 [RFC 3164](https://datatracker.ietf.org/doc/html/rfc3164#section-4.1.1) 中定义。可能的值与 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令的第二个参数（级别）的可能值相同。默认为 “`info`”。错误消息的严重性由nginx确定，因此在 `error_log` 指令中此参数将被忽略。
 
 ## `tag=string`
 

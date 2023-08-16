@@ -76,7 +76,7 @@ The `transparent` parameter (1.11.0) allows outgoing connections to a proxied se
 proxy_bind $remote_addr transparent;
 ```
 
-In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the proxied server.
+In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser]({{< ref "/mod_ref/ngx_core_module#user">}}) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the proxied server.
 
 
 
@@ -285,7 +285,7 @@ If zero value is specified, no response is expected. However, if a response is r
 
 This directive appeared in version 1.15.8.
 
-Enables terminating all sessions to a proxied server after it was removed from the group or marked as permanently unavailable. This can occur because of [re-resolve](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver) or with the API [`DELETE`](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamUpstreamServer) command. A server can be marked as permanently unavailable if it is considered [unhealthy](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check) or with the API [`PATCH`](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchStreamUpstreamServer) command. Each session is terminated when the next read or write event is processed for the client or proxied server.
+Enables terminating all sessions to a proxied server after it was removed from the group or marked as permanently unavailable. This can occur because of [re-resolve](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver) or with the API [`DELETE`]({{< ref "/mod_ref/ngx_http_api_module#deleteStreamUpstreamServer">}}) command. A server can be marked as permanently unavailable if it is considered [unhealthy](https://nginx.org/en/docs/stream/ngx_stream_upstream_hc_module.html#health_check) or with the API [`PATCH`]({{< ref "/mod_ref/ngx_http_api_module#patchStreamUpstreamServer">}}) command. Each session is terminated when the next read or write event is processed for the client or proxied server.
 
 
 

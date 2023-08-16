@@ -146,7 +146,7 @@ test.mp4.ts?start=42.583&end=52.209&a=1&b=2
 
 
 
-If an HLS stream is protected with the [ngx_http_secure_link_module](../ngx_http_secure_link_module) module, `$uri` should not be used in the [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) expression because this will cause errors when requesting the fragments. [Base URI](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) should be used instead of `$uri` (`$hls_uri` in the example):
+If an HLS stream is protected with the [ngx_http_secure_link_module](../ngx_http_secure_link_module) module, `$uri` should not be used in the [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) expression because this will cause errors when requesting the fragments. [Base URI]({{< ref "/mod_ref/ngx_http_map_module#map">}}) should be used instead of `$uri` (`$hls_uri` in the example):
 
 ```
 http {

@@ -65,7 +65,7 @@ The `transparent` parameter (1.11.0) allows outgoing connections to a memcached 
 memcached_bind $remote_addr transparent;
 ```
 
-In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the memcached server.
+In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser]({{< ref "/mod_ref/ngx_core_module#user">}}) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the memcached server.
 
 
 
@@ -145,9 +145,9 @@ Specifies in which cases a request should be passed to the next server:
 
 One should bear in mind that passing a request to the next server is only possible if nothing has been sent to a client yet. That is, if an error or timeout occurs in the middle of the transferring of a response, fixing this is impossible.
 
-The directive also defines what is considered an [unsuccessful attempt](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) of communication with a server. The cases of `error`, `timeout` and `invalid_response` are always considered unsuccessful attempts, even if they are not specified in the directive. The case of `not_found` is never considered an unsuccessful attempt.
+The directive also defines what is considered an [unsuccessful attempt]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) of communication with a server. The cases of `error`, `timeout` and `invalid_response` are always considered unsuccessful attempts, even if they are not specified in the directive. The case of `not_found` is never considered an unsuccessful attempt.
 
-Passing a request to the next server can be limited by [the number of tries](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_next_upstream_tries) and by [time](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_next_upstream_timeout).
+Passing a request to the next server can be limited by [the number of tries]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_next_upstream_tries">}}) and by [time]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_next_upstream_timeout">}}).
 
 
 
@@ -162,7 +162,7 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 This directive appeared in version 1.7.5.
 
-Limits the time during which a request can be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_next_upstream). The `0` value turns off this limitation.
+Limits the time during which a request can be passed to the [next server]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_next_upstream">}}). The `0` value turns off this limitation.
 
 
 
@@ -177,7 +177,7 @@ Limits the time during which a request can be passed to the [next server](https:
 
 This directive appeared in version 1.7.5.
 
-Limits the number of possible tries for passing a request to the [next server](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_next_upstream). The `0` value turns off this limitation.
+Limits the number of possible tries for passing a request to the [next server]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_next_upstream">}}). The `0` value turns off this limitation.
 
 
 

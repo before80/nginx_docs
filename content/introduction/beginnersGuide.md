@@ -19,9 +19,9 @@ This guide gives a basic introduction to nginx and describes some simple tasks t
 
 ​	本指南对nginx进行了基本介绍，并描述了一些可以使用它执行的简单任务。假设读者的机器上已经安装了nginx。如果没有安装，可以查看[安装nginx](https://nginx.org/en/docs/install.html)页面。本指南描述了如何启动和停止nginx，并重新加载其配置，解释了配置文件的结构，并描述了如何设置nginx来提供静态内容，如何将nginx配置为代理服务器，以及如何将其与FastCGI应用程序连接起来。
 
-nginx has one master process and several worker processes. The main purpose of the master process is to read and evaluate configuration, and maintain worker processes. Worker processes do actual processing of requests. nginx employs event-based model and OS-dependent mechanisms to efficiently distribute requests among worker processes. The number of worker processes is defined in the configuration file and may be fixed for a given configuration or automatically adjusted to the number of available CPU cores (see [worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes)).
+nginx has one master process and several worker processes. The main purpose of the master process is to read and evaluate configuration, and maintain worker processes. Worker processes do actual processing of requests. nginx employs event-based model and OS-dependent mechanisms to efficiently distribute requests among worker processes. The number of worker processes is defined in the configuration file and may be fixed for a given configuration or automatically adjusted to the number of available CPU cores (see [worker_processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}})).
 
-​	nginx有一个主进程和多个工作进程。主进程的主要目的是读取和评估配置，并维护工作进程。工作进程执行实际的请求处理。nginx采用基于事件的模型和依赖于操作系统的机制，以高效地在工作进程之间分发请求。工作进程的数量在配置文件中定义，可以针对特定配置固定，也可以根据可用CPU核心的数量自动调整（参见[worker_processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes)）。
+​	nginx有一个主进程和多个工作进程。主进程的主要目的是读取和评估配置，并维护工作进程。工作进程执行实际的请求处理。nginx采用基于事件的模型和依赖于操作系统的机制，以高效地在工作进程之间分发请求。工作进程的数量在配置文件中定义，可以针对特定配置固定，也可以根据可用CPU核心的数量自动调整（参见[worker_processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}})）。
 
 The way nginx and its modules work is determined in the configuration file. By default, the configuration file is named `nginx.conf` and placed in the directory `/usr/local/nginx/conf`, `/etc/nginx`, or `/usr/local/etc/nginx`.
 
@@ -99,9 +99,9 @@ For more information on sending signals to nginx, see [Controlling nginx](https:
 
 ## 配置文件的结构 - Configuration File’s Structure
 
-nginx consists of modules which are controlled by directives specified in the configuration file. Directives are divided into simple directives and block directives. A simple directive consists of the name and parameters separated by spaces and ends with a semicolon (`;`). A block directive has the same structure as a simple directive, but instead of the semicolon it ends with a set of additional instructions surrounded by braces (`{` and `}`). If a block directive can have other directives inside braces, it is called a context (examples: [events](https://nginx.org/en/docs/ngx_core_module.html#events), [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http), [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server), and [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)).
+nginx consists of modules which are controlled by directives specified in the configuration file. Directives are divided into simple directives and block directives. A simple directive consists of the name and parameters separated by spaces and ends with a semicolon (`;`). A block directive has the same structure as a simple directive, but instead of the semicolon it ends with a set of additional instructions surrounded by braces (`{` and `}`). If a block directive can have other directives inside braces, it is called a context (examples: [events]({{< ref "/mod_ref/ngx_core_module#events">}}), [http]({{< ref "/mod_ref/ngx_http_core_module#http">}}), [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}), and [location]({{< ref "/mod_ref/ngx_http_core_module#location">}})).
 
-​	nginx由模块组成，这些模块由配置文件中指定的指令控制。指令分为简单指令和块指令。简单指令由名称和由空格分隔的参数组成，并以分号(`;`)结尾。块指令具有与简单指令相同的结构，但是它以一组由大括号(`{`和`}`)包围的附加指令结束，而不是分号。如果块指令内部可以有其他指令，它被称为上下文（示例：[events](https://nginx.org/en/docs/ngx_core_module.html#events)、[http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http)、[server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server)和[location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)）。
+​	nginx由模块组成，这些模块由配置文件中指定的指令控制。指令分为简单指令和块指令。简单指令由名称和由空格分隔的参数组成，并以分号(`;`)结尾。块指令具有与简单指令相同的结构，但是它以一组由大括号(`{`和`}`)包围的附加指令结束，而不是分号。如果块指令内部可以有其他指令，它被称为上下文（示例：[events]({{< ref "/mod_ref/ngx_core_module#events">}})、[http]({{< ref "/mod_ref/ngx_http_core_module#http">}})、[server]({{< ref "/mod_ref/ngx_http_core_module#server">}})和[location]({{< ref "/mod_ref/ngx_http_core_module#location">}})）。
 
 Directives placed in the configuration file outside of any contexts are considered to be in the [main](https://nginx.org/en/docs/ngx_core_module.html) context. The `events` and `http` directives reside in the `main` context, `server` in `http`, and `location` in `server`.
 
@@ -115,9 +115,9 @@ The rest of a line after the `#` sign is considered a comment.
 
 ## 提供静态内容 - Serving Static Content
 
-An important web server task is serving out files (such as images or static HTML pages). You will implement an example where, depending on the request, files will be served from different local directories: `/data/www` (which may contain HTML files) and `/data/images` (containing images). This will require editing of the configuration file and setting up of a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block inside the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http) block with two [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) blocks.
+An important web server task is serving out files (such as images or static HTML pages). You will implement an example where, depending on the request, files will be served from different local directories: `/data/www` (which may contain HTML files) and `/data/images` (containing images). This will require editing of the configuration file and setting up of a [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block inside the [http]({{< ref "/mod_ref/ngx_http_core_module#http">}}) block with two [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) blocks.
 
-​	一个重要的Web服务器任务是提供文件（如图像或静态HTML页面）。您将实现一个示例，根据请求，文件将从不同的本地目录提供：`/data/www`（其中可能包含HTML文件）和`/data/images`（包含图像）。这将需要编辑配置文件，并在[http](https://nginx.org/en/docs/http/ngx_http_core_module.html#http)块中的一个[server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server)块内设置两个[location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)块。
+​	一个重要的Web服务器任务是提供文件（如图像或静态HTML页面）。您将实现一个示例，根据请求，文件将从不同的本地目录提供：`/data/www`（其中可能包含HTML文件）和`/data/images`（包含图像）。这将需要编辑配置文件，并在[http]({{< ref "/mod_ref/ngx_http_core_module#http">}})块中的一个[server]({{< ref "/mod_ref/ngx_http_core_module#server">}})块内设置两个[location]({{< ref "/mod_ref/ngx_http_core_module#location">}})块。
 
 First, create the `/data/www` directory and put an `index.html` file with any text content into it and create the `/data/images` directory and place some images in it.
 
@@ -134,7 +134,7 @@ http {
 }
 ```
 
-Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) to and by [server names](https://nginx.org/en/docs/http/server_names.html). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
+Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) to and by [server names](https://nginx.org/en/docs/http/server_names.html). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
 
 ​	通常，配置文件可能包括几个通过它们所监听的端口来[区分](https://nginx.org/en/docs/http/request_processing.html)的`server`块，并通过[server names](https://nginx.org/en/docs/http/server_names.html)来标识。一旦nginx确定了哪个`server`来处理请求，它会将请求头中指定的URI与在`server`块内定义的`location`指令的参数进行比较。
 
@@ -148,9 +148,9 @@ location / {
 }
 ```
 
-This `location` block specifies the “`/`” prefix compared with the URI from the request. For matching requests, the URI will be added to the path specified in the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive, that is, to `/data/www`, to form the path to the requested file on the local file system. If there are several matching `location` blocks nginx selects the one with the longest prefix. The `location` block above provides the shortest prefix, of length one, and so only if all other `location` blocks fail to provide a match, this block will be used.
+This `location` block specifies the “`/`” prefix compared with the URI from the request. For matching requests, the URI will be added to the path specified in the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) directive, that is, to `/data/www`, to form the path to the requested file on the local file system. If there are several matching `location` blocks nginx selects the one with the longest prefix. The `location` block above provides the shortest prefix, of length one, and so only if all other `location` blocks fail to provide a match, this block will be used.
 
-​	此`location`块指定与请求中的URI进行比较的“`/`”前缀。对于匹配的请求，URI将添加到[root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root)指令中指定的路径，即`/data/www`，以形成本地文件系统上所请求文件的路径。如果有多个匹配的`location`块，nginx会选择具有最长前缀的那一个。上面的`location`块提供了最短的前缀，长度为1，因此只有在所有其他`location`块都无法提供匹配时，才会使用此块。
+​	此`location`块指定与请求中的URI进行比较的“`/`”前缀。对于匹配的请求，URI将添加到[root]({{< ref "/mod_ref/ngx_http_core_module#root">}})指令中指定的路径，即`/data/www`，以形成本地文件系统上所请求文件的路径。如果有多个匹配的`location`块，nginx会选择具有最长前缀的那一个。上面的`location`块提供了最短的前缀，长度为1，因此只有在所有其他`location`块都无法提供匹配时，才会使用此块。
 
 Next, add the second `location` block:
 
@@ -225,9 +225,9 @@ This will be a simple server that listens on the port 8080 (previously, the `lis
 
 ​	这将是一个简单的服务器，它在端口8080上监听（之前，没有指定`listen`指令，因为使用了标准端口80），并将所有请求映射到本地文件系统上的`/data/up1`目录。创建此目录，并将`index.html`文件放入其中。注意，`root`指令位于`server`上下文中。当选择用于服务请求的`location`块不包含自己的`root`指令时，将使用这样的`root`指令。
 
-Next, use the server configuration from the previous section and modify it to make it a proxy server configuration. In the first `location` block, put the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive with the protocol, name and port of the proxied server specified in the parameter (in our case, it is `http://localhost:8080`):
+Next, use the server configuration from the previous section and modify it to make it a proxy server configuration. In the first `location` block, put the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive with the protocol, name and port of the proxied server specified in the parameter (in our case, it is `http://localhost:8080`):
 
-​	接下来，使用上一节中的服务器配置，并对其进行修改，使其成为代理服务器配置。在第一个`location`块中，使用[proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)指令，指定参数中指定的协议、名称和代理服务器的端口（在我们的示例中为`http://localhost:8080`）：
+​	接下来，使用上一节中的服务器配置，并对其进行修改，使其成为代理服务器配置。在第一个`location`块中，使用[proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}})指令，指定参数中指定的协议、名称和代理服务器的端口（在我们的示例中为`http://localhost:8080`）：
 
 ```
 server {
@@ -255,9 +255,9 @@ The parameter is a regular expression matching all URIs ending with `.gif`, `.jp
 
 ​	该参数是一个正则表达式，匹配所有以`.gif`、`.jpg`或`.png`结尾的URI。正则表达式应在前面加上`~`。相应的请求将映射到`/data/images`目录。
 
-When nginx selects a `location` block to serve a request it first checks [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directives that specify prefixes, remembering `location` with the longest prefix, and then checks regular expressions. If there is a match with a regular expression, nginx picks this `location` or, otherwise, it picks the one remembered earlier.
+When nginx selects a `location` block to serve a request it first checks [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) directives that specify prefixes, remembering `location` with the longest prefix, and then checks regular expressions. If there is a match with a regular expression, nginx picks this `location` or, otherwise, it picks the one remembered earlier.
 
-​	当nginx选择要处理请求的`location`块时，它首先检查指定前缀的[location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)指令，记住具有最长前缀的`location`，然后检查正则表达式。如果与正则表达式匹配，nginx会选择此`location`，否则它会选择之前记住的那个。
+​	当nginx选择要处理请求的`location`块时，它首先检查指定前缀的[location]({{< ref "/mod_ref/ngx_http_core_module#location">}})指令，记住具有最长前缀的`location`，然后检查正则表达式。如果与正则表达式匹配，nginx会选择此`location`，否则它会选择之前记住的那个。
 
 The resulting configuration of a proxy server will look like this:
 
@@ -295,9 +295,9 @@ nginx can be used to route requests to FastCGI servers which run applications bu
 
 ​	nginx可以用于将请求路由到运行使用各种框架和编程语言构建的FastCGI服务器，例如PHP应用。
 
-The most basic nginx configuration to work with a FastCGI server includes using the [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass) directive instead of the `proxy_pass` directive, and [fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param) directives to set parameters passed to a FastCGI server. Suppose the FastCGI server is accessible on `localhost:9000`. Taking the proxy configuration from the previous section as a basis, replace the `proxy_pass` directive with the `fastcgi_pass` directive and change the parameter to `localhost:9000`. In PHP, the `SCRIPT_FILENAME` parameter is used for determining the script name, and the `QUERY_STRING` parameter is used to pass request parameters. The resulting configuration would be:
+The most basic nginx configuration to work with a FastCGI server includes using the [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}}) directive instead of the `proxy_pass` directive, and [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) directives to set parameters passed to a FastCGI server. Suppose the FastCGI server is accessible on `localhost:9000`. Taking the proxy configuration from the previous section as a basis, replace the `proxy_pass` directive with the `fastcgi_pass` directive and change the parameter to `localhost:9000`. In PHP, the `SCRIPT_FILENAME` parameter is used for determining the script name, and the `QUERY_STRING` parameter is used to pass request parameters. The resulting configuration would be:
 
-​	与FastCGI服务器配合工作的最基本的nginx配置包括使用[fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass)指令代替`proxy_pass`指令，以及使用[fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param)指令来设置传递给FastCGI服务器的参数。假设FastCGI服务器可在`localhost:9000`上访问。以前一节中的代理配置为基础，将`proxy_pass`指令替换为`fastcgi_pass`指令，并将参数更改为`localhost:9000`。在PHP中，`SCRIPT_FILENAME`参数用于确定脚本名称，`QUERY_STRING`参数用于传递请求参数。结果配置如下所示：
+​	与FastCGI服务器配合工作的最基本的nginx配置包括使用[fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}})指令代替`proxy_pass`指令，以及使用[fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}})指令来设置传递给FastCGI服务器的参数。假设FastCGI服务器可在`localhost:9000`上访问。以前一节中的代理配置为基础，将`proxy_pass`指令替换为`fastcgi_pass`指令，并将参数更改为`localhost:9000`。在PHP中，`SCRIPT_FILENAME`参数用于确定脚本名称，`QUERY_STRING`参数用于传递请求参数。结果配置如下所示：
 
 ```
 server {

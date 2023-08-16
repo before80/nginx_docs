@@ -18,11 +18,11 @@ The `ngx_http_browser_module` module creates variables whose values depend on th
 
 - `$modern_browser`
 
-  equals the value set by the [modern_browser_value](https://nginx.org/en/docs/http/ngx_http_browser_module.html#modern_browser_value) directive, if a browser was identified as modern;
+  equals the value set by the [modern_browser_value]({{< ref "/mod_ref/ngx_http_browser_module#modern_browser_value">}}) directive, if a browser was identified as modern;
 
 - `$ancient_browser`
 
-  equals the value set by the [ancient_browser_value](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser_value) directive, if a browser was identified as ancient;
+  equals the value set by the [ancient_browser_value]({{< ref "/mod_ref/ngx_http_browser_module#ancient_browser_value">}}) directive, if a browser was identified as ancient;
 
 - `$msie`
 
@@ -115,7 +115,7 @@ Specifies a version starting from which a browser is considered modern. A browse
 
 Versions can be specified in the following formats: X, X.X, X.X.X, or X.X.X.X. The maximum values for each of the format are 4000, 4000.99, 4000.99.99, and 4000.99.99.99, respectively.
 
-The special value `unlisted` specifies to consider a browser as modern if it was not listed by the `modern_browser` and [ancient_browser](https://nginx.org/en/docs/http/ngx_http_browser_module.html#ancient_browser) directives. Otherwise such a browser is considered ancient. If a request does not provide the “User-Agent” field in the header, the browser is treated as not being listed.
+The special value `unlisted` specifies to consider a browser as modern if it was not listed by the `modern_browser` and [ancient_browser]({{< ref "/mod_ref/ngx_http_browser_module#ancient_browser">}}) directives. Otherwise such a browser is considered ancient. If a request does not provide the “User-Agent” field in the header, the browser is treated as not being listed.
 
 
 

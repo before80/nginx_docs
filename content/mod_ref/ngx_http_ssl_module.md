@@ -28,11 +28,11 @@ This module requires the [OpenSSL](http://www.openssl.org/) library.
 
 To reduce the processor load it is recommended to
 
-- set the number of [worker processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) equal to the number of processors,
-- enable [keep-alive](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) connections,
-- enable the [shared](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache_shared) session cache,
-- disable the [built-in](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache_builtin) session cache,
-- and possibly increase the session [lifetime](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) (by default, 5 minutes):
+- set the number of [worker processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}}) equal to the number of processors,
+- enable [keep-alive]({{< ref "/mod_ref/ngx_http_core_module#keepalive_timeout">}}) connections,
+- enable the [shared]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_cache_shared">}}) session cache,
+- disable the [built-in]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_cache_builtin">}}) session cache,
+- and possibly increase the session [lifetime]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_timeout">}}) (by default, 5 minutes):
 
 
 
@@ -75,7 +75,7 @@ http {
   Context: `http`, `server`
 
 
-This directive was made obsolete in version 1.15.0 and was removed in version 1.25.1. The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive should be used instead.
+This directive was made obsolete in version 1.15.0 and was removed in version 1.25.1. The `ssl` parameter of the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive should be used instead.
 
 
 
@@ -147,7 +147,7 @@ Note that using variables implies that a certificate will be loaded for each SSL
 
 
 
-The value `data`:`$variable` can be specified instead of the `file` (1.15.10), which loads a certificate from a variable without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+The value `data`:`$variable` can be specified instead of the `file` (1.15.10), which loads a certificate from a variable without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 It should be kept in mind that due to the HTTPS protocol limitations for maximum interoperability virtual servers should listen on [different IP addresses](https://nginx.org/en/docs/http/configuring_https_servers.html#name_based_https_servers).
 
@@ -168,7 +168,7 @@ The value `engine`:`name`:`id` can be specified instead of the `file` (1.7.9), w
 
 
 
-The value `data`:`$variable` can be specified instead of the `file` (1.15.10), which loads a secret key from a variable without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+The value `data`:`$variable` can be specified instead of the `file` (1.15.10), which loads a secret key from a variable without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 Since version 1.15.9, variables can be used in the `file` name when using OpenSSL 1.0.2 or higher.
 
@@ -210,9 +210,9 @@ The previous versions of nginx used [different](https://nginx.org/en/docs/http/c
   Context: `http`, `server`
 
 
-Specifies a `file` with trusted CA certificates in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) client certificates and OCSP responses if [ssl_stapling](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling) is enabled.
+Specifies a `file` with trusted CA certificates in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_verify_client">}}) client certificates and OCSP responses if [ssl_stapling]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_stapling">}}) is enabled.
 
-The list of certificates will be sent to clients. If this is not desired, the [ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_trusted_certificate) directive can be used.
+The list of certificates will be sent to clients. If this is not desired, the [ssl_trusted_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_trusted_certificate">}}) directive can be used.
 
 
 
@@ -261,7 +261,7 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
 This directive appeared in version 0.8.7.
 
-Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) client certificates.
+Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_verify_client">}}) client certificates.
 
 
 
@@ -299,7 +299,7 @@ This directive appeared in version 1.15.3.
 
 Enables or disables TLS 1.3 [early data](https://datatracker.ietf.org/doc/html/rfc8446#section-2.3).
 
-Requests sent within early data are subject to [replay attacks](https://datatracker.ietf.org/doc/html/rfc8470). To protect against such attacks at the application layer, the [$ssl_early_data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_early_data) variable should be used.
+Requests sent within early data are subject to [replay attacks](https://datatracker.ietf.org/doc/html/rfc8470). To protect against such attacks at the application layer, the [$ssl_early_data]({{< ref "/mod_ref/ngx_http_ssl_module#var_ssl_early_data">}}) variable should be used.
 
 
 
@@ -365,9 +365,9 @@ This directive appeared in version 1.19.0.
 
 Enables OCSP validation of the client certificate chain. The `leaf` parameter enables validation of the client certificate only.
 
-For the OCSP validation to work, the [ssl_verify_client](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) directive should be set to `on` or `optional`.
+For the OCSP validation to work, the [ssl_verify_client]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_verify_client">}}) directive should be set to `on` or `optional`.
 
-To resolve the OCSP responder hostname, the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive should also be specified.
+To resolve the OCSP responder hostname, the [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) directive should also be specified.
 
 Example:
 
@@ -409,7 +409,7 @@ The `off` parameter prohibits the use of the cache.
 
 This directive appeared in version 1.19.0.
 
-Overrides the URL of the OCSP responder specified in the “[Authority Information Access](https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.2.1)” certificate extension for [validation](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ocsp) of client certificates.
+Overrides the URL of the OCSP responder specified in the “[Authority Information Access](https://datatracker.ietf.org/doc/html/rfc5280#section-4.2.2.1)” certificate extension for [validation]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_ocsp">}}) of client certificates.
 
 Only “`http://`” OCSP responders are supported:
 
@@ -432,7 +432,7 @@ ssl_ocsp_responder http://ocsp.example.com/;
 
 This directive appeared in version 1.7.3.
 
-Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
+Specifies a `file` with passphrases for [secret keys]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate_key">}}) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
 
 Example:
 
@@ -509,7 +509,7 @@ The `TLSv1.3` parameter is used by default since 1.23.4.
 
 This directive appeared in version 1.19.4.
 
-If enabled, SSL handshakes in the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block will be rejected.
+If enabled, SSL handshakes in the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block will be rejected.
 
 For example, in the following configuration, SSL handshakes with server names other than `example.com` are rejected:
 
@@ -556,7 +556,7 @@ Sets the types and sizes of caches that store session parameters. A cache can be
 
 - `shared`
 
-  a cache shared between all worker processes. The cache size is specified in bytes; one megabyte can store about 4000 sessions. Each shared cache should have an arbitrary name. A cache with the same name can be used in several virtual servers. It is also used to automatically generate, store, and periodically rotate TLS session ticket keys (1.23.2) unless configured explicitly using the [ssl_session_ticket_key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_ticket_key) directive.
+  a cache shared between all worker processes. The cache size is specified in bytes; one megabyte can store about 4000 sessions. Each shared cache should have an arbitrary name. A cache with the same name can be used in several virtual servers. It is also used to automatically generate, store, and periodically rotate TLS session ticket keys (1.23.2) unless configured explicitly using the [ssl_session_ticket_key]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_ticket_key">}}) directive.
 
 
 
@@ -650,9 +650,9 @@ resolver 192.0.2.1;
 
 
 
-For the OCSP stapling to work, the certificate of the server certificate issuer should be known. If the [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) file does not contain intermediate certificates, the certificate of the server certificate issuer should be present in the [ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_trusted_certificate) file.
+For the OCSP stapling to work, the certificate of the server certificate issuer should be known. If the [ssl_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate">}}) file does not contain intermediate certificates, the certificate of the server certificate issuer should be present in the [ssl_trusted_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_trusted_certificate">}}) file.
 
-For a resolution of the OCSP responder hostname, the [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) directive should also be specified.
+For a resolution of the OCSP responder hostname, the [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) directive should also be specified.
 
 
 
@@ -709,7 +709,7 @@ This directive appeared in version 1.3.7.
 
 Enables or disables verification of OCSP responses by the server.
 
-For verification to work, the certificate of the server certificate issuer, the root certificate, and all intermediate certificates should be configured as trusted using the [ssl_trusted_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_trusted_certificate) directive.
+For verification to work, the certificate of the server certificate issuer, the root certificate, and all intermediate certificates should be configured as trusted using the [ssl_trusted_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_trusted_certificate">}}) directive.
 
 
 
@@ -724,9 +724,9 @@ For verification to work, the certificate of the server certificate issuer, the 
 
 This directive appeared in version 1.3.7.
 
-Specifies a `file` with trusted CA certificates in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_verify_client) client certificates and OCSP responses if [ssl_stapling](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling) is enabled.
+Specifies a `file` with trusted CA certificates in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_verify_client">}}) client certificates and OCSP responses if [ssl_stapling]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_stapling">}}) is enabled.
 
-In contrast to the certificate set by [ssl_client_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_client_certificate), the list of these certificates will not be sent to clients.
+In contrast to the certificate set by [ssl_client_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_client_certificate">}}), the list of these certificates will not be sent to clients.
 
 
 
@@ -739,11 +739,11 @@ In contrast to the certificate set by [ssl_client_certificate](https://nginx.org
   Context: `http`, `server`
 
 
-Enables verification of client certificates. The verification result is stored in the [$ssl_client_verify](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_verify) variable.
+Enables verification of client certificates. The verification result is stored in the [$ssl_client_verify]({{< ref "/mod_ref/ngx_http_ssl_module#var_ssl_client_verify">}}) variable.
 
 The `optional` parameter (0.8.7+) requests the client certificate and verifies it if the certificate is present.
 
-The `optional_no_ca` parameter (1.3.8, 1.2.5) requests the client certificate but does not require it to be signed by a trusted CA certificate. This is intended for the use in cases when a service that is external to nginx performs the actual certificate verification. The contents of the certificate is accessible through the [$ssl_client_cert](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#var_ssl_client_cert) variable.
+The `optional_no_ca` parameter (1.3.8, 1.2.5) requests the client certificate but does not require it to be signed by a trusted CA certificate. This is intended for the use in cases when a service that is external to nginx performs the actual certificate verification. The contents of the certificate is accessible through the [$ssl_client_cert]({{< ref "/mod_ref/ngx_http_ssl_module#var_ssl_client_cert">}}) variable.
 
 
 
@@ -762,7 +762,7 @@ Sets the verification depth in the client certificates chain.
 
 Error Processing
 
-The `ngx_http_ssl_module` module supports several non-standard error codes that can be used for redirects using the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive:
+The `ngx_http_ssl_module` module supports several non-standard error codes that can be used for redirects using the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive:
 
 - 495
 
@@ -804,7 +804,7 @@ The `ngx_http_ssl_module` module supports embedded variables:
 
 - `$ssl_client_cert`
 
-  returns the client certificate in the PEM format for an established SSL connection, with each line except the first prepended with the tab character; this is intended for the use in the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive;The variable is deprecated, the `$ssl_client_escaped_cert` variable should be used instead.
+  returns the client certificate in the PEM format for an established SSL connection, with each line except the first prepended with the tab character; this is intended for the use in the [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) directive;The variable is deprecated, the `$ssl_client_escaped_cert` variable should be used instead.
 
 - `$ssl_client_fingerprint`
 
@@ -860,7 +860,7 @@ The `ngx_http_ssl_module` module supports embedded variables:
 
 - `$ssl_early_data`
 
-  returns “`1`” if TLS 1.3 [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data) is used and the handshake is not complete, otherwise “” (1.15.3).
+  returns “`1`” if TLS 1.3 [early data]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}) is used and the handshake is not complete, otherwise “” (1.15.3).
 
 - `$ssl_protocol`
 

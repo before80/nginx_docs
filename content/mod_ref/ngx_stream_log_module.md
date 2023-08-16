@@ -81,7 +81,7 @@ For gzip compression to work, nginx must be built with the zlib library.
 
 The file path can contain variables, but such logs have some constraints:
 
-- the [user](https://nginx.org/en/docs/ngx_core_module.html#user) whose credentials are used by worker processes should have permissions to create files in a directory with such logs;
+- the [user]({{< ref "/mod_ref/ngx_core_module#user">}}) whose credentials are used by worker processes should have permissions to create files in a directory with such logs;
 - buffered writes do not work;
 - the file is opened and closed for each log write. However, since the descriptors of frequently used files can be stored in a [cache](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#open_log_file_cache), writing to the old file can continue during the time specified by the [open_log_file_cache](https://nginx.org/en/docs/stream/ngx_stream_log_module.html#open_log_file_cache) directive’s `valid` parameter
 

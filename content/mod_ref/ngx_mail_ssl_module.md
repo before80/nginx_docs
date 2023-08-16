@@ -28,7 +28,7 @@ This module requires the [OpenSSL](http://www.openssl.org/) library.
 
 To reduce the processor load, it is recommended to
 
-- set the number of [worker processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) equal to the number of processors,
+- set the number of [worker processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}}) equal to the number of processors,
 - enable the [shared](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_session_cache_shared) session cache,
 - disable the [built-in](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_session_cache_builtin) session cache,
 - and possibly increase the session [lifetime](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_session_timeout) (by default, 5 minutes):
@@ -112,7 +112,7 @@ Only OpenSSL 1.0.2 or higher supports separate certificate chains for different 
 
 
 
-The value `data`:`certificate` can be specified instead of the `file` (1.15.10), which loads a certificate without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+The value `data`:`certificate` can be specified instead of the `file` (1.15.10), which loads a certificate without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 
 
@@ -131,7 +131,7 @@ The value `engine`:`name`:`id` can be specified instead of the `file` (1.7.9), w
 
 
 
-The value `data`:`key` can be specified instead of the `file` (1.15.10), which loads a secret key without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+The value `data`:`key` can be specified instead of the `file` (1.15.10), which loads a secret key without using intermediate files. Note that inappropriate use of this syntax may have its security implications, such as writing secret key data to [error log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 
 

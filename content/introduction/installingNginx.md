@@ -20,9 +20,9 @@ nginx can be installed differently, depending on the operating system.
 
 ## 在 Linux 上安装 - Installation on Linux
 
-For Linux, nginx [packages](https://nginx.org/en/linux_packages.html) from nginx.org can be used.
+For Linux, nginx [packages](../nginxLinuxPackages) from nginx.org can be used.
 
-​	对于 Linux，可以使用 nginx.org 上的 [软件包](https://nginx.org/en/linux_packages.html) 进行安装。
+​	对于 Linux，可以使用 nginx.org 上的 [软件包](../nginxLinuxPackages) 进行安装。
 
 
 
@@ -34,6 +34,6 @@ On FreeBSD, nginx can be installed either from the [packages](https://docs.freeb
 
 ## 从源代码构建 - Building from Sources
 
-If some special functionality is required, not available with packages and ports, nginx can also be compiled from source files. While more flexible, this approach may be complex for a beginner. For more information, see [Building nginx from Sources](https://nginx.org/en/docs/configure.html).
+If some special functionality is required, not available with packages and ports, nginx can also be compiled from source files. While more flexible, this approach may be complex for a beginner. For more information, see [Building nginx from Sources](../buildingNginxFromSources).
 
-​	如果需要一些在软件包和 ports 中不可用的特殊功能，还可以从源代码编译 nginx。虽然更加灵活，但对于初学者来说，这种方法可能会更加复杂。有关更多信息，请参阅 [从源代码构建 nginx](https://nginx.org/en/docs/configure.html)。
+​	如果需要一些在软件包和 ports 中不可用的特殊功能，还可以从源代码编译 nginx。虽然更加灵活，但对于初学者来说，这种方法可能会更加复杂。有关更多信息，请参阅 [从源代码构建 nginx](../buildingNginxFromSources)。

@@ -182,7 +182,7 @@ Defines the `name` and `size` of the shared memory zone that keeps the group’s
 
 Additionally, as part of our [commercial subscription](http://nginx.com/products/), such groups allow changing the group membership or modifying the settings of a particular server without the need of restarting nginx. The configuration is accessible via the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module (1.13.3).
 
-Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
+Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf]({{< ref "/mod_ref/ngx_http_upstream_conf_module#upstream_conf">}}).
 
 
 
@@ -210,7 +210,7 @@ state /var/db/nginx/state/servers.conf;  # path for FreeBSD
 
 
 
-The state is currently limited to the list of servers with their parameters. The file is read when parsing the configuration and is updated each time the upstream configuration is [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_upstreams_stream_upstream_name_servers_). Changing the file content directly should be avoided. The directive cannot be used along with the [server](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) directive.
+The state is currently limited to the list of servers with their parameters. The file is read when parsing the configuration and is updated each time the upstream configuration is [changed]({{< ref "/mod_ref/ngx_http_api_module#stream_upstreams_stream_upstream_name_servers_">}}). Changing the file content directly should be avoided. The directive cannot be used along with the [server](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) directive.
 
 
 
@@ -349,7 +349,7 @@ To prevent DNS spoofing, it is recommended configuring DNS servers in a properly
 
 
 
-The optional `status_zone` parameter enables [collection](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) of DNS server statistics of requests and responses in the specified `zone`.
+The optional `status_zone` parameter enables [collection]({{< ref "/mod_ref/ngx_http_api_module#resolvers_">}}) of DNS server statistics of requests and responses in the specified `zone`.
 
 
 

@@ -48,7 +48,7 @@ server {
 }
 ```
 
-The example implements [per-user](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2) [rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html). Implementation without [internal_redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html#internal_redirect) is vulnerable to DoS attacks by unsigned JWTs, as normally the [limit_req](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req) check is performed [before](https://nginx.org/en/docs/dev/development_guide.html#http_phases) [auth_jwt](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt) check. Using [internal_redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html#internal_redirect) allows reordering these checks.
+The example implements [per-user](https://datatracker.ietf.org/doc/html/rfc7519#section-4.1.2) [rate limiting](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html). Implementation without [internal_redirect]({{< ref "/mod_ref/ngx_http_internal_redirect_module#internal_redirect">}}) is vulnerable to DoS attacks by unsigned JWTs, as normally the [limit_req]({{< ref "/mod_ref/ngx_http_limit_req_module#limit_req">}}) check is performed [before](https://nginx.org/en/docs/dev/development_guide.html#http_phases) [auth_jwt]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt">}}) check. Using [internal_redirect]({{< ref "/mod_ref/ngx_http_internal_redirect_module#internal_redirect">}}) allows reordering these checks.
 
 
 
@@ -65,4 +65,4 @@ The example implements [per-user](https://datatracker.ietf.org/doc/html/rfc7519#
   Context: `server`, `location`
 
 
-Sets the URI for internal redirection of the request. It is also possible to use a [named location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location_named) instead of the URI. The `uri` value can contain variables. If the `uri` value is empty, then the redirect will not be made.
+Sets the URI for internal redirection of the request. It is also possible to use a [named location]({{< ref "/mod_ref/ngx_http_core_module#location_named">}}) instead of the URI. The `uri` value can contain variables. If the `uri` value is empty, then the redirect will not be made.

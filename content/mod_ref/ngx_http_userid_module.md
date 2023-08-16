@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_userid_module.html
 
 
 
-The `ngx_http_userid_module` module sets cookies suitable for client identification. Received and set cookies can be logged using the embedded variables [$uid_got](https://nginx.org/en/docs/http/ngx_http_userid_module.html#var_uid_got) and [$uid_set](https://nginx.org/en/docs/http/ngx_http_userid_module.html#var_uid_set). This module is compatible with the [mod_uid](http://www.lexa.ru/programs/mod-uid-eng.html) module for Apache.
+The `ngx_http_userid_module` module sets cookies suitable for client identification. Received and set cookies can be logged using the embedded variables [$uid_got]({{< ref "/mod_ref/ngx_http_userid_module#var_uid_got">}}) and [$uid_set]({{< ref "/mod_ref/ngx_http_userid_module#var_uid_set">}}). This module is compatible with the [mod_uid](http://www.lexa.ru/programs/mod-uid-eng.html) module for Apache.
 
 
 
@@ -188,7 +188,7 @@ The `ngx_http_userid_module` module supports the following embedded variables:
 
 - `$uid_reset`
 
-  If the variable is set to a non-empty string that is not “`0`”, the client identifiers are reset. The special value “`log`” additionally leads to the output of messages about the reset identifiers to the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+  If the variable is set to a non-empty string that is not “`0`”, the client identifiers are reset. The special value “`log`” additionally leads to the output of messages about the reset identifiers to the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 - `$uid_set`
 

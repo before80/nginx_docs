@@ -1,5 +1,5 @@
 +++
-title = "核心功能"
+title = "ngx_core_module 核心功能"
 date = 2023-08-15T08:06:13+08:00
 weight = 10
 type = "docs"
@@ -9,7 +9,7 @@ draft = false
 
 +++
 
-# Core functionality - 核心功能
+# Core functionality - ngx_core_module -  核心功能
 
 
 
@@ -51,9 +51,9 @@ If `accept_mutex` is enabled, worker processes will accept new connections by tu
 
 ​	如果启用了 `accept_mutex`，工作进程将轮流接受新连接。否则，所有工作进程将被通知有关新连接的情况，如果新连接的数量较低，一些工作进程可能会浪费系统资源。
 
-There is no need to enable `accept_mutex` on systems that support the [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) flag (1.11.3) or when using [reuseport](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport).
+There is no need to enable `accept_mutex` on systems that support the [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) flag (1.11.3) or when using [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}).
 
-​	在支持 [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) 标志（1.11.3 版本）的系统上或使用 [reuseport](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport) 时，无需启用 `accept_mutex`。
+​	在支持 [EPOLLEXCLUSIVE](https://nginx.org/en/docs/events.html#epoll) 标志（1.11.3 版本）的系统上或使用 [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}) 时，无需启用 `accept_mutex`。
 
 
 
@@ -71,9 +71,9 @@ Prior to version 1.11.3, the default value was `on`.
 
   Context: `events`
 
-If [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) is enabled, specifies the maximum time during which a worker process will try to restart accepting new connections if another worker process is currently accepting new connections.
+If [accept_mutex]({{< ref "/mod_ref/ngx_core_module#accept_mutex">}}) is enabled, specifies the maximum time during which a worker process will try to restart accepting new connections if another worker process is currently accepting new connections.
 
-​	如果启用了 [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex)，则指定另一个工作进程正在接受新连接时，工作进程将尝试重新启动接受新连接的最大时间。
+​	如果启用了 [accept_mutex]({{< ref "/mod_ref/ngx_core_module#accept_mutex">}})，则指定另一个工作进程正在接受新连接时，工作进程将尝试重新启动接受新连接的最大时间。
 
 
 
@@ -99,9 +99,9 @@ Determines whether nginx should become a daemon. Mainly used during development.
 
   Context: `events`
 
-Enables debugging log for selected client connections. Other connections will use logging level set by the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive. Debugged connections are specified by IPv4 or IPv6 (1.3.0, 1.2.1) address or network. A connection may also be specified using a hostname. For connections using UNIX-domain sockets (1.3.0, 1.2.1), debugging log is enabled by the “`unix:`” parameter.
+Enables debugging log for selected client connections. Other connections will use logging level set by the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) directive. Debugged connections are specified by IPv4 or IPv6 (1.3.0, 1.2.1) address or network. A connection may also be specified using a hostname. For connections using UNIX-domain sockets (1.3.0, 1.2.1), debugging log is enabled by the “`unix:`” parameter.
 
-​	为选定的客户端连接启用调试日志。其他连接将使用由 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) 指令设置的日志级别。调试的连接由 IPv4 或 IPv6（1.3.0、1.2.1 版本）地址或网络指定。也可以使用主机名来指定连接。对于使用 UNIX 域套接字（1.3.0、1.2.1 版本）的连接，可以通过 "unix:" 参数来启用调试日志。
+​	为选定的客户端连接启用调试日志。其他连接将使用由 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令设置的日志级别。调试的连接由 IPv4 或 IPv6（1.3.0、1.2.1 版本）地址或网络指定。也可以使用主机名来指定连接。对于使用 UNIX 域套接字（1.3.0、1.2.1 版本）的连接，可以通过 "unix:" 参数来启用调试日志。
 
 ```
 events {
@@ -285,9 +285,9 @@ load_module modules/ngx_mail_module.so;
 
   Context: `main`
 
-nginx uses the locking mechanism to implement [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) and serialize access to shared memory. On most systems the locks are implemented using atomic operations, and this directive is ignored. On other systems the “lock file” mechanism is used. This directive specifies a prefix for the names of lock files.
+nginx uses the locking mechanism to implement [accept_mutex]({{< ref "/mod_ref/ngx_core_module#accept_mutex">}}) and serialize access to shared memory. On most systems the locks are implemented using atomic operations, and this directive is ignored. On other systems the “lock file” mechanism is used. This directive specifies a prefix for the names of lock files.
 
-​	nginx 使用锁定机制来实现 [accept_mutex](https://nginx.org/en/docs/ngx_core_module.html#accept_mutex) 并对共享内存进行序列化访问。在大多数系统上，锁定使用原子操作实现，忽略此指令。在其他系统上，使用“锁文件”机制。此指令指定锁文件名称的前缀。
+​	nginx 使用锁定机制来实现 [accept_mutex]({{< ref "/mod_ref/ngx_core_module#accept_mutex">}}) 并对共享内存进行序列化访问。在大多数系统上，锁定使用原子操作实现，忽略此指令。在其他系统上，使用“锁文件”机制。此指令指定锁文件名称的前缀。
 
 
 
@@ -391,9 +391,9 @@ This directive appeared in version 1.7.11.
 
 ​	此指令于版本 1.7.11 中出现。
 
-Defines the `name` and parameters of a thread pool used for multi-threaded reading and sending of files [without blocking](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) worker processes.
+Defines the `name` and parameters of a thread pool used for multi-threaded reading and sending of files [without blocking]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) worker processes.
 
-​	定义用于多线程读取和发送文件的线程池的 `name` 和参数，这些线程池在工作进程中进行，而不会阻塞。
+​	定义用于多线程读取和发送文件的线程池的 `name` 和参数，这些线程池在工作进程中进行，而[不会阻塞]({{< ref "/mod_ref/ngx_http_core_module#aio">}})。
 
 The `threads` parameter defines the number of threads in the pool.
 
@@ -480,9 +480,9 @@ This directive appeared in versions 1.1.4 and 1.0.7.
 
 ​	此指令于版本 1.1.4 和 1.0.7 中出现。
 
-When using [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) with the [epoll](https://nginx.org/en/docs/events.html#epoll) connection processing method, sets the maximum `number` of outstanding asynchronous I/O operations for a single worker process.
+When using [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) with the [epoll](https://nginx.org/en/docs/events.html#epoll) connection processing method, sets the maximum `number` of outstanding asynchronous I/O operations for a single worker process.
 
-​	在使用 [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) 和 [epoll](https://nginx.org/en/docs/events.html#epoll) 连接处理方法时，设置单个工作进程的最大异步 I/O 操作数。
+​	在使用 [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) 和 [epoll](https://nginx.org/en/docs/events.html#epoll) 连接处理方法时，设置单个工作进程的最大异步 I/O 操作数。
 
 ### worker_connections
 
@@ -496,9 +496,9 @@ Sets the maximum number of simultaneous connections that can be opened by a work
 
 ​	设置工作进程可以打开的最大同时连接数。
 
-It should be kept in mind that this number includes all connections (e.g. connections with proxied servers, among others), not only connections with clients. Another consideration is that the actual number of simultaneous connections cannot exceed the current limit on the maximum number of open files, which can be changed by [worker_rlimit_nofile](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile).
+It should be kept in mind that this number includes all connections (e.g. connections with proxied servers, among others), not only connections with clients. Another consideration is that the actual number of simultaneous connections cannot exceed the current limit on the maximum number of open files, which can be changed by [worker_rlimit_nofile]({{< ref "/mod_ref/ngx_core_module#worker_rlimit_nofile">}}).
 
-​	需要记住，此数字包括所有连接（例如，与代理服务器的连接等），不仅限于与客户端的连接。另一个考虑因素是实际的同时连接数不能超过最大打开文件数的当前限制，可以通过 [worker_rlimit_nofile](https://nginx.org/en/docs/ngx_core_module.html#worker_rlimit_nofile) 进行更改。
+​	需要记住，此数字包括所有连接（例如，与代理服务器的连接等），不仅限于与客户端的连接。另一个考虑因素是实际的同时连接数不能超过最大打开文件数的当前限制，可以通过 [worker_rlimit_nofile]({{< ref "/mod_ref/ngx_core_module#worker_rlimit_nofile">}}) 进行更改。
 
 
 

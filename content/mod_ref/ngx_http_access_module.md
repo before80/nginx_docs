@@ -19,9 +19,9 @@ The `ngx_http_access_module` module allows limiting access to certain client add
 
 ​	`ngx_http_access_module` 模块允许限制对特定客户端地址的访问。
 
-Access can also be limited by [password](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), by the [result of subrequest](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), or by [JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html). Simultaneous limitation of access by address and by password is controlled by the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+Access can also be limited by [password](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html), by the [result of subrequest](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), or by [JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html). Simultaneous limitation of access by address and by password is controlled by the [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive.
 
-​	还可以通过[密码](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)、[子请求的结果](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)或者[JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html)来限制访问。通过地址和密码同时限制访问的情况由 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令控制。
+​	还可以通过[密码](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)、[子请求的结果](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html)或者[JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html)来限制访问。通过地址和密码同时限制访问的情况由 [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) 指令控制。
 
 
 

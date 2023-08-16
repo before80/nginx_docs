@@ -15,9 +15,9 @@ https://nginx.org/en/docs/http/configuring_https_servers.html
 
 
 
-To configure an HTTPS server, the `ssl` parameter must be enabled on [listening sockets](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) in the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block, and the locations of the [server certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) and [private key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) files should be specified:
+To configure an HTTPS server, the `ssl` parameter must be enabled on [listening sockets]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) in the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block, and the locations of the [server certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate">}}) and [private key]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate_key">}}) files should be specified:
 
-​	为了配置一个 HTTPS 服务器，必须在 [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) 块中的 [listening sockets](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 上启用 `ssl` 参数，并且应指定 [server certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) 和 [private key](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate_key) 文件的位置：
+​	为了配置一个 HTTPS 服务器，必须在 [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) 块中的 [listening sockets]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) 上启用 `ssl` 参数，并且应指定 [server certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate">}}) 和 [private key]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate_key">}}) 文件的位置：
 
 ```
 server {
@@ -44,17 +44,17 @@ in which case the file access rights should also be restricted. Although the cer
 
 ​	在这种情况下，文件访问权限也应受到限制。尽管证书和私钥存储在一个文件中，但只有证书会被发送给客户端。
 
-The directives [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) and [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) can be used to limit connections to include only the strong versions and ciphers of SSL/TLS. By default nginx uses “`ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`” and “`ssl_ciphers HIGH:!aNULL:!MD5`”, so configuring them explicitly is generally not needed. Note that default values of these directives were [changed](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility) several times.
+The directives [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) and [ssl_ciphers]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_ciphers">}}) can be used to limit connections to include only the strong versions and ciphers of SSL/TLS. By default nginx uses “`ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`” and “`ssl_ciphers HIGH:!aNULL:!MD5`”, so configuring them explicitly is generally not needed. Note that default values of these directives were [changed](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility) several times.
 
-​	指令 [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) 和 [ssl_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) 可以用于限制连接，只包括强版本和密码。默认情况下，nginx 使用“`ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`”和“`ssl_ciphers HIGH:!aNULL:!MD5`”，因此通常不需要显式配置它们。请注意，这些指令的默认值已经[多次更改过](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility)。
+​	指令 [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) 和 [ssl_ciphers]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_ciphers">}}) 可以用于限制连接，只包括强版本和密码。默认情况下，nginx 使用“`ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3`”和“`ssl_ciphers HIGH:!aNULL:!MD5`”，因此通常不需要显式配置它们。请注意，这些指令的默认值已经[多次更改过](https://nginx.org/en/docs/http/configuring_https_servers.html#compatibility)。
 
 
 
 ## HTTPS 服务器优化 - HTTPS server optimization
 
-SSL operations consume extra CPU resources. On multi-processor systems several [worker processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) should be run, no less than the number of available CPU cores. The most CPU-intensive operation is the SSL handshake. There are two ways to minimize the number of these operations per client: the first is by enabling [keepalive](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) connections to send several requests via one connection and the second is to reuse SSL session parameters to avoid SSL handshakes for parallel and subsequent connections. The sessions are stored in an SSL session cache shared between workers and configured by the [ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) directive. One megabyte of the cache contains about 4000 sessions. The default cache timeout is 5 minutes. It can be increased by using the [ssl_session_timeout](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) directive. Here is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
+SSL operations consume extra CPU resources. On multi-processor systems several [worker processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}}) should be run, no less than the number of available CPU cores. The most CPU-intensive operation is the SSL handshake. There are two ways to minimize the number of these operations per client: the first is by enabling [keepalive]({{< ref "/mod_ref/ngx_http_core_module#keepalive_timeout">}}) connections to send several requests via one connection and the second is to reuse SSL session parameters to avoid SSL handshakes for parallel and subsequent connections. The sessions are stored in an SSL session cache shared between workers and configured by the [ssl_session_cache]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_cache">}}) directive. One megabyte of the cache contains about 4000 sessions. The default cache timeout is 5 minutes. It can be increased by using the [ssl_session_timeout]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_timeout">}}) directive. Here is a sample configuration optimized for a multi-core system with 10 megabyte shared session cache:
 
-​	SSL 操作会消耗额外的 CPU 资源。在多处理器系统上，应运行多个 [worker processes](https://nginx.org/en/docs/ngx_core_module.html#worker_processes)，至少不少于可用的 CPU 核心数。最消耗 CPU 的操作是 SSL 握手。有两种方式可以最小化每个客户端的这些操作次数：一是通过启用 [keepalive](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) 连接来通过一个连接发送多个请求，二是重用 SSL 会话参数以避免并行和后续连接的 SSL 握手。这些会话存储在在 worker 之间共享的 SSL 会话缓存中，由 [ssl_session_cache](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_cache) 指令进行配置。一个缓存中大约包含 4000 个会话的数据。默认缓存超时为 5 分钟。可以通过使用 [ssl_session_timeout](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_session_timeout) 指令进行增加。以下是针对具有 10 兆字节共享会话缓存的多核系统优化的示例配置：
+​	SSL 操作会消耗额外的 CPU 资源。在多处理器系统上，应运行多个 [worker processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}})，至少不少于可用的 CPU 核心数。最消耗 CPU 的操作是 SSL 握手。有两种方式可以最小化每个客户端的这些操作次数：一是通过启用 [keepalive]({{< ref "/mod_ref/ngx_http_core_module#keepalive_timeout">}}) 连接来通过一个连接发送多个请求，二是重用 SSL 会话参数以避免并行和后续连接的 SSL 握手。这些会话存储在在 worker 之间共享的 SSL 会话缓存中，由 [ssl_session_cache]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_cache">}}) 指令进行配置。一个缓存中大约包含 4000 个会话的数据。默认缓存超时为 5 分钟。可以通过使用 [ssl_session_timeout]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_session_timeout">}}) 指令进行增加。以下是针对具有 10 兆字节共享会话缓存的多核系统优化的示例配置：
 
 ```
 worker_processes auto;
@@ -89,9 +89,9 @@ Some browsers may complain about a certificate signed by a well-known certificat
 $ cat www.example.com.crt bundle.crt > www.example.com.chained.crt
 ```
 
-The resulting file should be used in the [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) directive:
+The resulting file should be used in the [ssl_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate">}}) directive:
 
-​	结果文件应在 [ssl_certificate](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_certificate) 指令中使用：
+​	结果文件应在 [ssl_certificate]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_certificate">}}) 指令中使用：
 
 ```
 server {
@@ -181,8 +181,8 @@ server {
 
 
 
-Prior to 0.7.14 SSL could not be enabled selectively for individual listening sockets, as shown above. SSL could only be enabled for the entire server using the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive, making it impossible to set up a single HTTP/HTTPS server. The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive was added to solve this issue. The use of the [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) directive in modern versions is thus discouraged.
-​	在版本 0.7.14 之前，不能选择性地为单个监听 socket 启用 SSL，如上所示。只能使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令为整个服务器启用 SSL，从而无法设置单一的 HTTP/HTTPS 服务器。在现代版本中使用 [ssl](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl) 指令因此被不建议。
+Prior to 0.7.14 SSL could not be enabled selectively for individual listening sockets, as shown above. SSL could only be enabled for the entire server using the [ssl]({{< ref "/mod_ref/ngx_http_ssl_module#ssl">}}) directive, making it impossible to set up a single HTTP/HTTPS server. The `ssl` parameter of the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive was added to solve this issue. The use of the [ssl]({{< ref "/mod_ref/ngx_http_ssl_module#ssl">}}) directive in modern versions is thus discouraged.
+​	在版本 0.7.14 之前，不能选择性地为单个监听 socket 启用 SSL，如上所示。只能使用 [ssl]({{< ref "/mod_ref/ngx_http_ssl_module#ssl">}}) 指令为整个服务器启用 SSL，从而无法设置单一的 HTTP/HTTPS 服务器。在现代版本中使用 [ssl]({{< ref "/mod_ref/ngx_http_ssl_module#ssl">}}) 指令因此被不建议。
 
 
 
@@ -314,7 +314,7 @@ therefore SNI is not available
 
 
 - The SNI support status has been shown by the “-V” switch since 0.8.21 and 0.7.62.
-- The `ssl` parameter of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive has been supported since 0.7.14. Prior to 0.8.21 it could only be specified along with the `default` parameter.
+- The `ssl` parameter of the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive has been supported since 0.7.14. Prior to 0.8.21 it could only be specified along with the `default` parameter.
 - SNI has been supported since 0.5.23.
 - The shared SSL session cache has been supported since 0.5.6.
 
@@ -329,7 +329,7 @@ therefore SNI is not available
 - Version 0.7.64, 0.8.18 and earlier: the default SSL ciphers are
   “`ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP`”.
 - SNI 支持状态自 0.8.21 和 0.7.62 版本开始通过 “-V” 开关显示。
-- [监听](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 指令的 `ssl` 参数自 0.7.14 版本开始支持。在 0.8.21 版本之前，它只能与 `default` 参数一起使用。
+- [监听]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) 指令的 `ssl` 参数自 0.7.14 版本开始支持。在 0.8.21 版本之前，它只能与 `default` 参数一起使用。
 - SNI 自 0.5.23 版本开始支持。
 - 共享的 SSL 会话缓存自 0.5.6 版本开始支持。
 - 版本 1.23.4 及以后：默认的 SSL 协议为 TLSv1、TLSv1.1、TLSv1.2 和 TLSv1.3（如果 OpenSSL 库支持）。

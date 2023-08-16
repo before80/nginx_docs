@@ -48,7 +48,7 @@ location /storage/ {
   Context: `http`, `server`, `location`
 
 
-Enables or disables decompression of gzipped responses for clients that lack gzip support. If enabled, the following directives are also taken into account when determining if clients support gzip: [gzip_http_version](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_http_version), [gzip_proxied](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_proxied), and [gzip_disable](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_disable). See also the [gzip_vary](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip_vary) directive.
+Enables or disables decompression of gzipped responses for clients that lack gzip support. If enabled, the following directives are also taken into account when determining if clients support gzip: [gzip_http_version]({{< ref "/mod_ref/ngx_http_gzip_module#gzip_http_version">}}), [gzip_proxied]({{< ref "/mod_ref/ngx_http_gzip_module#gzip_proxied">}}), and [gzip_disable]({{< ref "/mod_ref/ngx_http_gzip_module#gzip_disable">}}). See also the [gzip_vary]({{< ref "/mod_ref/ngx_http_gzip_module#gzip_vary">}}) directive.
 
 
 

@@ -68,7 +68,7 @@ http {
 
 
 
-In the example above, there are 3 instances of the same application running on srv1-srv3. When the load balancing method is not specifically configured, it defaults to round-robin. All requests are [proxied](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) to the server group myapp1, and nginx applies HTTP load balancing to distribute the requests.
+In the example above, there are 3 instances of the same application running on srv1-srv3. When the load balancing method is not specifically configured, it defaults to round-robin. All requests are [proxied]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) to the server group myapp1, and nginx applies HTTP load balancing to distribute the requests.
 
 ​	在上面的示例中，有三个相同应用的实例运行在 srv1-srv3 上。当没有特定配置负载均衡方法时，默认为 round-robin。所有请求都被代理到服务器组 myapp1，nginx 应用 HTTP 负载均衡以分发请求。
 
@@ -80,9 +80,9 @@ To configure load balancing for HTTPS instead of HTTP, just use “https” as t
 
 ​	要为 HTTPS 而不是 HTTP 配置负载均衡，只需将协议设置为“https”。
 
-When setting up load balancing for FastCGI, uwsgi, SCGI, memcached, or gRPC, use [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass), [uwsgi_pass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass), [scgi_pass](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass), [memcached_pass](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_pass), and [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass) directives respectively.
+When setting up load balancing for FastCGI, uwsgi, SCGI, memcached, or gRPC, use [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}}), [uwsgi_pass]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass">}}), [scgi_pass]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass">}}), [memcached_pass]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_pass">}}), and [grpc_pass]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass">}}) directives respectively.
 
-​	在为 FastCGI、uwsgi、SCGI、memcached 或 gRPC 配置负载均衡时，分别使用 [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass)、[uwsgi_pass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass)、[scgi_pass](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass)、[memcached_pass](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_pass) 和 [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass) 指令。
+​	在为 FastCGI、uwsgi、SCGI、memcached 或 gRPC 配置负载均衡时，分别使用 [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}})、[uwsgi_pass]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass">}})、[scgi_pass]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass">}})、[memcached_pass]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_pass">}}) 和 [grpc_pass]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass">}}) 指令。
 
 
 
@@ -96,9 +96,9 @@ With the least-connected load balancing, nginx will try not to overload a busy a
 
 ​	使用最少连接负载均衡，nginx 将尝试不过载繁忙的应用服务器，而是将新请求分配给较不繁忙的服务器。
 
-Least-connected load balancing in nginx is activated when the [least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) directive is used as part of the server group configuration:
+Least-connected load balancing in nginx is activated when the [least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) directive is used as part of the server group configuration:
 
-​	在 nginx 中，当在服务器组配置中使用 [least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) 指令时，将激活最少连接负载均衡：
+​	在 nginx 中，当在服务器组配置中使用 [least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) 指令时，将激活最少连接负载均衡：
 
 ```
  upstream myapp1 {
@@ -127,9 +127,9 @@ With ip-hash, the client’s IP address is used as a hashing key to determine wh
 
 ​	使用 ip-hash，客户端的 IP 地址被用作散列键，以确定服务器组中为客户端请求选择哪个服务器。该方法确保来自同一客户端的请求将始终被导向同一服务器，除非此服务器不可用。
 
-To configure ip-hash load balancing, just add the [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash) directive to the server (upstream) group configuration:
+To configure ip-hash load balancing, just add the [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}) directive to the server (upstream) group configuration:
 
-​	要配置 ip-hash 负载均衡，只需将 [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash) 指令添加到服务器（上游）组配置中：
+​	要配置 ip-hash 负载均衡，只需将 [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}) 指令添加到服务器（上游）组配置中：
 
 ```
 upstream myapp1 {
@@ -158,9 +158,9 @@ With the round-robin in particular it also means a more or less equal distributi
 
 ​	对于 round-robin，这也意味着在服务器之间的请求分布更或多或少相等 — 前提是有足够的请求，并且请求以均匀的方式处理且足够快。
 
-When the [weight](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) parameter is specified for a server, the weight is accounted as part of the load balancing decision.
+When the [weight]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) parameter is specified for a server, the weight is accounted as part of the load balancing decision.
 
-​	当为服务器指定 [weight](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 参数时，该权重将纳入负载均衡决策。
+​	当为服务器指定 [weight]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 参数时，该权重将纳入负载均衡决策。
 
 ```
  upstream myapp1 {
@@ -188,17 +188,17 @@ Reverse proxy implementation in nginx includes in-band (or passive) server healt
 
 ​	nginx 的反向代理实现包括带内（或被动）服务器健康检查。如果来自特定服务器的响应失败，nginx 将标记该服务器为失败，并会在一段时间内尝试避免选择此服务器进行后续入站请求。
 
-The [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive sets the number of consecutive unsuccessful attempts to communicate with the server that should happen during [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server). By default, [max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) is set to 1. When it is set to 0, health checks are disabled for this server. The [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) parameter also defines how long the server will be marked as failed. After [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) interval following the server failure, nginx will start to gracefully probe the server with the live client’s requests. If the probes have been successful, the server is marked as a live one.
+The [max_fails]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) directive sets the number of consecutive unsuccessful attempts to communicate with the server that should happen during [fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}). By default, [max_fails]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) is set to 1. When it is set to 0, health checks are disabled for this server. The [fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) parameter also defines how long the server will be marked as failed. After [fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) interval following the server failure, nginx will start to gracefully probe the server with the live client’s requests. If the probes have been successful, the server is marked as a live one.
 
-​	[max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 指令设置在 [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 期间与服务器通信的连续失败尝试次数。默认情况下，[max_fails](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 设置为 1。当设置为 0 时，对于此服务器禁用健康检查。[fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 参数还定义了服务器标记为失败的持续时间。在服务器失败后的 [fail_timeout](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 间隔后，nginx 将开始通过实时客户端请求优雅地探测服务器。如果探测成功，该服务器被标记为活动。
+​	[max_fails]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 指令设置在 [fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 期间与服务器通信的连续失败尝试次数。默认情况下，[max_fails]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 设置为 1。当设置为 0 时，对于此服务器禁用健康检查。[fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 参数还定义了服务器标记为失败的持续时间。在服务器失败后的 [fail_timeout]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 间隔后，nginx 将开始通过实时客户端请求优雅地探测服务器。如果探测成功，该服务器被标记为活动。
 
 
 
 ## 进一步阅读 - Further reading
 
-In addition, there are more directives and parameters that control server load balancing in nginx, e.g. [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream), [backup](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), [down](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server), and [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive). For more information please check our [reference documentation](https://nginx.org/en/docs/).
+In addition, there are more directives and parameters that control server load balancing in nginx, e.g. [proxy_next_upstream]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}), [backup]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}), [down]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}), and [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}). For more information please check our [reference documentation](https://nginx.org/en/docs/).
 
-​	此外，nginx 中还有更多指令和参数用于控制服务器负载均衡，例如 [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream)、[backup](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server)、[down](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 和 [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive)。有关更多信息，请查阅我们的[参考文档](https://nginx.org/en/docs/)。
+​	此外，nginx 中还有更多指令和参数用于控制服务器负载均衡，例如 [proxy_next_upstream]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}})、[backup]({{< ref "/mod_ref/ngx_http_upstream_module#server">}})、[down]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 和 [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}})。有关更多信息，请查阅我们的[参考文档](https://nginx.org/en/docs/)。
 
 Last but not least, [application load balancing](https://www.nginx.com/products/application-load-balancing/), [application health checks](https://www.nginx.com/products/application-health-checks/), [activity monitoring](https://www.nginx.com/products/live-activity-monitoring/) and [on-the-fly reconfiguration](https://www.nginx.com/products/on-the-fly-reconfiguration/) of server groups are available as part of our paid NGINX Plus subscriptions.
 

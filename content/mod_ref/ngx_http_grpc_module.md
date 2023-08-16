@@ -61,7 +61,7 @@ The `transparent` parameter allows outgoing connections to a gRPC server origina
 grpc_bind $remote_addr transparent;
 ```
 
-In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the gRPC server.
+In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser]({{< ref "/mod_ref/ngx_core_module#user">}}) privileges. On Linux it is not required as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the gRPC server.
 
 
 
@@ -100,7 +100,7 @@ Defines a timeout for establishing a connection with a gRPC server. It should be
   Context: `http`, `server`, `location`
 
 
-By default, nginx does not pass the header fields “Date”, “Server”, and “X-Accel-...” from the response of a gRPC server to a client. The `grpc_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [grpc_pass_header](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass_header) directive can be used.
+By default, nginx does not pass the header fields “Date”, “Server”, and “X-Accel-...” from the response of a gRPC server to a client. The `grpc_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [grpc_pass_header]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass_header">}}) directive can be used.
 
 
 
@@ -117,8 +117,8 @@ Disables processing of certain response header fields from the gRPC server. The 
 
 If not disabled, processing of these header fields has the following effect:
 
-- “X-Accel-Redirect” performs an [internal redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) to the specified URI;
-- “X-Accel-Charset” sets the desired [charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset) of a response.
+- “X-Accel-Redirect” performs an [internal redirect]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) to the specified URI;
+- “X-Accel-Charset” sets the desired [charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}}) of a response.
 
 
 
@@ -133,7 +133,7 @@ If not disabled, processing of these header fields has the following effect:
   Context: `http`, `server`, `location`
 
 
-Determines whether gRPC server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
+Determines whether gRPC server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive.
 
 
 
@@ -200,9 +200,9 @@ Specifies in which cases a request should be passed to the next server:
 
 One should bear in mind that passing a request to the next server is only possible if nothing has been sent to a client yet. That is, if an error or timeout occurs in the middle of the transferring of a response, fixing this is impossible.
 
-The directive also defines what is considered an [unsuccessful attempt](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_502`, `http_503`, `http_504`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
+The directive also defines what is considered an [unsuccessful attempt]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_502`, `http_503`, `http_504`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 
-Passing a request to the next server can be limited by [the number of tries](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_next_upstream_tries) and by [time](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_next_upstream_timeout).
+Passing a request to the next server can be limited by [the number of tries]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_next_upstream_tries">}}) and by [time]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_next_upstream_timeout">}}).
 
 
 
@@ -215,7 +215,7 @@ Passing a request to the next server can be limited by [the number of tries](htt
   Context: `http`, `server`, `location`
 
 
-Limits the time during which a request can be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_next_upstream). The `0` value turns off this limitation.
+Limits the time during which a request can be passed to the [next server]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_next_upstream">}}). The `0` value turns off this limitation.
 
 
 
@@ -228,7 +228,7 @@ Limits the time during which a request can be passed to the [next server](https:
   Context: `http`, `server`, `location`
 
 
-Limits the number of possible tries for passing a request to the [next server](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_next_upstream). The `0` value turns off this limitation.
+Limits the number of possible tries for passing a request to the [next server]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_next_upstream">}}). The `0` value turns off this limitation.
 
 
 
@@ -269,7 +269,7 @@ grpc_pass grpcs://127.0.0.1:443;
 
 If a domain name resolves to several addresses, all of them will be used in a round-robin fashion. In addition, an address can be specified as a [server group](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
 
-Parameter value can contain variables (1.17.8). In this case, if an address is specified as a domain name, the name is searched among the described [server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html), and, if not found, is determined using a [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver).
+Parameter value can contain variables (1.17.8). In this case, if an address is specified as a domain name, the name is searched among the described [server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html), and, if not found, is determined using a [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}).
 
 
 
@@ -282,7 +282,7 @@ Parameter value can contain variables (1.17.8). In this case, if an address is s
   Context: `http`, `server`, `location`
 
 
-Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_hide_header) header fields from a gRPC server to a client.
+Permits passing [otherwise disabled]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_hide_header">}}) header fields from a gRPC server to a client.
 
 
 
@@ -321,7 +321,7 @@ Sets a timeout for transmitting a request to the gRPC server. The timeout is set
   Context: `http`, `server`, `location`
 
 
-Allows redefining or appending fields to the request header [passed](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass_request_headers) to the gRPC server. The `value` can contain text, variables, and their combinations. These directives are inherited from the previous configuration level if and only if there are no `grpc_set_header` directives defined on the current level.
+Allows redefining or appending fields to the request header [passed]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass_request_headers">}}) to the gRPC server. The `value` can contain text, variables, and their combinations. These directives are inherited from the previous configuration level if and only if there are no `grpc_set_header` directives defined on the current level.
 
 If the value of a header field is an empty string then this field will not be passed to a gRPC server:
 
@@ -431,7 +431,7 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
   Context: `http`, `server`, `location`
 
 
-Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_verify) the certificate of the gRPC SSL server.
+Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ssl_verify">}}) the certificate of the gRPC SSL server.
 
 
 
@@ -444,9 +444,9 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
   Context: `http`, `server`, `location`
 
 
-Allows overriding the server name used to [verify](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_verify) the certificate of the gRPC SSL server and to be [passed through SNI](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_server_name) when establishing a connection with the gRPC SSL server.
+Allows overriding the server name used to [verify]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ssl_verify">}}) the certificate of the gRPC SSL server and to be [passed through SNI]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ssl_server_name">}}) when establishing a connection with the gRPC SSL server.
 
-By default, the host part from [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass) is used.
+By default, the host part from [grpc_pass]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass">}}) is used.
 
 
 
@@ -459,7 +459,7 @@ By default, the host part from [grpc_pass](https://nginx.org/en/docs/http/ngx_ht
   Context: `http`, `server`, `location`
 
 
-Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_certificate_key) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
+Specifies a `file` with passphrases for [secret keys]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ssl_certificate_key">}}) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
 
 
 
@@ -517,7 +517,7 @@ Determines whether SSL sessions can be reused when working with the gRPC server.
   Context: `http`, `server`, `location`
 
 
-Specifies a `file` with trusted CA certificates in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ssl_verify) the certificate of the gRPC SSL server.
+Specifies a `file` with trusted CA certificates in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ssl_verify">}}) the certificate of the gRPC SSL server.
 
 
 

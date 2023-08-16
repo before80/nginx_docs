@@ -87,7 +87,7 @@ A session is considered active for as long as the time elapsed since the last re
 
 The `id` parameter identifies the session to which a request is mapped. The `id` parameter is set to the hexadecimal representation of an MD5 hash (for example, obtained from a cookie using variables). If this parameter is not specified or does not represent the valid MD5 hash, nginx computes the MD5 hash from the value of the `md5` parameter and creates a new session using this hash. Both the `id` and `md5` parameters can contain variables.
 
-The `format` parameter sets the custom session log format configured by the [session_log_format](https://nginx.org/en/docs/http/ngx_http_session_log_module.html#session_log_format) directive. If `format` is not specified, the predefined “`combined`” format is used.
+The `format` parameter sets the custom session log format configured by the [session_log_format]({{< ref "/mod_ref/ngx_http_session_log_module#session_log_format">}}) directive. If `format` is not specified, the predefined “`combined`” format is used.
 
 
 

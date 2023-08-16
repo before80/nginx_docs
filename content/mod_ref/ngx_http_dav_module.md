@@ -109,9 +109,9 @@ Allows the specified HTTP and WebDAV methods. The parameter `off` denies all met
 
 ​	允许指定的HTTP和WebDAV方法。参数`off`拒绝此模块处理的所有方法。支持以下方法：`PUT`、`DELETE`、`MKCOL`、`COPY`和`MOVE`。
 
-A file uploaded with the PUT method is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [client_body_temp_path](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_temp_path) directive, are put on the same file system.
+A file uploaded with the PUT method is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [client_body_temp_path]({{< ref "/mod_ref/ngx_http_core_module#client_body_temp_path">}}) directive, are put on the same file system.
 
-​	使用PUT方法上传的文件首先写入临时文件，然后将文件重命名。从版本0.8.9开始，临时文件和持久存储可以放在不同的文件系统上。但是，请注意，在这种情况下，文件将在两个文件系统之间复制，而不是便宜的重命名操作。因此，建议在给定位置为保存的文件和保存临时文件的目录（由[client_body_temp_path](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_temp_path)指令设置）使用相同的文件系统。
+​	使用PUT方法上传的文件首先写入临时文件，然后将文件重命名。从版本0.8.9开始，临时文件和持久存储可以放在不同的文件系统上。但是，请注意，在这种情况下，文件将在两个文件系统之间复制，而不是便宜的重命名操作。因此，建议在给定位置为保存的文件和保存临时文件的目录（由[client_body_temp_path]({{< ref "/mod_ref/ngx_http_core_module#client_body_temp_path">}})指令设置）使用相同的文件系统。
 
 When creating a file with the PUT method, it is possible to specify the modification date by passing it in the “Date” header field.
 

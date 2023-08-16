@@ -144,7 +144,7 @@ If the source value matches more than one of the specified variants, e.g. both a
   Context: `http`
 
 
-Sets the bucket size for the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) variables hash tables. Default value depends on the processor’s cache line size. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
+Sets the bucket size for the [map]({{< ref "/mod_ref/ngx_http_map_module#map">}}) variables hash tables. Default value depends on the processor’s cache line size. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
 
 
@@ -157,4 +157,4 @@ Sets the bucket size for the [map](https://nginx.org/en/docs/http/ngx_http_map_m
   Context: `http`
 
 
-Sets the maximum `size` of the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) variables hash tables. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
+Sets the maximum `size` of the [map]({{< ref "/mod_ref/ngx_http_map_module#map">}}) variables hash tables. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).

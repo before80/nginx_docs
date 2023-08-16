@@ -18,7 +18,7 @@ The `ngx_http_secure_link_module` module (0.7.18) is used to check authenticity 
 
 The authenticity of a requested link is verified by comparing the checksum value passed in a request with the value computed for the request. If a link has a limited lifetime and the time has expired, the link is considered outdated. The status of these checks is made available in the `$secure_link` variable.
 
-The module provides two alternative operation modes. The first mode is enabled by the [secure_link_secret](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_secret) directive and is used to check authenticity of requested links as well as protect resources from unauthorized access. The second mode (0.8.50) is enabled by the [secure_link](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link) and [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) directives and is also used to limit lifetime of links.
+The module provides two alternative operation modes. The first mode is enabled by the [secure_link_secret]({{< ref "/mod_ref/ngx_http_secure_link_module#secure_link_secret">}}) directive and is used to check authenticity of requested links as well as protect resources from unauthorized access. The second mode (0.8.50) is enabled by the [secure_link]({{< ref "/mod_ref/ngx_http_secure_link_module#secure_link">}}) and [secure_link_md5](https://nginx.org/en/docs/http/ngx_http_secure_link_module.html#secure_link_md5) directives and is also used to limit lifetime of links.
 
 This module is not built by default, it should be enabled with the `--with-http_secure_link_module` configuration parameter.
 

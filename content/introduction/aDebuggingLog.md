@@ -23,9 +23,9 @@ To enable a debugging log, nginx needs to be configured to support debugging dur
 ./configure --with-debug ...
 ```
 
-Then the `debug` level should be set with the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive:
+Then the `debug` level should be set with the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) directive:
 
-​	然后，应使用 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) 指令设置 `debug` 级别：
+​	然后，应使用 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令设置 `debug` 级别：
 
 ```
 error_log /path/to/log debug;
@@ -52,7 +52,7 @@ and then set the `debug` level. The nginx binary version for Windows is always b
 
 然后设置 `debug` 级别。Windows 版本的nginx二进制文件始终构建有调试日志支持，因此只需设置 `debug` 级别即可。
 
-Note that redefining the log without also specifying the `debug` level will disable the debugging log. In the example below, redefining the log on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level disables the debugging log for this server:
+Note that redefining the log without also specifying the `debug` level will disable the debugging log. In the example below, redefining the log on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level disables the debugging log for this server:
 
 ​	请注意，重新定义日志而没有同时指定 `debug` 级别会禁用调试日志。在下面的示例中，重新定义服务器级别的日志会禁用此服务器的调试日志：
 
@@ -82,9 +82,9 @@ http {
 
 ## 为特定客户端启用调试日志 - Debugging log for selected clients
 
-It is also possible to enable the debugging log for [selected client addresses](https://nginx.org/en/docs/ngx_core_module.html#debug_connection) only:
+It is also possible to enable the debugging log for [selected client addresses]({{< ref "/mod_ref/ngx_core_module#debug_connection">}}) only:
 
-​	也可以仅为 [特定客户端地址](https://nginx.org/en/docs/ngx_core_module.html#debug_connection) 启用调试日志：
+​	也可以仅为 [特定客户端地址]({{< ref "/mod_ref/ngx_core_module#debug_connection">}}) 启用调试日志：
 
 ```
 error_log /path/to/log;

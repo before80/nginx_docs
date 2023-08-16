@@ -13,9 +13,9 @@ draft = false
 
 https://nginx.org/en/docs/events.html
 
-nginx supports a variety of connection processing methods. The availability of a particular method depends on the platform used. On platforms that support several methods nginx will normally select the most efficient method automatically. However, if needed, a connection processing method can be selected explicitly with the [use](https://nginx.org/en/docs/ngx_core_module.html#use) directive.
+nginx supports a variety of connection processing methods. The availability of a particular method depends on the platform used. On platforms that support several methods nginx will normally select the most efficient method automatically. However, if needed, a connection processing method can be selected explicitly with the [use]({{< ref "/mod_ref/ngx_core_module#use">}}) directive.
 
-​	nginx支持多种连接处理方法。特定方法的可用性取决于所使用的平台。在支持多种方法的平台上，nginx通常会自动选择最有效的方法。但是，如果需要的话，可以使用 [use](https://nginx.org/en/docs/ngx_core_module.html#use) 指令显式地选择连接处理方法。
+​	nginx支持多种连接处理方法。特定方法的可用性取决于所使用的平台。在支持多种方法的平台上，nginx通常会自动选择最有效的方法。但是，如果需要的话，可以使用 [use]({{< ref "/mod_ref/ngx_core_module#use">}}) 指令显式地选择连接处理方法。
 
 The following connection processing methods are supported:
 

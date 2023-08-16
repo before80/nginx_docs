@@ -178,7 +178,7 @@ function filter(r, data, flags) {
 
 To stop filtering (following data chunks will be passed to client without calling `js_body_filter`), [`r.done()`](https://nginx.org/en/docs/njs/reference.html#r_done) can be used.
 
-If the filter function changes the length of the response body, then it is required to clear out the “Content-Length” response header (if any) in [`js_header_filter`](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_header_filter) to enforce chunked transfer encoding.
+If the filter function changes the length of the response body, then it is required to clear out the “Content-Length” response header (if any) in [`js_header_filter`]({{< ref "/mod_ref/ngx_http_js_module#js_header_filter">}}) to enforce chunked transfer encoding.
 
 
 
@@ -188,7 +188,7 @@ As the `js_body_filter` handler returns its result immediately, it supports only
 
 
 
-The directive can be specified inside the [if](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
+The directive can be specified inside the [if]({{< ref "/mod_ref/ngx_http_rewrite_module#if">}}) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
 
 
 
@@ -207,7 +207,7 @@ Sets an njs function as a location content handler. Since [0.4.0](https://nginx.
 
 
 
-The directive can be specified inside the [if](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
+The directive can be specified inside the [if]({{< ref "/mod_ref/ngx_http_rewrite_module#if">}}) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
 
 
 
@@ -356,7 +356,7 @@ As the `js_header_filter` handler returns its result immediately, it supports on
 
 
 
-The directive can be specified inside the [if](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
+The directive can be specified inside the [if]({{< ref "/mod_ref/ngx_http_rewrite_module#if">}}) block since [0.7.7](https://nginx.org/en/docs/njs/changes.html#njs0.7.7).
 
 
 
@@ -417,7 +417,7 @@ function version(r) {
 
 
 
-The directive was made obsolete in version [0.4.0](https://nginx.org/en/docs/njs/changes.html#njs0.4.0) and was removed in version [0.7.1](https://nginx.org/en/docs/njs/changes.html#njs0.7.1). The [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive should be used instead.
+The directive was made obsolete in version [0.4.0](https://nginx.org/en/docs/njs/changes.html#njs0.4.0) and was removed in version [0.7.1](https://nginx.org/en/docs/njs/changes.html#njs0.7.1). The [js_import]({{< ref "/mod_ref/ngx_http_js_module#js_import">}}) directive should be used instead.
 
 
 
@@ -476,7 +476,7 @@ Several `js_preload_object` directives can be specified.
 
 Sets an njs `function` for the specified `variable`. Since [0.4.0](https://nginx.org/en/docs/njs/changes.html#njs0.4.0), a module function can be referenced.
 
-The function is called when the variable is referenced for the first time for a given request. The exact moment depends on a [phase](https://nginx.org/en/docs/dev/development_guide.html#http_phases) at which the variable is referenced. This can be used to perform some logic not related to variable evaluation. For example, if the variable is referenced only in the [log_format](https://nginx.org/en/docs/http/ngx_http_log_module.html#log_format) directive, its handler will not be executed until the log phase. This handler can be used to do some cleanup right before the request is freed.
+The function is called when the variable is referenced for the first time for a given request. The exact moment depends on a [phase](https://nginx.org/en/docs/dev/development_guide.html#http_phases) at which the variable is referenced. This can be used to perform some logic not related to variable evaluation. For example, if the variable is referenced only in the [log_format]({{< ref "/mod_ref/ngx_http_log_module#log_format">}}) directive, its handler will not be executed until the log phase. This handler can be used to do some cleanup right before the request is freed.
 
 
 
@@ -559,7 +559,7 @@ example.js:
 
 This directive appeared in version 0.5.3.
 
-Declares a [writable](https://nginx.org/en/docs/njs/reference.html#r_variables) variable. The value can contain text, variables, and their combination. The variable is not overwritten after a redirect unlike variables created with the [set](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directive.
+Declares a [writable](https://nginx.org/en/docs/njs/reference.html#r_variables) variable. The value can contain text, variables, and their combination. The variable is not overwritten after a redirect unlike variables created with the [set]({{< ref "/mod_ref/ngx_http_rewrite_module#set">}}) directive.
 
 
 

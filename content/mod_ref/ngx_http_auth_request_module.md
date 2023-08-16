@@ -10,7 +10,7 @@ draft = false
 
 ## Module ngx_http_auth_request_module
 
-[Example Configuration](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#example) [Directives](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#directives)    [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request)    [auth_request_set](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request_set) 
+[Example Configuration]({{< ref "/mod_ref/ngx_http_auth_request_module#example">}}) [Directives]({{< ref "/mod_ref/ngx_http_auth_request_module#directives">}})    [auth_request]({{< ref "/mod_ref/ngx_http_auth_request_module#auth_request">}})    [auth_request_set]({{< ref "/mod_ref/ngx_http_auth_request_module#auth_request_set">}}) 
 
 
 
@@ -20,9 +20,9 @@ For the 401 error, the client also receives the “WWW-Authenticate” header fr
 
 This module is not built by default, it should be enabled with the `--with-http_auth_request_module` configuration parameter.
 
-The module may be combined with other access modules, such as [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_jwt_module](../ngx_http_auth_jwt_module), via the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+The module may be combined with other access modules, such as [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_jwt_module](../ngx_http_auth_jwt_module), via the [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive.
 
-Before version 1.7.3, responses to authorization subrequests could not be cached (using [proxy_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache), [proxy_store](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store), etc.).
+Before version 1.7.3, responses to authorization subrequests could not be cached (using [proxy_cache]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache">}}), [proxy_store]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_store">}}), etc.).
 
 
 

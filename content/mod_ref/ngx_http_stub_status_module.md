@@ -78,7 +78,7 @@ The following status information is provided:
 
 - `handled`
 
-  The total number of handled connections. Generally, the parameter value is the same as `accepts` unless some resource limits have been reached (for example, the [worker_connections](https://nginx.org/en/docs/ngx_core_module.html#worker_connections) limit).
+  The total number of handled connections. Generally, the parameter value is the same as `accepts` unless some resource limits have been reached (for example, the [worker_connections]({{< ref "/mod_ref/ngx_core_module#worker_connections">}}) limit).
 
 - `requests`
 

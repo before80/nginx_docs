@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_log_module.html
 
 The `ngx_http_log_module` module writes request logs in the specified format.
 
-Requests are logged in the context of a location where processing ends. It may be different from the original location, if an [internal redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) happens during request processing.
+Requests are logged in the context of a location where processing ends. It may be different from the original location, if an [internal redirect]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) happens during request processing.
 
 
 
@@ -81,11 +81,11 @@ For gzip compression to work, nginx must be built with the zlib library.
 
 The file path can contain variables (0.7.6+), but such logs have some constraints:
 
-- the [user](https://nginx.org/en/docs/ngx_core_module.html#user) whose credentials are used by worker processes should have permissions to create files in a directory with such logs;
+- the [user]({{< ref "/mod_ref/ngx_core_module#user">}}) whose credentials are used by worker processes should have permissions to create files in a directory with such logs;
 
 - buffered writes do not work;
 
-- the file is opened and closed for each log write. However, since the descriptors of frequently used files can be stored in a [cache](https://nginx.org/en/docs/http/ngx_http_log_module.html#open_log_file_cache), writing to the old file can continue during the time specified by the [open_log_file_cache](https://nginx.org/en/docs/http/ngx_http_log_module.html#open_log_file_cache) directive’s `valid` parameter
+- the file is opened and closed for each log write. However, since the descriptors of frequently used files can be stored in a [cache]({{< ref "/mod_ref/ngx_http_log_module#open_log_file_cache">}}), writing to the old file can continue during the time specified by the [open_log_file_cache]({{< ref "/mod_ref/ngx_http_log_module#open_log_file_cache">}}) directive’s `valid` parameter
 
 - during each log write the existence of the request’s
 
@@ -206,7 +206,7 @@ The log format can contain common variables, and variables that exist only at th
 
 
 
-In the modern nginx versions variables [$status](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_status) (1.3.2, 1.2.2), [$bytes_sent](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_bytes_sent) (1.3.8, 1.2.5), [$connection](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection) (1.3.8, 1.2.5), [$connection_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_connection_requests) (1.3.8, 1.2.5), [$msec](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_msec) (1.3.9, 1.2.6), [$request_time](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_time) (1.3.9, 1.2.6), [$pipe](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_pipe) (1.3.12, 1.2.7), [$request_length](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_request_length) (1.3.12, 1.2.7), [$time_iso8601](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_iso8601) (1.3.12, 1.2.7), and [$time_local](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_local) (1.3.12, 1.2.7) are also available as common variables.
+In the modern nginx versions variables [$status]({{< ref "/mod_ref/ngx_http_core_module#var_status">}}) (1.3.2, 1.2.2), [$bytes_sent]({{< ref "/mod_ref/ngx_http_core_module#var_bytes_sent">}}) (1.3.8, 1.2.5), [$connection]({{< ref "/mod_ref/ngx_http_core_module#var_connection">}}) (1.3.8, 1.2.5), [$connection_requests]({{< ref "/mod_ref/ngx_http_core_module#var_connection_requests">}}) (1.3.8, 1.2.5), [$msec]({{< ref "/mod_ref/ngx_http_core_module#var_msec">}}) (1.3.9, 1.2.6), [$request_time]({{< ref "/mod_ref/ngx_http_core_module#var_request_time">}}) (1.3.9, 1.2.6), [$pipe]({{< ref "/mod_ref/ngx_http_core_module#var_pipe">}}) (1.3.12, 1.2.7), [$request_length]({{< ref "/mod_ref/ngx_http_core_module#var_request_length">}}) (1.3.12, 1.2.7), [$time_iso8601](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_time_iso8601) (1.3.12, 1.2.7), and [$time_local]({{< ref "/mod_ref/ngx_http_core_module#var_time_local">}}) (1.3.12, 1.2.7) are also available as common variables.
 
 
 

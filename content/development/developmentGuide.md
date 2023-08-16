@@ -944,9 +944,9 @@ ngx_hash_add_key(&foo_keys, &k1, &data1, NGX_HASH_WILDCARD_KEY);
 ngx_hash_add_key(&foo_keys, &k2, &data2, NGX_HASH_WILDCARD_KEY);
 ```
 
-The function recognizes wildcards and adds keys into the corresponding arrays. Please refer to the [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) module documentation for the description of the wildcard syntax and the matching algorithm.
+The function recognizes wildcards and adds keys into the corresponding arrays. Please refer to the [map]({{< ref "/mod_ref/ngx_http_map_module#map">}}) module documentation for the description of the wildcard syntax and the matching algorithm.
 
-​	这个函数可以识别通配符并将键添加到相应的数组中。有关通配符语法和匹配算法的详细描述，请参阅 [map](https://nginx.org/en/docs/http/ngx_http_map_module.html#map) 模块的文档。
+​	这个函数可以识别通配符并将键添加到相应的数组中。有关通配符语法和匹配算法的详细描述，请参阅 [map]({{< ref "/mod_ref/ngx_http_map_module#map">}}) 模块的文档。
 
 Depending on the contents of added keys, you may need to initialize up to three key arrays: one for exact matching (described above), and two more to enable matching starting from the head or tail of a string:
 
@@ -1724,9 +1724,9 @@ While all nginx worker processes are able to receive and properly handle POSIX s
 
 ## 线程 Threads
 
-It is possible to offload into a separate thread tasks that would otherwise block the nginx worker process. For example, nginx can be configured to use threads to perform [file I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio). Another use case is a library that doesn't have asynchronous interface and thus cannot be normally used with nginx. Keep in mind that the threads interface is a helper for the existing asynchronous approach to processing client connections, and by no means intended as a replacement.
+It is possible to offload into a separate thread tasks that would otherwise block the nginx worker process. For example, nginx can be configured to use threads to perform [file I/O]({{< ref "/mod_ref/ngx_http_core_module#aio">}}). Another use case is a library that doesn't have asynchronous interface and thus cannot be normally used with nginx. Keep in mind that the threads interface is a helper for the existing asynchronous approach to processing client connections, and by no means intended as a replacement.
 
-​	可以将原本会阻塞nginx工作进程的任务分派到单独的线程中。例如，可以配置nginx使用线程执行[文件I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio)。另一个用例是一个没有异步接口的库，因此无法正常与nginx一起使用。请注意，线程接口是现有异步处理客户端连接方法的辅助工具，绝不是替代品。
+​	可以将原本会阻塞nginx工作进程的任务分派到单独的线程中。例如，可以配置nginx使用线程执行[文件I/O]({{< ref "/mod_ref/ngx_http_core_module#aio">}})。另一个用例是一个没有异步接口的库，因此无法正常与nginx一起使用。请注意，线程接口是现有异步处理客户端连接方法的辅助工具，绝不是替代品。
 
 To deal with synchronization, the following wrappers over `pthreads` primitives are available:
 
@@ -1752,7 +1752,7 @@ To deal with synchronization, the following wrappers over `pthreads` primitives 
 
 
 
-Instead of creating a new thread for each task, nginx implements a [thread_pool](https://nginx.org/en/docs/ngx_core_module.html#thread_pool) strategy. Multiple thread pools may be configured for different purposes (for example, performing I/O on different sets of disks). Each thread pool is created at startup and contains a limited number of threads that process a queue of tasks. When a task is completed, a predefined completion handler is called.
+Instead of creating a new thread for each task, nginx implements a [thread_pool]({{< ref "/mod_ref/ngx_core_module#thread_pool">}}) strategy. Multiple thread pools may be configured for different purposes (for example, performing I/O on different sets of disks). Each thread pool is created at startup and contains a limited number of threads that process a queue of tasks. When a task is completed, a predefined completion handler is called.
 
 ​	与为每个任务创建新线程不同，nginx实现了线程池策略。可以为不同目的（例如，在不同的磁盘上执行I/O）配置多个线程池。每个线程池在启动时创建，并包含一定数量的线程，这些线程处理任务队列。完成任务后，将调用预定义的完成处理程序。
 
@@ -2220,10 +2220,10 @@ The `set` field defines a handler that processes a directive and stores parsed v
 - `ngx_conf_set_enum_slot` — 将提供的参数转换为 `ngx_uint_t` 值。在 `post` 字段中传递的 `ngx_conf_enum_t` 的空结尾数组定义了可接受的字符串和相应的整数值。
 - `ngx_conf_set_bitmask_slot` — Converts the supplied arguments into an `ngx_uint_t` value. The mask values for each argument are ORed producing the result. The null-terminated array of `ngx_conf_bitmask_t` passed in the `post` field defines the acceptable strings and corresponding mask values.
 - `ngx_conf_set_bitmask_slot` — 将提供的参数转换为 `ngx_uint_t` 值。为每个参数的掩码值执行 OR 操作，生成结果。在 `post` 字段中传递的 `ngx_conf_bitmask_t` 的空结尾数组定义了可接受的字符串和相应的掩码值。
-- `set_path_slot` — Converts the supplied arguments to an `ngx_path_t` value and performs all required initializations. For details, see the documentation for the [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) directive.
-- `set_path_slot` — 将提供的参数转换为 `ngx_path_t` 值，并执行所有必要的初始化。有关详细信息，请参阅 [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) 指令的文档。
-- `set_access_slot` — Converts the supplied arguments to a file permissions mask. For details, see the documentation for the [proxy_store_access](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store_access) directive.
-- `set_access_slot` — 将提供的参数转换为文件权限掩码。有关详细信息，请参阅 [proxy_store_access](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store_access) 指令的文档。
+- `set_path_slot` — Converts the supplied arguments to an `ngx_path_t` value and performs all required initializations. For details, see the documentation for the [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) directive.
+- `set_path_slot` — 将提供的参数转换为 `ngx_path_t` 值，并执行所有必要的初始化。有关详细信息，请参阅 [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) 指令的文档。
+- `set_access_slot` — Converts the supplied arguments to a file permissions mask. For details, see the documentation for the [proxy_store_access]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_store_access">}}) directive.
+- `set_access_slot` — 将提供的参数转换为文件权限掩码。有关详细信息，请参阅 [proxy_store_access]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_store_access">}}) 指令的文档。
 
 
 
@@ -2283,8 +2283,8 @@ Each HTTP client connection runs through the following stages:
 - `ngx_http_init_connection()` 执行 HTTP 连接的早期初始化。在这个阶段，为连接创建一个 `ngx_http_connection_t` 对象，并将其引用存储在连接的 `data` 字段中。稍后，它将被一个 HTTP 请求对象替换。在这个阶段还会启动 PROXY 协议解析器和 SSL 握手。
 - `ngx_http_wait_request_handler()` read event handler is called when data is available on the client socket. At this stage an HTTP request object `ngx_http_request_t` is created and set to the connection's `data` field.
 - `ngx_http_wait_request_handler()` 在客户端套接字上有数据可用时调用读事件处理程序。在这个阶段，会创建一个 HTTP 请求对象 `ngx_http_request_t`，并将其设置为连接的 `data` 字段。
-- `ngx_http_process_request_line()` read event handler reads client request line. The handler is set by `ngx_http_wait_request_handler()`. The data is read into connection's `buffer`. The size of the buffer is initially set by the directive [client_header_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size). The entire client header is supposed to fit in the buffer. If the initial size is not sufficient, a bigger buffer is allocated, with the capacity set by the `large_client_header_buffers` directive.
-- `ngx_http_process_request_line()` 读事件处理程序读取客户端请求行。这个处理程序由 `ngx_http_wait_request_handler()` 设置。数据被读入连接的 `buffer` 中。缓冲区的大小最初由 [client_header_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size) 指令设置。整个客户端头部应该适合于缓冲区中。如果初始大小不够，将分配一个更大的缓冲区，其容量由 `large_client_header_buffers` 指令设置。
+- `ngx_http_process_request_line()` read event handler reads client request line. The handler is set by `ngx_http_wait_request_handler()`. The data is read into connection's `buffer`. The size of the buffer is initially set by the directive [client_header_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_header_buffer_size">}}). The entire client header is supposed to fit in the buffer. If the initial size is not sufficient, a bigger buffer is allocated, with the capacity set by the `large_client_header_buffers` directive.
+- `ngx_http_process_request_line()` 读事件处理程序读取客户端请求行。这个处理程序由 `ngx_http_wait_request_handler()` 设置。数据被读入连接的 `buffer` 中。缓冲区的大小最初由 [client_header_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_header_buffer_size">}}) 指令设置。整个客户端头部应该适合于缓冲区中。如果初始大小不够，将分配一个更大的缓冲区，其容量由 `large_client_header_buffers` 指令设置。
 - `ngx_http_process_request_headers()` read event handler, is set after `ngx_http_process_request_line()` to read the client request header.
 - `ngx_http_process_request_headers()` 读事件处理程序，由 `ngx_http_process_request_line()` 之后设置，用于读取客户端请求头。
 - `ngx_http_core_run_phases()` is called when the request header is completely read and parsed. This function runs request phases from `NGX_HTTP_POST_READ_PHASE` to `NGX_HTTP_CONTENT_PHASE`. The last phase is intended to generate a response and pass it along the filter chain. The response is not necessarily sent to the client at this phase. It might remain buffered and be sent at the finalization stage.
@@ -2622,10 +2622,10 @@ Each HTTP request passes through a sequence of phases. In each phase a distinct 
 - `NGX_HTTP_POST_REWRITE_PHASE` — 如果请求在重写期间更改了 URI，则将请求重定向到新位置的特殊阶段。这是通过请求再次通过 `NGX_HTTP_FIND_CONFIG_PHASE` 来实现的。在此阶段不能注册其他处理程序。
 - `NGX_HTTP_PREACCESS_PHASE` — A common phase for different types of handlers, not associated with access control. The standard nginx modules [ngx_http_limit_conn_module ](https://nginx.org/en/docs/http/ngx_http_limit_conn_module.html)and [ngx_http_limit_req_module]({{< ref "/mod_ref/ngx_http_limit_req_module" >}}) register their handlers at this phase.
 - `NGX_HTTP_PREACCESS_PHASE` — 不与访问控制相关的不同类型的处理程序的常见阶段。标准的 nginx 模块 [ngx_http_limit_conn_module]({{< ref "/mod_ref/ngx_http_limit_conn_module" >}}) 和 [ngx_http_limit_req_module]({{< ref "/mod_ref/ngx_http_limit_req_module" >}}) 在此阶段注册其处理程序。
-- `NGX_HTTP_ACCESS_PHASE` — Phase where it is verified that the client is authorized to make the request. Standard nginx modules such as [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) and [ngx_http_auth_basic_module ](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)register their handlers at this phase. By default the client must pass the authorization check of all handlers registered at this phase for the request to continue to the next phase. The [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive, can be used to permit processing to continue if any of the phase handlers authorizes the client.
-- `NGX_HTTP_ACCESS_PHASE` — 验证客户端是否有权进行请求的阶段。标准 nginx 模块，如 [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) 和 [ngx_http_auth_basic_module ](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)在此阶段注册其处理程序。默认情况下，客户端必须通过此阶段注册的所有处理程序的授权检查，以便继续到下一个阶段。可以使用 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令，如果阶段处理程序中的任何一个授权客户端，允许继续处理。
-- `NGX_HTTP_POST_ACCESS_PHASE` — Special phase where the [satisfy any](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive is processed. If some access phase handlers denied access and none explicitly allowed it, the request is finalized. No additional handlers can be registered at this phase.
-- `NGX_HTTP_POST_ACCESS_PHASE` — 特殊阶段，处理 [satisfy any](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令。如果某些访问阶段处理程序拒绝访问并且没有明确允许访问，请求将被终止。在此阶段不能注册其他处理程序。
+- `NGX_HTTP_ACCESS_PHASE` — Phase where it is verified that the client is authorized to make the request. Standard nginx modules such as [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) and [ngx_http_auth_basic_module ](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)register their handlers at this phase. By default the client must pass the authorization check of all handlers registered at this phase for the request to continue to the next phase. The [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive, can be used to permit processing to continue if any of the phase handlers authorizes the client.
+- `NGX_HTTP_ACCESS_PHASE` — 验证客户端是否有权进行请求的阶段。标准 nginx 模块，如 [ngx_http_access_module]({{< ref "/mod_ref/ngx_http_access_module" >}}) 和 [ngx_http_auth_basic_module ](https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html)在此阶段注册其处理程序。默认情况下，客户端必须通过此阶段注册的所有处理程序的授权检查，以便继续到下一个阶段。可以使用 [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) 指令，如果阶段处理程序中的任何一个授权客户端，允许继续处理。
+- `NGX_HTTP_POST_ACCESS_PHASE` — Special phase where the [satisfy any]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive is processed. If some access phase handlers denied access and none explicitly allowed it, the request is finalized. No additional handlers can be registered at this phase.
+- `NGX_HTTP_POST_ACCESS_PHASE` — 特殊阶段，处理 [satisfy any]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) 指令。如果某些访问阶段处理程序拒绝访问并且没有明确允许访问，请求将被终止。在此阶段不能注册其他处理程序。
 - `NGX_HTTP_PRECONTENT_PHASE` — Phase for handlers to be called prior to generating content. Standard modules such as [ngx_http_try_files_module]({{< ref "/mod_ref/ngx_http_core_module#try_files" >}}) and [ngx_http_mirror_module]({{< ref "/mod_ref/ngx_http_mirror_module" >}}) register their handlers at this phase.
 - `NGX_HTTP_PRECONTENT_PHASE` — 处理生成内容之前调用的阶段。标准模块，如 [ngx_http_try_files_module]({{< ref "/mod_ref/ngx_http_core_module#try_files" >}}) 和 [ngx_http_mirror_module]({{< ref "/mod_ref/ngx_http_mirror_module" >}}) 在此阶段注册其处理程序。
 - `NGX_HTTP_CONTENT_PHASE` — Phase where the response is normally generated. Multiple nginx standard modules register their handlers at this phase, including [ngx_http_index_module]({{< ref "/mod_ref/ngx_http_index_module" >}}) or `ngx_http_static_module`. They are called sequentially until one of them produces the output. It's also possible to set content handlers on a per-location basis. If the [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}})'s location configuration has `handler` set, it is called as the content handler and the handlers installed at this phase are ignored.
@@ -2706,9 +2706,9 @@ Phase handlers are expected to return specific codes:
 - Any other value returned by the phase handler is treated as a request finalization code, in particular, an HTTP response code. The request is finalized with the code provided.
 - 阶段处理程序返回的任何其他值都被视为请求完成代码，特别是 HTTP 响应代码。使用提供的代码完成请求。
 
-For some phases, return codes are treated in a slightly different way. At the content phase, any return code other that `NGX_DECLINED` is considered a finalization code. Any return code from the location content handlers is considered a finalization code. At the access phase, in [satisfy any](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) mode, any return code other than `NGX_OK`, `NGX_DECLINED`, `NGX_AGAIN`, `NGX_DONE` is considered a denial. If no subsequent access handlers allow or deny access with a different code, the denial code will become the finalization code.
+For some phases, return codes are treated in a slightly different way. At the content phase, any return code other that `NGX_DECLINED` is considered a finalization code. Any return code from the location content handlers is considered a finalization code. At the access phase, in [satisfy any]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) mode, any return code other than `NGX_OK`, `NGX_DECLINED`, `NGX_AGAIN`, `NGX_DONE` is considered a denial. If no subsequent access handlers allow or deny access with a different code, the denial code will become the finalization code.
 
-​	对于某些阶段，返回代码的处理方式略有不同。在内容阶段，除了 `NGX_DECLINED` 之外的任何返回代码都被视为完成代码。从位置内容处理程序返回的任何返回代码都被视为完成代码。在访问阶段中，在 [satisfy any](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 模式下，除了 `NGX_OK`、`NGX_DECLINED`、`NGX_AGAIN`、`NGX_DONE` 之外的任何返回代码都被视为拒绝。如果后续的访问处理程序没有以不同的代码允许或拒绝访问，则拒绝代码将成为完成代码。
+​	对于某些阶段，返回代码的处理方式略有不同。在内容阶段，除了 `NGX_DECLINED` 之外的任何返回代码都被视为完成代码。从位置内容处理程序返回的任何返回代码都被视为完成代码。在访问阶段中，在 [satisfy any]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) 模式下，除了 `NGX_OK`、`NGX_DECLINED`、`NGX_AGAIN`、`NGX_DONE` 之外的任何返回代码都被视为拒绝。如果后续的访问处理程序没有以不同的代码允许或拒绝访问，则拒绝代码将成为完成代码。
 
 
 
@@ -2806,8 +2806,8 @@ To create a variable, use the `ngx_http_add_variable()` function. It takes as ar
 
 ​	要创建一个变量，可以使用 `ngx_http_add_variable()` 函数。该函数的参数包括配置（变量注册的位置）、变量名称以及控制函数行为的标志：
 
-- `NGX_HTTP_VAR_CHANGEABLE` — Enables redefinition of the variable: there is no conflict if another module defines a variable with the same name. This allows the [set](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directive to override variables.
-- `NGX_HTTP_VAR_CHANGEABLE` — 允许重新定义变量：如果另一个模块使用相同的名称定义了一个变量，不会发生冲突。这允许 [set](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) 指令覆盖变量。
+- `NGX_HTTP_VAR_CHANGEABLE` — Enables redefinition of the variable: there is no conflict if another module defines a variable with the same name. This allows the [set]({{< ref "/mod_ref/ngx_http_rewrite_module#set">}}) directive to override variables.
+- `NGX_HTTP_VAR_CHANGEABLE` — 允许重新定义变量：如果另一个模块使用相同的名称定义了一个变量，不会发生冲突。这允许 [set]({{< ref "/mod_ref/ngx_http_rewrite_module#set">}}) 指令覆盖变量。
 - `NGX_HTTP_VAR_NOCACHEABLE` — Disables caching, which is useful for variables such as `$time_local`.
 - `NGX_HTTP_VAR_NOCACHEABLE` — 禁用缓存，适用于诸如 `$time_local` 等变量。
 - `NGX_HTTP_VAR_NOHASH` — Indicates that this variable is only accessible by index, not by name. This is a small optimization for use when it is known that the variable is not needed in modules like SSI or Perl.
@@ -3020,9 +3020,9 @@ Given the request `r` and previously compiled value `cv`, the function evaluates
 
 ### 请求重定向 Request redirection
 
-An HTTP request is always connected to a location via the `loc_conf` field of the `ngx_http_request_t` structure. This means that at any point the location configuration of any module can be retrieved from the request by calling `ngx_http_get_module_loc_conf(r, module)`. Request location can change several times during the request's lifetime. Initially, a default server location of the default server is assigned to a request. If the request switches to a different server (chosen by the HTTP “Host” header or SSL SNI extension), the request switches to the default location of that server as well. The next change of the location takes place at the `NGX_HTTP_FIND_CONFIG_PHASE` request phase. At this phase a location is chosen by request URI among all non-named locations configured for the server. The [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) can change the request URI at the `NGX_HTTP_REWRITE_PHASE` request phase as a result of the [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) directive and send the request back to the `NGX_HTTP_FIND_CONFIG_PHASE` phase for selection of a new location based on the new URI.
+An HTTP request is always connected to a location via the `loc_conf` field of the `ngx_http_request_t` structure. This means that at any point the location configuration of any module can be retrieved from the request by calling `ngx_http_get_module_loc_conf(r, module)`. Request location can change several times during the request's lifetime. Initially, a default server location of the default server is assigned to a request. If the request switches to a different server (chosen by the HTTP “Host” header or SSL SNI extension), the request switches to the default location of that server as well. The next change of the location takes place at the `NGX_HTTP_FIND_CONFIG_PHASE` request phase. At this phase a location is chosen by request URI among all non-named locations configured for the server. The [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) can change the request URI at the `NGX_HTTP_REWRITE_PHASE` request phase as a result of the [rewrite]({{< ref "/mod_ref/ngx_http_rewrite_module#rewrite">}}) directive and send the request back to the `NGX_HTTP_FIND_CONFIG_PHASE` phase for selection of a new location based on the new URI.
 
-​	HTTP 请求始终通过 `ngx_http_request_t` 结构的 `loc_conf` 字段连接到位置。这意味着在任何时候都可以通过调用 `ngx_http_get_module_loc_conf(r, module)` 从请求中检索任何模块的位置配置。请求位置在请求的生命周期内可以多次更改。最初，请求分配给默认服务器位置的请求。如果请求切换到另一个服务器（由 HTTP 的 “Host” 头或 SSL SNI 扩展选择），请求也会切换到该服务器的默认位置。位置的下一个更改发生在 `NGX_HTTP_FIND_CONFIG_PHASE` 请求阶段。在此阶段，位置是根据请求 URI 在所有为服务器配置的非命名位置中选择的。[ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) 可以在 `NGX_HTTP_REWRITE_PHASE` 请求阶段通过 [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) 指令更改请求 URI，并将请求发送回 `NGX_HTTP_FIND_CONFIG_PHASE` 阶段，以基于新 URI 选择新位置。
+​	HTTP 请求始终通过 `ngx_http_request_t` 结构的 `loc_conf` 字段连接到位置。这意味着在任何时候都可以通过调用 `ngx_http_get_module_loc_conf(r, module)` 从请求中检索任何模块的位置配置。请求位置在请求的生命周期内可以多次更改。最初，请求分配给默认服务器位置的请求。如果请求切换到另一个服务器（由 HTTP 的 “Host” 头或 SSL SNI 扩展选择），请求也会切换到该服务器的默认位置。位置的下一个更改发生在 `NGX_HTTP_FIND_CONFIG_PHASE` 请求阶段。在此阶段，位置是根据请求 URI 在所有为服务器配置的非命名位置中选择的。[ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) 可以在 `NGX_HTTP_REWRITE_PHASE` 请求阶段通过 [rewrite]({{< ref "/mod_ref/ngx_http_rewrite_module#rewrite">}}) 指令更改请求 URI，并将请求发送回 `NGX_HTTP_FIND_CONFIG_PHASE` 阶段，以基于新 URI 选择新位置。
 
 It is also possible to redirect a request to a new location at any point by calling one of `ngx_http_internal_redirect(r, uri, args)` or `ngx_http_named_location(r, name)`.
 
@@ -3077,9 +3077,9 @@ Calling `ngx_http_internal_redirect(r, uri, args)` or `ngx_http_named_location(r
 
 ​	在调用 `ngx_http_internal_redirect(r, uri, args)` 或 `ngx_http_named_location(r, name)` 后，会增加请求的 `count`。为了保持一致的请求引用计数，在重定向请求后调用 `ngx_http_finalize_request(r, NGX_DONE)`。这将完成当前请求代码路径并减少计数器。
 
-Redirected and rewritten requests become internal and can access the [internal](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) locations. Internal requests have the `internal` flag set.
+Redirected and rewritten requests become internal and can access the [internal]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) locations. Internal requests have the `internal` flag set.
 
-​	重定向和重写后的请求变为内部请求，并且可以访问 [internal](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) 位置。内部请求设置了 `internal` 标志。
+​	重定向和重写后的请求变为内部请求，并且可以访问 [internal]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) 位置。内部请求设置了 `internal` 标志。
 
 
 
@@ -3269,8 +3269,8 @@ The function `ngx_http_finalize_request(r, rc)` expects the following `rc` value
 - `NGX_DONE` - 快速最终化。递减请求 `count` 并在计数达到零时销毁请求。当前请求被销毁后，客户端连接可以继续用于其他请求。
 - `NGX_ERROR`, `NGX_HTTP_REQUEST_TIME_OUT` (`408`), `NGX_HTTP_CLIENT_CLOSED_REQUEST` (`499`) - Error finalization. Terminate the request as soon as possible and close the client connection.
 - `NGX_ERROR`、`NGX_HTTP_REQUEST_TIME_OUT` (`408`)、`NGX_HTTP_CLIENT_CLOSED_REQUEST` (`499`) - 错误最终化。尽快终止请求并关闭客户端连接。
-- `NGX_HTTP_CREATED` (`201`), `NGX_HTTP_NO_CONTENT` (`204`), codes greater than or equal to `NGX_HTTP_SPECIAL_RESPONSE` (`300`) - Special response finalization. For these values nginx either sends to the client a default response page for the code or performs the internal redirect to an [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) location if that is configured for the code.
-- `NGX_HTTP_CREATED` (`201`)、`NGX_HTTP_NO_CONTENT` (`204`)、大于或等于 `NGX_HTTP_SPECIAL_RESPONSE` (`300`) 的代码 - 特殊响应最终化。对于这些值，nginx 会向客户端发送用于该代码的默认响应页面，或者如果为该代码配置了 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) 位置，则执行内部重定向到该位置。
+- `NGX_HTTP_CREATED` (`201`), `NGX_HTTP_NO_CONTENT` (`204`), codes greater than or equal to `NGX_HTTP_SPECIAL_RESPONSE` (`300`) - Special response finalization. For these values nginx either sends to the client a default response page for the code or performs the internal redirect to an [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) location if that is configured for the code.
+- `NGX_HTTP_CREATED` (`201`)、`NGX_HTTP_NO_CONTENT` (`204`)、大于或等于 `NGX_HTTP_SPECIAL_RESPONSE` (`300`) 的代码 - 特殊响应最终化。对于这些值，nginx 会向客户端发送用于该代码的默认响应页面，或者如果为该代码配置了 [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) 位置，则执行内部重定向到该位置。
 - Other codes are considered successful finalization codes and might activate the request writer to finish sending the response body. Once the body is completely sent, the request `count` is decremented. If it reaches zero, the request is destroyed, but the client connection can still be used for other requests. If `count` is positive, there are unfinished activities within the request, which will be finalized at a later point.
 - 其他代码被视为成功的最终化代码，可能会激活请求写入器来完成发送响应正文。一旦正文完全发送，请求 `count` 将递减。如果计数达到零，请求将被销毁，但客户端连接仍然可以用于其他请求。如果 `count` 为正数，则请求内部还有未完成的活动，在稍后的某个点上将会完成。
 
@@ -3286,9 +3286,9 @@ Reading or discarding the client request body from a subrequest is not allowed. 
 
 ​	从子请求中读取或丢弃客户端请求主体是不允许的。它必须始终在主请求中完成。当创建子请求时，它继承父请求的 `request_body` 对象，如果主请求之前已经读取了请求主体，则子请求可以使用它。
 
-The function `ngx_http_read_client_request_body(r, post_handler)` starts the process of reading the request body. When the body is completely read, the `post_handler` callback is called to continue processing the request. If the request body is missing or has already been read, the callback is called immediately. The function `ngx_http_read_client_request_body(r, post_handler)` allocates the `request_body` request field of type `ngx_http_request_body_t`. The field `bufs` of this object keeps the result as a buffer chain. The body can be saved in memory buffers or file buffers, if the capacity specified by the [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) directive is not enough to fit the entire body in memory.
+The function `ngx_http_read_client_request_body(r, post_handler)` starts the process of reading the request body. When the body is completely read, the `post_handler` callback is called to continue processing the request. If the request body is missing or has already been read, the callback is called immediately. The function `ngx_http_read_client_request_body(r, post_handler)` allocates the `request_body` request field of type `ngx_http_request_body_t`. The field `bufs` of this object keeps the result as a buffer chain. The body can be saved in memory buffers or file buffers, if the capacity specified by the [client_body_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}) directive is not enough to fit the entire body in memory.
 
-​	函数 `ngx_http_read_client_request_body(r, post_handler)` 开始读取请求主体的过程。当主体完全读取完毕后，将调用 `post_handler` 回调函数以继续处理请求。如果请求主体丢失或已经被读取，则立即调用回调函数。函数 `ngx_http_read_client_request_body(r, post_handler)` 分配类型为 `ngx_http_request_body_t` 的 `request_body` 请求字段。此对象的 `bufs` 字段将缓冲链作为结果保存。如果 [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) 指令指定的容量不足以将整个主体放入内存中，则主体可以保存在内存缓冲区或文件缓冲区中。
+​	函数 `ngx_http_read_client_request_body(r, post_handler)` 开始读取请求主体的过程。当主体完全读取完毕后，将调用 `post_handler` 回调函数以继续处理请求。如果请求主体丢失或已经被读取，则立即调用回调函数。函数 `ngx_http_read_client_request_body(r, post_handler)` 分配类型为 `ngx_http_request_body_t` 的 `request_body` 请求字段。此对象的 `bufs` 字段将缓冲链作为结果保存。如果 [client_body_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}) 指令指定的容量不足以将整个主体放入内存中，则主体可以保存在内存缓冲区或文件缓冲区中。
 
 The following example reads a client request body and returns its size.
 
@@ -4033,13 +4033,13 @@ The [ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) 
 
 ​	[ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) 提供了将请求传递给远程服务器所需的基本功能。实现特定协议（如 HTTP 或 FastCGI）的模块使用此功能。该模块还提供了一个接口用于创建自定义负载均衡模块，并实现了默认的轮询方法。
 
-The [least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) and [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) modules implement alternative load-balancing methods, but are actually implemented as extensions of the upstream round-robin module and share a lot of code with it, such as the representation of a server group. The [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) module is an independent module that extends upstream functionality.
+The [least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) and [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}) modules implement alternative load-balancing methods, but are actually implemented as extensions of the upstream round-robin module and share a lot of code with it, such as the representation of a server group. The [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) module is an independent module that extends upstream functionality.
 
-​	[least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) 和 [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) 模块实现了替代的负载均衡方法，但实际上是作为上游轮询模块的扩展来实现的，并且与之共享许多代码，例如服务器组的表示。[keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) 模块是一个独立的模块，扩展了上游功能。
+​	[least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) 和 [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}) 模块实现了替代的负载均衡方法，但实际上是作为上游轮询模块的扩展来实现的，并且与之共享许多代码，例如服务器组的表示。[keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) 模块是一个独立的模块，扩展了上游功能。
 
-The [ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) can be configured explicitly by placing the corresponding [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) block into the configuration file, or implicitly by using directives such as [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) that accept a URL that gets evaluated at some point into a list of servers. The alternative load-balancing methods are available only with an explicit upstream configuration. The upstream module configuration has its own directive context `NGX_HTTP_UPS_CONF`. The structure is defined as follows:
+The [ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) can be configured explicitly by placing the corresponding [upstream]({{< ref "/mod_ref/ngx_http_upstream_module#upstream">}}) block into the configuration file, or implicitly by using directives such as [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) that accept a URL that gets evaluated at some point into a list of servers. The alternative load-balancing methods are available only with an explicit upstream configuration. The upstream module configuration has its own directive context `NGX_HTTP_UPS_CONF`. The structure is defined as follows:
 
-​	[ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) 可以通过将相应的 [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) 块放入配置文件中来进行显式配置，也可以通过使用接受 URL 的指令（例如 [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)）来进行隐式配置，该 URL 在某个时刻会计算为服务器列表。替代的负载均衡方法仅在显式上游配置中可用。上游模块配置具有自己的指令上下文 `NGX_HTTP_UPS_CONF`。结构定义如下：
+​	[ngx_http_upstream_module]({{< ref "/mod_ref/ngx_http_upstream_module" >}}) 可以通过将相应的 [upstream]({{< ref "/mod_ref/ngx_http_upstream_module#upstream">}}) 块放入配置文件中来进行显式配置，也可以通过使用接受 URL 的指令（例如 [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}})）来进行隐式配置，该 URL 在某个时刻会计算为服务器列表。替代的负载均衡方法仅在显式上游配置中可用。上游模块配置具有自己的指令上下文 `NGX_HTTP_UPS_CONF`。结构定义如下：
 
 ```
 struct ngx_http_upstream_srv_conf_s {
@@ -4067,16 +4067,16 @@ struct ngx_http_upstream_srv_conf_s {
 
 - `srv_conf` — 上游模块的配置上下文。
 
-- `servers` — Array of `ngx_http_upstream_server_t`, the result of parsing a set of [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directives in the `upstream` block.
+- `servers` — Array of `ngx_http_upstream_server_t`, the result of parsing a set of [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) directives in the `upstream` block.
 
-- `servers` — `ngx_http_upstream_server_t` 数组，这是在 `upstream` 块中解析一组 [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) 指令的结果。
+- `servers` — `ngx_http_upstream_server_t` 数组，这是在 `upstream` 块中解析一组 [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) 指令的结果。
 
 - `flags` — Flags that mostly mark which features are supported by the load-balancing method. The features are configured as parameters of the server directive:
 
 - `flags` — 标志，大部分标志标识负载均衡方法支持的特性。这些特性是通过服务器指令的参数进行配置的：
 
-  - `NGX_HTTP_UPSTREAM_CREATE` — Distinguishes explicitly defined upstreams from those that are automatically created by the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive and “friends” (FastCGI, SCGI, etc.)
-  - `NGX_HTTP_UPSTREAM_CREATE` — 将显式定义的上游与由 [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) 指令和类似指令（FastCGI、SCGI 等）自动创建的上游区分开。
+  - `NGX_HTTP_UPSTREAM_CREATE` — Distinguishes explicitly defined upstreams from those that are automatically created by the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive and “friends” (FastCGI, SCGI, etc.)
+  - `NGX_HTTP_UPSTREAM_CREATE` — 将显式定义的上游与由 [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) 指令和类似指令（FastCGI、SCGI 等）自动创建的上游区分开。
   - `NGX_HTTP_UPSTREAM_WEIGHT` — The “`weight`” parameter is supported
   - `NGX_HTTP_UPSTREAM_WEIGHT` — 支持 “`weight`” 参数。
   - `NGX_HTTP_UPSTREAM_MAX_FAILS` — The “`max_fails`” parameter is supported
@@ -4165,7 +4165,7 @@ The structure has the following fields:
 - `sockaddr`, `socklen`, `name` — 要连接到的上游服务器的地址；这是负载均衡方法的输出参数。
 - `data` — The per-request data of a load-balancing method; keeps the state of the selection algorithm and usually includes the link to the upstream configuration. It is passed as an argument to all methods that deal with server selection (see [below](https://nginx.org/en/docs/dev/development_guide.html#lb_method_get)).
 - `data` — 负载均衡方法的每个请求数据；保持选择算法的状态，通常包括指向上游配置的链接。它作为传递给处理服务器选择的所有方法的参数（参见 [下面](https://nginx.org/en/docs/dev/development_guide.html#lb_method_get)）。
-- `tries` — Allowed [number](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries) of attempts to connect to an upstream server.
+- `tries` — Allowed [number]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream_tries">}}) of attempts to connect to an upstream server.
 - `tries` — 允许连接到上游服务器的尝试次数。
 - `get`, `free`, `notify`, `set_session`, and `save_session` - Methods of the load-balancing module, described below.
 - `get`, `free`, `notify`, `set_session`, 和 `save_session` - 负载均衡模块的方法，下面将进行描述。
@@ -4193,10 +4193,10 @@ All methods accept at least two arguments: a peer connection object `pc` and the
   
 - `free(pc, data, state)` — 当上游模块已经完成对特定服务器的处理时调用该方法。`state` 参数是上游连接的完成状态，是一个位掩码，具有以下可能的值：
   
-  - `NGX_PEER_FAILED` — Attempt was [unsuccessful](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)
-  - `NGX_PEER_FAILED` — 尝试[未成功](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)
-  - `NGX_PEER_NEXT` — A special case when upstream server returns codes `403` or `404`, which are not considered a [failure](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails).
-  - `NGX_PEER_NEXT` — 特殊情况，上游服务器返回代码 `403` 或 `404`，不被视为 [失败](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)
+  - `NGX_PEER_FAILED` — Attempt was [unsuccessful]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}})
+  - `NGX_PEER_FAILED` — 尝试[未成功]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}})
+  - `NGX_PEER_NEXT` — A special case when upstream server returns codes `403` or `404`, which are not considered a [failure]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}).
+  - `NGX_PEER_NEXT` — 特殊情况，上游服务器返回代码 `403` 或 `404`，不被视为 [失败]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}})
   - `NGX_PEER_KEEPALIVE` — Currently unused
   - `NGX_PEER_KEEPALIVE` — 当前未使用
   
@@ -5015,9 +5015,9 @@ There are two basic usage scenarios when an external request is needed:
 
 
 
-In the first case, the best is to use [subrequests API](https://nginx.org/en/docs/dev/development_guide.html#http_subrequests). Instead of directly accessing external service, you declare a location in nginx configuration and direct your subrequest to this location. This location is not limited to [proxying](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) requests, but may contain other nginx directives. An example of such approach is the [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) directive implemented in [ngx_http_auth_request module](http://hg.nginx.org/nginx/file/tip/src/http/modules/ngx_http_auth_request_module.c).
+In the first case, the best is to use [subrequests API](https://nginx.org/en/docs/dev/development_guide.html#http_subrequests). Instead of directly accessing external service, you declare a location in nginx configuration and direct your subrequest to this location. This location is not limited to [proxying]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) requests, but may contain other nginx directives. An example of such approach is the [auth_request]({{< ref "/mod_ref/ngx_http_auth_request_module#auth_request">}}) directive implemented in [ngx_http_auth_request module](http://hg.nginx.org/nginx/file/tip/src/http/modules/ngx_http_auth_request_module.c).
 
-​	在第一种情况下，最好使用[子请求 API](https://nginx.org/en/docs/dev/development_guide.html#http_subrequests)。而不是直接访问外部服务，您可以在 nginx 配置中声明一个位置，并将子请求定向到该位置。此位置不限于[代理](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass)请求，还可以包含其他 nginx 指令。这种方法的一个示例是 [ngx_http_auth_request 模块](http://hg.nginx.org/nginx/file/tip/src/http/modules/ngx_http_auth_request_module.c) 中实现的 [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) 指令。
+​	在第一种情况下，最好使用[子请求 API](https://nginx.org/en/docs/dev/development_guide.html#http_subrequests)。而不是直接访问外部服务，您可以在 nginx 配置中声明一个位置，并将子请求定向到该位置。此位置不限于[代理]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}})请求，还可以包含其他 nginx 指令。这种方法的一个示例是 [ngx_http_auth_request 模块](http://hg.nginx.org/nginx/file/tip/src/http/modules/ngx_http_auth_request_module.c) 中实现的 [auth_request]({{< ref "/mod_ref/ngx_http_auth_request_module#auth_request">}}) 指令。
 
 For the second case, it is possible to use basic HTTP client functionality available in nginx. For example, [OCSP module](http://hg.nginx.org/nginx/file/tip/src/event/ngx_event_openssl_stapling.c) implements simple HTTP client.
 

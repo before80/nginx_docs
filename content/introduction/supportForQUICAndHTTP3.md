@@ -34,9 +34,9 @@ When configuring nginx, it is possible to enable QUIC and HTTP/3 using the [`--w
 
 ​	在配置 nginx 时，可以使用 [`--with-http_v3_module`](https://nginx.org/en/docs/configure.html#http_v3_module) 配置参数启用 QUIC 和 HTTP/3。
 
-An SSL library that provides QUIC support is recommended to build nginx, such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl). Otherwise, the [OpenSSL](https://openssl.org/) compatibility layer will be used that does not support [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data).
+An SSL library that provides QUIC support is recommended to build nginx, such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl). Otherwise, the [OpenSSL](https://openssl.org/) compatibility layer will be used that does not support [early data]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}).
 
-​	建议构建 nginx 时使用提供 QUIC 支持的 SSL 库，例如 [BoringSSL](https://boringssl.googlesource.com/boringssl)、[LibreSSL](https://www.libressl.org/) 或 [QuicTLS](https://github.com/quictls/openssl)。否则，将使用不支持 [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data) 的 [OpenSSL](https://openssl.org/) 兼容性层。
+​	建议构建 nginx 时使用提供 QUIC 支持的 SSL 库，例如 [BoringSSL](https://boringssl.googlesource.com/boringssl)、[LibreSSL](https://www.libressl.org/) 或 [QuicTLS](https://github.com/quictls/openssl)。否则，将使用不支持 [early data]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}) 的 [OpenSSL](https://openssl.org/) 兼容性层。
 
 Use the following command to configure nginx with [BoringSSL](https://boringssl.googlesource.com/boringssl):
 
@@ -83,13 +83,13 @@ After configuration, nginx is compiled and installed using `make`.
 
 ## 配置 - Configuration
 
-The [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive in [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) module got a new parameter [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic) which enables HTTP/3 over QUIC on the specified port.
+The [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive in [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) module got a new parameter [quic]({{< ref "/mod_ref/ngx_http_core_module#quic">}}) which enables HTTP/3 over QUIC on the specified port.
 
-​	在 [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) 模块中的 [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 指令添加了一个新的参数 [quic](https://nginx.org/en/docs/http/ngx_http_core_module.html#quic)，该参数在指定的端口上启用基于 QUIC 的 HTTP/3。
+​	在 [ngx_http_core_module]({{< ref "/mod_ref/ngx_http_core_module" >}}) 模块中的 [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) 指令添加了一个新的参数 [quic]({{< ref "/mod_ref/ngx_http_core_module#quic">}})，该参数在指定的端口上启用基于 QUIC 的 HTTP/3。
 
-Along with the `quic` parameter it is also possible to specify the [reuseport](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport) parameter to make it work properly with multiple workers.
+Along with the `quic` parameter it is also possible to specify the [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}) parameter to make it work properly with multiple workers.
 
-​	除了 `quic` 参数外，还可以使用 [reuseport](https://nginx.org/en/docs/http/ngx_http_core_module.html#reuseport) 参数，以便与多个 worker 正常工作。
+​	除了 `quic` 参数外，还可以使用 [reuseport]({{< ref "/mod_ref/ngx_http_core_module#reuseport">}}) 参数，以便与多个 worker 正常工作。
 
 For the list of directives, see [ngx_http_v3_module](https://nginx.org/en/docs/http/ngx_http_v3_module.html).
 
@@ -103,9 +103,9 @@ To [enable](https://nginx.org/en/docs/http/ngx_http_v3_module.html#quic_retry) a
 quic_retry on;
 ```
 
-To [enable](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data) 0-RTT:
+To [enable]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}) 0-RTT:
 
-​	要 [启用](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data) 0-RTT：
+​	要 [启用]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}) 0-RTT：
 
 ```
 ssl_early_data on;
@@ -129,9 +129,9 @@ quic_host_key <filename>;
 
 
 
-QUIC requires TLSv1.3 protocol version which is enabled by default in the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive.
+QUIC requires TLSv1.3 protocol version which is enabled by default in the [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) directive.
 
-​	QUIC 需要 TLSv1.3 协议版本，默认在 [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) 指令中启用。
+​	QUIC 需要 TLSv1.3 协议版本，默认在 [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) 指令中启用。
 
 By default, [GSO Linux-specific optimization](http://vger.kernel.org/lpc_net2018_talks/willemdebruijn-lpc2018-udpgso-paper-DRAFT-1.pdf) is disabled. Enable it in case a corresponding network interface is configured to support GSO.
 

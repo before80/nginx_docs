@@ -15,9 +15,9 @@ https://nginx.org/en/docs/control.html
 
 
 
-nginx can be controlled with signals. The process ID of the master process is written to the file `/usr/local/nginx/logs/nginx.pid` by default. This name may be changed at configuration time, or in `nginx.conf` using the [pid](https://nginx.org/en/docs/ngx_core_module.html#pid) directive. The master process supports the following signals:
+nginx can be controlled with signals. The process ID of the master process is written to the file `/usr/local/nginx/logs/nginx.pid` by default. This name may be changed at configuration time, or in `nginx.conf` using the [pid]({{< ref "/mod_ref/ngx_core_module#pid">}}) directive. The master process supports the following signals:
 
-​	nginx可以通过信号进行控制。默认情况下，主进程的进程ID会写入文件 `/usr/local/nginx/logs/nginx.pid`。在配置时可以更改这个名称，或者在 `nginx.conf` 中使用 [pid](https://nginx.org/en/docs/ngx_core_module.html#pid) 指令进行更改。主进程支持以下信号：
+​	nginx可以通过信号进行控制。默认情况下，主进程的进程ID会写入文件 `/usr/local/nginx/logs/nginx.pid`。在配置时可以更改这个名称，或者在 `nginx.conf` 中使用 [pid]({{< ref "/mod_ref/ngx_core_module#pid">}}) 指令进行更改。主进程支持以下信号：
 
 | TERM, INT | fast shutdown 快速关闭                                       |
 | --------- | ------------------------------------------------------------ |
@@ -37,7 +37,7 @@ Individual worker processes can be controlled with signals as well, though it is
 | --------- | ------------------------------------------------------------ |
 | QUIT      | graceful shutdown 优雅关闭                                   |
 | USR1      | re-opening log files 重新打开日志文件                        |
-| WINCH     | abnormal termination for debugging (requires [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points) to be enabled) 异常终止以进行调试（需要启用 [debug_points](https://nginx.org/en/docs/ngx_core_module.html#debug_points)） |
+| WINCH     | abnormal termination for debugging (requires [debug_points]({{< ref "/mod_ref/ngx_core_module#debug_points">}}) to be enabled) 异常终止以进行调试（需要启用 [debug_points]({{< ref "/mod_ref/ngx_core_module#debug_points">}})） |
 
 ## 更改配置 - Changing Configuration
 

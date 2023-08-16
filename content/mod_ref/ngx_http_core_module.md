@@ -31,7 +31,7 @@ This directive appeared in version 1.11.8.
 
 If disabled, redirects issued by nginx will be relative.
 
-See also [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) and [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect) directives.
+See also [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) and [port_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#port_in_redirect">}}) directives.
 
 
 
@@ -71,7 +71,7 @@ kldload aio
 
 
 
-On Linux, AIO can be used starting from kernel version 2.6.22. Also, it is necessary to enable [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio), or otherwise reading will be blocking:
+On Linux, AIO can be used starting from kernel version 2.6.22. Also, it is necessary to enable [directio]({{< ref "/mod_ref/ngx_http_core_module#directio">}}), or otherwise reading will be blocking:
 
 ```
 location /video/ {
@@ -83,9 +83,9 @@ location /video/ {
 
 
 
-On Linux, [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio) can only be used for reading blocks that are aligned on 512-byte boundaries (or 4K for XFS). File’s unaligned end is read in blocking mode. The same holds true for byte range requests and for FLV requests not from the beginning of a file: reading of unaligned data at the beginning and end of a file will be blocking.
+On Linux, [directio]({{< ref "/mod_ref/ngx_http_core_module#directio">}}) can only be used for reading blocks that are aligned on 512-byte boundaries (or 4K for XFS). File’s unaligned end is read in blocking mode. The same holds true for byte range requests and for FLV requests not from the beginning of a file: reading of unaligned data at the beginning and end of a file will be blocking.
 
-When both AIO and [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) are enabled on Linux, AIO is used for files that are larger than or equal to the size specified in the [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio) directive, while [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) is used for files of smaller sizes or when [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio) is disabled.
+When both AIO and [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) are enabled on Linux, AIO is used for files that are larger than or equal to the size specified in the [directio]({{< ref "/mod_ref/ngx_http_core_module#directio">}}) directive, while [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) is used for files of smaller sizes or when [directio]({{< ref "/mod_ref/ngx_http_core_module#directio">}}) is disabled.
 
 ```
 location /video/ {
@@ -97,7 +97,7 @@ location /video/ {
 
 
 
-Finally, files can be read and [sent](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) using multi-threading (1.7.11), without blocking a worker process:
+Finally, files can be read and [sent]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) using multi-threading (1.7.11), without blocking a worker process:
 
 ```
 location /video/ {
@@ -106,7 +106,7 @@ location /video/ {
 }
 ```
 
-Read and send file operations are offloaded to threads of the specified [pool](https://nginx.org/en/docs/ngx_core_module.html#thread_pool). If the pool name is omitted, the pool with the name “`default`” is used. The pool name can also be set with variables:
+Read and send file operations are offloaded to threads of the specified [pool]({{< ref "/mod_ref/ngx_core_module#thread_pool">}}). If the pool name is omitted, the pool with the name “`default`” is used. The pool name can also be set with variables:
 
 ```
 aio threads=pool$disk;
@@ -114,7 +114,7 @@ aio threads=pool$disk;
 
 By default, multi-threading is disabled, it should be enabled with the `--with-threads` configuration parameter. Currently, multi-threading is compatible only with the [epoll](https://nginx.org/en/docs/events.html#epoll), [kqueue](https://nginx.org/en/docs/events.html#kqueue), and [eventport](https://nginx.org/en/docs/events.html#eventport) methods. Multi-threaded sending of files is only supported on Linux.
 
-See also the [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) directive.
+See also the [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) directive.
 
 
 
@@ -129,7 +129,7 @@ See also the [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html
 
 This directive appeared in version 1.9.13.
 
-If [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) is enabled, specifies whether it is used for writing files. Currently, this only works when using `aio threads` and is limited to writing temporary files with data received from proxied servers.
+If [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) is enabled, specifies whether it is used for writing files. Currently, this only works when using `aio threads` and is limited to writing temporary files with data received from proxied servers.
 
 
 
@@ -172,7 +172,7 @@ location /images/ {
 }
 ```
 
-it is better to use the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) directive instead:
+it is better to use the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) directive instead:
 
 ```
 location /images/ {
@@ -221,7 +221,7 @@ Allows disabling chunked transfer encoding in HTTP/1.1. It may come in handy whe
   Context: `http`, `server`, `location`
 
 
-Sets buffer size for reading client request body. In case the request body is larger than the buffer, the whole body or only its part is written to a [temporary file](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_temp_path). By default, buffer size is equal to two memory pages. This is 8K on x86, other 32-bit platforms, and x86-64. It is usually 16K on other 64-bit platforms.
+Sets buffer size for reading client request body. In case the request body is larger than the buffer, the whole body or only its part is written to a [temporary file]({{< ref "/mod_ref/ngx_http_core_module#client_body_temp_path">}}). By default, buffer size is equal to two memory pages. This is 8K on x86, other 32-bit platforms, and x86-64. It is usually 16K on other 64-bit platforms.
 
 
 
@@ -234,7 +234,7 @@ Sets buffer size for reading client request body. In case the request body is la
   Context: `http`, `server`, `location`
 
 
-Determines whether nginx should save the entire client request body into a file. This directive can be used during debugging, or when using the `$request_body_file` variable, or the [$r->request_body_file](https://nginx.org/en/docs/http/ngx_http_perl_module.html#methods) method of the module [ngx_http_perl_module](../ngx_http_perl_module).
+Determines whether nginx should save the entire client request body into a file. This directive can be used during debugging, or when using the `$request_body_file` variable, or the [$r->request_body_file]({{< ref "/mod_ref/ngx_http_perl_module#methods">}}) method of the module [ngx_http_perl_module](../ngx_http_perl_module).
 
 When set to the value `on`, temporary files are not removed after request processing.
 
@@ -302,9 +302,9 @@ Defines a timeout for reading client request body. The timeout is set only for a
   Context: `http`, `server`
 
 
-Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough. However, if a request includes long cookies, or comes from a WAP client, it may not fit into 1K. If a request line or a request header field does not fit into this buffer then larger buffers, configured by the [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive, are allocated.
+Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough. However, if a request includes long cookies, or comes from a WAP client, it may not fit into 1K. If a request line or a request header field does not fit into this buffer then larger buffers, configured by the [large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}) directive, are allocated.
 
-If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
 
 
 
@@ -360,7 +360,7 @@ Prior to version 1.9.8, the default value was 256 on all platforms.
   Context: `http`, `server`, `location`
 
 
-Defines the default MIME type of a response. Mapping of file name extensions to MIME types can be set with the [types](https://nginx.org/en/docs/http/ngx_http_core_module.html#types) directive.
+Defines the default MIME type of a response. Mapping of file name extensions to MIME types can be set with the [types]({{< ref "/mod_ref/ngx_http_core_module#types">}}) directive.
 
 
 
@@ -375,13 +375,13 @@ Defines the default MIME type of a response. Mapping of file name extensions to 
 
 This directive appeared in version 0.7.7.
 
-Enables the use of the `O_DIRECT` flag (FreeBSD, Linux), the `F_NOCACHE` flag (macOS), or the `directio()` function (Solaris), when reading files that are larger than or equal to the specified `size`. The directive automatically disables (0.7.15) the use of [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) for a given request. It can be useful for serving large files:
+Enables the use of the `O_DIRECT` flag (FreeBSD, Linux), the `F_NOCACHE` flag (macOS), or the `directio()` function (Solaris), when reading files that are larger than or equal to the specified `size`. The directive automatically disables (0.7.15) the use of [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) for a given request. It can be useful for serving large files:
 
 ```
 directio 4m;
 ```
 
-or when using [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) on Linux.
+or when using [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) on Linux.
 
 
 
@@ -396,7 +396,7 @@ or when using [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio
 
 This directive appeared in version 0.8.11.
 
-Sets the alignment for [directio](https://nginx.org/en/docs/http/ngx_http_core_module.html#directio). In most cases, a 512-byte alignment is enough. However, when using XFS under Linux, it needs to be increased to 4K.
+Sets the alignment for [directio]({{< ref "/mod_ref/ngx_http_core_module#directio">}}). In most cases, a 512-byte alignment is enough. However, when using XFS under Linux, it needs to be increased to 4K.
 
 
 
@@ -600,9 +600,9 @@ Specifies how to compare modification time of a response with the time in the �
   Context: `http`, `server`
 
 
-Controls whether header fields with invalid names should be ignored. Valid names are composed of English letters, digits, hyphens, and possibly underscores (as controlled by the [underscores_in_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers) directive).
+Controls whether header fields with invalid names should be ignored. Valid names are composed of English letters, digits, hyphens, and possibly underscores (as controlled by the [underscores_in_headers]({{< ref "/mod_ref/ngx_http_core_module#underscores_in_headers">}}) directive).
 
-If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
 
 
 
@@ -617,10 +617,10 @@ If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx
 
 Specifies that a given location can only be used for internal requests. For external requests, the client error 404 (Not Found) is returned. Internal requests are the following:
 
-- requests redirected by the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page), [index](https://nginx.org/en/docs/http/ngx_http_index_module.html#index), [internal_redirect](https://nginx.org/en/docs/http/ngx_http_internal_redirect_module.html#internal_redirect), [random_index](https://nginx.org/en/docs/http/ngx_http_random_index_module.html#random_index), and [try_files](https://nginx.org/en/docs/http/ngx_http_core_module.html#try_files) directives;
+- requests redirected by the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}), [index]({{< ref "/mod_ref/ngx_http_index_module#index">}}), [internal_redirect]({{< ref "/mod_ref/ngx_http_internal_redirect_module#internal_redirect">}}), [random_index]({{< ref "/mod_ref/ngx_http_random_index_module#random_index">}}), and [try_files]({{< ref "/mod_ref/ngx_http_core_module#try_files">}}) directives;
 - requests redirected by the “X-Accel-Redirect” response header field from an upstream server;
-- subrequests formed by the “`include virtual`” command of the [ngx_http_ssi_module](../ngx_http_ssi_module) module, by the [ngx_http_addition_module](../ngx_http_addition_module) module directives, and by [auth_request](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html#auth_request) and [mirror](https://nginx.org/en/docs/http/ngx_http_mirror_module.html#mirror) directives;
-- requests changed by the [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite) directive.
+- subrequests formed by the “`include virtual`” command of the [ngx_http_ssi_module](../ngx_http_ssi_module) module, by the [ngx_http_addition_module](../ngx_http_addition_module) module directives, and by [auth_request]({{< ref "/mod_ref/ngx_http_auth_request_module#auth_request">}}) and [mirror]({{< ref "/mod_ref/ngx_http_mirror_module#mirror">}}) directives;
+- requests changed by the [rewrite]({{< ref "/mod_ref/ngx_http_rewrite_module#rewrite">}}) directive.
 
 
 
@@ -723,7 +723,7 @@ The “Keep-Alive: timeout=`time`” header field is recognized by Mozilla and K
 
 Sets the maximum `number` and `size` of buffers used for reading large client request header. A request line cannot exceed the size of one buffer, or the 414 (Request-URI Too Large) error is returned to the client. A request header field cannot exceed the size of one buffer as well, or the 400 (Bad Request) error is returned to the client. Buffers are allocated only on demand. By default, the buffer size is equal to 8K bytes. If after the end of request processing a connection is transitioned into the keep-alive state, these buffers are released.
 
-If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
 
 
 
@@ -773,7 +773,7 @@ limit_rate $rate;
 
 
 
-Rate limit can also be set in the [`$limit_rate`](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_limit_rate) variable, however, since version 1.17.0, this method is not recommended:
+Rate limit can also be set in the [`$limit_rate`]({{< ref "/mod_ref/ngx_http_core_module#var_limit_rate">}}) variable, however, since version 1.17.0, this method is not recommended:
 
 ```
 server {
@@ -788,7 +788,7 @@ server {
 
 
 
-Rate limit can also be set in the “X-Accel-Limit-Rate” header field of a proxied server response. This capability can be disabled using the [proxy_ignore_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_headers), [fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers), [uwsgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ignore_headers), and [scgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_ignore_headers) directives.
+Rate limit can also be set in the “X-Accel-Limit-Rate” header field of a proxied server response. This capability can be disabled using the [proxy_ignore_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ignore_headers">}}), [fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}}), [uwsgi_ignore_headers]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_ignore_headers">}}), and [scgi_ignore_headers]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_ignore_headers">}}) directives.
 
 
 
@@ -832,13 +832,13 @@ This directive appeared in versions 1.1.0 and 1.0.6.
 
 Controls how nginx closes client connections.
 
-The default value “`on`” instructs nginx to [wait for](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_timeout) and [process](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_time) additional data from a client before fully closing a connection, but only if heuristics suggests that a client may be sending more data.
+The default value “`on`” instructs nginx to [wait for]({{< ref "/mod_ref/ngx_http_core_module#lingering_timeout">}}) and [process]({{< ref "/mod_ref/ngx_http_core_module#lingering_time">}}) additional data from a client before fully closing a connection, but only if heuristics suggests that a client may be sending more data.
 
 The value “`always`” will cause nginx to unconditionally wait for and process additional client data.
 
 The value “`off`” tells nginx to never wait for more data and close the connection immediately. This behavior breaks the protocol and should not be used under normal circumstances.
 
-To control closing [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) connections, the directive must be specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level (1.19.1).
+To control closing [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.html) connections, the directive must be specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level (1.19.1).
 
 
 
@@ -851,7 +851,7 @@ To control closing [HTTP/2](https://nginx.org/en/docs/http/ngx_http_v2_module.ht
   Context: `http`, `server`, `location`
 
 
-When [lingering_close](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_close) is in effect, this directive specifies the maximum time during which nginx will process (read and ignore) additional data coming from a client. After that, the connection will be closed, even if there will be more data.
+When [lingering_close]({{< ref "/mod_ref/ngx_http_core_module#lingering_close">}}) is in effect, this directive specifies the maximum time during which nginx will process (read and ignore) additional data coming from a client. After that, the connection will be closed, even if there will be more data.
 
 
 
@@ -864,7 +864,7 @@ When [lingering_close](https://nginx.org/en/docs/http/ngx_http_core_module.html#
   Context: `http`, `server`, `location`
 
 
-When [lingering_close](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_close) is in effect, this directive specifies the maximum waiting time for more client data to arrive. If data are not received during this time, the connection is closed. Otherwise, the data are read and ignored, and nginx starts waiting for more data again. The “wait-read-ignore” cycle is repeated, but no longer than specified by the [lingering_time](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_time) directive.
+When [lingering_close]({{< ref "/mod_ref/ngx_http_core_module#lingering_close">}}) is in effect, this directive specifies the maximum waiting time for more client data to arrive. If data are not received during this time, the connection is closed. Otherwise, the data are read and ignored, and nginx starts waiting for more data again. The “wait-read-ignore” cycle is repeated, but no longer than specified by the [lingering_time]({{< ref "/mod_ref/ngx_http_core_module#lingering_time">}}) directive.
 
 
 
@@ -1003,7 +1003,7 @@ listen 127.0.0.1 default_server accept_filter=dataready backlog=1024;
 
 Sets configuration depending on a request URI.
 
-The matching is performed against a normalized URI, after decoding the text encoded in the “`%XX`” form, resolving references to relative path components “`.`” and “`..`”, and possible [compression](https://nginx.org/en/docs/http/ngx_http_core_module.html#merge_slashes) of two or more adjacent slashes into a single slash.
+The matching is performed against a normalized URI, after decoding the text encoded in the “`%XX`” form, resolving references to relative path components “`.`” and “`..`”, and possible [compression]({{< ref "/mod_ref/ngx_http_core_module#merge_slashes">}}) of two or more adjacent slashes into a single slash.
 
 A location can either be defined by a prefix string, or by a regular expression. Regular expressions are specified with the preceding “`~*`” modifier (for case-insensitive matching), or the “`~`” modifier (for case-sensitive matching). To find location matching a given request, nginx first checks locations defined using the prefix strings (prefix locations). Among them, the location with the longest matching prefix is selected and remembered. Then regular expressions are checked, in the order of their appearance in the configuration file. The search of regular expressions terminates on the first match, and the corresponding configuration is used. If no match with a regular expression is found then the configuration of the prefix location remembered earlier is used.
 
@@ -1053,7 +1053,7 @@ The “`/`” request will match configuration A, the “`/index.html`” reques
 
 The “`@`” prefix defines a named location. Such a location is not used for a regular request processing, but instead used for request redirection. They cannot be nested, and cannot contain nested locations.
 
-If a location is defined by a prefix string that ends with the slash character, and requests are processed by one of [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass), [uwsgi_pass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass), [scgi_pass](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass), [memcached_pass](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_pass), or [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass), then the special processing is performed. In response to a request with URI equal to this string, but without the trailing slash, a permanent redirect with the code 301 will be returned to the requested URI with the slash appended. If this is not desired, an exact match of the URI and location could be defined like this:
+If a location is defined by a prefix string that ends with the slash character, and requests are processed by one of [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}), [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}}), [uwsgi_pass]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass">}}), [scgi_pass]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass">}}), [memcached_pass]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_pass">}}), or [grpc_pass]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass">}}), then the special processing is performed. In response to a request with URI equal to this string, but without the trailing slash, a permanent redirect with the code 301 will be returned to the requested URI with the slash appended. If this is not desired, an exact match of the URI and location could be defined like this:
 
 ```
 location /user/ {
@@ -1078,7 +1078,7 @@ location = /user {
   Context: `http`, `server`, `location`
 
 
-Enables or disables logging of errors about not found files into [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log).
+Enables or disables logging of errors about not found files into [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}).
 
 
 
@@ -1091,7 +1091,7 @@ Enables or disables logging of errors about not found files into [error_log](htt
   Context: `http`, `server`, `location`
 
 
-Enables or disables logging of subrequests into [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log).
+Enables or disables logging of subrequests into [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}).
 
 
 
@@ -1133,7 +1133,7 @@ and might be processed as a static file. So it gets converted to “`/scripts/on
 
 Turning the compression `off` can become necessary if a URI contains base64-encoded names, since base64 uses the “`/`” character internally. However, for security considerations, it is better to avoid turning the compression off.
 
-If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
 
 
 
@@ -1180,7 +1180,7 @@ Configures a cache that can store:
 
 - file lookup errors, such as “file not found”, “no read permission”, and so on.
 
-  > Caching of errors should be enabled separately by the [open_file_cache_errors](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache_errors) directive.
+  > Caching of errors should be enabled separately by the [open_file_cache_errors]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache_errors">}}) directive.
 
 
 
@@ -1222,7 +1222,7 @@ open_file_cache_errors   on;
   Context: `http`, `server`, `location`
 
 
-Enables or disables caching of file lookup errors by [open_file_cache](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache).
+Enables or disables caching of file lookup errors by [open_file_cache]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache">}}).
 
 
 
@@ -1235,7 +1235,7 @@ Enables or disables caching of file lookup errors by [open_file_cache](https://n
   Context: `http`, `server`, `location`
 
 
-Sets the minimum `number` of file accesses during the period configured by the `inactive` parameter of the [open_file_cache](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache) directive, required for a file descriptor to remain open in the cache.
+Sets the minimum `number` of file accesses during the period configured by the `inactive` parameter of the [open_file_cache]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache">}}) directive, required for a file descriptor to remain open in the cache.
 
 
 
@@ -1248,7 +1248,7 @@ Sets the minimum `number` of file accesses during the period configured by the `
   Context: `http`, `server`, `location`
 
 
-Sets a time after which [open_file_cache](https://nginx.org/en/docs/http/ngx_http_core_module.html#open_file_cache) elements should be validated.
+Sets a time after which [open_file_cache]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache">}}) elements should be validated.
 
 
 
@@ -1278,9 +1278,9 @@ Prior to version 1.9.5, the default value was 1 32k.
   Context: `http`, `server`, `location`
 
 
-Enables or disables specifying the port in [absolute](https://nginx.org/en/docs/http/ngx_http_core_module.html#absolute_redirect) redirects issued by nginx.
+Enables or disables specifying the port in [absolute]({{< ref "/mod_ref/ngx_http_core_module#absolute_redirect">}}) redirects issued by nginx.
 
-The use of the primary server name in redirects is controlled by the [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) directive.
+The use of the primary server name in redirects is controlled by the [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) directive.
 
 
 
@@ -1323,7 +1323,7 @@ On FreeBSD, the `fcntl(O_READAHEAD,` `size``)` system call, supported since Free
   Context: `http`, `server`, `location`
 
 
-Enables or disables doing several redirects using the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive. The number of such redirects is [limited](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal).
+Enables or disables doing several redirects using the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive. The number of such redirects is [limited]({{< ref "/mod_ref/ngx_http_core_module#internal">}}).
 
 
 
@@ -1349,7 +1349,7 @@ Allows accurate tuning of per-request memory allocations. This directive has min
   Context: `http`, `server`, `location`
 
 
-Enables or disables resetting timed out connections and connections [closed](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return) with the non-standard code 444 (1.15.2). The reset is performed as follows. Before closing a socket, the `SO_LINGER` option is set on it with a timeout value of 0. When the socket is closed, TCP RST is sent to the client, and all memory occupied by this socket is released. This helps avoid keeping an already closed socket with filled buffers in a FIN_WAIT1 state for a long time.
+Enables or disables resetting timed out connections and connections [closed]({{< ref "/mod_ref/ngx_http_rewrite_module#return">}}) with the non-standard code 444 (1.15.2). The reset is performed as follows. Before closing a socket, the `SO_LINGER` option is set on it with a timeout value of 0. When the socket is closed, TCP RST is sent to the client, and all memory occupied by this socket is released. This helps avoid keeping an already closed socket with filled buffers in a FIN_WAIT1 state for a long time.
 
 It should be noted that timed out keep-alive connections are closed normally.
 
@@ -1404,7 +1404,7 @@ To prevent DNS spoofing, it is recommended configuring DNS servers in a properly
 
 
 
-The optional `status_zone` parameter (1.17.1) enables [collection](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) of DNS server statistics of requests and responses in the specified `zone`. The parameter is available as part of our [commercial subscription](http://nginx.com/products/).
+The optional `status_zone` parameter (1.17.1) enables [collection]({{< ref "/mod_ref/ngx_http_api_module#resolvers_">}}) of DNS server statistics of requests and responses in the specified `zone`. The parameter is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 
@@ -1448,7 +1448,7 @@ The `/data/w3/i/top.gif` file will be sent in response to the “`/i/top.gif`”
 
 The `path` value can contain variables, except `$document_root` and `$realpath_root`.
 
-A path to the file is constructed by merely adding a URI to the value of the `root` directive. If a URI has to be modified, the [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive should be used.
+A path to the file is constructed by merely adding a URI to the value of the `root` directive. If a URI has to be modified, the [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) directive should be used.
 
 
 
@@ -1520,7 +1520,7 @@ Sets a timeout for transmitting a response to the client. The timeout is set onl
 
 Enables or disables the use of `sendfile()`.
 
-Starting from nginx 0.8.12 and FreeBSD 5.2.1, [aio](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) can be used to pre-load data for `sendfile()`:
+Starting from nginx 0.8.12 and FreeBSD 5.2.1, [aio]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) can be used to pre-load data for `sendfile()`:
 
 ```
 location /video/ {
@@ -1530,7 +1530,7 @@ location /video/ {
 }
 ```
 
-In this configuration, `sendfile()` is called with the `SF_NODISKIO` flag which causes it not to block on disk I/O, but, instead, report back that the data are not in memory. nginx then initiates an asynchronous data load by reading one byte. On the first read, the FreeBSD kernel loads the first 128K bytes of a file into memory, although next reads will only load data in 16K chunks. This can be changed using the [read_ahead](https://nginx.org/en/docs/http/ngx_http_core_module.html#read_ahead) directive.
+In this configuration, `sendfile()` is called with the `SF_NODISKIO` flag which causes it not to block on disk I/O, but, instead, report back that the data are not in memory. nginx then initiates an asynchronous data load by reading one byte. On the first read, the FreeBSD kernel loads the first 128K bytes of a file into memory, although next reads will only load data in 16K chunks. This can be changed using the [read_ahead]({{< ref "/mod_ref/ngx_http_core_module#read_ahead">}}) directive.
 
 Before version 1.7.11, pre-loading could be enabled with `aio sendfile;`.
 
@@ -1564,7 +1564,7 @@ Prior to version 1.21.4, by default there was no limit.
   Context: `http`
 
 
-Sets configuration for a virtual server. There is no clear separation between IP-based (based on the IP address) and name-based (based on the “Host” request header field) virtual servers. Instead, the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directives describe all addresses and ports that should accept connections for the server, and the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive lists all server names. Example configurations are provided in the “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” document.
+Sets configuration for a virtual server. There is no clear separation between IP-based (based on the IP address) and name-based (based on the “Host” request header field) virtual servers. Instead, the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directives describe all addresses and ports that should accept connections for the server, and the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive lists all server names. Example configurations are provided in the “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” document.
 
 
 
@@ -1701,9 +1701,9 @@ Detailed description of server names is provided in a separate [Server names](ht
   Context: `http`, `server`, `location`
 
 
-Enables or disables the use of the primary server name, specified by the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive, in [absolute](https://nginx.org/en/docs/http/ngx_http_core_module.html#absolute_redirect) redirects issued by nginx. When the use of the primary server name is disabled, the name from the “Host” request header field is used. If this field is not present, the IP address of the server is used.
+Enables or disables the use of the primary server name, specified by the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive, in [absolute]({{< ref "/mod_ref/ngx_http_core_module#absolute_redirect">}}) redirects issued by nginx. When the use of the primary server name is disabled, the name from the “Host” request header field is used. If this field is not present, the IP address of the server is used.
 
-The use of a port in redirects is controlled by the [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect) directive.
+The use of a port in redirects is controlled by the [port_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#port_in_redirect">}}) directive.
 
 
 
@@ -1765,7 +1765,7 @@ This directive appeared in version 1.13.10.
 
 Sets the `size` of the buffer used for storing the response body of a subrequest. By default, the buffer size is equal to one memory page. This is either 4K or 8K, depending on a platform. It can be made smaller, however.
 
-The directive is applicable only for subrequests with response bodies saved into memory. For example, such subrequests are created by [SSI](https://nginx.org/en/docs/http/ngx_http_ssi_module.html#ssi_include_set).
+The directive is applicable only for subrequests with response bodies saved into memory. For example, such subrequests are created by [SSI]({{< ref "/mod_ref/ngx_http_ssi_module#ssi_include_set">}}).
 
 
 
@@ -1791,7 +1791,7 @@ Enables or disables the use of the `TCP_NODELAY` option. The option is enabled w
   Context: `http`, `server`, `location`
 
 
-Enables or disables the use of the `TCP_NOPUSH` socket option on FreeBSD or the `TCP_CORK` socket option on Linux. The options are enabled only when [sendfile](https://nginx.org/en/docs/http/ngx_http_core_module.html#sendfile) is used. Enabling the option allows
+Enables or disables the use of the `TCP_NOPUSH` socket option on FreeBSD or the `TCP_CORK` socket option on Linux. The options are enabled only when [sendfile]({{< ref "/mod_ref/ngx_http_core_module#sendfile">}}) is used. Enabling the option allows
 
 - sending the response header and the beginning of a file in one packet, on Linux and FreeBSD 4.*;
 - sending a file in full packets.
@@ -1809,7 +1809,7 @@ Enables or disables the use of the `TCP_NOPUSH` socket option on FreeBSD or the 
   Context: `server`, `location`
 
 
-Checks the existence of files in the specified order and uses the first found file for request processing; the processing is performed in the current context. The path to a file is constructed from the `file` parameter according to the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) and [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directives. It is possible to check directory’s existence by specifying a slash at the end of a name, e.g. “`$uri/`”. If none of the files were found, an internal redirect to the `uri` specified in the last parameter is made. For example:
+Checks the existence of files in the specified order and uses the first found file for request processing; the processing is performed in the current context. The path to a file is constructed from the `file` parameter according to the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) and [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) directives. It is possible to check directory’s existence by specifying a slash at the end of a name, e.g. “`$uri/`”. If none of the files were found, an internal redirect to the `uri` specified in the last parameter is made. For example:
 
 ```
 location /images/ {
@@ -2013,9 +2013,9 @@ Sets the maximum `size` of the types hash tables. The details of setting up hash
   Context: `http`, `server`
 
 
-Enables or disables the use of underscores in client request header fields. When the use of underscores is disabled, request header fields whose names contain underscores are marked as invalid and become subject to the [ignore_invalid_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers) directive.
+Enables or disables the use of underscores in client request header fields. When the use of underscores is disabled, request header fields whose names contain underscores are marked as invalid and become subject to the [ignore_invalid_headers]({{< ref "/mod_ref/ngx_http_core_module#ignore_invalid_headers">}}) directive.
 
-If the directive is specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
 
 
 
@@ -2099,7 +2099,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$document_root`
 
-  [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) or [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive’s value for the current request
+  [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) or [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) directive’s value for the current request
 
 - `$document_uri`
 
@@ -2127,7 +2127,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$limit_rate`
 
-  setting this variable enables response rate limiting; see [limit_rate](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate)
+  setting this variable enables response rate limiting; see [limit_rate]({{< ref "/mod_ref/ngx_http_core_module#limit_rate">}})
 
 - `$msec`
 
@@ -2147,23 +2147,23 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$proxy_protocol_addr`
 
-  client address from the PROXY protocol header (1.5.12)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+  client address from the PROXY protocol header (1.5.12)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 - `$proxy_protocol_port`
 
-  client port from the PROXY protocol header (1.11.0)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+  client port from the PROXY protocol header (1.11.0)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 - `$proxy_protocol_server_addr`
 
-  server address from the PROXY protocol header (1.17.6)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+  server address from the PROXY protocol header (1.17.6)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 - `$proxy_protocol_server_port`
 
-  server port from the PROXY protocol header (1.17.6)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+  server port from the PROXY protocol header (1.17.6)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 - `$proxy_protocol_tlv_``name`
 
-  TLV from the PROXY Protocol header (1.23.2). The `name` can be a TLV type name or its numeric value. In the latter case, the value is hexadecimal and should be prefixed with `0x`:`$proxy_protocol_tlv_alpn $proxy_protocol_tlv_0x01 `SSL TLVs can also be accessed by TLV type name or its numeric value, both prefixed by `ssl_`:`$proxy_protocol_tlv_ssl_version $proxy_protocol_tlv_ssl_0x21 `The following TLV type names are supported:`alpn` (`0x01`) - upper layer protocol used over the connection`authority` (`0x02`) - host name value passed by the client`unique_id` (`0x05`) - unique connection id`netns` (`0x30`) - name of the namespace`ssl` (`0x20`) - binary SSL TLV structureThe following SSL TLV type names are supported:`ssl_version` (`0x21`) - SSL version used in client connection`ssl_cn` (`0x22`) - SSL certificate Common Name`ssl_cipher` (`0x23`) - name of the used cipher`ssl_sig_alg` (`0x24`) - algorithm used to sign the certificate`ssl_key_alg` (`0x25`) - public-key algorithmAlso, the following special SSL TLV type name is supported:`ssl_verify` - client SSL certificate verification result, `0` if the client presented a certificate and it was successfully verified, non-zero otherwise.The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+  TLV from the PROXY Protocol header (1.23.2). The `name` can be a TLV type name or its numeric value. In the latter case, the value is hexadecimal and should be prefixed with `0x`:`$proxy_protocol_tlv_alpn $proxy_protocol_tlv_0x01 `SSL TLVs can also be accessed by TLV type name or its numeric value, both prefixed by `ssl_`:`$proxy_protocol_tlv_ssl_version $proxy_protocol_tlv_ssl_0x21 `The following TLV type names are supported:`alpn` (`0x01`) - upper layer protocol used over the connection`authority` (`0x02`) - host name value passed by the client`unique_id` (`0x05`) - unique connection id`netns` (`0x30`) - name of the namespace`ssl` (`0x20`) - binary SSL TLV structureThe following SSL TLV type names are supported:`ssl_version` (`0x21`) - SSL version used in client connection`ssl_cn` (`0x22`) - SSL certificate Common Name`ssl_cipher` (`0x23`) - name of the used cipher`ssl_sig_alg` (`0x24`) - algorithm used to sign the certificate`ssl_key_alg` (`0x25`) - public-key algorithmAlso, the following special SSL TLV type name is supported:`ssl_verify` - client SSL certificate verification result, `0` if the client presented a certificate and it was successfully verified, non-zero otherwise.The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 - `$query_string`
 
@@ -2171,7 +2171,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$realpath_root`
 
-  an absolute pathname corresponding to the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) or [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directive’s value for the current request, with all symbolic links resolved to real paths
+  an absolute pathname corresponding to the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) or [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) directive’s value for the current request, with all symbolic links resolved to real paths
 
 - `$remote_addr`
 
@@ -2191,11 +2191,11 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$request_body`
 
-  request bodyThe variable’s value is made available in locations processed by the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass), [uwsgi_pass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass), and [scgi_pass](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass) directives when the request body was read to a [memory buffer](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size).
+  request bodyThe variable’s value is made available in locations processed by the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}), [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}}), [uwsgi_pass]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass">}}), and [scgi_pass]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass">}}) directives when the request body was read to a [memory buffer]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}).
 
 - `$request_body_file`
 
-  name of a temporary file with the request bodyAt the end of processing, the file needs to be removed. To always write the request body to a file, [client_body_in_file_only](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_only) needs to be enabled. When the name of a temporary file is passed in a proxied request or in a request to a FastCGI/uwsgi/SCGI server, passing the request body should be disabled by the [proxy_pass_request_body off](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body), [fastcgi_pass_request_body off](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_body), [uwsgi_pass_request_body off](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass_request_body), or [scgi_pass_request_body off](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass_request_body) directives, respectively.
+  name of a temporary file with the request bodyAt the end of processing, the file needs to be removed. To always write the request body to a file, [client_body_in_file_only]({{< ref "/mod_ref/ngx_http_core_module#client_body_in_file_only">}}) needs to be enabled. When the name of a temporary file is passed in a proxied request or in a request to a FastCGI/uwsgi/SCGI server, passing the request body should be disabled by the [proxy_pass_request_body off]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass_request_body">}}), [fastcgi_pass_request_body off]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_request_body">}}), [uwsgi_pass_request_body off]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass_request_body">}}), or [scgi_pass_request_body off]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass_request_body">}}) directives, respectively.
 
 - `$request_completion`
 
@@ -2203,7 +2203,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$request_filename`
 
-  file path for the current request, based on the [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) or [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) directives, and the request URI
+  file path for the current request, based on the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) or [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) directives, and the request URI
 
 - `$request_id`
 
@@ -2239,7 +2239,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$server_addr`
 
-  an address of the server which accepted a requestComputing a value of this variable usually requires one system call. To avoid a system call, the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directives must specify addresses and use the `bind` parameter.
+  an address of the server which accepted a requestComputing a value of this variable usually requires one system call. To avoid a system call, the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directives must specify addresses and use the `bind` parameter.
 
 - `$server_name`
 
@@ -2271,4 +2271,4 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 - `$uri`
 
-  current URI in request, [normalized](https://nginx.org/en/docs/http/ngx_http_core_module.html#location)The value of `$uri` may change during request processing, e.g. when doing internal redirects, or when using index files.
+  current URI in request, [normalized]({{< ref "/mod_ref/ngx_http_core_module#location">}})The value of `$uri` may change during request processing, e.g. when doing internal redirects, or when using index files.

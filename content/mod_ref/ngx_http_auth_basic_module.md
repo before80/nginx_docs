@@ -17,7 +17,7 @@ https://nginx.org/en/docs/http/ngx_http_auth_basic_module.html
 
 The `ngx_http_auth_basic_module` module allows limiting access to resources by validating the user name and password using the “HTTP Basic Authentication” protocol.
 
-Access can also be limited by [address](https://nginx.org/en/docs/http/ngx_http_access_module.html), by the [result of subrequest](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), or by [JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html). Simultaneous limitation of access by address and by password is controlled by the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+Access can also be limited by [address](https://nginx.org/en/docs/http/ngx_http_access_module.html), by the [result of subrequest](https://nginx.org/en/docs/http/ngx_http_auth_request_module.html), or by [JWT](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html). Simultaneous limitation of access by address and by password is controlled by the [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive.
 
 
 

@@ -19,9 +19,9 @@ The `ngx_http_auth_jwt_module` module (1.11.3) implements client authorization b
 
 ​	`ngx_http_auth_jwt_module` 模块（1.11.3 版本）通过验证提供的 [JSON Web Token](https://datatracker.ietf.org/doc/html/rfc7519)（JWT）来实现客户端授权，使用指定的密钥。该模块支持 [JSON Web Signature](https://datatracker.ietf.org/doc/html/rfc7515)（JWS）、[JSON Web Encryption](https://datatracker.ietf.org/doc/html/rfc7516)（JWE）（1.19.7 版本）和嵌套 JWT（1.21.0 版本）。该模块可以用于 [OpenID Connect](http://openid.net/specs/openid-connect-core-1_0.html) 身份验证。
 
-The module may be combined with other access modules, such as [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_request_module](../ngx_http_auth_request_module), via the [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) directive.
+The module may be combined with other access modules, such as [ngx_http_access_module](../ngx_http_access_module), [ngx_http_auth_basic_module](../ngx_http_auth_basic_module), and [ngx_http_auth_request_module](../ngx_http_auth_request_module), via the [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) directive.
 
-​	该模块可以与其他访问模块（如 [ngx_http_access_module](../ngx_http_access_module)、[ngx_http_auth_basic_module](../ngx_http_auth_basic_module) 和 [ngx_http_auth_request_module](../ngx_http_auth_request_module)）结合使用，通过 [satisfy](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy) 指令。
+​	该模块可以与其他访问模块（如 [ngx_http_access_module](../ngx_http_access_module)、[ngx_http_auth_basic_module](../ngx_http_auth_basic_module) 和 [ngx_http_auth_request_module](../ngx_http_auth_request_module)）结合使用，通过 [satisfy]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}) 指令。
 
 This module is available as part of our [commercial subscription](http://nginx.com/products/).
 
@@ -182,9 +182,9 @@ This directive appeared in version 1.21.4.
 
 ​	此指令出现在 1.21.4 版本中。
 
-Enables or disables caching of keys obtained from a [file](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) or from a [subrequest](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request), and sets caching time for them. Caching of keys obtained from variables is not supported. By default, caching of keys is disabled.
+Enables or disables caching of keys obtained from a [file]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_key_file">}}) or from a [subrequest]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_key_request">}}), and sets caching time for them. Caching of keys obtained from variables is not supported. By default, caching of keys is disabled.
 
-​	启用或禁用从 [file](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_file) 或 [subrequest](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_key_request) 获取的密钥的缓存，并为它们设置缓存时间。不支持从变量获取密钥的缓存。默认情况下，禁用密钥的缓存。
+​	启用或禁用从 [file]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_key_file">}}) 或 [subrequest]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_key_request">}}) 获取的密钥的缓存，并为它们设置缓存时间。不支持从变量获取密钥的缓存。默认情况下，禁用密钥的缓存。
 
 
 
@@ -336,9 +336,9 @@ The `ngx_http_auth_jwt_module` module supports embedded variables:
 
 - `$jwt_claim_name`
 
-  returns the value of a specified [JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4)For nested claims and claims including a dot (“.”), the value of the variable cannot be evaluated; the [auth_jwt_claim_set](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_claim_set) directive should be used instead.Variable values for tokens encrypted with JWE are available only after decryption which occurs during the [Access](https://nginx.org/en/docs/dev/development_guide.html#http_phases) phase.
+  returns the value of a specified [JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4)For nested claims and claims including a dot (“.”), the value of the variable cannot be evaluated; the [auth_jwt_claim_set]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_claim_set">}}) directive should be used instead.Variable values for tokens encrypted with JWE are available only after decryption which occurs during the [Access](https://nginx.org/en/docs/dev/development_guide.html#http_phases) phase.
 
-  返回指定的 [JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4) 值。对于嵌套的声明和包含点（“.”）的声明，变量的值无法评估；应使用 [auth_jwt_claim_set](https://nginx.org/en/docs/http/ngx_http_auth_jwt_module.html#auth_jwt_claim_set) 指令。JWE 加密的令牌的变量值仅在解密后才可用，解密发生在[访问](https://nginx.org/en/docs/dev/development_guide.html#http_phases)阶段。
+  返回指定的 [JWT claim](https://datatracker.ietf.org/doc/html/rfc7519#section-4) 值。对于嵌套的声明和包含点（“.”）的声明，变量的值无法评估；应使用 [auth_jwt_claim_set]({{< ref "/mod_ref/ngx_http_auth_jwt_module#auth_jwt_claim_set">}}) 指令。JWE 加密的令牌的变量值仅在解密后才可用，解密发生在[访问](https://nginx.org/en/docs/dev/development_guide.html#http_phases)阶段。
 
 - `$jwt_payload`
 

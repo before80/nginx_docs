@@ -55,33 +55,33 @@ sets the name of an `nginx.conf` configuration file. If needs be, nginx can alwa
 
 ## `--error-log-path=path`
 
-sets the name of the primary error, warnings, and diagnostic file. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) directive. By default the file is named `prefix/logs/error.log`.
+sets the name of the primary error, warnings, and diagnostic file. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) directive. By default the file is named `prefix/logs/error.log`.
 
-​	设置主错误、警告和诊断文件的名称。在安装后，可以在 `nginx.conf` 配置文件中使用 [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) 指令来随时更改文件名。默认情况下，文件名为 `prefix/logs/error.log`。
+​	设置主错误、警告和诊断文件的名称。在安装后，可以在 `nginx.conf` 配置文件中使用 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令来随时更改文件名。默认情况下，文件名为 `prefix/logs/error.log`。
 
 ## `--pid-path=path`
 
-sets the name of an `nginx.pid` file that will store the process ID of the main process. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [pid](https://nginx.org/en/docs/ngx_core_module.html#pid) directive. By default the file is named `prefix/logs/nginx.pid`.
+sets the name of an `nginx.pid` file that will store the process ID of the main process. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [pid]({{< ref "/mod_ref/ngx_core_module#pid">}}) directive. By default the file is named `prefix/logs/nginx.pid`.
 
-​	设置一个将存储主进程的进程 ID 的 `nginx.pid` 文件的名称。在安装后，可以在 `nginx.conf` 配置文件中使用 [pid](https://nginx.org/en/docs/ngx_core_module.html#pid) 指令来随时更改文件名。默认情况下，文件名为 `prefix/logs/nginx.pid`。
+​	设置一个将存储主进程的进程 ID 的 `nginx.pid` 文件的名称。在安装后，可以在 `nginx.conf` 配置文件中使用 [pid]({{< ref "/mod_ref/ngx_core_module#pid">}}) 指令来随时更改文件名。默认情况下，文件名为 `prefix/logs/nginx.pid`。
 
 ## `--lock-path=path`
 
-sets a prefix for the names of lock files. After installation, the value can always be changed in the `nginx.conf` configuration file using the [lock_file](https://nginx.org/en/docs/ngx_core_module.html#lock_file) directive. By default the value is `prefix/logs/nginx.lock`.
+sets a prefix for the names of lock files. After installation, the value can always be changed in the `nginx.conf` configuration file using the [lock_file]({{< ref "/mod_ref/ngx_core_module#lock_file">}}) directive. By default the value is `prefix/logs/nginx.lock`.
 
-​	设置锁文件名称的前缀。在安装后，可以在 `nginx.conf` 配置文件中使用 [lock_file](https://nginx.org/en/docs/ngx_core_module.html#lock_file) 指令来随时更改值。默认情况下，值为 `prefix/logs/nginx.lock`。
+​	设置锁文件名称的前缀。在安装后，可以在 `nginx.conf` 配置文件中使用 [lock_file]({{< ref "/mod_ref/ngx_core_module#lock_file">}}) 指令来随时更改值。默认情况下，值为 `prefix/logs/nginx.lock`。
 
 ## `--user=name`
 
-sets the name of an unprivileged user whose credentials will be used by worker processes. After installation, the name can always be changed in the `nginx.conf` configuration file using the [user](https://nginx.org/en/docs/ngx_core_module.html#user) directive. The default user name is nobody.
+sets the name of an unprivileged user whose credentials will be used by worker processes. After installation, the name can always be changed in the `nginx.conf` configuration file using the [user]({{< ref "/mod_ref/ngx_core_module#user">}}) directive. The default user name is nobody.
 
-​	设置一个非特权用户的名称，该用户的凭据将被 worker 进程使用。在安装后，可以在 `nginx.conf` 配置文件中使用 [user](https://nginx.org/en/docs/ngx_core_module.html#user) 指令来随时更改名称。默认用户名为 nobody。
+​	设置一个非特权用户的名称，该用户的凭据将被 worker 进程使用。在安装后，可以在 `nginx.conf` 配置文件中使用 [user]({{< ref "/mod_ref/ngx_core_module#user">}}) 指令来随时更改名称。默认用户名为 nobody。
 
 `--group=name`
 
-sets the name of a group whose credentials will be used by worker processes. After installation, the name can always be changed in the `nginx.conf` configuration file using the [user](https://nginx.org/en/docs/ngx_core_module.html#user) directive. By default, a group name is set to the name of an unprivileged user.
+sets the name of a group whose credentials will be used by worker processes. After installation, the name can always be changed in the `nginx.conf` configuration file using the [user]({{< ref "/mod_ref/ngx_core_module#user">}}) directive. By default, a group name is set to the name of an unprivileged user.
 
-​	设置一个组的名称，该组的凭据将被 worker 进程使用。在安装后，可以在 `nginx.conf` 配置文件中使用 [user](https://nginx.org/en/docs/ngx_core_module.html#user) 指令来随时更改名称。默认情况下，组名设置为非特权用户的名称。
+​	设置一个组的名称，该组的凭据将被 worker 进程使用。在安装后，可以在 `nginx.conf` 配置文件中使用 [user]({{< ref "/mod_ref/ngx_core_module#user">}}) 指令来随时更改名称。默认情况下，组名设置为非特权用户的名称。
 
 ## `--build=name`
 
@@ -109,15 +109,15 @@ enables or disables building a module that allows the server to work with the `p
 
 ## `--with-threads`
 
-enables the use of [thread pools](https://nginx.org/en/docs/ngx_core_module.html#thread_pool).
+enables the use of [thread pools]({{< ref "/mod_ref/ngx_core_module#thread_pool">}}).
 
-​	启用使用 [线程池](https://nginx.org/en/docs/ngx_core_module.html#thread_pool)。
+​	启用使用 [线程池]({{< ref "/mod_ref/ngx_core_module#thread_pool">}})。
 
 ## `--with-file-aio`
 
-enables the use of [asynchronous file I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio) (AIO) on FreeBSD and Linux.
+enables the use of [asynchronous file I/O]({{< ref "/mod_ref/ngx_http_core_module#aio">}}) (AIO) on FreeBSD and Linux.
 
-​	在 FreeBSD 和 Linux 上启用使用 [异步文件 I/O](https://nginx.org/en/docs/http/ngx_http_core_module.html#aio)（AIO）。
+​	在 FreeBSD 和 Linux 上启用使用 [异步文件 I/O]({{< ref "/mod_ref/ngx_http_core_module#aio">}})（AIO）。
 
 ## `--with-http_ssl_module`
 
@@ -133,9 +133,9 @@ enables building a module that provides support for [HTTP/2](https://nginx.org/e
 
 ## `--with-http_v3_module`
 
-enables building a module that provides support for [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html). This module is not built by default. An SSL library that provides HTTP/3 support is recommended to build and run this module, such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl). Otherwise, if using the OpenSSL library, OpenSSL compatibility layer will be used that does not support QUIC [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data).
+enables building a module that provides support for [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html). This module is not built by default. An SSL library that provides HTTP/3 support is recommended to build and run this module, such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl). Otherwise, if using the OpenSSL library, OpenSSL compatibility layer will be used that does not support QUIC [early data]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}).
 
-​	启用构建一个模块，为 [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) 提供支持。默认情况下，不构建此模块。建议使用支持 HTTP/3 的 SSL 库来构建和运行此模块，如 [BoringSSL](https://boringssl.googlesource.com/boringssl)、[LibreSSL](https://www.libressl.org/) 或 [QuicTLS](https://github.com/quictls/openssl)。否则，如果使用 OpenSSL 库，将使用不支持 QUIC [早期数据](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data) 的 OpenSSL 兼容性层。
+​	启用构建一个模块，为 [HTTP/3](https://nginx.org/en/docs/http/ngx_http_v3_module.html) 提供支持。默认情况下，不构建此模块。建议使用支持 HTTP/3 的 SSL 库来构建和运行此模块，如 [BoringSSL](https://boringssl.googlesource.com/boringssl)、[LibreSSL](https://www.libressl.org/) 或 [QuicTLS](https://github.com/quictls/openssl)。否则，如果使用 OpenSSL 库，将使用不支持 QUIC [早期数据]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}) 的 OpenSSL 兼容性层。
 
 ## `--with-http_realip_module`
 
@@ -379,39 +379,39 @@ disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http
 
 ## `--without-http_upstream_hash_module`
 
-  disables building a module that implements the [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) load balancing method.
+  disables building a module that implements the [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}) load balancing method.
 
-​	禁用构建一个模块，该模块实现 [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash) 负载均衡方法。
+​	禁用构建一个模块，该模块实现 [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}) 负载均衡方法。
 
 ## `--without-http_upstream_ip_hash_module`
 
-  disables building a module that implements the [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash) load balancing method.
+  disables building a module that implements the [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}) load balancing method.
 
-​	禁用构建一个模块，该模块实现 [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash) 负载均衡方法。
+​	禁用构建一个模块，该模块实现 [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}) 负载均衡方法。
 
 ## `--without-http_upstream_least_conn_module`
 
-  disables building a module that implements the [least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) load balancing method.
+  disables building a module that implements the [least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) load balancing method.
 
-​	禁用构建一个模块，该模块实现 [least_conn](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#least_conn) 负载均衡方法。
+​	禁用构建一个模块，该模块实现 [least_conn]({{< ref "/mod_ref/ngx_http_upstream_module#least_conn">}}) 负载均衡方法。
 
 ## `--without-http_upstream_random_module`
 
-  disables building a module that implements the [random](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random) load balancing method.
+  disables building a module that implements the [random]({{< ref "/mod_ref/ngx_http_upstream_module#random">}}) load balancing method.
 
-​	禁用构建一个模块，该模块实现 [random](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random) 负载均衡方法。
+​	禁用构建一个模块，该模块实现 [random]({{< ref "/mod_ref/ngx_http_upstream_module#random">}}) 负载均衡方法。
 
 ## `--without-http_upstream_keepalive_module`
 
-  disables building a module that provides [caching of connections](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) to upstream servers.
+  disables building a module that provides [caching of connections]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) to upstream servers.
 
 ​	禁用构建一个模块，该模块提供到上游服务器的连接缓存。
 
 ## `--without-http_upstream_zone_module`
 
-  disables building a module that makes it possible to store run-time state of an upstream group in a shared memory [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone).
+  disables building a module that makes it possible to store run-time state of an upstream group in a shared memory [zone]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}).
 
-​	禁用构建一个模块，该模块使得可以在共享内存 [zone](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) 中存储上游组的运行时状态。
+​	禁用构建一个模块，该模块使得可以在共享内存 [zone]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}) 中存储上游组的运行时状态。
 
 ## `--with-http_perl_module` `--with-http_perl_module=dynamic`
 
@@ -433,39 +433,39 @@ disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http
 
 ## `--http-log-path=path`
 
-  sets the name of the primary request log file of the HTTP server. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) directive. By default the file is named `prefix/logs/access.log`.
+  sets the name of the primary request log file of the HTTP server. After installation, the file name can always be changed in the `nginx.conf` configuration file using the [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}) directive. By default the file is named `prefix/logs/access.log`.
 
-​	设置 HTTP 服务器的主请求日志文件的名称。安装后，始终可以通过 `nginx.conf` 配置文件中的 [access_log](https://nginx.org/en/docs/http/ngx_http_log_module.html#access_log) 指令更改文件名。默认情况下，文件名为 `prefix/logs/access.log`。
+​	设置 HTTP 服务器的主请求日志文件的名称。安装后，始终可以通过 `nginx.conf` 配置文件中的 [access_log]({{< ref "/mod_ref/ngx_http_log_module#access_log">}}) 指令更改文件名。默认情况下，文件名为 `prefix/logs/access.log`。
 
 ## `--http-client-body-temp-path=path`
 
-  defines a directory for storing temporary files that hold client request bodies. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [client_body_temp_path](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_temp_path) directive. By default the directory is named `prefix/client_body_temp`.
+  defines a directory for storing temporary files that hold client request bodies. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [client_body_temp_path]({{< ref "/mod_ref/ngx_http_core_module#client_body_temp_path">}}) directive. By default the directory is named `prefix/client_body_temp`.
 
-​	定义存储保存客户端请求主体的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [client_body_temp_path](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_temp_path) 指令更改目录。默认情况下，目录名为 `prefix/client_body_temp`。
+​	定义存储保存客户端请求主体的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [client_body_temp_path]({{< ref "/mod_ref/ngx_http_core_module#client_body_temp_path">}}) 指令更改目录。默认情况下，目录名为 `prefix/client_body_temp`。
 
 ## `--http-proxy-temp-path=path`
 
-  defines a directory for storing temporary files with data received from proxied servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) directive. By default the directory is named `prefix/proxy_temp`.
+  defines a directory for storing temporary files with data received from proxied servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) directive. By default the directory is named `prefix/proxy_temp`.
 
-​	定义存储保存从代理服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) 指令更改目录。默认情况下，目录名为 `prefix/proxy_temp`。
+​	定义存储保存从代理服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) 指令更改目录。默认情况下，目录名为 `prefix/proxy_temp`。
 
 ## `--http-fastcgi-temp-path=path`
 
-  defines a directory for storing temporary files with data received from FastCGI servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) directive. By default the directory is named `prefix/fastcgi_temp`.
+  defines a directory for storing temporary files with data received from FastCGI servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) directive. By default the directory is named `prefix/fastcgi_temp`.
 
-​	定义存储保存从 FastCGI 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) 指令更改目录。默认情况下，目录名为 `prefix/fastcgi_temp`。
+​	定义存储保存从 FastCGI 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) 指令更改目录。默认情况下，目录名为 `prefix/fastcgi_temp`。
 
 ## `--http-uwsgi-temp-path=path`
 
-  defines a directory for storing temporary files with data received from uwsgi servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [uwsgi_temp_path](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_temp_path) directive. By default the directory is named `prefix/uwsgi_temp`.
+  defines a directory for storing temporary files with data received from uwsgi servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [uwsgi_temp_path]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_temp_path">}}) directive. By default the directory is named `prefix/uwsgi_temp`.
 
-​	定义存储保存从 uwsgi 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [uwsgi_temp_path](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_temp_path) 指令更改目录。默认情况下，目录名为 `prefix/uwsgi_temp`。
+​	定义存储保存从 uwsgi 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [uwsgi_temp_path]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_temp_path">}}) 指令更改目录。默认情况下，目录名为 `prefix/uwsgi_temp`。
 
 ## `--http-scgi-temp-path=path`
 
-  defines a directory for storing temporary files with data received from SCGI servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [scgi_temp_path](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_temp_path) directive. By default the directory is named `prefix/scgi_temp`.
+  defines a directory for storing temporary files with data received from SCGI servers. After installation, the directory can always be changed in the `nginx.conf` configuration file using the [scgi_temp_path]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_temp_path">}}) directive. By default the directory is named `prefix/scgi_temp`.
 
-​	定义存储保存从 SCGI 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [scgi_temp_path](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_temp_path) 指令更改目录。默认情况下，目录名为 `prefix/scgi_temp`。
+​	定义存储保存从 SCGI 服务器接收的数据的临时文件的目录。安装后，始终可以通过 `nginx.conf` 配置文件中的 [scgi_temp_path]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_temp_path">}}) 指令更改目录。默认情况下，目录名为 `prefix/scgi_temp`。
 
 ## `--without-http`
 
@@ -679,9 +679,9 @@ disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http
 
 ## `--with-pcre=path`
 
-  sets the path to the sources of the PCRE library. The library distribution needs to be downloaded from the [PCRE](http://www.pcre.org/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for regular expressions support in the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) directive and for the [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) module.
+  sets the path to the sources of the PCRE library. The library distribution needs to be downloaded from the [PCRE](http://www.pcre.org/) site and extracted. The rest is done by nginx’s `./configure` and `make`. The library is required for regular expressions support in the [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) directive and for the [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) module.
 
-​	设置 PCRE 库源代码的路径。需要从 [PCRE](http://www.pcre.org/) 网站下载库分发包并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) 指令中支持正则表达式以及 [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) 模块中所需。
+​	设置 PCRE 库源代码的路径。需要从 [PCRE](http://www.pcre.org/) 网站下载库分发包并解压。其余工作由 nginx 的 `./configure` 和 `make` 完成。此库在 [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) 指令中支持正则表达式以及 [ngx_http_rewrite_module]({{< ref "/mod_ref/ngx_http_rewrite_module" >}}) 模块中所需。
 
 ## `--with-pcre-opt=parameters`
 
@@ -691,9 +691,9 @@ disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http
 
 ## `--with-pcre-jit`
 
-  builds the PCRE library with “just-in-time compilation” support (1.1.12, the [pcre_jit](https://nginx.org/en/docs/ngx_core_module.html#pcre_jit) directive).
+  builds the PCRE library with “just-in-time compilation” support (1.1.12, the [pcre_jit]({{< ref "/mod_ref/ngx_core_module#pcre_jit">}}) directive).
 
-​	以“即时编译”支持构建 PCRE 库（1.1.12，[pcre_jit](https://nginx.org/en/docs/ngx_core_module.html#pcre_jit) 指令）。
+​	以“即时编译”支持构建 PCRE 库（1.1.12，[pcre_jit]({{< ref "/mod_ref/ngx_core_module#pcre_jit">}}) 指令）。
 
 ## `--without-pcre2`
 

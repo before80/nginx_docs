@@ -202,7 +202,7 @@ Enables gzipping of responses for the specified MIME types in addition to “`te
   Context: `http`, `server`, `location`
 
 
-Enables or disables inserting the “Vary: Accept-Encoding” response header field if the directives [gzip](https://nginx.org/en/docs/http/ngx_http_gzip_module.html#gzip), [gzip_static](https://nginx.org/en/docs/http/ngx_http_gzip_static_module.html#gzip_static), or [gunzip](https://nginx.org/en/docs/http/ngx_http_gunzip_module.html#gunzip) are active.
+Enables or disables inserting the “Vary: Accept-Encoding” response header field if the directives [gzip]({{< ref "/mod_ref/ngx_http_gzip_module#gzip">}}), [gzip_static]({{< ref "/mod_ref/ngx_http_gzip_static_module#gzip_static">}}), or [gunzip]({{< ref "/mod_ref/ngx_http_gunzip_module#gunzip">}}) are active.
 
 
 

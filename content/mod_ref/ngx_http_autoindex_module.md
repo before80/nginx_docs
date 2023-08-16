@@ -58,7 +58,7 @@ Enables or disables the directory listing output.
   Context: `http`, `server`, `location`
 
 
-For the HTML [format](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex_format), specifies whether exact file sizes should be output in the directory listing, or rather rounded to kilobytes, megabytes, and gigabytes.
+For the HTML [format]({{< ref "/mod_ref/ngx_http_autoindex_module#autoindex_format">}}), specifies whether exact file sizes should be output in the directory listing, or rather rounded to kilobytes, megabytes, and gigabytes.
 
 
 
@@ -90,4 +90,4 @@ The XML output can be transformed using the [ngx_http_xslt_module](../ngx_http_x
   Context: `http`, `server`, `location`
 
 
-For the HTML [format](https://nginx.org/en/docs/http/ngx_http_autoindex_module.html#autoindex_format), specifies whether times in the directory listing should be output in the local time zone or UTC.
+For the HTML [format]({{< ref "/mod_ref/ngx_http_autoindex_module#autoindex_format">}}), specifies whether times in the directory listing should be output in the local time zone or UTC.

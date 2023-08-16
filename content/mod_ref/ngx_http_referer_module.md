@@ -123,4 +123,4 @@ valid_referers none blocked server_names
 
 - `$invalid_referer`
 
-  Empty string, if the “Referer” request header field value is considered [valid](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers), otherwise “`1`”.
+  Empty string, if the “Referer” request header field value is considered [valid]({{< ref "/mod_ref/ngx_http_referer_module#valid_referers">}}), otherwise “`1`”.

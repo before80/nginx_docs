@@ -255,7 +255,7 @@ To prevent DNS spoofing, it is recommended configuring DNS servers in a properly
 
 
 
-The optional `status_zone` parameter (1.17.1) enables [collection](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) of DNS server statistics of requests and responses in the specified `zone`. The parameter is available as part of our [commercial subscription](http://nginx.com/products/).
+The optional `status_zone` parameter (1.17.1) enables [collection]({{< ref "/mod_ref/ngx_http_api_module#resolvers_">}}) of DNS server statistics of requests and responses in the specified `zone`. The parameter is available as part of our [commercial subscription](http://nginx.com/products/).
 
 
 

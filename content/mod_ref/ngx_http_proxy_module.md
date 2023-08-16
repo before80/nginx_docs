@@ -59,7 +59,7 @@ The `transparent` parameter (1.11.0) allows outgoing connections to a proxied se
 proxy_bind $remote_addr transparent;
 ```
 
-In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the proxied server.
+In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser]({{< ref "/mod_ref/ngx_core_module#user">}}) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the proxied server.
 
 
 
@@ -87,11 +87,11 @@ Sets the `size` of the buffer used for reading the first part of the response re
 
 Enables or disables buffering of responses from the proxied server.
 
-When buffering is enabled, nginx receives a response from the proxied server as soon as possible, saving it into the buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives. If the whole response does not fit into memory, a part of it can be saved to a [temporary file](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) on the disk. Writing to temporary files is controlled by the [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) and [proxy_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_file_write_size) directives.
+When buffering is enabled, nginx receives a response from the proxied server as soon as possible, saving it into the buffers set by the [proxy_buffer_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffer_size">}}) and [proxy_buffers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffers">}}) directives. If the whole response does not fit into memory, a part of it can be saved to a [temporary file]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) on the disk. Writing to temporary files is controlled by the [proxy_max_temp_file_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_max_temp_file_size">}}) and [proxy_temp_file_write_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_file_write_size">}}) directives.
 
-When buffering is disabled, the response is passed to a client synchronously, immediately as it is received. nginx will not try to read the whole response from the proxied server. The maximum size of the data that nginx can receive from the server at a time is set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) directive.
+When buffering is disabled, the response is passed to a client synchronously, immediately as it is received. nginx will not try to read the whole response from the proxied server. The maximum size of the data that nginx can receive from the server at a time is set by the [proxy_buffer_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffer_size">}}) directive.
 
-Buffering can also be enabled or disabled by passing “`yes`” or “`no`” in the “X-Accel-Buffering” response header field. This capability can be disabled using the [proxy_ignore_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_headers) directive.
+Buffering can also be enabled or disabled by passing “`yes`” or “`no`” in the “X-Accel-Buffering” response header field. This capability can be disabled using the [proxy_ignore_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ignore_headers">}}) directive.
 
 
 
@@ -117,7 +117,7 @@ Sets the `number` and `size` of the buffers used for reading a response from the
   Context: `http`, `server`, `location`
 
 
-When [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of responses from the proxied server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives.
+When [buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffering">}}) of responses from the proxied server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [proxy_buffer_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffer_size">}}) and [proxy_buffers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffers">}}) directives.
 
 
 
@@ -145,7 +145,7 @@ Defines a shared memory zone used for caching. The same zone can be used in seve
 
 This directive appeared in version 1.11.10.
 
-Allows starting a background subrequest to update an expired cache item, while a stale cached response is returned to the client. Note that it is necessary to [allow](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_use_stale_updating) the usage of a stale cached response when it is being updated.
+Allows starting a background subrequest to update an expired cache item, while a stale cached response is returned to the client. Note that it is necessary to [allow]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_use_stale_updating">}}) the usage of a stale cached response when it is being updated.
 
 
 
@@ -165,7 +165,7 @@ proxy_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
 proxy_cache_bypass $http_pragma    $http_authorization;
 ```
 
-Can be used along with the [proxy_no_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_no_cache) directive.
+Can be used along with the [proxy_no_cache]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_no_cache">}}) directive.
 
 
 
@@ -180,7 +180,7 @@ Can be used along with the [proxy_no_cache](https://nginx.org/en/docs/http/ngx_h
 
 This directive appeared in version 1.9.7.
 
-Enables or disables the conversion of the “`HEAD`” method to “`GET`” for caching. When the conversion is disabled, the [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key) should be configured to include the `$request_method`.
+Enables or disables the conversion of the “`HEAD`” method to “`GET`” for caching. When the conversion is disabled, the [cache key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_key">}}) should be configured to include the `$request_method`.
 
 
 
@@ -220,7 +220,7 @@ proxy_cache_key $scheme$proxy_host$uri$is_args$args;
 
 This directive appeared in version 1.1.12.
 
-When enabled, only one request at a time will be allowed to populate a new cache element identified according to the [proxy_cache_key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key) directive by passing a request to a proxied server. Other requests of the same cache element will either wait for a response to appear in the cache or the cache lock for this element to be released, up to the time set by the [proxy_cache_lock_timeout](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock_timeout) directive.
+When enabled, only one request at a time will be allowed to populate a new cache element identified according to the [proxy_cache_key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_key">}}) directive by passing a request to a proxied server. Other requests of the same cache element will either wait for a response to appear in the cache or the cache lock for this element to be released, up to the time set by the [proxy_cache_lock_timeout]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_lock_timeout">}}) directive.
 
 
 
@@ -250,7 +250,7 @@ If the last request passed to the proxied server for populating a new cache elem
 
 This directive appeared in version 1.1.12.
 
-Sets a timeout for [proxy_cache_lock](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock). When the `time` expires, the request will be passed to the proxied server, however, the response will not be cached.
+Sets a timeout for [proxy_cache_lock]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_lock">}}). When the `time` expires, the request will be passed to the proxied server, however, the response will not be cached.
 
 Before 1.7.8, the response could be cached.
 
@@ -284,7 +284,7 @@ Sets an offset in bytes for byte-range requests. If the range is beyond the offs
 
 This directive appeared in version 0.7.59.
 
-If the client request method is listed in this directive then the response will be cached. “`GET`” and “`HEAD`” methods are always added to the list, though it is recommended to specify them explicitly. See also the [proxy_no_cache](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_no_cache) directive.
+If the client request method is listed in this directive then the response will be cached. “`GET`” and “`HEAD`” methods are always added to the list, though it is recommended to specify them explicitly. See also the [proxy_no_cache]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_no_cache">}}) directive.
 
 
 
@@ -310,7 +310,7 @@ Sets the `number` of requests after which the response will be cached.
   Context: `http`
 
 
-Sets the path and other parameters of a cache. Cache data are stored in files. The file name in a cache is a result of applying the MD5 function to the [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key). The `levels` parameter defines hierarchy levels of a cache: from 1 to 3, each level accepts values 1 or 2. For example, in the following configuration
+Sets the path and other parameters of a cache. Cache data are stored in files. The file name in a cache is a result of applying the MD5 function to the [cache key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_key">}}). The `levels` parameter defines hierarchy levels of a cache: from 1 to 3, each level accepts values 1 or 2. For example, in the following configuration
 
 ```
 proxy_cache_path /data/nginx/cache levels=1:2 keys_zone=one:10m;
@@ -324,11 +324,11 @@ file names in a cache will look like this:
 
 
 
-A cached response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the cache can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both cache and a directory holding temporary files are put on the same file system. The directory for temporary files is set based on the `use_temp_path` parameter (1.7.10). If this parameter is omitted or set to the value `on`, the directory set by the [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) directive for the given location will be used. If the value is set to `off`, temporary files will be put directly in the cache directory.
+A cached response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the cache can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both cache and a directory holding temporary files are put on the same file system. The directory for temporary files is set based on the `use_temp_path` parameter (1.7.10). If this parameter is omitted or set to the value `on`, the directory set by the [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) directive for the given location will be used. If the value is set to `off`, temporary files will be put directly in the cache directory.
 
 In addition, all active keys and information about data are stored in a shared memory zone, whose `name` and `size` are configured by the `keys_zone` parameter. One megabyte zone can store about 8 thousand keys.
 
-As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
+As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information]({{< ref "/mod_ref/ngx_http_api_module#http_caches_">}}), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
 
 
 
@@ -346,7 +346,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 - `purger`=`on`|`off`
 
-  Instructs whether cache entries that match a [wildcard key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_purge) will be removed from the disk by the cache purger (1.7.12). Setting the parameter to `on` (default is `off`) will activate the “cache purger” process that permanently iterates through all cache entries and deletes the entries that match the wildcard key.
+  Instructs whether cache entries that match a [wildcard key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_purge">}}) will be removed from the disk by the cache purger (1.7.12). Setting the parameter to `on` (default is `off`) will activate the “cache purger” process that permanently iterates through all cache entries and deletes the entries that match the wildcard key.
 
 - `purger_files`=`number`
 
@@ -381,9 +381,9 @@ In versions 1.7.3, 1.7.7, and 1.11.10 cache header format has been changed. Prev
 
 This directive appeared in version 1.5.7.
 
-Defines conditions under which the request will be considered a cache purge request. If at least one value of the string parameters is not empty and is not equal to “0” then the cache entry with a corresponding [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key) is removed. The result of successful operation is indicated by returning the 204 (No Content) response.
+Defines conditions under which the request will be considered a cache purge request. If at least one value of the string parameters is not empty and is not equal to “0” then the cache entry with a corresponding [cache key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_key">}}) is removed. The result of successful operation is indicated by returning the 204 (No Content) response.
 
-If the [cache key](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_key) of a purge request ends with an asterisk (“`*`”), all cache entries matching the wildcard key will be removed from the cache. However, these entries will remain on the disk until they are deleted for either [inactivity](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path), or processed by the [cache purger](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#purger) (1.7.12), or a client attempts to access them.
+If the [cache key]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_key">}}) of a purge request ends with an asterisk (“`*`”), all cache entries matching the wildcard key will be removed from the cache. However, these entries will remain on the disk until they are deleted for either [inactivity]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_path">}}), or processed by the [cache purger]({{< ref "/mod_ref/ngx_http_proxy_module#purger">}}) (1.7.12), or a client attempts to access them.
 
 Example configuration:
 
@@ -438,7 +438,7 @@ Enables revalidation of expired cache items using conditional requests with the 
   Context: `http`, `server`, `location`
 
 
-Determines in which cases a stale cached response can be used during communication with the proxied server. The directive’s parameters match the parameters of the [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) directive.
+Determines in which cases a stale cached response can be used during communication with the proxied server. The directive’s parameters match the parameters of the [proxy_next_upstream]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}) directive.
 
 The `error` parameter also permits using a stale cached response if a proxied server to process a request cannot be selected.
 
@@ -453,7 +453,7 @@ Using a stale cached response can also be enabled directly in the response heade
 
 
 
-To minimize the number of accesses to proxied servers when populating a new cache element, the [proxy_cache_lock](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_lock) directive can be used.
+To minimize the number of accesses to proxied servers when populating a new cache element, the [proxy_cache_lock]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_lock">}}) directive can be used.
 
 
 
@@ -500,7 +500,7 @@ Parameters of caching can also be set directly in the response header. This has 
 - If the header includes the “Set-Cookie” field, such a response will not be cached.
 - If the header includes the “Vary” field with the special value “`*`”, such a response will not be cached (1.7.7). If the header includes the “Vary” field with another value, such a response will be cached taking into account the corresponding request header fields (1.7.7).
 
-Processing of one or more of these response header fields can be disabled using the [proxy_ignore_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_headers) directive.
+Processing of one or more of these response header fields can be disabled using the [proxy_ignore_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ignore_headers">}}) directive.
 
 
 
@@ -667,7 +667,7 @@ Enables byte-range support for both cached and uncached responses from the proxi
   Context: `http`, `server`, `location`
 
 
-Sets the bucket `size` for hash tables used by the [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) and [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
+Sets the bucket `size` for hash tables used by the [proxy_hide_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_hide_header">}}) and [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
 
 
@@ -680,7 +680,7 @@ Sets the bucket `size` for hash tables used by the [proxy_hide_header](https://n
   Context: `http`, `server`, `location`
 
 
-Sets the maximum `size` of hash tables used by the [proxy_hide_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) and [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
+Sets the maximum `size` of hash tables used by the [proxy_hide_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_hide_header">}}) and [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) directives. The details of setting up hash tables are provided in a separate [document](https://nginx.org/en/docs/hash.html).
 
 
 
@@ -693,7 +693,7 @@ Sets the maximum `size` of hash tables used by the [proxy_hide_header](https://n
   Context: `http`, `server`, `location`
 
 
-By default, nginx does not pass the header fields “Date”, “Server”, “X-Pad”, and “X-Accel-...” from the response of a proxied server to a client. The `proxy_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [proxy_pass_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_header) directive can be used.
+By default, nginx does not pass the header fields “Date”, “Server”, “X-Pad”, and “X-Accel-...” from the response of a proxied server to a client. The `proxy_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [proxy_pass_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass_header">}}) directive can be used.
 
 
 
@@ -708,7 +708,7 @@ By default, nginx does not pass the header fields “Date”, “Server”, “X
 
 This directive appeared in version 1.1.4.
 
-Sets the HTTP protocol version for proxying. By default, version 1.0 is used. Version 1.1 is recommended for use with [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections and [NTLM authentication](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ntlm).
+Sets the HTTP protocol version for proxying. By default, version 1.0 is used. Version 1.1 is recommended for use with [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) connections and [NTLM authentication]({{< ref "/mod_ref/ngx_http_upstream_module#ntlm">}}).
 
 
 
@@ -738,11 +738,11 @@ Disables processing of certain response header fields from the proxied server. T
 
 If not disabled, processing of these header fields has the following effect:
 
-- “X-Accel-Expires”, “Expires”, “Cache-Control”, “Set-Cookie”, and “Vary” set the parameters of response [caching](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_valid);
-- “X-Accel-Redirect” performs an [internal redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) to the specified URI;
-- “X-Accel-Limit-Rate” sets the [rate limit](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate) for transmission of a response to a client;
-- “X-Accel-Buffering” enables or disables [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of a response;
-- “X-Accel-Charset” sets the desired [charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset) of a response.
+- “X-Accel-Expires”, “Expires”, “Cache-Control”, “Set-Cookie”, and “Vary” set the parameters of response [caching]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_valid">}});
+- “X-Accel-Redirect” performs an [internal redirect]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) to the specified URI;
+- “X-Accel-Limit-Rate” sets the [rate limit]({{< ref "/mod_ref/ngx_http_core_module#limit_rate">}}) for transmission of a response to a client;
+- “X-Accel-Buffering” enables or disables [buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffering">}}) of a response;
+- “X-Accel-Charset” sets the desired [charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}}) of a response.
 
 
 
@@ -757,7 +757,7 @@ If not disabled, processing of these header fields has the following effect:
   Context: `http`, `server`, `location`
 
 
-Determines whether proxied responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
+Determines whether proxied responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive.
 
 
 
@@ -772,7 +772,7 @@ Determines whether proxied responses with codes greater than or equal to 300 sho
 
 This directive appeared in version 1.7.7.
 
-Limits the speed of reading the response from the proxied server. The `rate` is specified in bytes per second. The zero value disables rate limiting. The limit is set per a request, and so if nginx simultaneously opens two connections to the proxied server, the overall rate will be twice as much as the specified limit. The limitation works only if [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of responses from the proxied server is enabled.
+Limits the speed of reading the response from the proxied server. The `rate` is specified in bytes per second. The zero value disables rate limiting. The limit is set per a request, and so if nginx simultaneously opens two connections to the proxied server, the overall rate will be twice as much as the specified limit. The limitation works only if [buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffering">}}) of responses from the proxied server is enabled.
 
 
 
@@ -785,13 +785,13 @@ Limits the speed of reading the response from the proxied server. The `rate` is 
   Context: `http`, `server`, `location`
 
 
-When [buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffering) of responses from the proxied server is enabled, and the whole response does not fit into the buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [proxy_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_file_write_size) directive.
+When [buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffering">}}) of responses from the proxied server is enabled, and the whole response does not fit into the buffers set by the [proxy_buffer_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffer_size">}}) and [proxy_buffers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffers">}}) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [proxy_temp_file_write_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_file_write_size">}}) directive.
 
 The zero value disables buffering of responses to temporary files.
 
 
 
-This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_store) on disk.
+This restriction does not apply to responses that will be [cached]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache">}}) or [stored]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_store">}}) on disk.
 
 
 
@@ -873,9 +873,9 @@ Specifies in which cases a request should be passed to the next server:
 
 One should bear in mind that passing a request to the next server is only possible if nothing has been sent to a client yet. That is, if an error or timeout occurs in the middle of the transferring of a response, fixing this is impossible.
 
-The directive also defines what is considered an [unsuccessful attempt](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_502`, `http_503`, `http_504`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
+The directive also defines what is considered an [unsuccessful attempt]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_502`, `http_503`, `http_504`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 
-Passing a request to the next server can be limited by [the number of tries](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_tries) and by [time](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream_timeout).
+Passing a request to the next server can be limited by [the number of tries]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream_tries">}}) and by [time]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream_timeout">}}).
 
 
 
@@ -890,7 +890,7 @@ Passing a request to the next server can be limited by [the number of tries](htt
 
 This directive appeared in version 1.7.5.
 
-Limits the time during which a request can be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream). The `0` value turns off this limitation.
+Limits the time during which a request can be passed to the [next server]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}). The `0` value turns off this limitation.
 
 
 
@@ -905,7 +905,7 @@ Limits the time during which a request can be passed to the [next server](https:
 
 This directive appeared in version 1.7.5.
 
-Limits the number of possible tries for passing a request to the [next server](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream). The `0` value turns off this limitation.
+Limits the number of possible tries for passing a request to the [next server]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}). The `0` value turns off this limitation.
 
 
 
@@ -925,7 +925,7 @@ proxy_no_cache $cookie_nocache $arg_nocache$arg_comment;
 proxy_no_cache $http_pragma    $http_authorization;
 ```
 
-Can be used along with the [proxy_cache_bypass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_bypass) directive.
+Can be used along with the [proxy_cache_bypass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_bypass">}}) directive.
 
 
 
@@ -954,7 +954,7 @@ proxy_pass http://unix:/tmp/backend.socket:/uri/;
 
 If a domain name resolves to several addresses, all of them will be used in a round-robin fashion. In addition, an address can be specified as a [server group](https://nginx.org/en/docs/http/ngx_http_upstream_module.html).
 
-Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described server groups, and, if not found, is determined using a [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver).
+Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described server groups, and, if not found, is determined using a [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}).
 
 A request URI is passed to the server as follows:
 
@@ -1070,7 +1070,7 @@ In some cases, the part of a request URI to be replaced cannot be determined:
   Context: `http`, `server`, `location`
 
 
-Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_hide_header) header fields from a proxied server to a client.
+Permits passing [otherwise disabled]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_hide_header">}}) header fields from a proxied server to a client.
 
 
 
@@ -1095,7 +1095,7 @@ location /x-accel-redirect-here/ {
 }
 ```
 
-See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) and [proxy_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_headers) directives.
+See also the [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) and [proxy_pass_request_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass_request_headers">}}) directives.
 
 
 
@@ -1120,7 +1120,7 @@ location /x-accel-redirect-here/ {
 }
 ```
 
-See also the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) and [proxy_pass_request_body](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_body) directives.
+See also the [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) and [proxy_pass_request_body]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass_request_body">}}) directives.
 
 
 
@@ -1162,7 +1162,7 @@ proxy_redirect http://localhost:8000/two/ /;
 
 then the primary server’s name and port, if different from 80, will be inserted.
 
-The default replacement specified by the `default` parameter uses the parameters of the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) and [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directives. Hence, the two configurations below are equivalent:
+The default replacement specified by the `default` parameter uses the parameters of the [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) and [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directives. Hence, the two configurations below are equivalent:
 
 ```
 location /one/ {
@@ -1178,7 +1178,7 @@ location /one/ {
     proxy_redirect http://upstream:port/two/ /one/;
 ```
 
-The `default` parameter is not permitted if [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) is specified using variables.
+The `default` parameter is not permitted if [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) is specified using variables.
 
 A `replacement` string can contain variables:
 
@@ -1240,11 +1240,11 @@ This directive appeared in version 1.7.11.
 
 Enables or disables buffering of a client request body.
 
-When buffering is enabled, the entire request body is [read](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) from the client before sending the request to a proxied server.
+When buffering is enabled, the entire request body is [read]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}) from the client before sending the request to a proxied server.
 
-When buffering is disabled, the request body is sent to the proxied server immediately as it is received. In this case, the request cannot be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream) if nginx already started sending the request body.
+When buffering is disabled, the request body is sent to the proxied server immediately as it is received. In this case, the request cannot be passed to the [next server]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}) if nginx already started sending the request body.
 
-When HTTP/1.1 chunked transfer encoding is used to send the original request body, the request body will be buffered regardless of the directive value unless HTTP/1.1 is [enabled](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) for proxying.
+When HTTP/1.1 chunked transfer encoding is used to send the original request body, the request body will be buffered regardless of the directive value unless HTTP/1.1 is [enabled]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_http_version">}}) for proxying.
 
 
 
@@ -1298,7 +1298,7 @@ Allows redefining the request body passed to the proxied server. The `value` can
   Context: `http`, `server`, `location`
 
 
-Allows redefining or appending fields to the request header [passed](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass_request_headers) to the proxied server. The `value` can contain text, variables, and their combinations. These directives are inherited from the previous configuration level if and only if there are no `proxy_set_header` directives defined on the current level. By default, only two fields are redefined:
+Allows redefining or appending fields to the request header [passed]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass_request_headers">}}) to the proxied server. The `value` can contain text, variables, and their combinations. These directives are inherited from the previous configuration level if and only if there are no `proxy_set_header` directives defined on the current level. By default, only two fields are redefined:
 
 ```
 proxy_set_header Host       $proxy_host;
@@ -1447,7 +1447,7 @@ Note that configuring OpenSSL directly might result in unexpected behavior.
 
 This directive appeared in version 1.7.0.
 
-Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify) the certificate of the proxied HTTPS server.
+Specifies a `file` with revoked certificates (CRL) in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ssl_verify">}}) the certificate of the proxied HTTPS server.
 
 
 
@@ -1462,9 +1462,9 @@ Specifies a `file` with revoked certificates (CRL) in the PEM format used to [ve
 
 This directive appeared in version 1.7.0.
 
-Allows overriding the server name used to [verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify) the certificate of the proxied HTTPS server and to be [passed through SNI](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_server_name) when establishing a connection with the proxied HTTPS server.
+Allows overriding the server name used to [verify]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ssl_verify">}}) the certificate of the proxied HTTPS server and to be [passed through SNI]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ssl_server_name">}}) when establishing a connection with the proxied HTTPS server.
 
-By default, the host part of the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) URL is used.
+By default, the host part of the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) URL is used.
 
 
 
@@ -1479,7 +1479,7 @@ By default, the host part of the [proxy_pass](https://nginx.org/en/docs/http/ngx
 
 This directive appeared in version 1.7.8.
 
-Specifies a `file` with passphrases for [secret keys](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_certificate_key) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
+Specifies a `file` with passphrases for [secret keys]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ssl_certificate_key">}}) where each passphrase is specified on a separate line. Passphrases are tried in turn when loading the key.
 
 
 
@@ -1543,7 +1543,7 @@ Determines whether SSL sessions can be reused when working with the proxied serv
 
 This directive appeared in version 1.7.0.
 
-Specifies a `file` with trusted CA certificates in the PEM format used to [verify](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ssl_verify) the certificate of the proxied HTTPS server.
+Specifies a `file` with trusted CA certificates in the PEM format used to [verify]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ssl_verify">}}) the certificate of the proxied HTTPS server.
 
 
 
@@ -1586,7 +1586,7 @@ Sets the verification depth in the proxied HTTPS server certificates chain.
   Context: `http`, `server`, `location`
 
 
-Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) or [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
+Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) or [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
 
 ```
 proxy_store /data/www$original_uri;
@@ -1594,7 +1594,7 @@ proxy_store /data/www$original_uri;
 
 
 
-The modification time of files is set according to the received “Last-Modified” response header field. The response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [proxy_temp_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_temp_path) directive, are put on the same file system.
+The modification time of files is set according to the received “Last-Modified” response header field. The response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [proxy_temp_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_temp_path">}}) directive, are put on the same file system.
 
 This directive can be used to create local copies of static unchangeable files, e.g.:
 
@@ -1678,7 +1678,7 @@ proxy_store_access group:rw all:r;
   Context: `http`, `server`, `location`
 
 
-Limits the `size` of data written to a temporary file at a time, when buffering of responses from the proxied server to temporary files is enabled. By default, `size` is limited by two buffers set by the [proxy_buffer_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffer_size) and [proxy_buffers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_buffers) directives. The maximum size of a temporary file is set by the [proxy_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_max_temp_file_size) directive.
+Limits the `size` of data written to a temporary file at a time, when buffering of responses from the proxied server to temporary files is enabled. By default, `size` is limited by two buffers set by the [proxy_buffer_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffer_size">}}) and [proxy_buffers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_buffers">}}) directives. The maximum size of a temporary file is set by the [proxy_max_temp_file_size]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_max_temp_file_size">}}) directive.
 
 
 
@@ -1705,21 +1705,21 @@ a temporary file might look like this:
 
 
 
-See also the `use_temp_path` parameter of the [proxy_cache_path](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_cache_path) directive.
+See also the `use_temp_path` parameter of the [proxy_cache_path]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_cache_path">}}) directive.
 
 
 
 Embedded Variables
 
-The `ngx_http_proxy_module` module supports embedded variables that can be used to compose headers using the [proxy_set_header](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_set_header) directive:
+The `ngx_http_proxy_module` module supports embedded variables that can be used to compose headers using the [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) directive:
 
 - `$proxy_host`
 
-  name and port of a proxied server as specified in the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive;
+  name and port of a proxied server as specified in the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive;
 
 - `$proxy_port`
 
-  port of a proxied server as specified in the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass) directive, or the protocol’s default port;
+  port of a proxied server as specified in the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive, or the protocol’s default port;
 
 - `$proxy_add_x_forwarded_for`
 

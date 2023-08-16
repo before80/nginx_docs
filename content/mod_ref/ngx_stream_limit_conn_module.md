@@ -121,7 +121,7 @@ Here, the key is a client IP address set by the `$binary_remote_addr` variable. 
 
 
 
-Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_limit_conns_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getStreamLimitConnZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamLimitConnZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
+Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information]({{< ref "/mod_ref/ngx_http_api_module#stream_limit_conns_">}}) for each such shared memory zone can be [obtained]({{< ref "/mod_ref/ngx_http_api_module#getStreamLimitConnZone">}}) or [reset]({{< ref "/mod_ref/ngx_http_api_module#deleteStreamLimitConnZoneStat">}}) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
 
 
 

@@ -56,9 +56,9 @@ source_charset koi8-r;
 
   Context: `http`, `server`, `location`, `if in location`
 
-Adds the specified charset to the “Content-Type” response header field. If this charset is different from the charset specified in the [source_charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directive, a conversion is performed.
+Adds the specified charset to the “Content-Type” response header field. If this charset is different from the charset specified in the [source_charset]({{< ref "/mod_ref/ngx_http_charset_module#source_charset">}}) directive, a conversion is performed.
 
-​	将指定的字符集添加到“Content-Type”响应头字段中。如果此字符集与[source_charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset)指令中指定的字符集不同，则进行转换。
+​	将指定的字符集添加到“Content-Type”响应头字段中。如果此字符集与[source_charset]({{< ref "/mod_ref/ngx_http_charset_module#source_charset">}})指令中指定的字符集不同，则进行转换。
 
 The parameter `off` cancels the addition of charset to the “Content-Type” response header field.
 
@@ -72,17 +72,17 @@ A charset can be defined with a variable:
 charset $charset;
 ```
 
-In such a case, all possible values of a variable need to be present in the configuration at least once in the form of the [charset_map](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset_map), [charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset), or [source_charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset) directives. For `utf-8`, `windows-1251`, and `koi8-r` charsets, it is sufficient to include the files `conf/koi-win`, `conf/koi-utf`, and `conf/win-utf` into configuration. For other charsets, simply making a fictitious conversion table works, for example:
+In such a case, all possible values of a variable need to be present in the configuration at least once in the form of the [charset_map]({{< ref "/mod_ref/ngx_http_charset_module#charset_map">}}), [charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}}), or [source_charset]({{< ref "/mod_ref/ngx_http_charset_module#source_charset">}}) directives. For `utf-8`, `windows-1251`, and `koi8-r` charsets, it is sufficient to include the files `conf/koi-win`, `conf/koi-utf`, and `conf/win-utf` into configuration. For other charsets, simply making a fictitious conversion table works, for example:
 
-​	在这种情况下，变量的所有可能值都需要至少以[charset_map](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset_map)、[charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset)或[source_charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#source_charset)指令的形式出现在配置中。对于`utf-8`、`windows-1251`和`koi8-r`字符集，只需将文件`conf/koi-win`、`conf/koi-utf`和`conf/win-utf`包含在配置中即可。对于其他字符集，只需创建一个虚构的转换表，例如：
+​	在这种情况下，变量的所有可能值都需要至少以[charset_map]({{< ref "/mod_ref/ngx_http_charset_module#charset_map">}})、[charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}})或[source_charset]({{< ref "/mod_ref/ngx_http_charset_module#source_charset">}})指令的形式出现在配置中。对于`utf-8`、`windows-1251`和`koi8-r`字符集，只需将文件`conf/koi-win`、`conf/koi-utf`和`conf/win-utf`包含在配置中即可。对于其他字符集，只需创建一个虚构的转换表，例如：
 
 ```
 charset_map iso-8859-5 _ { }
 ```
 
-In addition, a charset can be set in the “X-Accel-Charset” response header field. This capability can be disabled using the [proxy_ignore_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_headers), [fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers), [uwsgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ignore_headers), [scgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_ignore_headers), and [grpc_ignore_headers](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ignore_headers) directives.
+In addition, a charset can be set in the “X-Accel-Charset” response header field. This capability can be disabled using the [proxy_ignore_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ignore_headers">}}), [fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}}), [uwsgi_ignore_headers]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_ignore_headers">}}), [scgi_ignore_headers]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_ignore_headers">}}), and [grpc_ignore_headers]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ignore_headers">}}) directives.
 
-​	此外，字符集可以在“X-Accel-Charset”响应头字段中设置。可以使用[proxy_ignore_headers](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_ignore_headers)、[fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers)、[uwsgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_ignore_headers)、[scgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_ignore_headers)和[grpc_ignore_headers](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_ignore_headers)指令禁用此功能。
+​	此外，字符集可以在“X-Accel-Charset”响应头字段中设置。可以使用[proxy_ignore_headers]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_ignore_headers">}})、[fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}})、[uwsgi_ignore_headers]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_ignore_headers">}})、[scgi_ignore_headers]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_ignore_headers">}})和[grpc_ignore_headers]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_ignore_headers">}})指令禁用此功能。
 
 
 
@@ -180,6 +180,6 @@ It should be noted that if a response is received in a subrequest then the conve
 
   Context: `http`, `server`, `location`, `if in location`
 
-Defines the source charset of a response. If this charset is different from the charset specified in the [charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset) directive, a conversion is performed.
+Defines the source charset of a response. If this charset is different from the charset specified in the [charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}}) directive, a conversion is performed.
 
-​	定义响应的源字符集。如果此字符集与[charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset)指令中指定的字符集不同，则进行转换。
+​	定义响应的源字符集。如果此字符集与[charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}})指令中指定的字符集不同，则进行转换。

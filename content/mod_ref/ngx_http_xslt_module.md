@@ -91,9 +91,9 @@ By default, the header field is removed as contents of the response are modified
 
 This directive appeared in version 1.1.18.
 
-Defines the parameters for XSLT stylesheets. The `value` is treated as an XPath expression. The `value` can contain variables. To pass a string value to a stylesheet, the [xslt_string_param](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xslt_string_param) directive can be used.
+Defines the parameters for XSLT stylesheets. The `value` is treated as an XPath expression. The `value` can contain variables. To pass a string value to a stylesheet, the [xslt_string_param]({{< ref "/mod_ref/ngx_http_xslt_module#xslt_string_param">}}) directive can be used.
 
-There could be several `xslt_param` directives. These directives are inherited from the previous configuration level if and only if there are no `xslt_param` and [xslt_string_param](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xslt_string_param) directives defined on the current level.
+There could be several `xslt_param` directives. These directives are inherited from the previous configuration level if and only if there are no `xslt_param` and [xslt_string_param]({{< ref "/mod_ref/ngx_http_xslt_module#xslt_string_param">}}) directives defined on the current level.
 
 
 
@@ -110,7 +110,7 @@ This directive appeared in version 1.1.18.
 
 Defines the string parameters for XSLT stylesheets. XPath expressions in the `value` are not interpreted. The `value` can contain variables.
 
-There could be several `xslt_string_param` directives. These directives are inherited from the previous configuration level if and only if there are no [xslt_param](https://nginx.org/en/docs/http/ngx_http_xslt_module.html#xslt_param) and `xslt_string_param` directives defined on the current level.
+There could be several `xslt_string_param` directives. These directives are inherited from the previous configuration level if and only if there are no [xslt_param]({{< ref "/mod_ref/ngx_http_xslt_module#xslt_param">}}) and `xslt_string_param` directives defined on the current level.
 
 
 

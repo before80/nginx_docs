@@ -67,9 +67,9 @@ The `transparent` parameter (1.11.0) allows outgoing connections to a FastCGI se
 fastcgi_bind $remote_addr transparent;
 ```
 
-In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser](https://nginx.org/en/docs/ngx_core_module.html#user) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the FastCGI server.
+In order for this parameter to work, it is usually necessary to run nginx worker processes with the [superuser]({{< ref "/mod_ref/ngx_core_module#user">}}) privileges. On Linux it is not required (1.13.8) as if the `transparent` parameter is specified, worker processes inherit the `CAP_NET_RAW` capability from the master process. It is also necessary to configure kernel routing table to intercept network traffic from the FastCGI server.
 
-​	为了使此参数起作用，通常需要以[超级用户](https://nginx.org/en/docs/ngx_core_module.html#user)特权运行nginx worker进程。在Linux上（1.13.8），不需要这样做，因为如果指定了`transparent`参数，则worker进程从主进程继承了`CAP_NET_RAW`能力。还需要配置内核路由表以拦截来自FastCGI服务器的网络流量。
+​	为了使此参数起作用，通常需要以[超级用户]({{< ref "/mod_ref/ngx_core_module#user">}})特权运行nginx worker进程。在Linux上（1.13.8），不需要这样做，因为如果指定了`transparent`参数，则worker进程从主进程继承了`CAP_NET_RAW`能力。还需要配置内核路由表以拦截来自FastCGI服务器的网络流量。
 
 ### fastcgi_buffer_size
 
@@ -100,17 +100,17 @@ Enables or disables buffering of responses from the FastCGI server.
 
 ​	启用或禁用从FastCGI服务器缓冲响应。
 
-When buffering is enabled, nginx receives a response from the FastCGI server as soon as possible, saving it into the buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives. If the whole response does not fit into memory, a part of it can be saved to a [temporary file](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) on the disk. Writing to temporary files is controlled by the [fastcgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_max_temp_file_size) and [fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size) directives.
+When buffering is enabled, nginx receives a response from the FastCGI server as soon as possible, saving it into the buffers set by the [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) and [fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}}) directives. If the whole response does not fit into memory, a part of it can be saved to a [temporary file]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) on the disk. Writing to temporary files is controlled by the [fastcgi_max_temp_file_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_max_temp_file_size">}}) and [fastcgi_temp_file_write_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_file_write_size">}}) directives.
 
-​	当启用缓冲时，nginx尽快从FastCGI服务器接收响应，将其保存到由[fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)和[fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers)指令设置的缓冲区中。如果整个响应无法放入内存中，则其中的一部分可以保存到磁盘上的[临时文件](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path)中。写入临时文件由[fastcgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_max_temp_file_size)和[fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size)指令控制。
+​	当启用缓冲时，nginx尽快从FastCGI服务器接收响应，将其保存到由[fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}})和[fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}})指令设置的缓冲区中。如果整个响应无法放入内存中，则其中的一部分可以保存到磁盘上的[临时文件]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}})中。写入临时文件由[fastcgi_max_temp_file_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_max_temp_file_size">}})和[fastcgi_temp_file_write_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_file_write_size">}})指令控制。
 
-When buffering is disabled, the response is passed to a client synchronously, immediately as it is received. nginx will not try to read the whole response from the FastCGI server. The maximum size of the data that nginx can receive from the server at a time is set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) directive.
+When buffering is disabled, the response is passed to a client synchronously, immediately as it is received. nginx will not try to read the whole response from the FastCGI server. The maximum size of the data that nginx can receive from the server at a time is set by the [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) directive.
 
-​	当禁用缓冲时，响应将同步传递给客户端，即立即在接收到响应时传递给客户端。nginx不会尝试从FastCGI服务器读取整个响应。nginx从服务器一次可以接收的数据的最大大小由[fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)指令设置。
+​	当禁用缓冲时，响应将同步传递给客户端，即立即在接收到响应时传递给客户端。nginx不会尝试从FastCGI服务器读取整个响应。nginx从服务器一次可以接收的数据的最大大小由[fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}})指令设置。
 
-Buffering can also be enabled or disabled by passing “`yes`” or “`no`” in the “X-Accel-Buffering” response header field. This capability can be disabled using the [fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers) directive.
+Buffering can also be enabled or disabled by passing “`yes`” or “`no`” in the “X-Accel-Buffering” response header field. This capability can be disabled using the [fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}}) directive.
 
-​	还可以通过在“X-Accel-Buffering”响应头字段中传递“yes”或“no”来启用或禁用缓冲。可以使用[fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers)指令禁用此功能。
+​	还可以通过在“X-Accel-Buffering”响应头字段中传递“yes”或“no”来启用或禁用缓冲。可以使用[fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}})指令禁用此功能。
 
 ### fastcgi_buffers
 
@@ -134,9 +134,9 @@ Sets the `number` and `size` of the buffers used for reading a response from the
   Context: `http`, `server`, `location`
 
 
-When [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of responses from the FastCGI server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives.
+When [buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}}) of responses from the FastCGI server is enabled, limits the total `size` of buffers that can be busy sending a response to the client while the response is not yet fully read. In the meantime, the rest of the buffers can be used for reading the response and, if needed, buffering part of the response to a temporary file. By default, `size` is limited by the size of two buffers set by the [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) and [fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}}) directives.
 
-​	当启用[缓冲](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering)从FastCGI服务器接收的响应时，限制了在响应尚未完全读取的情况下，可以忙于将响应发送给客户端的缓冲区的总大小。同时，其余的缓冲区可以用于读取响应并且在需要时将响应的一部分缓冲到临时文件中。默认情况下，`size`受到由[fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)和[fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers)指令设置的两个缓冲区大小的限制。
+​	当启用[缓冲]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}})从FastCGI服务器接收的响应时，限制了在响应尚未完全读取的情况下，可以忙于将响应发送给客户端的缓冲区的总大小。同时，其余的缓冲区可以用于读取响应并且在需要时将响应的一部分缓冲到临时文件中。默认情况下，`size`受到由[fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}})和[fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}})指令设置的两个缓冲区大小的限制。
 
 ### fastcgi_cache
 
@@ -163,9 +163,9 @@ This directive appeared in version 1.11.10.
 
 ​	此指令在版本1.11.10中出现。
 
-Allows starting a background subrequest to update an expired cache item, while a stale cached response is returned to the client. Note that it is necessary to [allow](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_use_stale_updating) the usage of a stale cached response when it is being updated.
+Allows starting a background subrequest to update an expired cache item, while a stale cached response is returned to the client. Note that it is necessary to [allow]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_use_stale_updating">}}) the usage of a stale cached response when it is being updated.
 
-​	允许启动后台子请求来更新已过期的缓存项目，同时向客户端返回过期的缓存响应。请注意，当正在更新时，需要[允许](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_use_stale_updating)使用已过时的缓存响应。
+​	允许启动后台子请求来更新已过期的缓存项目，同时向客户端返回过期的缓存响应。请注意，当正在更新时，需要[允许]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_use_stale_updating">}})使用已过时的缓存响应。
 
 ### fastcgi_cache_bypass
 
@@ -184,9 +184,9 @@ fastcgi_cache_bypass $cookie_nocache $arg_nocache$arg_comment;
 fastcgi_cache_bypass $http_pragma    $http_authorization;
 ```
 
-Can be used along with the [fastcgi_no_cache](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_no_cache) directive.
+Can be used along with the [fastcgi_no_cache]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_no_cache">}}) directive.
 
-​	可以与[fastcgi_no_cache](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_no_cache)指令一起使用。
+​	可以与[fastcgi_no_cache]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_no_cache">}})指令一起使用。
 
 ### fastcgi_cache_key
 
@@ -220,9 +220,9 @@ This directive appeared in version 1.1.12.
 
 ​	此指令在版本1.1.12中出现。
 
-When enabled, only one request at a time will be allowed to populate a new cache element identified according to the [fastcgi_cache_key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key) directive by passing a request to a FastCGI server. Other requests of the same cache element will either wait for a response to appear in the cache or the cache lock for this element to be released, up to the time set by the [fastcgi_cache_lock_timeout](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock_timeout) directive.
+When enabled, only one request at a time will be allowed to populate a new cache element identified according to the [fastcgi_cache_key]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}}) directive by passing a request to a FastCGI server. Other requests of the same cache element will either wait for a response to appear in the cache or the cache lock for this element to be released, up to the time set by the [fastcgi_cache_lock_timeout]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock_timeout">}}) directive.
 
-​	启用后，只允许一个请求一次填充一个新的缓存元素，根据[fastcgi_cache_key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key)指令将请求传递给FastCGI服务器。同一缓存元素的其他请求要么等待缓存中出现响应，要么等待此元素的缓存锁释放，最多等待[fastcgi_cache_lock_timeout](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock_timeout)指令设置的时间。
+​	启用后，只允许一个请求一次填充一个新的缓存元素，根据[fastcgi_cache_key]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}})指令将请求传递给FastCGI服务器。同一缓存元素的其他请求要么等待缓存中出现响应，要么等待此元素的缓存锁释放，最多等待[fastcgi_cache_lock_timeout]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock_timeout">}})指令设置的时间。
 
 ### fastcgi_cache_lock_age
 
@@ -252,9 +252,9 @@ This directive appeared in version 1.1.12.
 
 ​	此指令在版本1.1.12中出现。
 
-Sets a timeout for [fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock). When the `time` expires, the request will be passed to the FastCGI server, however, the response will not be cached.
+Sets a timeout for [fastcgi_cache_lock]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock">}}). When the `time` expires, the request will be passed to the FastCGI server, however, the response will not be cached.
 
-​	为[fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock)设置超时。当`time`到期时，请求将传递给FastCGI服务器，但不会缓存响应。
+​	为[fastcgi_cache_lock]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock">}})设置超时。当`time`到期时，请求将传递给FastCGI服务器，但不会缓存响应。
 
 Before 1.7.8, the response could be cached.
 
@@ -290,9 +290,9 @@ This directive appeared in version 0.7.59.
 
 ​	此指令在版本0.7.59中出现。
 
-If the client request method is listed in this directive then the response will be cached. “`GET`” and “`HEAD`” methods are always added to the list, though it is recommended to specify them explicitly. See also the [fastcgi_no_cache](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_no_cache) directive.
+If the client request method is listed in this directive then the response will be cached. “`GET`” and “`HEAD`” methods are always added to the list, though it is recommended to specify them explicitly. See also the [fastcgi_no_cache]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_no_cache">}}) directive.
 
-​	如果客户端请求方法列在此指令中，则响应将被缓存。“GET”和“HEAD”方法始终添加到列表中，尽管建议明确指定它们。还请参阅[fastcgi_no_cache](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_no_cache)指令。
+​	如果客户端请求方法列在此指令中，则响应将被缓存。“GET”和“HEAD”方法始终添加到列表中，尽管建议明确指定它们。还请参阅[fastcgi_no_cache]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_no_cache">}})指令。
 
 ### fastcgi_cache_min_uses
 
@@ -331,17 +331,17 @@ file names in a cache will look like this:
 /data/nginx/cache/c/29/b7f54b2df7773722d382f4809d65029c
 ```
 
-A cached response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the cache can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both cache and a directory holding temporary files are put on the same file system. A directory for temporary files is set based on the `use_temp_path` parameter (1.7.10). If this parameter is omitted or set to the value `on`, the directory set by the [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) directive for the given location will be used. If the value is set to `off`, temporary files will be put directly in the cache directory.
+A cached response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the cache can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both cache and a directory holding temporary files are put on the same file system. A directory for temporary files is set based on the `use_temp_path` parameter (1.7.10). If this parameter is omitted or set to the value `on`, the directory set by the [fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) directive for the given location will be used. If the value is set to `off`, temporary files will be put directly in the cache directory.
 
-​	缓存的响应首先被写入临时文件，然后文件被重命名。从0.8.9版本开始，临时文件和缓存可以位于不同的文件系统上。但是，请注意，在这种情况下，文件将在两个文件系统之间复制，而不是进行廉价的重命名操作。因此，建议对于给定的位置，缓存和包含临时文件的目录都放在同一个文件系统上。临时文件的目录是基于`use_temp_path`参数设置的（1.7.10）。如果省略此参数或将其设置为`on`，则将使用由给定位置的[fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path)指令设置的目录。如果值设置为`off`，则临时文件将直接放在缓存目录中。
+​	缓存的响应首先被写入临时文件，然后文件被重命名。从0.8.9版本开始，临时文件和缓存可以位于不同的文件系统上。但是，请注意，在这种情况下，文件将在两个文件系统之间复制，而不是进行廉价的重命名操作。因此，建议对于给定的位置，缓存和包含临时文件的目录都放在同一个文件系统上。临时文件的目录是基于`use_temp_path`参数设置的（1.7.10）。如果省略此参数或将其设置为`on`，则将使用由给定位置的[fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}})指令设置的目录。如果值设置为`off`，则临时文件将直接放在缓存目录中。
 
 In addition, all active keys and information about data are stored in a shared memory zone, whose `name` and `size` are configured by the `keys_zone` parameter. One megabyte zone can store about 8 thousand keys.
 
 ​	此外，所有活动的键和关于数据的信息都存储在一个由`keys_zone`参数配置的共享内存区域中。一个兆字节的区域可以存储大约8千个键。
 
-As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
+As part of [commercial subscription](http://nginx.com/products/), the shared memory zone also stores extended cache [information]({{< ref "/mod_ref/ngx_http_api_module#http_caches_">}}), thus, it is required to specify a larger zone size for the same number of keys. For example, one megabyte zone can store about 4 thousand keys.
 
-​	作为[商业订阅](http://nginx.com/products/)的一部分，共享内存区域还存储扩展缓存[信息](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_caches_)，因此，需要为相同数量的键指定更大的区域大小。例如，一个兆字节的区域可以存储大约4千个键。
+​	作为[商业订阅](http://nginx.com/products/)的一部分，共享内存区域还存储扩展缓存[信息]({{< ref "/mod_ref/ngx_http_api_module#http_caches_">}})，因此，需要为相同数量的键指定更大的区域大小。例如，一个兆字节的区域可以存储大约4千个键。
 
 Cached data that are not accessed during the time specified by the `inactive` parameter get removed from the cache regardless of their freshness. By default, `inactive` is set to 10 minutes.
 
@@ -361,9 +361,9 @@ Additionally, the following parameters are available as part of our [commercial 
 
 - `purger`=`on`|`off`
 
-  Instructs whether cache entries that match a [wildcard key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_purge) will be removed from the disk by the cache purger (1.7.12). Setting the parameter to `on` (default is `off`) will activate the “cache purger” process that permanently iterates through all cache entries and deletes the entries that match the wildcard key.
+  Instructs whether cache entries that match a [wildcard key]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_purge">}}) will be removed from the disk by the cache purger (1.7.12). Setting the parameter to `on` (default is `off`) will activate the “cache purger” process that permanently iterates through all cache entries and deletes the entries that match the wildcard key.
 
-  指示是否将与[通配符键](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_purge)匹配的缓存条目从磁盘中移除缓存清除程序（1.7.12）。将参数设置为`on`（默认为`off`）将激活“缓存清除程序”进程，该进程将永久迭代所有缓存条目并删除与通配符键匹配的条目。
+  指示是否将与[通配符键]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_purge">}})匹配的缓存条目从磁盘中移除缓存清除程序（1.7.12）。将参数设置为`on`（默认为`off`）将激活“缓存清除程序”进程，该进程将永久迭代所有缓存条目并删除与通配符键匹配的条目。
 
 - `purger_files`=`number`
 
@@ -401,13 +401,13 @@ This directive appeared in version 1.5.7.
 
 ​	此指令在版本1.5.7中出现。
 
-Defines conditions under which the request will be considered a cache purge request. If at least one value of the string parameters is not empty and is not equal to “0” then the cache entry with a corresponding [cache key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key) is removed. The result of successful operation is indicated by returning the 204 (No Content) response.
+Defines conditions under which the request will be considered a cache purge request. If at least one value of the string parameters is not empty and is not equal to “0” then the cache entry with a corresponding [cache key]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}}) is removed. The result of successful operation is indicated by returning the 204 (No Content) response.
 
-​	定义在何种条件下将请求视为缓存清除请求。如果至少有一个字符串参数的值不为空且不等于“0”，则将删除具有相应的[缓存键](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key)的缓存条目。成功操作的结果由返回204（无内容）响应指示。
+​	定义在何种条件下将请求视为缓存清除请求。如果至少有一个字符串参数的值不为空且不等于“0”，则将删除具有相应的[缓存键]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}})的缓存条目。成功操作的结果由返回204（无内容）响应指示。
 
-If the [cache key](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key) of a purge request ends with an asterisk (“`*`”), all cache entries matching the wildcard key will be removed from the cache. However, these entries will remain on the disk until they are deleted for either [inactivity](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_path), or processed by the [cache purger](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#purger) (1.7.12), or a client attempts to access them.
+If the [cache key]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}}) of a purge request ends with an asterisk (“`*`”), all cache entries matching the wildcard key will be removed from the cache. However, these entries will remain on the disk until they are deleted for either [inactivity]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_path">}}), or processed by the [cache purger]({{< ref "/mod_ref/ngx_http_fastcgi_module#purger">}}) (1.7.12), or a client attempts to access them.
 
-​	如果缓存清除请求的[缓存键](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_key)以星号（“`*`”）结尾，则将从缓存中删除与通配符键匹配的所有缓存条目。但是，这些条目将保留在磁盘上，直到它们因[非活动](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_path)或由[缓存清除程序](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#purger)（1.7.12）处理，或客户端试图访问它们而被删除。
+​	如果缓存清除请求的[缓存键]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_key">}})以星号（“`*`”）结尾，则将从缓存中删除与通配符键匹配的所有缓存条目。但是，这些条目将保留在磁盘上，直到它们因[非活动]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_path">}})或由[缓存清除程序]({{< ref "/mod_ref/ngx_http_fastcgi_module#purger">}})（1.7.12）处理，或客户端试图访问它们而被删除。
 
 Example configuration:
 
@@ -462,9 +462,9 @@ Enables revalidation of expired cache items using conditional requests with the 
 
   Context: `http`, `server`, `location`
 
-Determines in which cases a stale cached response can be used when an error occurs during communication with the FastCGI server. The directive’s parameters match the parameters of the [fastcgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream) directive.
+Determines in which cases a stale cached response can be used when an error occurs during communication with the FastCGI server. The directive’s parameters match the parameters of the [fastcgi_next_upstream]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}) directive.
 
-​	确定在与FastCGI服务器通信期间发生错误时可以在哪些情况下使用旧的缓存响应。指令的参数与[fastcgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream)指令的参数匹配。
+​	确定在与FastCGI服务器通信期间发生错误时可以在哪些情况下使用旧的缓存响应。指令的参数与[fastcgi_next_upstream]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}})指令的参数匹配。
 
 The `error` parameter also permits using a stale cached response if a FastCGI server to process a request cannot be selected.
 
@@ -485,9 +485,9 @@ Using a stale cached response can also be enabled directly in the response heade
 
 
 
-To minimize the number of accesses to FastCGI servers when populating a new cache element, the [fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock) directive can be used.
+To minimize the number of accesses to FastCGI servers when populating a new cache element, the [fastcgi_cache_lock]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock">}}) directive can be used.
 
-​	为了在填充新的缓存元素时将对FastCGI服务器的访问次数最小化，可以使用[fastcgi_cache_lock](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_lock)指令。
+​	为了在填充新的缓存元素时将对FastCGI服务器的访问次数最小化，可以使用[fastcgi_cache_lock]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_lock">}})指令。
 
 
 
@@ -547,9 +547,9 @@ Parameters of caching can also be set directly in the response header. This has 
 - If the header includes the “Vary” field with the special value “`*`”, such a response will not be cached (1.7.7). If the header includes the “Vary” field with another value, such a response will be cached taking into account the corresponding request header fields (1.7.7).
 - 如果头字段包含带有特殊值“`*`”的“Vary”字段，则不会缓存此响应（1.7.7）。如果头字段包含其他值的“Vary”字段，则会缓存此响应，并考虑相应的请求头字段（1.7.7）。
 
-Processing of one or more of these response header fields can be disabled using the [fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers) directive.
+Processing of one or more of these response header fields can be disabled using the [fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}}) directive.
 
-​	可以使用[fastcgi_ignore_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_ignore_headers)指令禁用这些响应头字段中的一个或多个的处理。
+​	可以使用[fastcgi_ignore_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_ignore_headers">}})指令禁用这些响应头字段中的一个或多个的处理。
 
 ### fastcgi_catch_stderr
 
@@ -559,9 +559,9 @@ Processing of one or more of these response header fields can be disabled using 
 
   Context: `http`, `server`, `location`
 
-Sets a string to search for in the error stream of a response received from a FastCGI server. If the `string` is found then it is considered that the FastCGI server has returned an [invalid response](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream). This allows handling application errors in nginx, for example:
+Sets a string to search for in the error stream of a response received from a FastCGI server. If the `string` is found then it is considered that the FastCGI server has returned an [invalid response]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}). This allows handling application errors in nginx, for example:
 
-​	设置要在从FastCGI服务器接收的响应的错误流中搜索的字符串。如果找到`string`，则认为FastCGI服务器返回了[无效响应](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream)。这允许在nginx中处理应用程序错误，例如：
+​	设置要在从FastCGI服务器接收的响应的错误流中搜索的字符串。如果找到`string`，则认为FastCGI服务器返回了[无效响应]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}})。这允许在nginx中处理应用程序错误，例如：
 
 ```
 location /php/ {
@@ -612,9 +612,9 @@ Enables byte-range support for both cached and uncached responses from the FastC
   Context: `http`, `server`, `location`
 
 
-By default, nginx does not pass the header fields “Status” and “X-Accel-...” from the response of a FastCGI server to a client. The `fastcgi_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [fastcgi_pass_header](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_header) directive can be used.
+By default, nginx does not pass the header fields “Status” and “X-Accel-...” from the response of a FastCGI server to a client. The `fastcgi_hide_header` directive sets additional fields that will not be passed. If, on the contrary, the passing of fields needs to be permitted, the [fastcgi_pass_header]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_header">}}) directive can be used.
 
-​	默认情况下，nginx不会将来自FastCGI服务器的响应的头字段“Status”和“X-Accel-...”传递给客户端。`fastcgi_hide_header`指令设置不会传递的其他字段。相反，如果需要允许传递字段，则可以使用[fastcgi_pass_header](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_header)指令。
+​	默认情况下，nginx不会将来自FastCGI服务器的响应的头字段“Status”和“X-Accel-...”传递给客户端。`fastcgi_hide_header`指令设置不会传递的其他字段。相反，如果需要允许传递字段，则可以使用[fastcgi_pass_header]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_header">}})指令。
 
 ### fastcgi_ignore_client_abort
 
@@ -645,16 +645,16 @@ If not disabled, processing of these header fields has the following effect:
 
 ​	如果没有禁用这些头字段的处理，则会产生以下效果：
 
-- “X-Accel-Expires”, “Expires”, “Cache-Control”, “Set-Cookie”, and “Vary” set the parameters of response [caching](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_valid);
-- “X-Accel-Redirect” performs an [internal redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal) to the specified URI;
-- “X-Accel-Limit-Rate” sets the [rate limit](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate) for transmission of a response to a client;
-- “X-Accel-Buffering” enables or disables [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of a response;
-- “X-Accel-Charset” sets the desired [charset](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset) of a response.
+- “X-Accel-Expires”, “Expires”, “Cache-Control”, “Set-Cookie”, and “Vary” set the parameters of response [caching]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_valid">}});
+- “X-Accel-Redirect” performs an [internal redirect]({{< ref "/mod_ref/ngx_http_core_module#internal">}}) to the specified URI;
+- “X-Accel-Limit-Rate” sets the [rate limit]({{< ref "/mod_ref/ngx_http_core_module#limit_rate">}}) for transmission of a response to a client;
+- “X-Accel-Buffering” enables or disables [buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}}) of a response;
+- “X-Accel-Charset” sets the desired [charset]({{< ref "/mod_ref/ngx_http_charset_module#charset">}}) of a response.
 - `“X-Accel-Expires”`、`“Expires”`、`“Cache-Control”`、`“Set-Cookie”`和`“Vary”`会设置响应的缓存参数；
-- `“X-Accel-Redirect”`执行到指定URI的[内部重定向](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal)；
-- `“X-Accel-Limit-Rate”`设置传输响应给客户端的[速率限制](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate)；
-- `“X-Accel-Buffering”`启用或禁用响应的[缓冲](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering)；
-- `“X-Accel-Charset”`设置响应的期望[字符集](https://nginx.org/en/docs/http/ngx_http_charset_module.html#charset)。
+- `“X-Accel-Redirect”`执行到指定URI的[内部重定向]({{< ref "/mod_ref/ngx_http_core_module#internal">}})；
+- `“X-Accel-Limit-Rate”`设置传输响应给客户端的[速率限制]({{< ref "/mod_ref/ngx_http_core_module#limit_rate">}})；
+- `“X-Accel-Buffering”`启用或禁用响应的[缓冲]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}})；
+- `“X-Accel-Charset”`设置响应的期望[字符集]({{< ref "/mod_ref/ngx_http_charset_module#charset">}})。
 
 
 
@@ -690,9 +690,9 @@ and the “`/page.php`” request, the `SCRIPT_FILENAME` parameter will be equal
   Context: `http`, `server`, `location`
 
 
-Determines whether FastCGI server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
+Determines whether FastCGI server responses with codes greater than or equal to 300 should be passed to a client or be intercepted and redirected to nginx for processing with the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive.
 
-​	确定是否应将大于或等于300的FastCGI服务器响应代码传递给客户端，还是拦截并将其重定向到nginx以使用[error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page)指令进行处理。
+​	确定是否应将大于或等于300的FastCGI服务器响应代码传递给客户端，还是拦截并将其重定向到nginx以使用[error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}})指令进行处理。
 
 ### fastcgi_keep_conn
 
@@ -706,9 +706,9 @@ This directive appeared in version 1.1.4.
 
 ​	此指令在版本1.1.4中出现。
 
-By default, a FastCGI server will close a connection right after sending the response. However, when this directive is set to the value `on`, nginx will instruct a FastCGI server to keep connections open. This is necessary, in particular, for [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections to FastCGI servers to function.
+By default, a FastCGI server will close a connection right after sending the response. However, when this directive is set to the value `on`, nginx will instruct a FastCGI server to keep connections open. This is necessary, in particular, for [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) connections to FastCGI servers to function.
 
-​	默认情况下，FastCGI服务器将在发送响应后立即关闭连接。但是，当将此指令设置为`on`时，nginx将指示FastCGI服务器保持连接打开。这在特定情况下是必需的，特别是用于使FastCGI服务器的[keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive)连接正常工作。
+​	默认情况下，FastCGI服务器将在发送响应后立即关闭连接。但是，当将此指令设置为`on`时，nginx将指示FastCGI服务器保持连接打开。这在特定情况下是必需的，特别是用于使FastCGI服务器的[keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}})连接正常工作。
 
 ### fastcgi_limit_rate
 
@@ -722,9 +722,9 @@ This directive appeared in version 1.7.7.
 
 ​	此指令在版本1.7.7中出现。
 
-Limits the speed of reading the response from the FastCGI server. The `rate` is specified in bytes per second. The zero value disables rate limiting. The limit is set per a request, and so if nginx simultaneously opens two connections to the FastCFI server, the overall rate will be twice as much as the specified limit. The limitation works only if [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of responses from the FastCGI server is enabled.
+Limits the speed of reading the response from the FastCGI server. The `rate` is specified in bytes per second. The zero value disables rate limiting. The limit is set per a request, and so if nginx simultaneously opens two connections to the FastCFI server, the overall rate will be twice as much as the specified limit. The limitation works only if [buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}}) of responses from the FastCGI server is enabled.
 
-​	限制从FastCGI服务器读取响应的速度。`rate`以每秒字节数指定。零值会禁用速率限制。限制是针对每个请求设置的，因此如果nginx同时打开两个到FastCGI服务器的连接，则总速率将是指定限制的两倍。此限制仅在启用了从FastCGI服务器的响应的[缓冲](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering)时才起作用。
+​	限制从FastCGI服务器读取响应的速度。`rate`以每秒字节数指定。零值会禁用速率限制。限制是针对每个请求设置的，因此如果nginx同时打开两个到FastCGI服务器的连接，则总速率将是指定限制的两倍。此限制仅在启用了从FastCGI服务器的响应的[缓冲]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}})时才起作用。
 
 ### fastcgi_max_temp_file_size
 
@@ -734,17 +734,17 @@ Limits the speed of reading the response from the FastCGI server. The `rate` is 
 
   Context: `http`, `server`, `location`
 
-When [buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering) of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size) directive.
+When [buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}}) of responses from the FastCGI server is enabled, and the whole response does not fit into the buffers set by the [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) and [fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}}) directives, a part of the response can be saved to a temporary file. This directive sets the maximum `size` of the temporary file. The size of data written to the temporary file at a time is set by the [fastcgi_temp_file_write_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_file_write_size">}}) directive.
 
-​	当启用从FastCGI服务器的响应的[缓冲](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffering)并且整个响应不适合由[fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size)和[fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers)指令设置的缓冲区时，部分响应可以保存到临时文件中。此指令设置临时文件的最大`size`。每次写入临时文件的数据大小由[fastcgi_temp_file_write_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_file_write_size)指令设置。
+​	当启用从FastCGI服务器的响应的[缓冲]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffering">}})并且整个响应不适合由[fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}})和[fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}})指令设置的缓冲区时，部分响应可以保存到临时文件中。此指令设置临时文件的最大`size`。每次写入临时文件的数据大小由[fastcgi_temp_file_write_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_file_write_size">}})指令设置。
 
 The zero value disables buffering of responses to temporary files.
 
 ​	零值会禁用响应缓冲到临时文件。
 
-This restriction does not apply to responses that will be [cached](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache) or [stored](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_store) on disk.
+This restriction does not apply to responses that will be [cached]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache">}}) or [stored]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_store">}}) on disk.
 
-​	这个限制不适用于将要在磁盘上进行[缓存](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache)或[存储](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_store)的响应。
+​	这个限制不适用于将要在磁盘上进行[缓存]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache">}})或[存储]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_store">}})的响应。
 
 
 
@@ -826,13 +826,13 @@ One should bear in mind that passing a request to the next server is only possib
 
 ​	需要注意，只有在尚未向客户端发送任何内容之前，才有可能将请求传递给下一个服务器。也就是说，如果在传输响应的过程中出现错误或超时，将无法修复。
 
-The directive also defines what is considered an [unsuccessful attempt](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_503`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
+The directive also defines what is considered an [unsuccessful attempt]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) of communication with a server. The cases of `error`, `timeout` and `invalid_header` are always considered unsuccessful attempts, even if they are not specified in the directive. The cases of `http_500`, `http_503`, and `http_429` are considered unsuccessful attempts only if they are specified in the directive. The cases of `http_403` and `http_404` are never considered unsuccessful attempts.
 
-​	该指令还定义了与服务器通信的[不成功尝试](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails)的条件。无论是否在指令中指定，错误、超时和无效头字段的情况始终被视为不成功尝试。只有在指令中指定的情况下，`http_500`、`http_503` 和 `http_429` 才被视为不成功尝试。`http_403` 和 `http_404` 的情况永远不被视为不成功尝试。
+​	该指令还定义了与服务器通信的[不成功尝试]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}})的条件。无论是否在指令中指定，错误、超时和无效头字段的情况始终被视为不成功尝试。只有在指令中指定的情况下，`http_500`、`http_503` 和 `http_429` 才被视为不成功尝试。`http_403` 和 `http_404` 的情况永远不被视为不成功尝试。
 
-Passing a request to the next server can be limited by [the number of tries](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream_tries) and by [time](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream_timeout).
+Passing a request to the next server can be limited by [the number of tries]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream_tries">}}) and by [time]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream_timeout">}}).
 
-​	将请求传递给下一个服务器可以通过 [尝试次数](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream_tries) 和 [时间](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream_timeout) 进行限制。
+​	将请求传递给下一个服务器可以通过 [尝试次数]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream_tries">}}) 和 [时间]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream_timeout">}}) 进行限制。
 
 ### fastcgi_next_upstream_timeout
 
@@ -846,9 +846,9 @@ This directive appeared in version 1.7.5.
 
 ​	此指令在版本 1.7.5 中引入。
 
-Limits the time during which a request can be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream). The `0` value turns off this limitation.
+Limits the time during which a request can be passed to the [next server]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}). The `0` value turns off this limitation.
 
-​	限制请求可以传递给[下一个服务器](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream)的时间。将值设置为 `0` 可以关闭此限制。
+​	限制请求可以传递给[下一个服务器]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}})的时间。将值设置为 `0` 可以关闭此限制。
 
 ### fastcgi_next_upstream_tries
 
@@ -862,9 +862,9 @@ This directive appeared in version 1.7.5.
 
 ​	此指令在版本 1.7.5 中引入。
 
-Limits the number of possible tries for passing a request to the [next server](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream). The `0` value turns off this limitation.
+Limits the number of possible tries for passing a request to the [next server]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}). The `0` value turns off this limitation.
 
-​	限制尝试将请求传递给[下一个服务器](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream)的次数。将值设置为 `0` 可以关闭此限制。
+​	限制尝试将请求传递给[下一个服务器]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}})的次数。将值设置为 `0` 可以关闭此限制。
 
 ### fastcgi_no_cache
 
@@ -883,9 +883,9 @@ fastcgi_no_cache $cookie_nocache $arg_nocache$arg_comment;
 fastcgi_no_cache $http_pragma    $http_authorization;
 ```
 
-Can be used along with the [fastcgi_cache_bypass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_bypass) directive.
+Can be used along with the [fastcgi_cache_bypass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_bypass">}}) directive.
 
-​	可以与 [fastcgi_cache_bypass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_bypass) 指令一起使用。
+​	可以与 [fastcgi_cache_bypass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_bypass">}}) 指令一起使用。
 
 ### fastcgi_param
 
@@ -974,9 +974,9 @@ If a domain name resolves to several addresses, all of them will be used in a ro
 
 ​	如果域名解析为多个地址，则会轮询使用这些地址。此外，地址可以指定为[服务器组](https://nginx.org/en/docs/http/ngx_http_upstream_module.html)。
 
-Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described [server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html), and, if not found, is determined using a [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver).
+Parameter value can contain variables. In this case, if an address is specified as a domain name, the name is searched among the described [server groups](https://nginx.org/en/docs/http/ngx_http_upstream_module.html), and, if not found, is determined using a [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}).
 
-​	参数值可以包含变量。在这种情况下，如果地址指定为域名，则会在描述的 [服务器组](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) 中查找该名称；如果找不到，则使用 [resolver](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) 来确定。
+​	参数值可以包含变量。在这种情况下，如果地址指定为域名，则会在描述的 [服务器组](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) 中查找该名称；如果找不到，则使用 [resolver]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) 来确定。
 
 ### fastcgi_pass_header
 
@@ -986,9 +986,9 @@ Parameter value can contain variables. In this case, if an address is specified 
 
   Context: `http`, `server`, `location`
 
-Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_hide_header) header fields from a FastCGI server to a client.
+Permits passing [otherwise disabled]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_hide_header">}}) header fields from a FastCGI server to a client.
 
-​	允许将从 FastCGI 服务器传递的[本来被禁用](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_hide_header)的头字段传递给客户端。
+​	允许将从 FastCGI 服务器传递的[本来被禁用]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_hide_header">}})的头字段传递给客户端。
 
 
 
@@ -1001,9 +1001,9 @@ Permits passing [otherwise disabled](https://nginx.org/en/docs/http/ngx_http_fas
   Context: `http`, `server`, `location`
 
 
-Indicates whether the original request body is passed to the FastCGI server. See also the [fastcgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_headers) directive.
+Indicates whether the original request body is passed to the FastCGI server. See also the [fastcgi_pass_request_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_request_headers">}}) directive.
 
-​	指示是否将原始请求体传递给 FastCGI 服务器。也请参阅 [fastcgi_pass_request_headers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_headers) 指令。
+​	指示是否将原始请求体传递给 FastCGI 服务器。也请参阅 [fastcgi_pass_request_headers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_request_headers">}}) 指令。
 
 ### fastcgi_pass_request_headers
 
@@ -1014,9 +1014,9 @@ Indicates whether the original request body is passed to the FastCGI server. See
   Context: `http`, `server`, `location`
 
 
-Indicates whether the header fields of the original request are passed to the FastCGI server. See also the [fastcgi_pass_request_body](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_body) directive.
+Indicates whether the header fields of the original request are passed to the FastCGI server. See also the [fastcgi_pass_request_body]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_request_body">}}) directive.
 
-​	指示是否将原始请求的头字段传递给 FastCGI 服务器。也请参阅 [fastcgi_pass_request_body](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass_request_body) 指令。
+​	指示是否将原始请求的头字段传递给 FastCGI 服务器。也请参阅 [fastcgi_pass_request_body]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass_request_body">}}) 指令。
 
 ### fastcgi_read_timeout
 
@@ -1047,13 +1047,13 @@ Enables or disables buffering of a client request body.
 
 ​	启用或禁用对客户端请求体的缓冲。
 
-When buffering is enabled, the entire request body is [read](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size) from the client before sending the request to a FastCGI server.
+When buffering is enabled, the entire request body is [read]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}) from the client before sending the request to a FastCGI server.
 
 ​	启用缓冲时，整个请求体从客户端读取，然后将请求发送到 FastCGI 服务器。
 
-When buffering is disabled, the request body is sent to the FastCGI server immediately as it is received. In this case, the request cannot be passed to the [next server](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream) if nginx already started sending the request body.
+When buffering is disabled, the request body is sent to the FastCGI server immediately as it is received. In this case, the request cannot be passed to the [next server]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}) if nginx already started sending the request body.
 
-​	禁用缓冲时，请求体会在接收到时立即发送到 FastCGI 服务器。在这种情况下，如果 nginx 已经开始发送请求体，请求将无法传递给[下一个服务器](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream)。
+​	禁用缓冲时，请求体会在接收到时立即发送到 FastCGI 服务器。在这种情况下，如果 nginx 已经开始发送请求体，请求将无法传递给[下一个服务器]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}})。
 
 ### fastcgi_send_lowat
 
@@ -1131,17 +1131,17 @@ and the “`/show.php/article/0001`” request, the `SCRIPT_FILENAME` parameter 
 
   Context: `http`, `server`, `location`
 
-Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) or [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
+Enables saving of files to a disk. The `on` parameter saves files with paths corresponding to the directives [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) or [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}). The `off` parameter disables saving of files. In addition, the file name can be set explicitly using the `string` with variables:
 
-​	启用将文件保存到磁盘。`on` 参数将文件保存在与 [alias](https://nginx.org/en/docs/http/ngx_http_core_module.html#alias) 或 [root](https://nginx.org/en/docs/http/ngx_http_core_module.html#root) 指令对应的路径。`off` 参数禁用文件保存。此外，可以使用带有变量的 `string` 来显式设置文件名：
+​	启用将文件保存到磁盘。`on` 参数将文件保存在与 [alias]({{< ref "/mod_ref/ngx_http_core_module#alias">}}) 或 [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) 指令对应的路径。`off` 参数禁用文件保存。此外，可以使用带有变量的 `string` 来显式设置文件名：
 
 ```
 fastcgi_store /data/www$original_uri;
 ```
 
-The modification time of files is set according to the received “Last-Modified” response header field. The response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) directive, are put on the same file system.
+The modification time of files is set according to the received “Last-Modified” response header field. The response is first written to a temporary file, and then the file is renamed. Starting from version 0.8.9, temporary files and the persistent store can be put on different file systems. However, be aware that in this case a file is copied across two file systems instead of the cheap renaming operation. It is thus recommended that for any given location both saved files and a directory holding temporary files, set by the [fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) directive, are put on the same file system.
 
-​	文件的修改时间将根据接收到的“Last-Modified”响应头字段设置。响应首先被写入临时文件，然后文件被重命名。从版本 0.8.9 开始，临时文件和持久存储可以放在不同的文件系统上。然而，请注意，在这种情况下，文件会在两个文件系统之间复制，而不是便宜的重命名操作。因此，建议在给定位置的情况下，保存的文件和保存临时文件的目录（由 [fastcgi_temp_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_temp_path) 指令设置）都放在同一个文件系统上。
+​	文件的修改时间将根据接收到的“Last-Modified”响应头字段设置。响应首先被写入临时文件，然后文件被重命名。从版本 0.8.9 开始，临时文件和持久存储可以放在不同的文件系统上。然而，请注意，在这种情况下，文件会在两个文件系统之间复制，而不是便宜的重命名操作。因此，建议在给定位置的情况下，保存的文件和保存临时文件的目录（由 [fastcgi_temp_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_temp_path">}}) 指令设置）都放在同一个文件系统上。
 
 This directive can be used to create local copies of static unchangeable files, e.g.:
 
@@ -1207,9 +1207,9 @@ fastcgi_store_access group:rw all:r;
 
   Context: `http`, `server`, `location`
 
-Limits the `size` of data written to a temporary file at a time, when buffering of responses from the FastCGI server to temporary files is enabled. By default, `size` is limited by two buffers set by the [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) and [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) directives. The maximum size of a temporary file is set by the [fastcgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_max_temp_file_size) directive.
+Limits the `size` of data written to a temporary file at a time, when buffering of responses from the FastCGI server to temporary files is enabled. By default, `size` is limited by two buffers set by the [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) and [fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}}) directives. The maximum size of a temporary file is set by the [fastcgi_max_temp_file_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_max_temp_file_size">}}) directive.
 
-​	限制在启用从 FastCGI 服务器到临时文件的响应缓冲时，一次写入临时文件的数据的 `size`。默认情况下，`size` 受 [fastcgi_buffer_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffer_size) 和 [fastcgi_buffers](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_buffers) 指令设置的两个缓冲区的限制。临时文件的最大大小由 [fastcgi_max_temp_file_size](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_max_temp_file_size) 指令设置。
+​	限制在启用从 FastCGI 服务器到临时文件的响应缓冲时，一次写入临时文件的数据的 `size`。默认情况下，`size` 受 [fastcgi_buffer_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffer_size">}}) 和 [fastcgi_buffers]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_buffers">}}) 指令设置的两个缓冲区的限制。临时文件的最大大小由 [fastcgi_max_temp_file_size]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_max_temp_file_size">}}) 指令设置。
 
 
 
@@ -1237,39 +1237,39 @@ a temporary file might look like this:
 /spool/nginx/fastcgi_temp/7/45/00000123457
 ```
 
-See also the `use_temp_path` parameter of the [fastcgi_cache_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_path) directive.
+See also the `use_temp_path` parameter of the [fastcgi_cache_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_path">}}) directive.
 
-​	另请参阅 [fastcgi_cache_path](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_cache_path) 指令的 `use_temp_path` 参数。
+​	另请参阅 [fastcgi_cache_path]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_cache_path">}}) 指令的 `use_temp_path` 参数。
 
 ## 传递给 FastCGI 服务器的参数 Parameters Passed to a FastCGI Server
 
-HTTP request header fields are passed to a FastCGI server as parameters. In applications and scripts running as FastCGI servers, these parameters are usually made available as environment variables. For example, the “User-Agent” header field is passed as the `HTTP_USER_AGENT` parameter. In addition to HTTP request header fields, it is possible to pass arbitrary parameters using the [fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param) directive.
+HTTP request header fields are passed to a FastCGI server as parameters. In applications and scripts running as FastCGI servers, these parameters are usually made available as environment variables. For example, the “User-Agent” header field is passed as the `HTTP_USER_AGENT` parameter. In addition to HTTP request header fields, it is possible to pass arbitrary parameters using the [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) directive.
 
-​	HTTP 请求头字段会作为参数传递给 FastCGI 服务器。在作为 FastCGI 服务器运行的应用程序和脚本中，这些参数通常以环境变量的形式提供。例如，“User-Agent”头字段将作为 `HTTP_USER_AGENT` 参数传递。除了 HTTP 请求头字段外，还可以使用 [fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param) 指令传递任意参数。
+​	HTTP 请求头字段会作为参数传递给 FastCGI 服务器。在作为 FastCGI 服务器运行的应用程序和脚本中，这些参数通常以环境变量的形式提供。例如，“User-Agent”头字段将作为 `HTTP_USER_AGENT` 参数传递。除了 HTTP 请求头字段外，还可以使用 [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令传递任意参数。
 
 ## 嵌入式变量 Embedded Variables
 
-The `ngx_http_fastcgi_module` module supports embedded variables that can be used to set parameters using the [fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param) directive:
+The `ngx_http_fastcgi_module` module supports embedded variables that can be used to set parameters using the [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) directive:
 
-​	`ngx_http_fastcgi_module` 模块支持嵌入式变量，可以使用 [fastcgi_param](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_param) 指令来设置参数：
+​	`ngx_http_fastcgi_module` 模块支持嵌入式变量，可以使用 [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令来设置参数：
 
 - `$fastcgi_script_name`
 
-  request URI or, if a URI ends with a slash, request URI with an index file name configured by the [fastcgi_index](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_index) directive appended to it. This variable can be used to set the `SCRIPT_FILENAME` and `PATH_TRANSLATED` parameters that determine the script name in PHP. For example, for the “`/info/`” request with the following directives 
+  request URI or, if a URI ends with a slash, request URI with an index file name configured by the [fastcgi_index]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_index">}}) directive appended to it. This variable can be used to set the `SCRIPT_FILENAME` and `PATH_TRANSLATED` parameters that determine the script name in PHP. For example, for the “`/info/`” request with the following directives 
 
-  请求的 URI，或者如果 URI 以斜杠结尾，则附加由 [fastcgi_index](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_index) 指令配置的索引文件名的请求 URI。此变量可用于设置在 PHP 中确定脚本名称的 `SCRIPT_FILENAME` 和 `PATH_TRANSLATED` 参数。例如，对于具有以下指令的“`/info/`”请求：
+  请求的 URI，或者如果 URI 以斜杠结尾，则附加由 [fastcgi_index]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_index">}}) 指令配置的索引文件名的请求 URI。此变量可用于设置在 PHP 中确定脚本名称的 `SCRIPT_FILENAME` 和 `PATH_TRANSLATED` 参数。例如，对于具有以下指令的“`/info/`”请求：
 
   ```
   fastcgi_index index.php;
   fastcgi_param SCRIPT_FILENAME /home/www/scripts/php$fastcgi_script_name;
   ```
 
-  the `SCRIPT_FILENAME` parameter will be equal to “`/home/www/scripts/php/info/index.php`”.When using the [fastcgi_split_path_info](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info) directive, the `$fastcgi_script_name` variable equals the value of the first capture set by the directive.
+  the `SCRIPT_FILENAME` parameter will be equal to “`/home/www/scripts/php/info/index.php`”.When using the [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) directive, the `$fastcgi_script_name` variable equals the value of the first capture set by the directive.
 
-  `SCRIPT_FILENAME` 参数将等于“`/home/www/scripts/php/info/index.php`”。在使用 [fastcgi_split_path_info](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info) 指令时，`$fastcgi_script_name` 变量等于由该指令设置的第一个捕获组的值。
+  `SCRIPT_FILENAME` 参数将等于“`/home/www/scripts/php/info/index.php`”。在使用 [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) 指令时，`$fastcgi_script_name` 变量等于由该指令设置的第一个捕获组的值。
 
 - `$fastcgi_path_info`
 
-  the value of the second capture set by the [fastcgi_split_path_info](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info) directive. This variable can be used to set the `PATH_INFO` parameter.
+  the value of the second capture set by the [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) directive. This variable can be used to set the `PATH_INFO` parameter.
   
-  由 [fastcgi_split_path_info](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_split_path_info) 指令设置的第二个捕获组的值。此变量可用于设置 `PATH_INFO` 参数。
+  由 [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) 指令设置的第二个捕获组的值。此变量可用于设置 `PATH_INFO` 参数。

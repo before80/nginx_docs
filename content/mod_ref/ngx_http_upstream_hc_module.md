@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html
 
 
 
-The `ngx_http_upstream_conf_module` module allows configuring upstream server groups on-the-fly via a simple HTTP interface without the need of restarting nginx. The [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) server group must reside in the shared memory.
+The `ngx_http_upstream_conf_module` module allows configuring upstream server groups on-the-fly via a simple HTTP interface without the need of restarting nginx. The [http]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) server group must reside in the shared memory.
 
 This module was available as part of our [commercial subscription](http://nginx.com/products/) until 1.13.10. It was superseded by the [ngx_http_api_module](../ngx_http_api_module) module in 1.13.3.
 
@@ -59,7 +59,7 @@ server {
   Context: `location`
 
 
-Turns on the HTTP interface of upstream configuration in the surrounding location. Access to this location should be [limited](https://nginx.org/en/docs/http/ngx_http_core_module.html#satisfy).
+Turns on the HTTP interface of upstream configuration in the surrounding location. Access to this location should be [limited]({{< ref "/mod_ref/ngx_http_core_module#satisfy">}}).
 
 Configuration commands can be used to:
 
@@ -109,47 +109,47 @@ The following parameters are supported:
 
 - `server=``address`
 
-  Same as the “`address`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) upstream server.When adding a server, it is possible to specify it as a domain name. In this case, changes of the IP addresses that correspond to a domain name will be monitored and automatically applied to the upstream configuration without the need of restarting nginx (1.7.2). This requires the “`resolver`” directive in the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) or [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver) block. See also the “`resolve`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#resolve) upstream server.
+  Same as the “`address`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) upstream server.When adding a server, it is possible to specify it as a domain name. In this case, changes of the IP addresses that correspond to a domain name will be monitored and automatically applied to the upstream configuration without the need of restarting nginx (1.7.2). This requires the “`resolver`” directive in the [http]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver) block. See also the “`resolve`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#resolve">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#resolve) upstream server.
 
 - `service=``name`
 
-  Same as the “`service`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#service) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#service) upstream server (1.9.13).
+  Same as the “`service`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#service">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#service) upstream server (1.9.13).
 
 - `weight=``number`
 
-  Same as the “`weight`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#weight) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight) upstream server.
+  Same as the “`weight`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#weight">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight) upstream server.
 
 - `max_conns=``number`
 
-  Same as the “`max_conns`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_conns) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns) upstream server.
+  Same as the “`max_conns`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#max_conns">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns) upstream server.
 
 - `max_fails=``number`
 
-  Same as the “`max_fails`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#max_fails) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) upstream server.
+  Same as the “`max_fails`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) upstream server.
 
 - `fail_timeout=``time`
 
-  Same as the “`fail_timeout`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#fail_timeout) upstream server.
+  Same as the “`fail_timeout`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#fail_timeout">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#fail_timeout) upstream server.
 
 - `slow_start=``time`
 
-  Same as the “`slow_start`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#slow_start) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#slow_start) upstream server.
+  Same as the “`slow_start`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#slow_start">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#slow_start) upstream server.
 
 - `down=`
 
-  Same as the “`down`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#down) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down) upstream server.
+  Same as the “`down`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#down">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down) upstream server.
 
 - `drain=`
 
-  Puts the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) upstream server into the “draining” mode (1.7.5). In this mode, only requests [bound](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) to the server will be proxied to it.
+  Puts the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) upstream server into the “draining” mode (1.7.5). In this mode, only requests [bound]({{< ref "/mod_ref/ngx_http_upstream_module#sticky">}}) to the server will be proxied to it.
 
 - `up=`
 
-  The opposite of the “`down`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#down) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down) upstream server.
+  The opposite of the “`down`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#down">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down) upstream server.
 
 - `route=``string`
 
-  Same as the “`route`” parameter of the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#route) upstream server.
+  Same as the “`route`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#route">}}) upstream server.
 
 The first three parameters select an object. This can be either the whole http or stream upstream server group, or a specific server. Without other parameters, the configuration of the selected group or server is shown.
 
@@ -167,7 +167,7 @@ http://127.0.0.1/upstream_conf?upstream=backend&id=42
 
 
 
-To add a new server, specify its address in the “`server=`” parameter. Without other parameters specified, a server will be added with other parameters set to their default values (see the [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) “`server`” directive).
+To add a new server, specify its address in the “`server=`” parameter. Without other parameters specified, a server will be added with other parameters set to their default values (see the [http]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) “`server`” directive).
 
 For example, to add a new primary server, send:
 

@@ -18,7 +18,7 @@ The `ngx_otel_module` module (1.23.4) provides [OpenTelemetry](https://opentelem
 
 
 
-This module is available as part of our [commercial subscription](http://nginx.com/products/) in `nginx-plus-module-otel` package. After installation, the module can be loaded [dynamically](https://nginx.org/en/docs/ngx_core_module.html#load_module).
+This module is available as part of our [commercial subscription](http://nginx.com/products/) in `nginx-plus-module-otel` package. After installation, the module can be loaded [dynamically]({{< ref "/mod_ref/ngx_core_module#load_module">}}).
 
 
 
@@ -159,7 +159,7 @@ Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-
 
 - `extract`
 
-  uses an existing trace context from the request, so that the identifiers of a [trace](https://nginx.org/en/docs/ngx_otel_module.html#var_otel_trace_id) and the [parent span](https://nginx.org/en/docs/ngx_otel_module.html#var_otel_parent_id) are inherited from the incoming request.
+  uses an existing trace context from the request, so that the identifiers of a [trace]({{< ref "/mod_ref/ngx_otel_module#var_otel_trace_id">}}) and the [parent span]({{< ref "/mod_ref/ngx_otel_module#var_otel_parent_id">}}) are inherited from the incoming request.
 
 - `inject`
 
@@ -167,7 +167,7 @@ Specifies how to propagate [traceparent/tracestate](https://www.w3.org/TR/trace-
 
 - `propagate`
 
-  updates the existing context (combines [extract](https://nginx.org/en/docs/ngx_otel_module.html#extract) and [inject](https://nginx.org/en/docs/ngx_otel_module.html#inject)).
+  updates the existing context (combines [extract]({{< ref "/mod_ref/ngx_otel_module#extract">}}) and [inject]({{< ref "/mod_ref/ngx_otel_module#inject">}})).
 
 - `ignore`
 

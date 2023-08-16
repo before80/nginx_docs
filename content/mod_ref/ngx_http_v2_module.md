@@ -22,9 +22,9 @@ This module is not built by default, it should be enabled with the `--with-http_
 
 ## Known Issues
 
-Before version 1.9.14, buffering of a client request body could not be disabled regardless of [proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering), [fastcgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_request_buffering), [uwsgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_request_buffering), and [scgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_request_buffering) directive values.
+Before version 1.9.14, buffering of a client request body could not be disabled regardless of [proxy_request_buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_request_buffering">}}), [fastcgi_request_buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_request_buffering">}}), [uwsgi_request_buffering]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_request_buffering">}}), and [scgi_request_buffering]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_request_buffering">}}) directive values.
 
-Before version 1.19.1, the [lingering_close](https://nginx.org/en/docs/http/ngx_http_core_module.html#lingering_close) mechanism was not used to control closing HTTP/2 connections.
+Before version 1.19.1, the [lingering_close]({{< ref "/mod_ref/ngx_http_core_module#lingering_close">}}) mechanism was not used to control closing HTTP/2 connections.
 
 
 
@@ -45,7 +45,7 @@ server {
 
 Note that accepting HTTP/2 connections over TLS requires the “Application-Layer Protocol Negotiation” (ALPN) TLS extension support, which is available since [OpenSSL](http://www.openssl.org/) version 1.0.2.
 
-Also note that if the [ssl_prefer_server_ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_prefer_server_ciphers) directive is set to the value “`on`”, the [ciphers](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_ciphers) should be configured to comply with [RFC 9113, Appendix A](https://datatracker.ietf.org/doc/html/rfc9113#appendix-A) black list and supported by clients.
+Also note that if the [ssl_prefer_server_ciphers]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_prefer_server_ciphers">}}) directive is set to the value “`on`”, the [ciphers]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_ciphers">}}) should be configured to comply with [RFC 9113, Appendix A](https://datatracker.ietf.org/doc/html/rfc9113#appendix-A) black list and supported by clients.
 
 
 
@@ -107,7 +107,7 @@ Sets the maximum size of chunks into which the response body is sliced. A too lo
 
 
 
-This directive is obsolete since version 1.19.7. The [keepalive_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_timeout) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [keepalive_timeout]({{< ref "/mod_ref/ngx_http_core_module#keepalive_timeout">}}) directive should be used instead.
 
 
 
@@ -160,7 +160,7 @@ Sets the maximum number of concurrent HTTP/2 streams in a connection.
 
 
 
-This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}) directive should be used instead.
 
 
 
@@ -179,7 +179,7 @@ Limits the maximum size of an [HPACK](https://datatracker.ietf.org/doc/html/rfc7
 
 
 
-This directive is obsolete since version 1.19.7. The [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}) directive should be used instead.
 
 
 
@@ -200,7 +200,7 @@ This directive appeared in version 1.11.6.
 
 
 
-This directive is obsolete since version 1.19.7. The [keepalive_requests](https://nginx.org/en/docs/http/ngx_http_core_module.html#keepalive_requests) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [keepalive_requests]({{< ref "/mod_ref/ngx_http_core_module#keepalive_requests">}}) directive should be used instead.
 
 
 
@@ -269,7 +269,7 @@ Enables automatic conversion of [preload links](https://www.w3.org/TR/preload/#s
   Context: `http`
 
 
-Sets the size of the per [worker](https://nginx.org/en/docs/ngx_core_module.html#worker_processes) input buffer.
+Sets the size of the per [worker]({{< ref "/mod_ref/ngx_core_module#worker_processes">}}) input buffer.
 
 
 
@@ -284,7 +284,7 @@ Sets the size of the per [worker](https://nginx.org/en/docs/ngx_core_module.html
 
 
 
-This directive is obsolete since version 1.19.7. The [client_header_timeout](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_timeout) directive should be used instead.
+This directive is obsolete since version 1.19.7. The [client_header_timeout]({{< ref "/mod_ref/ngx_http_core_module#client_header_timeout">}}) directive should be used instead.
 
 
 

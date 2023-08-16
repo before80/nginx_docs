@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_upstream_module.html
 
 
 
-The `ngx_http_upstream_module` module is used to define groups of servers that can be referenced by the [proxy_pass](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_pass), [fastcgi_pass](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_pass), [uwsgi_pass](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_pass), [scgi_pass](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_pass), [memcached_pass](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_pass), and [grpc_pass](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_pass) directives.
+The `ngx_http_upstream_module` module is used to define groups of servers that can be referenced by the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}), [fastcgi_pass]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_pass">}}), [uwsgi_pass]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_pass">}}), [scgi_pass]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_pass">}}), [memcached_pass]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_pass">}}), and [grpc_pass]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_pass">}}) directives.
 
 
 
@@ -123,11 +123,11 @@ The following parameters can be defined:
 
 - `max_conns`=`number`
 
-  limits the maximum `number` of simultaneous active connections to the proxied server (1.11.5). Default value is zero, meaning there is no limit. If the server group does not reside in the [shared memory](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone), the limitation works per each worker process.If [idle keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections, multiple [workers](https://nginx.org/en/docs/ngx_core_module.html#worker_processes), and the [shared memory](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone) are enabled, the total number of active and idle connections to the proxied server may exceed the `max_conns` value.Since version 1.5.9 and prior to version 1.11.5, this parameter was available as part of our [commercial subscription](http://nginx.com/products/).
+  limits the maximum `number` of simultaneous active connections to the proxied server (1.11.5). Default value is zero, meaning there is no limit. If the server group does not reside in the [shared memory]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}), the limitation works per each worker process.If [idle keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) connections, multiple [workers]({{< ref "/mod_ref/ngx_core_module#worker_processes">}}), and the [shared memory]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}) are enabled, the total number of active and idle connections to the proxied server may exceed the `max_conns` value.Since version 1.5.9 and prior to version 1.11.5, this parameter was available as part of our [commercial subscription](http://nginx.com/products/).
 
 - `max_fails`=`number`
 
-  sets the number of unsuccessful attempts to communicate with the server that should happen in the duration set by the `fail_timeout` parameter to consider the server unavailable for a duration also set by the `fail_timeout` parameter. By default, the number of unsuccessful attempts is set to 1. The zero value disables the accounting of attempts. What is considered an unsuccessful attempt is defined by the [proxy_next_upstream](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_next_upstream), [fastcgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_next_upstream), [uwsgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_next_upstream), [scgi_next_upstream](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_next_upstream), [memcached_next_upstream](https://nginx.org/en/docs/http/ngx_http_memcached_module.html#memcached_next_upstream), and [grpc_next_upstream](https://nginx.org/en/docs/http/ngx_http_grpc_module.html#grpc_next_upstream) directives.
+  sets the number of unsuccessful attempts to communicate with the server that should happen in the duration set by the `fail_timeout` parameter to consider the server unavailable for a duration also set by the `fail_timeout` parameter. By default, the number of unsuccessful attempts is set to 1. The zero value disables the accounting of attempts. What is considered an unsuccessful attempt is defined by the [proxy_next_upstream]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_next_upstream">}}), [fastcgi_next_upstream]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_next_upstream">}}), [uwsgi_next_upstream]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_next_upstream">}}), [scgi_next_upstream]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_next_upstream">}}), [memcached_next_upstream]({{< ref "/mod_ref/ngx_http_memcached_module#memcached_next_upstream">}}), and [grpc_next_upstream]({{< ref "/mod_ref/ngx_http_grpc_module#grpc_next_upstream">}}) directives.
 
 - `fail_timeout`=`time`
 
@@ -135,7 +135,7 @@ The following parameters can be defined:
 
 - `backup`
 
-  marks the server as a backup server. It will be passed requests when the primary servers are unavailable.The parameter cannot be used along with the [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), and [random](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random) load balancing methods.
+  marks the server as a backup server. It will be passed requests when the primary servers are unavailable.The parameter cannot be used along with the [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}), [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}), and [random]({{< ref "/mod_ref/ngx_http_upstream_module#random">}}) load balancing methods.
 
 - `down`
 
@@ -147,7 +147,7 @@ Additionally, the following parameters are available as part of our [commercial 
 
 - `resolve`
 
-  monitors changes of the IP addresses that correspond to a domain name of the server, and automatically modifies the upstream configuration without the need of restarting nginx (1.5.12). The server group must reside in the [shared memory](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone).In order for this parameter to work, the `resolver` directive must be specified in the [http](https://nginx.org/en/docs/http/ngx_http_core_module.html#resolver) block or in the corresponding [upstream](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolver) block.
+  monitors changes of the IP addresses that correspond to a domain name of the server, and automatically modifies the upstream configuration without the need of restarting nginx (1.5.12). The server group must reside in the [shared memory]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}).In order for this parameter to work, the `resolver` directive must be specified in the [http]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) block or in the corresponding [upstream]({{< ref "/mod_ref/ngx_http_upstream_module#resolver">}}) block.
 
 - `route`=`string`
 
@@ -155,15 +155,15 @@ Additionally, the following parameters are available as part of our [commercial 
 
 - `service`=`name`
 
-  enables resolving of DNS [SRV](https://datatracker.ietf.org/doc/html/rfc2782) records and sets the service `name` (1.9.13). In order for this parameter to work, it is necessary to specify the [resolve](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#resolve) parameter for the server and specify a hostname without a port number.If the service name does not contain a dot (“`.`”), then the [RFC](https://datatracker.ietf.org/doc/html/rfc2782)-compliant name is constructed and the TCP protocol is added to the service prefix. For example, to look up the `_http._tcp.backend.example.com` SRV record, it is necessary to specify the directive:`server backend.example.com service=http resolve; `If the service name contains one or more dots, then the name is constructed by joining the service prefix and the server name. For example, to look up the `_http._tcp.backend.example.com` and `server1.backend.example.com` SRV records, it is necessary to specify the directives:`server backend.example.com service=_http._tcp resolve; server example.com service=server1.backend resolve; `Highest-priority SRV records (records with the same lowest-number priority value) are resolved as primary servers, the rest of SRV records are resolved as backup servers. If the [backup](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#backup) parameter is specified for the server, high-priority SRV records are resolved as backup servers, the rest of SRV records are ignored.
+  enables resolving of DNS [SRV](https://datatracker.ietf.org/doc/html/rfc2782) records and sets the service `name` (1.9.13). In order for this parameter to work, it is necessary to specify the [resolve]({{< ref "/mod_ref/ngx_http_upstream_module#resolve">}}) parameter for the server and specify a hostname without a port number.If the service name does not contain a dot (“`.`”), then the [RFC](https://datatracker.ietf.org/doc/html/rfc2782)-compliant name is constructed and the TCP protocol is added to the service prefix. For example, to look up the `_http._tcp.backend.example.com` SRV record, it is necessary to specify the directive:`server backend.example.com service=http resolve; `If the service name contains one or more dots, then the name is constructed by joining the service prefix and the server name. For example, to look up the `_http._tcp.backend.example.com` and `server1.backend.example.com` SRV records, it is necessary to specify the directives:`server backend.example.com service=_http._tcp resolve; server example.com service=server1.backend resolve; `Highest-priority SRV records (records with the same lowest-number priority value) are resolved as primary servers, the rest of SRV records are resolved as backup servers. If the [backup]({{< ref "/mod_ref/ngx_http_upstream_module#backup">}}) parameter is specified for the server, high-priority SRV records are resolved as backup servers, the rest of SRV records are ignored.
 
 - `slow_start`=`time`
 
-  sets the `time` during which the server will recover its weight from zero to a nominal value, when unhealthy server becomes [healthy](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check), or when the server becomes available after a period of time it was considered [unavailable](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#fail_timeout). Default value is zero, i.e. slow start is disabled.The parameter cannot be used along with the [hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#hash), [ip_hash](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#ip_hash), and [random](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#random) load balancing methods.
+  sets the `time` during which the server will recover its weight from zero to a nominal value, when unhealthy server becomes [healthy]({{< ref "/mod_ref/ngx_http_upstream_hc_module#health_check">}}), or when the server becomes available after a period of time it was considered [unavailable]({{< ref "/mod_ref/ngx_http_upstream_module#fail_timeout">}}). Default value is zero, i.e. slow start is disabled.The parameter cannot be used along with the [hash]({{< ref "/mod_ref/ngx_http_upstream_module#hash">}}), [ip_hash]({{< ref "/mod_ref/ngx_http_upstream_module#ip_hash">}}), and [random]({{< ref "/mod_ref/ngx_http_upstream_module#random">}}) load balancing methods.
 
 - `drain`
 
-  puts the server into the “draining” mode (1.13.6). In this mode, only requests [bound](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) to the server will be proxied to it.Prior to version 1.13.6, the parameter could be changed only with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module.
+  puts the server into the “draining” mode (1.13.6). In this mode, only requests [bound]({{< ref "/mod_ref/ngx_http_upstream_module#sticky">}}) to the server will be proxied to it.Prior to version 1.13.6, the parameter could be changed only with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module.
 
 
 
@@ -190,7 +190,7 @@ Defines the `name` and `size` of the shared memory zone that keeps the group’s
 
 Additionally, as part of our [commercial subscription](http://nginx.com/products/), such groups allow changing the group membership or modifying the settings of a particular server without the need of restarting nginx. The configuration is accessible via the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) module (1.13.3).
 
-Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf](https://nginx.org/en/docs/http/ngx_http_upstream_conf_module.html#upstream_conf).
+Prior to version 1.13.3, the configuration was accessible only via a special location handled by [upstream_conf]({{< ref "/mod_ref/ngx_http_upstream_conf_module#upstream_conf">}}).
 
 
 
@@ -218,7 +218,7 @@ state /var/db/nginx/state/servers.conf;  # path for FreeBSD
 
 
 
-The state is currently limited to the list of servers with their parameters. The file is read when parsing the configuration and is updated each time the upstream configuration is [changed](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_upstreams_http_upstream_name_servers_). Changing the file content directly should be avoided. The directive cannot be used along with the [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive.
+The state is currently limited to the list of servers with their parameters. The file is read when parsing the configuration and is updated each time the upstream configuration is [changed]({{< ref "/mod_ref/ngx_http_api_module#http_upstreams_http_upstream_name_servers_">}}). Changing the file content directly should be avoided. The directive cannot be used along with the [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) directive.
 
 
 
@@ -337,7 +337,7 @@ server {
 
 
 
-For HTTP, the [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
+For HTTP, the [proxy_http_version]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_http_version">}}) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
 
 ```
 upstream http_backend {
@@ -366,7 +366,7 @@ Alternatively, HTTP/1.0 persistent connections can be used by passing the “Con
 
 
 
-For FastCGI servers, it is required to set [fastcgi_keep_conn](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_keep_conn) for keepalive connections to work:
+For FastCGI servers, it is required to set [fastcgi_keep_conn]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_keep_conn">}}) for keepalive connections to work:
 
 ```
 upstream fastcgi_backend {
@@ -462,7 +462,7 @@ This directive appeared in version 1.9.2.
 
 Allows proxying requests with [NTLM Authentication](https://en.wikipedia.org/wiki/Integrated_Windows_Authentication). The upstream connection is bound to the client connection once the client sends a request with the “Authorization” header field value starting with “`Negotiate`” or “`NTLM`”. Further client requests will be proxied through the same upstream connection, keeping the authentication context.
 
-In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers. The [proxy_http_version](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
+In order for NTLM authentication to work, it is necessary to enable keepalive connections to upstream servers. The [proxy_http_version]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_http_version">}}) directive should be set to “`1.1`” and the “Connection” header field should be cleared:
 
 ```
 upstream http_backend {
@@ -527,7 +527,7 @@ This directive appeared in version 1.7.10.
 
 Specifies that a group should use a load balancing method where a request is passed to the server with the least average response time and least number of active connections, taking into account weights of servers. If there are several such servers, they are tried in turn using a weighted round-robin balancing method.
 
-If the `header` parameter is specified, time to receive the [response header](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) is used. If the `last_byte` parameter is specified, time to receive the [full response](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) is used. If the `inflight` parameter is specified (1.11.6), incomplete requests are also taken into account.
+If the `header` parameter is specified, time to receive the [response header]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_header_time">}}) is used. If the `last_byte` parameter is specified, time to receive the [full response]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_response_time">}}) is used. If the `inflight` parameter is specified (1.11.6), incomplete requests are also taken into account.
 
 Prior to version 1.11.6, incomplete requests were taken into account by default.
 
@@ -585,7 +585,7 @@ The optional `two` parameter instructs nginx to randomly select [two](https://ho
 
 
 
-The `least_time` method passes a request to a server with the least average response time and least number of active connections. If `least_time=header` is specified, the time to receive the [response header](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_header_time) is used. If `least_time=last_byte` is specified, the time to receive the [full response](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_response_time) is used.
+The `least_time` method passes a request to a server with the least average response time and least number of active connections. If `least_time=header` is specified, the time to receive the [response header]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_header_time">}}) is used. If `least_time=last_byte` is specified, the time to receive the [full response]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_response_time">}}) is used.
 
 The `least_time` method is available as a part of our [commercial subscription](http://nginx.com/products/).
 
@@ -632,7 +632,7 @@ To prevent DNS spoofing, it is recommended configuring DNS servers in a properly
 
 
 
-The optional `status_zone` parameter enables [collection](https://nginx.org/en/docs/http/ngx_http_api_module.html#resolvers_) of DNS server statistics of requests and responses in the specified `zone`.
+The optional `status_zone` parameter enables [collection]({{< ref "/mod_ref/ngx_http_api_module#resolvers_">}}) of DNS server statistics of requests and responses in the specified `zone`.
 
 
 
@@ -684,11 +684,11 @@ Enables session affinity, which causes requests from the same client to be passe
 
 - `cookie`
 
-  When the `cookie` method is used, information about the designated server is passed in an HTTP cookie generated by nginx:`upstream backend {    server backend1.example.com;    server backend2.example.com;     sticky cookie srv_id expires=1h domain=.example.com path=/; } `A request that comes from a client not yet bound to a particular server is passed to the server selected by the configured balancing method. Further requests with this cookie will be passed to the designated server. If the designated server cannot process a request, the new server is selected as if the client has not been bound yet.As a load balancing method always tries to evenly distribute the load considering already bound requests, the server with a higher number of active bound requests has less possibility of getting new unbound requests.The first parameter sets the name of the cookie to be set or inspected. The cookie value is a hexadecimal representation of the MD5 hash of the IP address and port, or of the UNIX-domain socket path. However, if the “`route`” parameter of the [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive is specified, the cookie value will be the value of the “`route`” parameter:`upstream backend {    server backend1.example.com route=a;    server backend2.example.com route=b;     sticky cookie srv_id expires=1h domain=.example.com path=/; } `In this case, the value of the “`srv_id`” cookie will be either `a` or `b`.Additional parameters may be as follows:`expires=``time`Sets the `time` for which a browser should keep the cookie. The special value `max` will cause the cookie to expire on “`31 Dec 2037 23:55:55 GMT`”. If the parameter is not specified, it will cause the cookie to expire at the end of a browser session.`domain=``domain`Defines the `domain` for which the cookie is set. Parameter value can contain variables (1.11.5).`httponly`Adds the `HttpOnly` attribute to the cookie (1.7.11).`samesite=``strict` | `lax` | `none` | `$variable`Adds the `SameSite` (1.19.4) attribute to the cookie with one of the following values: `Strict`, `Lax`, `None`, or using variables (1.23.3). In the latter case, if the variable value is empty, the `SameSite` attribute will not be added to the cookie, if the value is resolved to `Strict`, `Lax`, or `None`, the corresponding value will be assigned, otherwise the `Strict` value will be assigned.`secure`Adds the `Secure` attribute to the cookie (1.7.11).`path=``path`Defines the `path` for which the cookie is set.If any parameters are omitted, the corresponding cookie fields are not set.
+  When the `cookie` method is used, information about the designated server is passed in an HTTP cookie generated by nginx:`upstream backend {    server backend1.example.com;    server backend2.example.com;     sticky cookie srv_id expires=1h domain=.example.com path=/; } `A request that comes from a client not yet bound to a particular server is passed to the server selected by the configured balancing method. Further requests with this cookie will be passed to the designated server. If the designated server cannot process a request, the new server is selected as if the client has not been bound yet.As a load balancing method always tries to evenly distribute the load considering already bound requests, the server with a higher number of active bound requests has less possibility of getting new unbound requests.The first parameter sets the name of the cookie to be set or inspected. The cookie value is a hexadecimal representation of the MD5 hash of the IP address and port, or of the UNIX-domain socket path. However, if the “`route`” parameter of the [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) directive is specified, the cookie value will be the value of the “`route`” parameter:`upstream backend {    server backend1.example.com route=a;    server backend2.example.com route=b;     sticky cookie srv_id expires=1h domain=.example.com path=/; } `In this case, the value of the “`srv_id`” cookie will be either `a` or `b`.Additional parameters may be as follows:`expires=``time`Sets the `time` for which a browser should keep the cookie. The special value `max` will cause the cookie to expire on “`31 Dec 2037 23:55:55 GMT`”. If the parameter is not specified, it will cause the cookie to expire at the end of a browser session.`domain=``domain`Defines the `domain` for which the cookie is set. Parameter value can contain variables (1.11.5).`httponly`Adds the `HttpOnly` attribute to the cookie (1.7.11).`samesite=``strict` | `lax` | `none` | `$variable`Adds the `SameSite` (1.19.4) attribute to the cookie with one of the following values: `Strict`, `Lax`, `None`, or using variables (1.23.3). In the latter case, if the variable value is empty, the `SameSite` attribute will not be added to the cookie, if the value is resolved to `Strict`, `Lax`, or `None`, the corresponding value will be assigned, otherwise the `Strict` value will be assigned.`secure`Adds the `Secure` attribute to the cookie (1.7.11).`path=``path`Defines the `path` for which the cookie is set.If any parameters are omitted, the corresponding cookie fields are not set.
 
 - `route`
 
-  When the `route` method is used, proxied server assigns client a route on receipt of the first request. All subsequent requests from this client will carry routing information in a cookie or URI. This information is compared with the “`route`” parameter of the [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) directive to identify the server to which the request should be proxied. If the “`route`” parameter is not specified, the route name will be a hexadecimal representation of the MD5 hash of the IP address and port, or of the UNIX-domain socket path. If the designated server cannot process a request, the new server is selected by the configured balancing method as if there is no routing information in the request.The parameters of the `route` method specify variables that may contain routing information. The first non-empty variable is used to find the matching server.Example:`map $cookie_jsessionid $route_cookie {    ~.+\.(?P<route>\w+)$ $route; } map $request_uri $route_uri {    ~jsessionid=.+\.(?P<route>\w+)$ $route; } upstream backend {    server backend1.example.com route=a;    server backend2.example.com route=b;     sticky route $route_cookie $route_uri; } `Here, the route is taken from the “`JSESSIONID`” cookie if present in a request. Otherwise, the route from the URI is used.
+  When the `route` method is used, proxied server assigns client a route on receipt of the first request. All subsequent requests from this client will carry routing information in a cookie or URI. This information is compared with the “`route`” parameter of the [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) directive to identify the server to which the request should be proxied. If the “`route`” parameter is not specified, the route name will be a hexadecimal representation of the MD5 hash of the IP address and port, or of the UNIX-domain socket path. If the designated server cannot process a request, the new server is selected by the configured balancing method as if there is no routing information in the request.The parameters of the `route` method specify variables that may contain routing information. The first non-empty variable is used to find the matching server.Example:`map $cookie_jsessionid $route_cookie {    ~.+\.(?P<route>\w+)$ $route; } map $request_uri $route_uri {    ~jsessionid=.+\.(?P<route>\w+)$ $route; } upstream backend {    server backend1.example.com route=a;    server backend2.example.com route=b;     sticky route $route_cookie $route_uri; } `Here, the route is taken from the “`JSESSIONID`” cookie if present in a request. Otherwise, the route from the URI is used.
 
 - `learn`
 
@@ -713,7 +713,7 @@ This directive is available as part of our [commercial subscription](http://ngin
   Context: `upstream`
 
 
-This directive is obsolete since version 1.5.7. An equivalent [sticky](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) directive with a new syntax should be used instead:
+This directive is obsolete since version 1.5.7. An equivalent [sticky]({{< ref "/mod_ref/ngx_http_upstream_module#sticky">}}) directive with a new syntax should be used instead:
 
 `sticky cookie` `name` [`expires=``time`] [`domain=``domain`] [`path=``path`];
 
@@ -727,15 +727,15 @@ The `ngx_http_upstream_module` module supports the following embedded variables:
 
 - `$upstream_addr`
 
-  keeps the IP address and port, or the path to the UNIX-domain socket of the upstream server. If several servers were contacted during request processing, their addresses are separated by commas, e.g. “`192.168.1.1:80, 192.168.1.2:80, unix:/tmp/sock`”. If an internal redirect from one server group to another happens, initiated by “X-Accel-Redirect” or [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page), then the server addresses from different groups are separated by colons, e.g. “`192.168.1.1:80, 192.168.1.2:80, unix:/tmp/sock : 192.168.10.1:80, 192.168.10.2:80`”. If a server cannot be selected, the variable keeps the name of the server group.
+  keeps the IP address and port, or the path to the UNIX-domain socket of the upstream server. If several servers were contacted during request processing, their addresses are separated by commas, e.g. “`192.168.1.1:80, 192.168.1.2:80, unix:/tmp/sock`”. If an internal redirect from one server group to another happens, initiated by “X-Accel-Redirect” or [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}), then the server addresses from different groups are separated by colons, e.g. “`192.168.1.1:80, 192.168.1.2:80, unix:/tmp/sock : 192.168.10.1:80, 192.168.10.2:80`”. If a server cannot be selected, the variable keeps the name of the server group.
 
 - `$upstream_bytes_received`
 
-  number of bytes received from an upstream server (1.11.4). Values from several connections are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  number of bytes received from an upstream server (1.11.4). Values from several connections are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_bytes_sent`
 
-  number of bytes sent to an upstream server (1.15.8). Values from several connections are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  number of bytes sent to an upstream server (1.15.8). Values from several connections are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_cache_status`
 
@@ -743,7 +743,7 @@ The `ngx_http_upstream_module` module supports the following embedded variables:
 
 - `$upstream_connect_time`
 
-  keeps time spent on establishing a connection with the upstream server (1.9.1); the time is kept in seconds with millisecond resolution. In case of SSL, includes time spent on handshake. Times of several connections are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  keeps time spent on establishing a connection with the upstream server (1.9.1); the time is kept in seconds with millisecond resolution. In case of SSL, includes time spent on handshake. Times of several connections are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_cookie_``name`
 
@@ -751,27 +751,27 @@ The `ngx_http_upstream_module` module supports the following embedded variables:
 
 - `$upstream_header_time`
 
-  keeps time spent on receiving the response header from the upstream server (1.7.10); the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  keeps time spent on receiving the response header from the upstream server (1.7.10); the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_http_``name`
 
-  keep server response header fields. For example, the “Server” response header field is available through the `$upstream_http_server` variable. The rules of converting header field names to variable names are the same as for the variables that start with the “[$http_](https://nginx.org/en/docs/http/ngx_http_core_module.html#var_http_)” prefix. Only the header fields from the response of the last server are saved.
+  keep server response header fields. For example, the “Server” response header field is available through the `$upstream_http_server` variable. The rules of converting header field names to variable names are the same as for the variables that start with the “[$http_]({{< ref "/mod_ref/ngx_http_core_module#var_http_">}})” prefix. Only the header fields from the response of the last server are saved.
 
 - `$upstream_queue_time`
 
-  keeps time the request spent in the upstream [queue](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#queue) (1.13.9); the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  keeps time the request spent in the upstream [queue]({{< ref "/mod_ref/ngx_http_upstream_module#queue">}}) (1.13.9); the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_response_length`
 
-  keeps the length of the response obtained from the upstream server (0.7.27); the length is kept in bytes. Lengths of several responses are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  keeps the length of the response obtained from the upstream server (0.7.27); the length is kept in bytes. Lengths of several responses are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_response_time`
 
-  keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable.
+  keeps time spent on receiving the response from the upstream server; the time is kept in seconds with millisecond resolution. Times of several responses are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable.
 
 - `$upstream_status`
 
-  keeps status code of the response obtained from the upstream server. Status codes of several responses are separated by commas and colons like addresses in the [$upstream_addr](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#var_upstream_addr) variable. If a server cannot be selected, the variable keeps the 502 (Bad Gateway) status code.
+  keeps status code of the response obtained from the upstream server. Status codes of several responses are separated by commas and colons like addresses in the [$upstream_addr]({{< ref "/mod_ref/ngx_http_upstream_module#var_upstream_addr">}}) variable. If a server cannot be selected, the variable keeps the 502 (Bad Gateway) status code.
 
 - `$upstream_trailer_``name`
 

@@ -64,7 +64,7 @@ Sets the URI to which an original request will be mirrored. Several mirrors can 
   Context: `http`, `server`, `location`
 
 
-Indicates whether the client request body is mirrored. When enabled, the client request body will be read prior to creating mirror subrequests. In this case, unbuffered client request body proxying set by the [proxy_request_buffering](https://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_request_buffering), [fastcgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_fastcgi_module.html#fastcgi_request_buffering), [scgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_scgi_module.html#scgi_request_buffering), and [uwsgi_request_buffering](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_request_buffering) directives will be disabled.
+Indicates whether the client request body is mirrored. When enabled, the client request body will be read prior to creating mirror subrequests. In this case, unbuffered client request body proxying set by the [proxy_request_buffering]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_request_buffering">}}), [fastcgi_request_buffering]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_request_buffering">}}), [scgi_request_buffering]({{< ref "/mod_ref/ngx_http_scgi_module#scgi_request_buffering">}}), and [uwsgi_request_buffering]({{< ref "/mod_ref/ngx_http_uwsgi_module#uwsgi_request_buffering">}}) directives will be disabled.
 
 ```
 location / {

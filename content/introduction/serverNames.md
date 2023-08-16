@@ -14,9 +14,9 @@ https://nginx.org/en/docs/http/server_names.html
 
 
 
-Server names are defined using the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive and determine which [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block is used for a given request. See also “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)”. They may be defined using exact names, wildcard names, or regular expressions:
+Server names are defined using the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive and determine which [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block is used for a given request. See also “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)”. They may be defined using exact names, wildcard names, or regular expressions:
 
-​	服务器名称使用 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) 指令进行定义，用于确定哪个 [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) 块用于给定的请求。也可以查看 “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” 进行更多了解。服务器名称可以使用精确名称、通配符名称或正则表达式进行定义：
+​	服务器名称使用 [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) 指令进行定义，用于确定哪个 [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) 块用于给定的请求。也可以查看 “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” 进行更多了解。服务器名称可以使用精确名称、通配符名称或正则表达式进行定义：
 
 ```
 server {
@@ -156,9 +156,9 @@ There are some server names that are treated specially.
 
 ​	有一些特殊处理的服务器名称。
 
-If it is required to process requests without the “Host” header field in a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block which is not the default, an empty name should be specified:
+If it is required to process requests without the “Host” header field in a [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block which is not the default, an empty name should be specified:
 
-​	如果需要在不是默认的 [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) 块中处理不带 “Host” 标头字段的请求，应指定一个空名称：
+​	如果需要在不是默认的 [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) 块中处理不带 “Host” 标头字段的请求，应指定一个空名称：
 
 ```
 server {
@@ -168,9 +168,9 @@ server {
 }
 ```
 
-If no [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) is defined in a [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) block then nginx uses the empty name as the server name.
+If no [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) is defined in a [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) block then nginx uses the empty name as the server name.
 
-​	如果在 [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) 块中没有定义 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name)，则 nginx 将使用空名称作为服务器名称。
+​	如果在 [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) 块中没有定义 [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}})，则 nginx 将使用空名称作为服务器名称。
 
 nginx versions up to 0.8.48 used the machine’s hostname as the server name in this case.
 ​	在 0.8.48 版本之前的 nginx 版本中，此情况下使用的是主机名作为服务器名称。
@@ -211,9 +211,9 @@ There is nothing special about this name, it is just one of a myriad of invalid 
 
 ​	这个名称没有什么特别之处，它只是众多无效域名中的一个，与任何真实名称都不相交。其他无效名称，如 “`--`” 和 “`!@#`” 也可以被使用。
 
-nginx versions up to 0.6.25 supported the special name “`*`” which was erroneously interpreted to be a catch-all name. It never functioned as a catch-all or wildcard server name. Instead, it supplied the functionality that is now provided by the [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) directive. The special name “`*`” is now deprecated and the [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) directive should be used. Note that there is no way to specify the catch-all name or the default server using the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive. This is a property of the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive and not of the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive. See also “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)”. It is possible to define servers listening on ports *:80 and *:8080, and direct that one will be the default server for port `*:8080`, while the other will be the default for port `*:80`:
+nginx versions up to 0.6.25 supported the special name “`*`” which was erroneously interpreted to be a catch-all name. It never functioned as a catch-all or wildcard server name. Instead, it supplied the functionality that is now provided by the [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) directive. The special name “`*`” is now deprecated and the [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) directive should be used. Note that there is no way to specify the catch-all name or the default server using the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive. This is a property of the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive and not of the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive. See also “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)”. It is possible to define servers listening on ports *:80 and *:8080, and direct that one will be the default server for port `*:8080`, while the other will be the default for port `*:80`:
 
-​	0.6.25 版本之前的 nginx 版本支持特殊名称 “`*`”，这个名称被错误地解释为通配符名称。它从未作为通配符服务器名称或通配符名称。相反，它提供了现在由 [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) 指令提供的功能。特殊名称 “`*`” 现已被弃用，应该使用 [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) 指令。请注意，没有办法使用 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) 指令指定通配符名称或默认服务器。这是 [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) 指令的属性，而不是 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) 指令的属性。也可以查看 “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” 进行更多了解。可以在 *:80 和 *:8080 端口上定义服务器，指定其中一个将是端口 `*:8080` 的默认服务器，而另一个将是端口 `*:80` 的默认服务器：
+​	0.6.25 版本之前的 nginx 版本支持特殊名称 “`*`”，这个名称被错误地解释为通配符名称。它从未作为通配符服务器名称或通配符名称。相反，它提供了现在由 [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) 指令提供的功能。特殊名称 “`*`” 现已被弃用，应该使用 [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) 指令。请注意，没有办法使用 [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) 指令指定通配符名称或默认服务器。这是 [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) 指令的属性，而不是 [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) 指令的属性。也可以查看 “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” 进行更多了解。可以在 *:80 和 *:8080 端口上定义服务器，指定其中一个将是端口 `*:8080` 的默认服务器，而另一个将是端口 `*:80` 的默认服务器：
 
 ```
 server {
@@ -237,9 +237,9 @@ server {
 
 ## 国际化名称 - Internationalized names
 
-Internationalized domain names ([IDNs](https://en.wikipedia.org/wiki/Internationalized_domain_name)) should be specified using an ASCII (Punycode) representation in the [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) directive:
+Internationalized domain names ([IDNs](https://en.wikipedia.org/wiki/Internationalized_domain_name)) should be specified using an ASCII (Punycode) representation in the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive:
 
-​	国际化域名（[IDNs](https://en.wikipedia.org/wiki/Internationalized_domain_name)）应使用 ASCII（Punycode）表示法在 [server_name](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name) 指令中指定：
+​	国际化域名（[IDNs](https://en.wikipedia.org/wiki/Internationalized_domain_name)）应使用 ASCII（Punycode）表示法在 [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) 指令中指定：
 
 ```
 server {
@@ -270,14 +270,14 @@ At each of these stages, different server configurations can be applied. As such
 
 ​	在这些阶段中，可以应用不同的服务器配置。因此，某些指令应谨慎指定：
 
-- in case of the [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) directive, the protocol list is set by the OpenSSL library before the server configuration could be applied according to the name requested through SNI, thus, protocols should be specified only for a default server;
-- 对于 [ssl_protocols](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_protocols) 指令，在 OpenSSL 库设置服务器配置之前，协议列表由 OpenSSL 库设置，根据通过 SNI 请求的名称进行设置，因此，应仅为默认服务器指定协议；
-- the [client_header_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size) and [merge_slashes](https://nginx.org/en/docs/http/ngx_http_core_module.html#merge_slashes) directives are involved before reading the request line, thus, such directives use a default server configuration or the server configuration chosen by SNI;
-- [client_header_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_header_buffer_size) 和 [merge_slashes](https://nginx.org/en/docs/http/ngx_http_core_module.html#merge_slashes) 指令在读取请求行之前进行处理，因此，这些指令使用默认服务器配置或由 SNI 选择的服务器配置；
-- in case of the [ignore_invalid_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers), [large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers), and [underscores_in_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers) directives involved in processing request header fields, it additionally depends whether the server configuration was updated according to the request line or the `Host` header field;
-- 在处理请求标头字段时，涉及 [ignore_invalid_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#ignore_invalid_headers)、[large_client_header_buffers](https://nginx.org/en/docs/http/ngx_http_core_module.html#large_client_header_buffers) 和 [underscores_in_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers) 指令，还取决于服务器配置是否根据请求行或 `Host` 标头字段进行了更新；
-- an error response will be handled with the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive in the server that currently fulfills the request.
-- 错误响应将使用 [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) 指令在当前满足请求的服务器中处理。
+- in case of the [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) directive, the protocol list is set by the OpenSSL library before the server configuration could be applied according to the name requested through SNI, thus, protocols should be specified only for a default server;
+- 对于 [ssl_protocols]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_protocols">}}) 指令，在 OpenSSL 库设置服务器配置之前，协议列表由 OpenSSL 库设置，根据通过 SNI 请求的名称进行设置，因此，应仅为默认服务器指定协议；
+- the [client_header_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_header_buffer_size">}}) and [merge_slashes]({{< ref "/mod_ref/ngx_http_core_module#merge_slashes">}}) directives are involved before reading the request line, thus, such directives use a default server configuration or the server configuration chosen by SNI;
+- [client_header_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_header_buffer_size">}}) 和 [merge_slashes]({{< ref "/mod_ref/ngx_http_core_module#merge_slashes">}}) 指令在读取请求行之前进行处理，因此，这些指令使用默认服务器配置或由 SNI 选择的服务器配置；
+- in case of the [ignore_invalid_headers]({{< ref "/mod_ref/ngx_http_core_module#ignore_invalid_headers">}}), [large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}), and [underscores_in_headers]({{< ref "/mod_ref/ngx_http_core_module#underscores_in_headers">}}) directives involved in processing request header fields, it additionally depends whether the server configuration was updated according to the request line or the `Host` header field;
+- 在处理请求标头字段时，涉及 [ignore_invalid_headers]({{< ref "/mod_ref/ngx_http_core_module#ignore_invalid_headers">}})、[large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}) 和 [underscores_in_headers]({{< ref "/mod_ref/ngx_http_core_module#underscores_in_headers">}}) 指令，还取决于服务器配置是否根据请求行或 `Host` 标头字段进行了更新；
+- an error response will be handled with the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive in the server that currently fulfills the request.
+- 错误响应将使用 [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) 指令在当前满足请求的服务器中处理。
 
 
 
@@ -325,9 +325,9 @@ server {
 
 
 
-If a large number of server names are defined, or unusually long server names are defined, tuning the [server_names_hash_max_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_max_size) and [server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size) directives at the *http* level may become necessary. The default value of the [server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size) directive may be equal to 32, or 64, or another value, depending on CPU cache line size. If the default value is 32 and server name is defined as “`too.long.server.name.example.org`” then nginx will fail to start and display the error message:
+If a large number of server names are defined, or unusually long server names are defined, tuning the [server_names_hash_max_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_max_size">}}) and [server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}}) directives at the *http* level may become necessary. The default value of the [server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}}) directive may be equal to 32, or 64, or another value, depending on CPU cache line size. If the default value is 32 and server name is defined as “`too.long.server.name.example.org`” then nginx will fail to start and display the error message:
 
-​	如果定义了大量的服务器名称，或者定义了异常长的服务器名称，则可能需要调整 *http* 级别上的 [server_names_hash_max_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_max_size) 和 [server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size) 指令。[server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size) 指令的默认值可能等于 32，或者等于 64，或者其他值，具体取决于 CPU 缓存线大小。如果默认值是 32，而服务器名称定义为 “`too.long.server.name.example.org`”，则 nginx 将无法启动并显示错误消息：
+​	如果定义了大量的服务器名称，或者定义了异常长的服务器名称，则可能需要调整 *http* 级别上的 [server_names_hash_max_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_max_size">}}) 和 [server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}}) 指令。[server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}}) 指令的默认值可能等于 32，或者等于 64，或者其他值，具体取决于 CPU 缓存线大小。如果默认值是 32，而服务器名称定义为 “`too.long.server.name.example.org`”，则 nginx 将无法启动并显示错误消息：
 
 ```
 could not build the server_names_hash,
@@ -354,9 +354,9 @@ you should increase either server_names_hash_max_size: 512
 or server_names_hash_bucket_size: 32
 ```
 
-In such a case, first try to set [server_names_hash_max_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_max_size) to a number close to the number of server names. Only if this does not help, or if nginx’s start time is unacceptably long, try to increase [server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size).
+In such a case, first try to set [server_names_hash_max_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_max_size">}}) to a number close to the number of server names. Only if this does not help, or if nginx’s start time is unacceptably long, try to increase [server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}}).
 
-​	在这种情况下，首先尝试将 [server_names_hash_max_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_max_size) 设置为接近服务器名称数量的数字。只有在这不起作用，或者 nginx 的启动时间不可接受地长时，才尝试增加 [server_names_hash_bucket_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_names_hash_bucket_size)。
+​	在这种情况下，首先尝试将 [server_names_hash_max_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_max_size">}}) 设置为接近服务器名称数量的数字。只有在这不起作用，或者 nginx 的启动时间不可接受地长时，才尝试增加 [server_names_hash_bucket_size]({{< ref "/mod_ref/ngx_http_core_module#server_names_hash_bucket_size">}})。
 
 If a server is the only server for a listen port, then nginx will not test server names at all (and will not build the hash tables for the listen port). However, there is one exception. If a server name is a regular expression with captures, then nginx has to execute the expression to get the captures.
 

@@ -24,7 +24,7 @@ Supported cloud platforms:
 
 
 
-The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 
 

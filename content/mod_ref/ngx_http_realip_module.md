@@ -70,7 +70,7 @@ Defines the request header field whose value will be used to replace the client 
 
 The request header field value that contains an optional port is also used to replace the client port (1.11.0). The address and port should be specified according to [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986).
 
-The `proxy_protocol` parameter (1.5.12) changes the client address to the one from the PROXY protocol header. The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/http/ngx_http_core_module.html#listen) directive.
+The `proxy_protocol` parameter (1.5.12) changes the client address to the one from the PROXY protocol header. The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directive.
 
 
 
@@ -85,7 +85,7 @@ The `proxy_protocol` parameter (1.5.12) changes the client address to the one fr
 
 This directive appeared in versions 1.3.0 and 1.2.1.
 
-If recursive search is disabled, the original client address that matches one of the trusted addresses is replaced by the last address sent in the request header field defined by the [real_ip_header](https://nginx.org/en/docs/http/ngx_http_realip_module.html#real_ip_header) directive. If recursive search is enabled, the original client address that matches one of the trusted addresses is replaced by the last non-trusted address sent in the request header field.
+If recursive search is disabled, the original client address that matches one of the trusted addresses is replaced by the last address sent in the request header field defined by the [real_ip_header]({{< ref "/mod_ref/ngx_http_realip_module#real_ip_header">}}) directive. If recursive search is enabled, the original client address that matches one of the trusted addresses is replaced by the last non-trusted address sent in the request header field.
 
 
 

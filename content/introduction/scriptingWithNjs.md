@@ -93,9 +93,9 @@ To use njs in nginx:
 
   
 
-- in the `nginx.conf` file, enable [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) module and specify the [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) directive with the `http.js` script file:
+- in the `nginx.conf` file, enable [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) module and specify the [js_import]({{< ref "/mod_ref/ngx_http_js_module#js_import">}}) directive with the `http.js` script file:
 
-- 在 `nginx.conf` 文件中，启用 [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) 模块，并使用 `http.js` 脚本文件指定 [js_import](https://nginx.org/en/docs/http/ngx_http_js_module.html#js_import) 指令：
+- 在 `nginx.conf` 文件中，启用 [ngx_http_js_module]({{< ref "/mod_ref/ngx_http_js_module" >}}) 模块，并使用 `http.js` 脚本文件指定 [js_import]({{< ref "/mod_ref/ngx_http_js_module#js_import">}}) 指令：
 
   ```
   load_module modules/ngx_http_js_module.so;

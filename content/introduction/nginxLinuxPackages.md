@@ -502,7 +502,7 @@ Packaging sources are distributed under the same [2-clause BSD-like license](htt
 
 ## Dynamic Modules
 
-Main nginx package is built with all modules that do not require additional libraries to avoid extra dependencies. Since version 1.9.11, nginx supports [dynamic modules](https://nginx.org/en/docs/ngx_core_module.html#load_module) and the following modules are built as dynamic and shipped as separate packages:
+Main nginx package is built with all modules that do not require additional libraries to avoid extra dependencies. Since version 1.9.11, nginx supports [dynamic modules]({{< ref "/mod_ref/ngx_core_module#load_module">}}) and the following modules are built as dynamic and shipped as separate packages:
 
 ```
 nginx-module-geoip

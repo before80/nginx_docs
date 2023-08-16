@@ -14,7 +14,7 @@ https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html
 
 
 
-The `ngx_http_upstream_hc_module` module allows enabling periodic health checks of the servers in a [group](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) referenced in the surrounding location. The server group must reside in the [shared memory](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#zone).
+The `ngx_http_upstream_hc_module` module allows enabling periodic health checks of the servers in a [group]({{< ref "/mod_ref/ngx_http_upstream_module#upstream">}}) referenced in the surrounding location. The server group must reside in the [shared memory]({{< ref "/mod_ref/ngx_http_upstream_module#zone">}}).
 
 If a health check fails, the server will be considered unhealthy. If several health checks are defined for the same group of servers, a single failure of any check will make the corresponding server be considered unhealthy. Client requests are not passed to unhealthy servers and servers in the “checking” state.
 
@@ -58,7 +58,7 @@ server {
 
 With this configuration, nginx will send “`/`” requests to each server in the `backend` group every five seconds. If any communication error or timeout occurs, or a proxied server responds with the status code other than 2xx or 3xx, the health check will fail, and the server will be considered unhealthy.
 
-Health checks can be configured to test the status code of a response, presence of certain header fields and their values, and the body contents. Tests are configured separately using the [match](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#match) directive and referenced in the `match` parameter of the [health_check](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check) directive:
+Health checks can be configured to test the status code of a response, presence of certain header fields and their values, and the body contents. Tests are configured separately using the [match]({{< ref "/mod_ref/ngx_http_upstream_hc_module#match">}}) directive and referenced in the `match` parameter of the [health_check]({{< ref "/mod_ref/ngx_http_upstream_hc_module#health_check">}}) directive:
 
 ```
 http {
@@ -95,7 +95,7 @@ This configuration shows that in order for a health check to pass, the response 
   Context: `location`
 
 
-Enables periodic health checks of the servers in a [group](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#upstream) referenced in the surrounding location.
+Enables periodic health checks of the servers in a [group]({{< ref "/mod_ref/ngx_http_upstream_module#upstream">}}) referenced in the surrounding location.
 
 The following optional parameters are supported:
 
@@ -129,15 +129,15 @@ The following optional parameters are supported:
 
 - `port`=`number`
 
-  defines the port used when connecting to a server to perform a health check (1.9.7). By default, equals the [server](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#server) port.
+  defines the port used when connecting to a server to perform a health check (1.9.7). By default, equals the [server]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) port.
 
 - `type`=`grpc` [`grpc_service`=`name`] [`grpc_status`=`code`]
 
-  enables periodic [health checks](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) of a gRPC server or a particular gRPC service specified with the optional `grpc_service` parameter (1.19.5). If the server does not support the gRPC Health Checking Protocol, the optional `grpc_status` parameter can be used to specify non-zero gRPC [status](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md#status-codes-and-their-use-in-grpc) (for example, status code “`12`” / “`UNIMPLEMENTED`”) that will be treated as healthy:`health_check mandatory type=grpc grpc_status=12; `The `type`=`grpc` parameter must be specified after all other directive parameters, `grpc_service` and `grpc_status` must follow `type`=`grpc`. The parameter is not compatible with [`uri`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_uri) or [`match`](https://nginx.org/en/docs/http/ngx_http_upstream_hc_module.html#health_check_match) parameters.
+  enables periodic [health checks](https://github.com/grpc/grpc/blob/master/doc/health-checking.md#grpc-health-checking-protocol) of a gRPC server or a particular gRPC service specified with the optional `grpc_service` parameter (1.19.5). If the server does not support the gRPC Health Checking Protocol, the optional `grpc_status` parameter can be used to specify non-zero gRPC [status](https://github.com/grpc/grpc/blob/master/doc/statuscodes.md#status-codes-and-their-use-in-grpc) (for example, status code “`12`” / “`UNIMPLEMENTED`”) that will be treated as healthy:`health_check mandatory type=grpc grpc_status=12; `The `type`=`grpc` parameter must be specified after all other directive parameters, `grpc_service` and `grpc_status` must follow `type`=`grpc`. The parameter is not compatible with [`uri`]({{< ref "/mod_ref/ngx_http_upstream_hc_module#health_check_uri">}}) or [`match`]({{< ref "/mod_ref/ngx_http_upstream_hc_module#health_check_match">}}) parameters.
 
 - `keepalive_time`=`time`
 
-  enables [keepalive](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#keepalive) connections for health checks and specifies the time during which requests can be processed through one keepalive connection (1.21.7). By default keepalive connections are disabled.
+  enables [keepalive]({{< ref "/mod_ref/ngx_http_upstream_module#keepalive">}}) connections for health checks and specifies the time during which requests can be processed through one keepalive connection (1.21.7). By default keepalive connections are disabled.
 
 
 

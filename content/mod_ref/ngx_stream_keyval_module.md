@@ -14,7 +14,7 @@ https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html
 
 
 
-The `ngx_stream_keyval_module` module (1.13.7) creates variables with values taken from key-value pairs managed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_) or a variable that can also be set with [njs](https://github.com/nginx/njs-examples/).
+The `ngx_stream_keyval_module` module (1.13.7) creates variables with values taken from key-value pairs managed by the [API]({{< ref "/mod_ref/ngx_http_api_module#stream_keyvals_">}}) or a variable that can also be set with [njs](https://github.com/nginx/njs-examples/).
 
 
 
@@ -83,7 +83,7 @@ Creates a new `$variable` whose value is looked up by the `key` in the key-value
   Context: `stream`
 
 
-Sets the `name` and `size` of the shared memory zone that keeps the key-value database. Key-value pairs are managed by the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_keyvals_).
+Sets the `name` and `size` of the shared memory zone that keeps the key-value database. Key-value pairs are managed by the [API]({{< ref "/mod_ref/ngx_http_api_module#stream_keyvals_">}}).
 
 
 
@@ -128,4 +128,4 @@ The index is stored in the same shared memory zone and thus requires additional 
 
 The optional `sync` parameter (1.15.0) enables [synchronization](https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html#zone_sync) of the shared memory zone. The synchronization requires the `timeout` parameter to be set.
 
-If the synchronization is enabled, removal of key-value pairs (no matter [one](https://nginx.org/en/docs/http/ngx_http_api_module.html#patchStreamKeyvalZoneKeyValue) or [all](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteStreamKeyvalZoneData)) will be performed only on a target cluster node. The same key-value pairs on other cluster nodes will be removed upon `timeout`.
+If the synchronization is enabled, removal of key-value pairs (no matter [one]({{< ref "/mod_ref/ngx_http_api_module#patchStreamKeyvalZoneKeyValue">}}) or [all]({{< ref "/mod_ref/ngx_http_api_module#deleteStreamKeyvalZoneData">}})) will be performed only on a target cluster node. The same key-value pairs on other cluster nodes will be removed upon `timeout`.

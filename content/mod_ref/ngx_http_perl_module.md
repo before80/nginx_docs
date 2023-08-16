@@ -219,7 +219,7 @@ The $r Request Object Methods
 
 - `$r->log_error(errno, message)`
 
-  writes the specified `message` into the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log). If `errno` is non-zero, an error code and its description will be appended to the message.
+  writes the specified `message` into the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}). If `errno` is non-zero, an error code and its description will be appended to the message.
 
 - `$r->print(text, ...)`
 
@@ -227,11 +227,11 @@ The $r Request Object Methods
 
 - `$r->request_body`
 
-  returns the client request body if it has not been written to a temporary file. To ensure that the client request body is in memory, its size should be limited by [client_max_body_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_max_body_size), and a sufficient buffer size should be set using [client_body_buffer_size](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_buffer_size).
+  returns the client request body if it has not been written to a temporary file. To ensure that the client request body is in memory, its size should be limited by [client_max_body_size]({{< ref "/mod_ref/ngx_http_core_module#client_max_body_size">}}), and a sufficient buffer size should be set using [client_body_buffer_size]({{< ref "/mod_ref/ngx_http_core_module#client_body_buffer_size">}}).
 
 - `$r->request_body_file`
 
-  returns the name of the file with the client request body. After the processing, the file should be removed. To always write a request body to a file, [client_body_in_file_only](https://nginx.org/en/docs/http/ngx_http_core_module.html#client_body_in_file_only) should be enabled.
+  returns the name of the file with the client request body. After the processing, the file should be removed. To always write a request body to a file, [client_body_in_file_only]({{< ref "/mod_ref/ngx_http_core_module#client_body_in_file_only">}}) should be enabled.
 
 - `$r->request_method`
 

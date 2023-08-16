@@ -54,7 +54,7 @@ http {
   Context: `http`, `server`, `location`
 
 
-Sets the shared memory zone and the maximum burst size of requests. If the requests rate exceeds the rate configured for a zone, their processing is delayed such that requests are processed at a defined rate. Excessive requests are delayed until their number exceeds the maximum burst size in which case the request is terminated with an [error](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status). By default, the maximum burst size is equal to zero. For example, the directives
+Sets the shared memory zone and the maximum burst size of requests. If the requests rate exceeds the rate configured for a zone, their processing is delayed such that requests are processed at a defined rate. Excessive requests are delayed until their number exceeds the maximum burst size in which case the request is terminated with an [error]({{< ref "/mod_ref/ngx_http_limit_req_module#limit_req_status">}}). By default, the maximum burst size is equal to zero. For example, the directives
 
 ```
 limit_req_zone $binary_remote_addr zone=one:10m rate=1r/s;
@@ -168,7 +168,7 @@ Here, the states are kept in a 10 megabyte zone “one”, and an average reques
 
 A client IP address serves as a key. Note that instead of `$remote_addr`, the `$binary_remote_addr` variable is used here. The `$binary_remote_addr` variable’s size is always 4 bytes for IPv4 addresses or 16 bytes for IPv6 addresses. The stored state always occupies 64 bytes on 32-bit platforms and 128 bytes on 64-bit platforms. One megabyte zone can keep about 16 thousand 64-byte states or about 8 thousand 128-byte states.
 
-If the zone storage is exhausted, the least recently used state is removed. If even after that a new state cannot be created, the request is terminated with an [error](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html#limit_req_status).
+If the zone storage is exhausted, the least recently used state is removed. If even after that a new state cannot be created, the request is terminated with an [error]({{< ref "/mod_ref/ngx_http_limit_req_module#limit_req_status">}}).
 
 The rate is specified in requests per second (r/s). If a rate of less than one request per second is desired, it is specified in request per minute (r/m). For example, half-request per second is 30r/m.
 
@@ -182,7 +182,7 @@ The `sync` parameter is available as part of our [commercial subscription](http:
 
 
 
-Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information](https://nginx.org/en/docs/http/ngx_http_api_module.html#http_limit_reqs_) for each such shared memory zone can be [obtained](https://nginx.org/en/docs/http/ngx_http_api_module.html#getHttpLimitReqZone) or [reset](https://nginx.org/en/docs/http/ngx_http_api_module.html#deleteHttpLimitReqZoneStat) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
+Additionally, as part of our [commercial subscription](http://nginx.com/products/), the [status information]({{< ref "/mod_ref/ngx_http_api_module#http_limit_reqs_">}}) for each such shared memory zone can be [obtained]({{< ref "/mod_ref/ngx_http_api_module#getHttpLimitReqZone">}}) or [reset]({{< ref "/mod_ref/ngx_http_api_module#deleteHttpLimitReqZoneStat">}}) with the [API](https://nginx.org/en/docs/http/ngx_http_api_module.html) since 1.17.7.
 
 
 

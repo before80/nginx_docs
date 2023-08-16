@@ -14,7 +14,7 @@ https://nginx.org/en/docs/stream/ngx_stream_zone_sync_module.html
 
 
 
-The `ngx_stream_zone_sync_module` module (1.13.8) provides the necessary support for synchronizing contents of [shared memory zones](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) between nodes of a cluster. To enable synchronization for a particular zone, a corresponding module must support this feature. Currently, it is possible to synchronize HTTP [sticky](https://nginx.org/en/docs/http/ngx_http_upstream_module.html#sticky) sessions, information about [excessive HTTP requests](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html), and key-value pairs both in [http](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) and [stream](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html).
+The `ngx_stream_zone_sync_module` module (1.13.8) provides the necessary support for synchronizing contents of [shared memory zones](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#zone) between nodes of a cluster. To enable synchronization for a particular zone, a corresponding module must support this feature. Currently, it is possible to synchronize HTTP [sticky]({{< ref "/mod_ref/ngx_http_upstream_module#sticky">}}) sessions, information about [excessive HTTP requests](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html), and key-value pairs both in [http](https://nginx.org/en/docs/http/ngx_http_keyval_module.html) and [stream](https://nginx.org/en/docs/stream/ngx_stream_keyval_module.html).
 
 
 
@@ -431,7 +431,7 @@ Sets the `timeout` between two successive read or write operations on connection
 
 ## API endpoints
 
-The synchronization status of a node is available via the [/stream/zone_sync/](https://nginx.org/en/docs/http/ngx_http_api_module.html#stream_zone_sync_) endpoint of the API which returns the [following](https://nginx.org/en/docs/http/ngx_http_api_module.html#def_nginx_stream_zone_sync) metrics.
+The synchronization status of a node is available via the [/stream/zone_sync/]({{< ref "/mod_ref/ngx_http_api_module#stream_zone_sync_">}}) endpoint of the API which returns the [following]({{< ref "/mod_ref/ngx_http_api_module#def_nginx_stream_zone_sync">}}) metrics.
 
 
 

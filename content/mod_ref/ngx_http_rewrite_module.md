@@ -16,13 +16,13 @@ https://nginx.org/en/docs/http/ngx_http_rewrite_module.html
 
 The `ngx_http_rewrite_module` module is used to change request URI using PCRE regular expressions, return redirects, and conditionally select configurations.
 
-The [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break), [if](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if), [return](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#return), [rewrite](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite), and [set](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#set) directives are processed in the following order:
+The [break]({{< ref "/mod_ref/ngx_http_rewrite_module#break">}}), [if]({{< ref "/mod_ref/ngx_http_rewrite_module#if">}}), [return]({{< ref "/mod_ref/ngx_http_rewrite_module#return">}}), [rewrite]({{< ref "/mod_ref/ngx_http_rewrite_module#rewrite">}}), and [set]({{< ref "/mod_ref/ngx_http_rewrite_module#set">}}) directives are processed in the following order:
 
-- the directives of this module specified on the [server](https://nginx.org/en/docs/http/ngx_http_core_module.html#server) level are executed sequentially;
+- the directives of this module specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level are executed sequentially;
 - repeatedly:
-  - a [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location) is searched based on a request URI;
+  - a [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}) is searched based on a request URI;
   - the directives of this module specified inside the found location are executed sequentially;
-  - the loop is repeated if a request URI was [rewritten](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#rewrite), but not more than [10 times](https://nginx.org/en/docs/http/ngx_http_core_module.html#internal).
+  - the loop is repeated if a request URI was [rewritten]({{< ref "/mod_ref/ngx_http_rewrite_module#rewrite">}}), but not more than [10 times]({{< ref "/mod_ref/ngx_http_core_module#internal">}}).
 
 
 
@@ -43,7 +43,7 @@ The [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break), 
 
 Stops processing the current set of `ngx_http_rewrite_module` directives.
 
-If a directive is specified inside the [location](https://nginx.org/en/docs/http/ngx_http_core_module.html#location), further processing of the request continues in this location.
+If a directive is specified inside the [location]({{< ref "/mod_ref/ngx_http_core_module#location">}}), further processing of the request continues in this location.
 
 Example:
 
@@ -115,7 +115,7 @@ if ($invalid_referer) {
 
 
 
-A value of the `$invalid_referer` embedded variable is set by the [valid_referers](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers) directive.
+A value of the `$invalid_referer` embedded variable is set by the [valid_referers]({{< ref "/mod_ref/ngx_http_referer_module#valid_referers">}}) directive.
 
 
 
@@ -132,7 +132,7 @@ A value of the `$invalid_referer` embedded variable is set by the [valid_referer
 
 Stops processing and returns the specified `code` to a client. The non-standard code 444 closes a connection without sending a response header.
 
-Starting from version 0.8.42, it is possible to specify either a redirect URL (for codes 301, 302, 303, 307, and 308) or the response body `text` (for other codes). A response body text and redirect URL can contain variables. As a special case, a redirect URL can be specified as a URI local to this server, in which case the full redirect URL is formed according to the request scheme (`$scheme`) and the [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) and [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect) directives.
+Starting from version 0.8.42, it is possible to specify either a redirect URL (for codes 301, 302, 303, 307, and 308) or the response body `text` (for other codes). A response body text and redirect URL can contain variables. As a special case, a redirect URL can be specified as a URI local to this server, in which case the full redirect URL is formed according to the request scheme (`$scheme`) and the [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) and [port_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#port_in_redirect">}}) directives.
 
 In addition, a `URL` for temporary redirect with the code 302 can be specified as the sole parameter. Such a parameter should start with the “`http://`”, “`https://`”, or “`$scheme`” string. A `URL` can contain variables.
 
@@ -150,7 +150,7 @@ The code 308 was not treated as a redirect until version 1.13.0.
 
 
 
-See also the [error_page](https://nginx.org/en/docs/http/ngx_http_core_module.html#error_page) directive.
+See also the [error_page]({{< ref "/mod_ref/ngx_http_core_module#error_page">}}) directive.
 
 
 
@@ -173,7 +173,7 @@ An optional `flag` parameter can be one of:
 
 - `break`
 
-  stops processing the current set of `ngx_http_rewrite_module` directives as with the [break](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#break) directive;
+  stops processing the current set of `ngx_http_rewrite_module` directives as with the [break]({{< ref "/mod_ref/ngx_http_rewrite_module#break">}}) directive;
 
 - `redirect`
 
@@ -183,7 +183,7 @@ An optional `flag` parameter can be one of:
 
   returns a permanent redirect with the 301 code.
 
-The full redirect URL is formed according to the request scheme (`$scheme`) and the [server_name_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#server_name_in_redirect) and [port_in_redirect](https://nginx.org/en/docs/http/ngx_http_core_module.html#port_in_redirect) directives.
+The full redirect URL is formed according to the request scheme (`$scheme`) and the [server_name_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#server_name_in_redirect">}}) and [port_in_redirect]({{< ref "/mod_ref/ngx_http_core_module#port_in_redirect">}}) directives.
 
 Example:
 
@@ -232,7 +232,7 @@ If a regular expression includes the “`}`” or “`;`” characters, the whol
   Context: `http`, `server`, `location`, `if`
 
 
-Enables or disables logging of `ngx_http_rewrite_module` module directives processing results into the [error_log](https://nginx.org/en/docs/ngx_core_module.html#error_log) at the `notice` level.
+Enables or disables logging of `ngx_http_rewrite_module` module directives processing results into the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) at the `notice` level.
 
 
 
@@ -303,7 +303,7 @@ end of code
 
 
 
-Note that there are no instructions for the [limit_rate](https://nginx.org/en/docs/http/ngx_http_core_module.html#limit_rate) directive above as it is unrelated to the `ngx_http_rewrite_module` module. A separate configuration is created for the [if](https://nginx.org/en/docs/http/ngx_http_rewrite_module.html#if) block. If the condition holds true, a request is assigned this configuration where `limit_rate` equals to 10k.
+Note that there are no instructions for the [limit_rate]({{< ref "/mod_ref/ngx_http_core_module#limit_rate">}}) directive above as it is unrelated to the `ngx_http_rewrite_module` module. A separate configuration is created for the [if]({{< ref "/mod_ref/ngx_http_rewrite_module#if">}}) block. If the condition holds true, a request is assigned this configuration where `limit_rate` equals to 10k.
 
 The directive
 

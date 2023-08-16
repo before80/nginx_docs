@@ -18,7 +18,7 @@ The `ngx_http_v3_module` module (1.25.0) provides experimental support for [HTTP
 
 This module is not built by default, it should be enabled with the [`--with-http_v3_module`](https://nginx.org/en/docs/configure.html#http_v3_module) configuration parameter.
 
-An SSL library that provides QUIC support such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl) is recommended to build and run this module. Otherwise, when using the [OpenSSL](https://openssl.org/) library, OpenSSL compatibility layer will be used that does not support [early data](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_early_data).
+An SSL library that provides QUIC support such as [BoringSSL](https://boringssl.googlesource.com/boringssl), [LibreSSL](https://www.libressl.org/), or [QuicTLS](https://github.com/quictls/openssl) is recommended to build and run this module. Otherwise, when using the [OpenSSL](https://openssl.org/) library, OpenSSL compatibility layer will be used that does not support [early data]({{< ref "/mod_ref/ngx_http_ssl_module#ssl_early_data">}}).
 
 
 
