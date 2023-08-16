@@ -71,9 +71,9 @@ Several points are worth to consider before submitting changes:
 
 - Passing your changes through the test suite is a good way to ensure that they do not cause a regression. The repository with tests can be cloned with the following command:
 
-  > ```
-  > hg clone http://hg.nginx.org/nginx-tests
-  > ```
+  ```
+  hg clone http://hg.nginx.org/nginx-tests
+  ```
 
 
 

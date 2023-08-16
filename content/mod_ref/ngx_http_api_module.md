@@ -612,12 +612,12 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "total" : 10624511,
-  >   "current" : 4
-  > }
-  > ```
+  ```
+  {
+    "total" : 10624511,
+    "current" : 4
+  }
+  ```
 
   ### HTTP Server Zone
 
@@ -651,44 +651,44 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "processing" : 1,
-  >   "requests" : 706690,
-  >   "responses" : {
-  >     "1xx" : 0,
-  >     "2xx" : 699482,
-  >     "3xx" : 4522,
-  >     "4xx" : 907,
-  >     "5xx" : 266,
-  >     "codes" : {
-  >       "200" : 699482,
-  >       "301" : 4522,
-  >       "404" : 907,
-  >       "503" : 266
-  >     },
-  >     "total" : 705177
-  >   },
-  >   "discarded" : 1513,
-  >   "received" : 172711587,
-  >   "sent" : 19415530115,
-  >   "ssl" : {
-  >     "handshakes" : 104303,
-  >     "handshakes_failed" : 1421,
-  >     "session_reuses" : 54645,
-  >     "no_common_protocol" : 4,
-  >     "no_common_cipher" : 2,
-  >     "handshake_timeout" : 0,
-  >     "peer_rejected_cert" : 0,
-  >     "verify_failures" : {
-  >       "no_cert" : 0,
-  >       "expired_cert" : 2,
-  >       "revoked_cert" : 1,
-  >       "other" : 1
-  >     }
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "processing" : 1,
+    "requests" : 706690,
+    "responses" : {
+      "1xx" : 0,
+      "2xx" : 699482,
+      "3xx" : 4522,
+      "4xx" : 907,
+      "5xx" : 266,
+      "codes" : {
+        "200" : 699482,
+        "301" : 4522,
+        "404" : 907,
+        "503" : 266
+      },
+      "total" : 705177
+    },
+    "discarded" : 1513,
+    "received" : 172711587,
+    "sent" : 19415530115,
+    "ssl" : {
+      "handshakes" : 104303,
+      "handshakes_failed" : 1421,
+      "session_reuses" : 54645,
+      "no_common_protocol" : 4,
+      "no_common_cipher" : 2,
+      "handshake_timeout" : 0,
+      "peer_rejected_cert" : 0,
+      "verify_failures" : {
+        "no_cert" : 0,
+        "expired_cert" : 2,
+        "revoked_cert" : 1,
+        "other" : 1
+      }
+    }
+  }
+  ```
 
   ### HTTP Location Zone
 
@@ -714,28 +714,28 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "requests" : 706690,
-  >   "responses" : {
-  >     "1xx" : 0,
-  >     "2xx" : 699482,
-  >     "3xx" : 4522,
-  >     "4xx" : 907,
-  >     "5xx" : 266,
-  >     "codes" : {
-  >       "200" : 112674,
-  >       "301" : 4522,
-  >       "404" : 2504,
-  >       "503" : 266
-  >     },
-  >     "total" : 705177
-  >   },
-  >   "discarded" : 1513,
-  >   "received" : 172711587,
-  >   "sent" : 19415530115
-  > }
-  > ```
+  ```
+  {
+    "requests" : 706690,
+    "responses" : {
+      "1xx" : 0,
+      "2xx" : 699482,
+      "3xx" : 4522,
+      "4xx" : 907,
+      "5xx" : 266,
+      "codes" : {
+        "200" : 112674,
+        "301" : 4522,
+        "404" : 2504,
+        "503" : 266
+      },
+      "total" : 705177
+    },
+    "discarded" : 1513,
+    "received" : 172711587,
+    "sent" : 19415530115
+  }
+  ```
 
   ### HTTP Cache
 
@@ -813,45 +813,45 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "size" : 530915328,
-  >   "max_size" : 536870912,
-  >   "cold" : false,
-  >   "hit" : {
-  >     "responses" : 254032,
-  >     "bytes" : 6685627875
-  >   },
-  >   "stale" : {
-  >     "responses" : 0,
-  >     "bytes" : 0
-  >   },
-  >   "updating" : {
-  >     "responses" : 0,
-  >     "bytes" : 0
-  >   },
-  >   "revalidated" : {
-  >     "responses" : 0,
-  >     "bytes" : 0
-  >   },
-  >   "miss" : {
-  >     "responses" : 1619201,
-  >     "bytes" : 53841943822
-  >   },
-  >   "expired" : {
-  >     "responses" : 45859,
-  >     "bytes" : 1656847080,
-  >     "responses_written" : 44992,
-  >     "bytes_written" : 1641825173
-  >   },
-  >   "bypass" : {
-  >     "responses" : 200187,
-  >     "bytes" : 5510647548,
-  >     "responses_written" : 200173,
-  >     "bytes_written" : 44992
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "size" : 530915328,
+    "max_size" : 536870912,
+    "cold" : false,
+    "hit" : {
+      "responses" : 254032,
+      "bytes" : 6685627875
+    },
+    "stale" : {
+      "responses" : 0,
+      "bytes" : 0
+    },
+    "updating" : {
+      "responses" : 0,
+      "bytes" : 0
+    },
+    "revalidated" : {
+      "responses" : 0,
+      "bytes" : 0
+    },
+    "miss" : {
+      "responses" : 1619201,
+      "bytes" : 53841943822
+    },
+    "expired" : {
+      "responses" : 45859,
+      "bytes" : 1656847080,
+      "responses_written" : 44992,
+      "bytes_written" : 1641825173
+    },
+    "bypass" : {
+      "responses" : 200187,
+      "bytes" : 5510647548,
+      "responses_written" : 200173,
+      "bytes_written" : 44992
+    }
+  }
+  ```
 
   ### HTTP Connections Limiting
 
@@ -869,13 +869,13 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "passed" : 15,
-  >   "rejected" : 0,
-  >   "rejected_dry_run" : 2
-  > }
-  > ```
+  ```
+  {
+    "passed" : 15,
+    "rejected" : 0,
+    "rejected_dry_run" : 2
+  }
+  ```
 
   ### HTTP Requests Rate Limiting
 
@@ -901,15 +901,15 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "passed" : 15,
-  >   "delayed" : 4,
-  >   "rejected" : 0,
-  >   "delayed_dry_run" : 1,
-  >   "rejected_dry_run" : 2
-  > }
-  > ```
+  ```
+  {
+    "passed" : 15,
+    "delayed" : 4,
+    "rejected" : 0,
+    "delayed_dry_run" : 1,
+    "rejected_dry_run" : 2
+  }
+  ```
 
   ### HTTP Upstream
 
@@ -1035,104 +1035,104 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "upstream_backend" : {
-  >     "peers" : [
-  >       {
-  >         "id" : 0,
-  >         "server" : "10.0.0.1:8088",
-  >         "name" : "10.0.0.1:8088",
-  >         "backup" : false,
-  >         "weight" : 5,
-  >         "state" : "up",
-  >         "active" : 0,
-  >         "ssl" : {
-  >           "handshakes" : 620311,
-  >           "handshakes_failed" : 3432,
-  >           "session_reuses" : 36442,
-  >           "no_common_protocol" : 4,
-  >           "handshake_timeout" : 0,
-  >           "peer_rejected_cert" : 0,
-  >           "verify_failures" : {
-  >             "expired_cert" : 2,
-  >             "revoked_cert" : 1,
-  >             "hostname_mismatch" : 2,
-  >             "other" : 1
-  >           }
-  >         },
-  >         "max_conns" : 20,
-  >         "requests" : 667231,
-  >         "header_time" : 20,
-  >         "response_time" : 36,
-  >         "responses" : {
-  >           "1xx" : 0,
-  >           "2xx" : 666310,
-  >           "3xx" : 0,
-  >           "4xx" : 915,
-  >           "5xx" : 6,
-  >           "codes" : {
-  >             "200" : 666310,
-  >             "404" : 915,
-  >             "503" : 6
-  >           },
-  >           "total" : 667231
-  >         },
-  >         "sent" : 251946292,
-  >         "received" : 19222475454,
-  >         "fails" : 0,
-  >         "unavail" : 0,
-  >         "health_checks" : {
-  >           "checks" : 26214,
-  >           "fails" : 0,
-  >           "unhealthy" : 0,
-  >           "last_passed" : true
-  >         },
-  >         "downtime" : 0,
-  >         "downstart" : "2022-06-28T11:09:21.602Z",
-  >         "selected" : "2022-06-28T15:01:25.000Z"
-  >       },
-  >       {
-  >         "id" : 1,
-  >         "server" : "10.0.0.1:8089",
-  >         "name" : "10.0.0.1:8089",
-  >         "backup" : true,
-  >         "weight" : 1,
-  >         "state" : "unhealthy",
-  >         "active" : 0,
-  >         "max_conns" : 20,
-  >         "requests" : 0,
-  >         "responses" : {
-  >           "1xx" : 0,
-  >           "2xx" : 0,
-  >           "3xx" : 0,
-  >           "4xx" : 0,
-  >           "5xx" : 0,
-  >           "codes" : {
-  >           },
-  >           "total" : 0
-  >         },
-  >         "sent" : 0,
-  >         "received" : 0,
-  >         "fails" : 0,
-  >         "unavail" : 0,
-  >         "health_checks" : {
-  >           "checks" : 26284,
-  >           "fails" : 26284,
-  >           "unhealthy" : 1,
-  >           "last_passed" : false
-  >         },
-  >         "downtime" : 262925617,
-  >         "downstart" : "2022-06-28T11:09:21.602Z",
-  >         "selected" : "2022-06-28T15:01:25.000Z"
-  >       }
-  >     ],
-  >     "keepalive" : 0,
-  >     "zombies" : 0,
-  >     "zone" : "upstream_backend"
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "upstream_backend" : {
+      "peers" : [
+        {
+          "id" : 0,
+          "server" : "10.0.0.1:8088",
+          "name" : "10.0.0.1:8088",
+          "backup" : false,
+          "weight" : 5,
+          "state" : "up",
+          "active" : 0,
+          "ssl" : {
+            "handshakes" : 620311,
+            "handshakes_failed" : 3432,
+            "session_reuses" : 36442,
+            "no_common_protocol" : 4,
+            "handshake_timeout" : 0,
+            "peer_rejected_cert" : 0,
+            "verify_failures" : {
+              "expired_cert" : 2,
+              "revoked_cert" : 1,
+              "hostname_mismatch" : 2,
+              "other" : 1
+            }
+          },
+          "max_conns" : 20,
+          "requests" : 667231,
+          "header_time" : 20,
+          "response_time" : 36,
+          "responses" : {
+            "1xx" : 0,
+            "2xx" : 666310,
+            "3xx" : 0,
+            "4xx" : 915,
+            "5xx" : 6,
+            "codes" : {
+              "200" : 666310,
+              "404" : 915,
+              "503" : 6
+            },
+            "total" : 667231
+          },
+          "sent" : 251946292,
+          "received" : 19222475454,
+          "fails" : 0,
+          "unavail" : 0,
+          "health_checks" : {
+            "checks" : 26214,
+            "fails" : 0,
+            "unhealthy" : 0,
+            "last_passed" : true
+          },
+          "downtime" : 0,
+          "downstart" : "2022-06-28T11:09:21.602Z",
+          "selected" : "2022-06-28T15:01:25.000Z"
+        },
+        {
+          "id" : 1,
+          "server" : "10.0.0.1:8089",
+          "name" : "10.0.0.1:8089",
+          "backup" : true,
+          "weight" : 1,
+          "state" : "unhealthy",
+          "active" : 0,
+          "max_conns" : 20,
+          "requests" : 0,
+          "responses" : {
+            "1xx" : 0,
+            "2xx" : 0,
+            "3xx" : 0,
+            "4xx" : 0,
+            "5xx" : 0,
+            "codes" : {
+            },
+            "total" : 0
+          },
+          "sent" : 0,
+          "received" : 0,
+          "fails" : 0,
+          "unavail" : 0,
+          "health_checks" : {
+            "checks" : 26284,
+            "fails" : 26284,
+            "unhealthy" : 1,
+            "last_passed" : false
+          },
+          "downtime" : 262925617,
+          "downstart" : "2022-06-28T11:09:21.602Z",
+          "selected" : "2022-06-28T15:01:25.000Z"
+        }
+      ],
+      "keepalive" : 0,
+      "zombies" : 0,
+      "zone" : "upstream_backend"
+    }
+  }
+  ```
 
   ### HTTP Upstream Server
 
@@ -1196,20 +1196,20 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "id" : 1,
-  >   "server" : "10.0.0.1:8089",
-  >   "weight" : 4,
-  >   "max_conns" : 0,
-  >   "max_fails" : 0,
-  >   "fail_timeout" : "10s",
-  >   "slow_start" : "10s",
-  >   "route" : "",
-  >   "backup" : true,
-  >   "down" : true
-  > }
-  > ```
+  ```
+  {
+    "id" : 1,
+    "server" : "10.0.0.1:8089",
+    "weight" : 4,
+    "max_conns" : 0,
+    "max_fails" : 0,
+    "fail_timeout" : "10s",
+    "slow_start" : "10s",
+    "route" : "",
+    "backup" : true,
+    "down" : true
+  }
+  ```
 
   ### HTTP Keyval Shared Memory Zone
 
@@ -1217,13 +1217,13 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "key1" : "value1",
-  >   "key2" : "value2",
-  >   "key3" : "value3"
-  > }
-  > ```
+  ```
+  {
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : "value3"
+  }
+  ```
 
   ### HTTP Keyval Shared Memory Zone
 
@@ -1231,16 +1231,16 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "key1" : "value1",
-  >   "key2" : "value2",
-  >   "key3" : {
-  >     "value" : "value3",
-  >     "expire" : 30000
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : {
+      "value" : "value3",
+      "expire" : 30000
+    }
+  }
+  ```
 
   ### Stream Server Zone
 
@@ -1274,38 +1274,38 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "dns" : {
-  >     "processing" : 1,
-  >     "connections" : 155569,
-  >     "sessions" : {
-  >       "2xx" : 155564,
-  >       "4xx" : 0,
-  >       "5xx" : 0,
-  >       "total" : 155569
-  >     },
-  >     "discarded" : 0,
-  >     "received" : 4200363,
-  >     "sent" : 20489184,
-  >     "ssl" : {
-  >       "handshakes" : 76455,
-  >       "handshakes_failed" : 432,
-  >       "session_reuses" : 28770,
-  >       "no_common_protocol" : 4,
-  >       "no_common_cipher" : 2,
-  >       "handshake_timeout" : 0,
-  >       "peer_rejected_cert" : 0,
-  >       "verify_failures" : {
-  >         "no_cert" : 0,
-  >         "expired_cert" : 2,
-  >         "revoked_cert" : 1,
-  >         "other" : 1
-  >       }
-  >     }
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "dns" : {
+      "processing" : 1,
+      "connections" : 155569,
+      "sessions" : {
+        "2xx" : 155564,
+        "4xx" : 0,
+        "5xx" : 0,
+        "total" : 155569
+      },
+      "discarded" : 0,
+      "received" : 4200363,
+      "sent" : 20489184,
+      "ssl" : {
+        "handshakes" : 76455,
+        "handshakes_failed" : 432,
+        "session_reuses" : 28770,
+        "no_common_protocol" : 4,
+        "no_common_cipher" : 2,
+        "handshake_timeout" : 0,
+        "peer_rejected_cert" : 0,
+        "verify_failures" : {
+          "no_cert" : 0,
+          "expired_cert" : 2,
+          "revoked_cert" : 1,
+          "other" : 1
+        }
+      }
+    }
+  }
+  ```
 
   ### Stream Connections Limiting
 
@@ -1323,13 +1323,13 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "passed" : 15,
-  >   "rejected" : 0,
-  >   "rejected_dry_run" : 2
-  > }
-  > ```
+  ```
+  {
+    "passed" : 15,
+    "rejected" : 0,
+    "rejected_dry_run" : 2
+  }
+  ```
 
   ### Stream Upstream
 
@@ -1351,78 +1351,78 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "dns" : {
-  >     "peers" : [
-  >       {
-  >         "id" : 0,
-  >         "server" : "10.0.0.1:12347",
-  >         "name" : "10.0.0.1:12347",
-  >         "backup" : false,
-  >         "weight" : 5,
-  >         "state" : "up",
-  >         "active" : 0,
-  >         "ssl" : {
-  >           "handshakes" : 200,
-  >           "handshakes_failed" : 4,
-  >           "session_reuses" : 189,
-  >           "no_common_protocol" : 4,
-  >           "handshake_timeout" : 0,
-  >           "peer_rejected_cert" : 0,
-  >           "verify_failures" : {
-  >             "expired_cert" : 2,
-  >             "revoked_cert" : 1,
-  >             "hostname_mismatch" : 2,
-  >             "other" : 1
-  >           }
-  >         },
-  >         "max_conns" : 50,
-  >         "connections" : 667231,
-  >         "sent" : 251946292,
-  >         "received" : 19222475454,
-  >         "fails" : 0,
-  >         "unavail" : 0,
-  >         "health_checks" : {
-  >           "checks" : 26214,
-  >           "fails" : 0,
-  >           "unhealthy" : 0,
-  >           "last_passed" : true
-  >         },
-  >         "downtime" : 0,
-  >         "downstart" : "2022-06-28T11:09:21.602Z",
-  >         "selected" : "2022-06-28T15:01:25.000Z"
-  >       },
-  >       {
-  >         "id" : 1,
-  >         "server" : "10.0.0.1:12348",
-  >         "name" : "10.0.0.1:12348",
-  >         "backup" : true,
-  >         "weight" : 1,
-  >         "state" : "unhealthy",
-  >         "active" : 0,
-  >         "max_conns" : 50,
-  >         "connections" : 0,
-  >         "sent" : 0,
-  >         "received" : 0,
-  >         "fails" : 0,
-  >         "unavail" : 0,
-  >         "health_checks" : {
-  >           "checks" : 26284,
-  >           "fails" : 26284,
-  >           "unhealthy" : 1,
-  >           "last_passed" : false
-  >         },
-  >         "downtime" : 262925617,
-  >         "downstart" : "2022-06-28T11:09:21.602Z",
-  >         "selected" : "2022-06-28T15:01:25.000Z"
-  >       }
-  >     ],
-  >     "zombies" : 0,
-  >     "zone" : "dns"
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "dns" : {
+      "peers" : [
+        {
+          "id" : 0,
+          "server" : "10.0.0.1:12347",
+          "name" : "10.0.0.1:12347",
+          "backup" : false,
+          "weight" : 5,
+          "state" : "up",
+          "active" : 0,
+          "ssl" : {
+            "handshakes" : 200,
+            "handshakes_failed" : 4,
+            "session_reuses" : 189,
+            "no_common_protocol" : 4,
+            "handshake_timeout" : 0,
+            "peer_rejected_cert" : 0,
+            "verify_failures" : {
+              "expired_cert" : 2,
+              "revoked_cert" : 1,
+              "hostname_mismatch" : 2,
+              "other" : 1
+            }
+          },
+          "max_conns" : 50,
+          "connections" : 667231,
+          "sent" : 251946292,
+          "received" : 19222475454,
+          "fails" : 0,
+          "unavail" : 0,
+          "health_checks" : {
+            "checks" : 26214,
+            "fails" : 0,
+            "unhealthy" : 0,
+            "last_passed" : true
+          },
+          "downtime" : 0,
+          "downstart" : "2022-06-28T11:09:21.602Z",
+          "selected" : "2022-06-28T15:01:25.000Z"
+        },
+        {
+          "id" : 1,
+          "server" : "10.0.0.1:12348",
+          "name" : "10.0.0.1:12348",
+          "backup" : true,
+          "weight" : 1,
+          "state" : "unhealthy",
+          "active" : 0,
+          "max_conns" : 50,
+          "connections" : 0,
+          "sent" : 0,
+          "received" : 0,
+          "fails" : 0,
+          "unavail" : 0,
+          "health_checks" : {
+            "checks" : 26284,
+            "fails" : 26284,
+            "unhealthy" : 1,
+            "last_passed" : false
+          },
+          "downtime" : 262925617,
+          "downstart" : "2022-06-28T11:09:21.602Z",
+          "selected" : "2022-06-28T15:01:25.000Z"
+        }
+      ],
+      "zombies" : 0,
+      "zone" : "dns"
+    }
+  }
+  ```
 
   ### Stream Upstream Server
 
@@ -1478,19 +1478,19 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "id" : 0,
-  >   "server" : "10.0.0.1:12348",
-  >   "weight" : 1,
-  >   "max_conns" : 0,
-  >   "max_fails" : 1,
-  >   "fail_timeout" : "10s",
-  >   "slow_start" : 0,
-  >   "backup" : false,
-  >   "down" : false
-  > }
-  > ```
+  ```
+  {
+    "id" : 0,
+    "server" : "10.0.0.1:12348",
+    "weight" : 1,
+    "max_conns" : 0,
+    "max_fails" : 1,
+    "fail_timeout" : "10s",
+    "slow_start" : 0,
+    "backup" : false,
+    "down" : false
+  }
+  ```
 
   ### Stream Keyval Shared Memory Zone
 
@@ -1498,13 +1498,13 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "key1" : "value1",
-  >   "key2" : "value2",
-  >   "key3" : "value3"
-  > }
-  > ```
+  ```
+  {
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : "value3"
+  }
+  ```
 
   ### Stream Keyval Shared Memory Zone
 
@@ -1512,16 +1512,16 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "key1" : "value1",
-  >   "key2" : "value2",
-  >   "key3" : {
-  >     "value" : "value3",
-  >     "expire" : 30000
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "key1" : "value1",
+    "key2" : "value2",
+    "key3" : {
+      "value" : "value3",
+      "expire" : 30000
+    }
+  }
+  ```
 
   ### Stream Zone Sync Node
 
@@ -1555,27 +1555,27 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "zones" : {
-  >     "zone1" : {
-  >       "records_pending" : 2061,
-  >       "records_total" : 260575
-  >     },
-  >     "zone2" : {
-  >       "records_pending" : 0,
-  >       "records_total" : 14749
-  >     }
-  >   },
-  >   "status" : {
-  >     "bytes_in" : 1364923761,
-  >     "msgs_in" : 337236,
-  >     "msgs_out" : 346717,
-  >     "bytes_out" : 1402765472,
-  >     "nodes_online" : 15
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "zones" : {
+      "zone1" : {
+        "records_pending" : 2061,
+        "records_total" : 260575
+      },
+      "zone2" : {
+        "records_pending" : 0,
+        "records_total" : 14749
+      }
+    },
+    "status" : {
+      "bytes_in" : 1364923761,
+      "msgs_in" : 337236,
+      "msgs_out" : 346717,
+      "bytes_out" : 1402765472,
+      "nodes_online" : 15
+    }
+  }
+  ```
 
   ### Sync Zone
 
@@ -1643,27 +1643,27 @@ Example:
 
   Example:
 
-  > ```
-  > {
-  >   "resolver_zone1" : {
-  >     "requests" : {
-  >       "name" : 25460,
-  >       "srv" : 130,
-  >       "addr" : 2580
-  >     },
-  >     "responses" : {
-  >       "noerror" : 26499,
-  >       "formerr" : 0,
-  >       "servfail" : 3,
-  >       "nxdomain" : 0,
-  >       "notimp" : 0,
-  >       "refused" : 0,
-  >       "timedout" : 243,
-  >       "unknown" : 478
-  >     }
-  >   }
-  > }
-  > ```
+  ```
+  {
+    "resolver_zone1" : {
+      "requests" : {
+        "name" : 25460,
+        "srv" : 130,
+        "addr" : 2580
+      },
+      "responses" : {
+        "noerror" : 26499,
+        "formerr" : 0,
+        "servfail" : 3,
+        "nxdomain" : 0,
+        "notimp" : 0,
+        "refused" : 0,
+        "timedout" : 243,
+        "unknown" : 478
+      }
+    }
+  }
+  ```
 
   ### Error
 

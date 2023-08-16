@@ -304,7 +304,7 @@ Defines a timeout for reading client request body. The timeout is set only for a
 
 Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough. However, if a request includes long cookies, or comes from a WAP client, it may not fit into 1K. If a request line or a request header field does not fit into this buffer then larger buffers, configured by the [large_client_header_buffers]({{< ref "/mod_ref/ngx_http_core_module#large_client_header_buffers">}}) directive, are allocated.
 
-If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection]({{< ref "/introduction/serverNames#虚拟服务器选择---virtual-server-selection">}})” section.
 
 
 
@@ -602,7 +602,7 @@ Specifies how to compare modification time of a response with the time in the �
 
 Controls whether header fields with invalid names should be ignored. Valid names are composed of English letters, digits, hyphens, and possibly underscores (as controlled by the [underscores_in_headers]({{< ref "/mod_ref/ngx_http_core_module#underscores_in_headers">}}) directive).
 
-If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection]({{< ref "/introduction/serverNames#虚拟服务器选择---virtual-server-selection">}})” section.
 
 
 
@@ -723,7 +723,7 @@ The “Keep-Alive: timeout=`time`” header field is recognized by Mozilla and K
 
 Sets the maximum `number` and `size` of buffers used for reading large client request header. A request line cannot exceed the size of one buffer, or the 414 (Request-URI Too Large) error is returned to the client. A request header field cannot exceed the size of one buffer as well, or the 400 (Bad Request) error is returned to the client. Buffers are allocated only on demand. By default, the buffer size is equal to 8K bytes. If after the end of request processing a connection is transitioned into the keep-alive state, these buffers are released.
 
-If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection]({{< ref "/introduction/serverNames#虚拟服务器选择---virtual-server-selection">}})” section.
 
 
 
@@ -1133,7 +1133,7 @@ and might be processed as a static file. So it gets converted to “`/scripts/on
 
 Turning the compression `off` can become necessary if a URI contains base64-encoded names, since base64 uses the “`/`” character internally. However, for security considerations, it is better to avoid turning the compression off.
 
-If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection]({{< ref "/introduction/serverNames#虚拟服务器选择---virtual-server-selection">}})” section.
 
 
 
@@ -1180,7 +1180,7 @@ Configures a cache that can store:
 
 - file lookup errors, such as “file not found”, “no read permission”, and so on.
 
-  > Caching of errors should be enabled separately by the [open_file_cache_errors]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache_errors">}}) directive.
+  Caching of errors should be enabled separately by the [open_file_cache_errors]({{< ref "/mod_ref/ngx_http_core_module#open_file_cache_errors">}}) directive.
 
 
 
@@ -1688,7 +1688,7 @@ During searching for a virtual server by name, if the name matches more than one
 
 
 
-Detailed description of server names is provided in a separate [Server names](https://nginx.org/en/docs/http/server_names.html) document.
+Detailed description of server names is provided in a separate [Server names]({{< ref "/introduction/serverNames">}}) document.
 
 
 
@@ -2015,7 +2015,7 @@ Sets the maximum `size` of the types hash tables. The details of setting up hash
 
 Enables or disables the use of underscores in client request header fields. When the use of underscores is disabled, request header fields whose names contain underscores are marked as invalid and become subject to the [ignore_invalid_headers]({{< ref "/mod_ref/ngx_http_core_module#ignore_invalid_headers">}}) directive.
 
-If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection](https://nginx.org/en/docs/http/server_names.html#virtual_server_selection)” section.
+If the directive is specified on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level, the value from the default server can be used. Details are provided in the “[Virtual server selection]({{< ref "/introduction/serverNames#虚拟服务器选择---virtual-server-selection">}})” section.
 
 
 

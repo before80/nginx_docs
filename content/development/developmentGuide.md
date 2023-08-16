@@ -4110,13 +4110,13 @@ struct ngx_http_upstream_srv_conf_s {
   
   `peer` — 对象，保存初始化上游配置的通用方法：
 
-  > ```
-  > typedef struct {
-  >     ngx_http_upstream_init_pt        init_upstream;
-  >     ngx_http_upstream_init_peer_pt   init;
-  >     void                            *data;
-  > } ngx_http_upstream_peer_t;
-  > ```
+  ```
+  typedef struct {
+      ngx_http_upstream_init_pt        init_upstream;
+      ngx_http_upstream_init_peer_pt   init;
+      void                            *data;
+  } ngx_http_upstream_peer_t;
+  ```
   
   A module that implements a load-balancing algorithm must set these methods and initialize private `data`. If `init_upstream`was not initialized during configuration parsing, `ngx_http_upstream_module` sets it to the default `ngx_http_upstream_init_round_robin` algorithm.
 
@@ -4368,20 +4368,20 @@ Header files should include the so called "header protection":
 
 - 多行注释的格式如下：
 
-  > ```
-  > /*
-  >  * The red-black tree code is based on the algorithm described in
-  >  * the "Introduction to Algorithms" by Cormen, Leiserson and Rivest.
-  >  */
-  >  /*
-  >  * 红黑树代码基于 Cormen、Leiserson 和 Rivest 在《算法导论》中描述的算法。
-  >  */
-  > ```
+  ```
+  /*
+   * The red-black tree code is based on the algorithm described in
+   * the "Introduction to Algorithms" by Cormen, Leiserson and Rivest.
+   */
+   /*
+   * 红黑树代码基于 Cormen、Leiserson 和 Rivest 在《算法导论》中描述的算法。
+   */
+  ```
 
-  > ```
-  > /* find the server configuration for the address:port */
-  > /* 查找地址：端口 的服务器配置 */
-  > ```
+  ```
+  /* find the server configuration for the address:port */
+  /* 查找地址：端口 的服务器配置 */
+  ```
 
 
 

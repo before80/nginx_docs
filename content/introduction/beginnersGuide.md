@@ -15,9 +15,9 @@ https://nginx.org/en/docs/beginners_guide.html
 
 
 
-This guide gives a basic introduction to nginx and describes some simple tasks that can be done with it. It is supposed that nginx is already installed on the reader’s machine. If it is not, see the [Installing nginx](https://nginx.org/en/docs/install.html) page. This guide describes how to start and stop nginx, and reload its configuration, explains the structure of the configuration file and describes how to set up nginx to serve out static content, how to configure nginx as a proxy server, and how to connect it with a FastCGI application.
+This guide gives a basic introduction to nginx and describes some simple tasks that can be done with it. It is supposed that nginx is already installed on the reader’s machine. If it is not, see the [Installing nginx](../installingNginx) page. This guide describes how to start and stop nginx, and reload its configuration, explains the structure of the configuration file and describes how to set up nginx to serve out static content, how to configure nginx as a proxy server, and how to connect it with a FastCGI application.
 
-​	本指南对nginx进行了基本介绍，并描述了一些可以使用它执行的简单任务。假设读者的机器上已经安装了nginx。如果没有安装，可以查看[安装nginx](https://nginx.org/en/docs/install.html)页面。本指南描述了如何启动和停止nginx，并重新加载其配置，解释了配置文件的结构，并描述了如何设置nginx来提供静态内容，如何将nginx配置为代理服务器，以及如何将其与FastCGI应用程序连接起来。
+​	本指南对nginx进行了基本介绍，并描述了一些可以使用它执行的简单任务。假设读者的机器上已经安装了nginx。如果没有安装，可以查看[安装nginx](../installingNginx)页面。本指南描述了如何启动和停止nginx，并重新加载其配置，解释了配置文件的结构，并描述了如何设置nginx来提供静态内容，如何将nginx配置为代理服务器，以及如何将其与FastCGI应用程序连接起来。
 
 nginx has one master process and several worker processes. The main purpose of the master process is to read and evaluate configuration, and maintain worker processes. Worker processes do actual processing of requests. nginx employs event-based model and OS-dependent mechanisms to efficiently distribute requests among worker processes. The number of worker processes is defined in the configuration file and may be fixed for a given configuration or automatically adjusted to the number of available CPU cores (see [worker_processes]({{< ref "/mod_ref/ngx_core_module#worker_processes">}})).
 
@@ -61,6 +61,7 @@ nginx -s quit
 ```
 
 This command should be executed under the same user that started nginx.
+
 ​	此命令应在启动nginx的同一用户下执行。
 
 Changes made in the configuration file will not be applied until the command to reload configuration is sent to nginx or it is restarted. To reload configuration, execute:
@@ -91,9 +92,9 @@ For getting the list of all running nginx processes, the `ps` utility may be use
 ps -ax | grep nginx
 ```
 
-For more information on sending signals to nginx, see [Controlling nginx](https://nginx.org/en/docs/control.html).
+For more information on sending signals to nginx, see [Controlling nginx](../controllingNginx).
 
-​	有关向nginx发送信号的更多信息，请参见[控制nginx](https://nginx.org/en/docs/control.html)。
+​	有关向nginx发送信号的更多信息，请参见[控制nginx](../controllingNginx)。
 
 
 
@@ -103,9 +104,9 @@ nginx consists of modules which are controlled by directives specified in the co
 
 ​	nginx由模块组成，这些模块由配置文件中指定的指令控制。指令分为简单指令和块指令。简单指令由名称和由空格分隔的参数组成，并以分号(`;`)结尾。块指令具有与简单指令相同的结构，但是它以一组由大括号(`{`和`}`)包围的附加指令结束，而不是分号。如果块指令内部可以有其他指令，它被称为上下文（示例：[events]({{< ref "/mod_ref/ngx_core_module#events">}})、[http]({{< ref "/mod_ref/ngx_http_core_module#http">}})、[server]({{< ref "/mod_ref/ngx_http_core_module#server">}})和[location]({{< ref "/mod_ref/ngx_http_core_module#location">}})）。
 
-Directives placed in the configuration file outside of any contexts are considered to be in the [main](https://nginx.org/en/docs/ngx_core_module.html) context. The `events` and `http` directives reside in the `main` context, `server` in `http`, and `location` in `server`.
+Directives placed in the configuration file outside of any contexts are considered to be in the [main]({{< ref "/mod_ref/ngx_core_module">}}) context. The `events` and `http` directives reside in the `main` context, `server` in `http`, and `location` in `server`.
 
-​	放置在配置文件中任何上下文之外的指令被认为是在[main](https://nginx.org/en/docs/ngx_core_module.html)上下文中。`events`和`http`指令位于`main`上下文中，`server`位于`http`中，`location`位于`server`中。
+​	放置在配置文件中任何上下文之外的指令被认为是在[main]({{< ref "/mod_ref/ngx_core_module">}})上下文中。`events`和`http`指令位于`main`上下文中，`server`位于`http`中，`location`位于`server`中。
 
 The rest of a line after the `#` sign is considered a comment.
 
@@ -134,9 +135,9 @@ http {
 }
 ```
 
-Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) to and by [server names](https://nginx.org/en/docs/http/server_names.html). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
+Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) to and by [server names]({{< ref "/introduction/serverNames">}}). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
 
-​	通常，配置文件可能包括几个通过它们所监听的端口来[区分](https://nginx.org/en/docs/http/request_processing.html)的`server`块，并通过[server names](https://nginx.org/en/docs/http/server_names.html)来标识。一旦nginx确定了哪个`server`来处理请求，它会将请求头中指定的URI与在`server`块内定义的`location`指令的参数进行比较。
+​	通常，配置文件可能包括几个通过它们所监听的端口来[区分](https://nginx.org/en/docs/http/request_processing.html)的`server`块，并通过[server names]({{< ref "/introduction/serverNames">}})来标识。一旦nginx确定了哪个`server`来处理请求，它会将请求头中指定的URI与在`server`块内定义的`location`指令的参数进行比较。
 
 Add the following `location` block to the `server` block:
 
@@ -195,6 +196,7 @@ nginx -s reload
 ```
 
 In case something does not work as expected, you may try to find out the reason in `access.log` and `error.log` files in the directory `/usr/local/nginx/logs` or `/var/log/nginx`.
+
 ​	如果某些事情不按预期工作，您可以尝试在目录`/usr/local/nginx/logs`或`/var/log/nginx`中查找`access.log`和`error.log`文件中的原因。
 
 ## 设置简单代理服务器 - Setting Up a Simple Proxy Server

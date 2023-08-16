@@ -115,12 +115,12 @@ The file path can contain variables (0.7.6+), but such logs have some constraint
 
   on the same configuration level:
 
-  > ```
-  > server {
-  >     root       /spool/vhost/data/$host;
-  >     access_log /spool/vhost/logs/$host;
-  >     ...
-  > ```
+  ```
+  server {
+      root       /spool/vhost/data/$host;
+      access_log /spool/vhost/logs/$host;
+      ...
+  ```
 
 
 

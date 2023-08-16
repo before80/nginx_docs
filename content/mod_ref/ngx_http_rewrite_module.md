@@ -73,7 +73,7 @@ A condition may be any of the following:
 
 - a variable name; false if the value of a variable is an empty string or “0”;
 
-  > Before version 1.0.1, any string starting with “`0`” was considered a false value.
+  Before version 1.0.1, any string starting with “`0`” was considered a false value.
 
 - comparison of a variable with a string using the “`=`” and “`!=`” operators;
 

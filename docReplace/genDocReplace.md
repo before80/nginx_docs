@@ -30,6 +30,12 @@ draft = false
 ^>(\s){1}
 
 // 替换成空
+
+// 查找匹配字符串(不包含单引号)
+'  > '
+  
+// 替换成(不包含单引号)
+'  '
 ```
 
 
@@ -121,5 +127,16 @@ $1
 // 替换成
 ({{< ref "/introduction/connectionProcessingMethods$1">}})
 
+// 查找匹配如下字符串
+\(https:\/\/nginx\.org\/en\/docs\/http\/server_names.html(#[a-z\_]+)\)
+
+// 替换成
+({{< ref "/introduction/serverNames$1">}})
+
+// 查找匹配如下字符串
+\(https:\/\/nginx\.org\/en\/docs\/http\/server_names.html\)
+
+// 替换成
+({{< ref "/introduction/serverNames">}})
 ```
 

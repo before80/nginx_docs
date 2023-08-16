@@ -978,11 +978,11 @@ A request URI is passed to the server as follows:
 
   request URI matching the location is replaced by a URI specified in the directive:
 
-  > ```
-  > location /name/ {
-  >     proxy_pass http://127.0.0.1/remote/;
-  > }
-  > ```
+   ```
+   location /name/ {
+       proxy_pass http://127.0.0.1/remote/;
+   }
+   ```
 
 - If
 
@@ -996,13 +996,13 @@ A request URI is passed to the server as follows:
 
   is specified without a URI, the request URI is passed to the server in the same form as sent by a client when the original request is processed, or the full normalized request URI is passed when processing the changed URI:
 
-  > ```
-  > location /some/path/ {
-  >     proxy_pass http://127.0.0.1;
-  > }
-  > ```
+   ```
+   location /some/path/ {
+       proxy_pass http://127.0.0.1;
+   }
+   ```
 
-  > Before version 1.1.12, if `proxy_pass` is specified without a URI, the original request URI might be passed instead of the changed URI in some cases.
+   Before version 1.1.12, if `proxy_pass` is specified without a URI, the original request URI might be passed instead of the changed URI in some cases.
 
 
 
@@ -1028,12 +1028,12 @@ In some cases, the part of a request URI to be replaced cannot be determined:
 
   ):
 
-  > ```
-  > location /name/ {
-  >     rewrite    /name/([^/]+) /users?name=$1 break;
-  >     proxy_pass http://127.0.0.1;
-  > }
-  > ```
+   ```
+   location /name/ {
+       rewrite    /name/([^/]+) /users?name=$1 break;
+       proxy_pass http://127.0.0.1;
+   }
+   ```
 
   In this case, the URI specified in the directive is ignored and the full changed request URI is passed to the server.
 
@@ -1047,11 +1047,11 @@ In some cases, the part of a request URI to be replaced cannot be determined:
 
   :
 
-  > ```
-  > location /name/ {
-  >     proxy_pass http://127.0.0.1$request_uri;
-  > }
-  > ```
+   ```
+   location /name/ {
+       proxy_pass http://127.0.0.1$request_uri;
+   }
+   ```
 
   In this case, if URI is specified in the directive, it is passed to the server as is, replacing the original request URI.
 
