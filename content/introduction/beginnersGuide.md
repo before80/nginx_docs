@@ -285,9 +285,9 @@ To apply new configuration, send the `reload` signal to nginx as described in th
 
 ​	要应用新的配置，请按照前面章节中的描述向nginx发送`reload`信号。
 
-There are many [more](https://nginx.org/en/docs/http/ngx_http_proxy_module.html) directives that may be used to further configure a proxy connection.
+There are many [more]({{< ref "/mod_ref/ngx_http_proxy_module">}}) directives that may be used to further configure a proxy connection.
 
-​	还有许多[其他](https://nginx.org/en/docs/http/ngx_http_proxy_module.html)指令可用于进一步配置代理连接。
+​	还有许多[其他]({{< ref "/mod_ref/ngx_http_proxy_module">}})指令可用于进一步配置代理连接。
 
 
 
