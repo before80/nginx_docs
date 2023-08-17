@@ -20,6 +20,7 @@ Support for [QUIC](https://datatracker.ietf.org/doc/html/rfc9000) and [HTTP/3](h
 ​	自 1.25.0 版本开始，nginx 支持 [QUIC](https://datatracker.ietf.org/doc/html/rfc9000) 和 [HTTP/3](https://datatracker.ietf.org/doc/html/rfc9114) 协议。此外，自 1.25.0 版本以来，QUIC 和 HTTP/3 支持在 Linux [二进制包](https://nginx.org/en/linux_packages.html)中也是可用的。
 
 The QUIC and HTTP/3 support is experimental, caveat emptor applies.
+
 ​	QUIC 和 HTTP/3 支持是实验性的，适用于购买者注意
 
 
@@ -191,9 +192,9 @@ Tips that may help to identify problems:
 
 - 确保客户端实际上正在通过 QUIC 发送请求。建议首先使用简单的控制台客户端（如 [ngtcp2](https://nghttp2.org/ngtcp2)）进行配置，以确保服务器配置正确，然后再尝试使用可能对证书非常挑剔的实际浏览器。
 
-- Build nginx with [debug support](https://nginx.org/en/docs/debugging_log.html) and check the debug log. It should contain all details about the connection and why it failed. All related messages contain the “`quic`” prefix and can be easily filtered out.
+- Build nginx with [debug support]({{< ref "/introduction/aDebuggingLog">}}) and check the debug log. It should contain all details about the connection and why it failed. All related messages contain the “`quic`” prefix and can be easily filtered out.
 
-- 使用 [debug 支持](https://nginx.org/en/docs/debugging_log.html) 构建 nginx 并检查调试日志。它应该包含有关连接的所有详细信息以及失败的原因。所有相关的消息都包含“`quic`”前缀，可以轻松地进行过滤。
+- 使用 [debug 支持]({{< ref "/introduction/aDebuggingLog">}}) 构建 nginx 并检查调试日志。它应该包含有关连接的所有详细信息以及失败的原因。所有相关的消息都包含“`quic`”前缀，可以轻松地进行过滤。
 
 - For a deeper investigation, additional debugging can be enabled using the following macros: `NGX_QUIC_DEBUG_PACKETS`, `NGX_QUIC_DEBUG_FRAMES`, `NGX_QUIC_DEBUG_ALLOC`, `NGX_QUIC_DEBUG_CRYPTO`.
 

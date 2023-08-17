@@ -1564,7 +1564,7 @@ Prior to version 1.21.4, by default there was no limit.
   Context: `http`
 
 
-Sets configuration for a virtual server. There is no clear separation between IP-based (based on the IP address) and name-based (based on the “Host” request header field) virtual servers. Instead, the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directives describe all addresses and ports that should accept connections for the server, and the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive lists all server names. Example configurations are provided in the “[How nginx processes a request](https://nginx.org/en/docs/http/request_processing.html)” document.
+Sets configuration for a virtual server. There is no clear separation between IP-based (based on the IP address) and name-based (based on the “Host” request header field) virtual servers. Instead, the [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) directives describe all addresses and ports that should accept connections for the server, and the [server_name]({{< ref "/mod_ref/ngx_http_core_module#server_name">}}) directive lists all server names. Example configurations are provided in the “[How nginx processes a request]({{< ref "/introduction/howNginxProcessesARequest">}})” document.
 
 
 

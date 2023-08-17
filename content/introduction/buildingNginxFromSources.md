@@ -745,9 +745,9 @@ disables building the [ngx_http_split_clients_module]({{< ref "/mod_ref/ngx_http
 
 ## `--with-debug`
 
-  enables the [debugging log](https://nginx.org/en/docs/debugging_log.html).
+  enables the [debugging log]({{< ref "/introduction/aDebuggingLog">}}).
 
-​	启用[调试日志](https://nginx.org/en/docs/debugging_log.html)。
+​	启用[调试日志]({{< ref "/introduction/aDebuggingLog">}})。
 
 
 

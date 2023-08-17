@@ -54,7 +54,7 @@ and then set the `debug` level. The nginx binary version for Windows is always b
 
 Note that redefining the log without also specifying the `debug` level will disable the debugging log. In the example below, redefining the log on the [server]({{< ref "/mod_ref/ngx_http_core_module#server">}}) level disables the debugging log for this server:
 
-​	请注意，重新定义日志而没有同时指定 `debug` 级别会禁用调试日志。在下面的示例中，重新定义服务器级别的日志会禁用此服务器的调试日志：
+​	请注意，重新定义日志而没有同时指定 `debug` 级别会禁用调试日志。在下面的示例中，重新定义[服务器]({{< ref "/mod_ref/ngx_http_core_module#server">}})级别的日志会禁用此服务器的调试日志：
 
 ```
 error_log /path/to/log debug;

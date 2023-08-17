@@ -135,9 +135,9 @@ http {
 }
 ```
 
-Generally, the configuration file may include several `server` blocks [distinguished](https://nginx.org/en/docs/http/request_processing.html) by ports on which they [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) to and by [server names]({{< ref "/introduction/serverNames">}}). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
+Generally, the configuration file may include several `server` blocks [distinguished]({{< ref "/introduction/howNginxProcessesARequest">}}) by ports on which they [listen]({{< ref "/mod_ref/ngx_http_core_module#listen">}}) to and by [server names]({{< ref "/introduction/serverNames">}}). Once nginx decides which `server` processes a request, it tests the URI specified in the request’s header against the parameters of the `location` directives defined inside the `server` block.
 
-​	通常，配置文件可能包括几个通过它们所监听的端口来[区分](https://nginx.org/en/docs/http/request_processing.html)的`server`块，并通过[server names]({{< ref "/introduction/serverNames">}})来标识。一旦nginx确定了哪个`server`来处理请求，它会将请求头中指定的URI与在`server`块内定义的`location`指令的参数进行比较。
+​	通常，配置文件可能包括几个通过它们所监听的端口来[区分]({{< ref "/introduction/howNginxProcessesARequest">}})的`server`块，并通过[server names]({{< ref "/introduction/serverNames">}})来标识。一旦nginx确定了哪个`server`来处理请求，它会将请求头中指定的URI与在`server`块内定义的`location`指令的参数进行比较。
 
 Add the following `location` block to the `server` block:
 

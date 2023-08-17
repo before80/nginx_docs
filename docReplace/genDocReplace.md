@@ -138,5 +138,17 @@ $1
 
 // 替换成
 ({{< ref "/introduction/serverNames">}})
+
+// 查找匹配如下字符串
+\(https:\/\/nginx\.org\/en\/docs\/debugging_log\.html\)
+
+// 替换成
+({{< ref "/introduction/aDebuggingLog">}})
+
+// 查找匹配如下字符串
+\(https:\/\/nginx\.org\/en\/docs\/http\/request_processing\.html\)
+
+// 替换成
+({{< ref "/introduction/howNginxProcessesARequest">}})
 ```
 

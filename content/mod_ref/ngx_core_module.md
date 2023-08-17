@@ -101,7 +101,7 @@ Determines whether nginx should become a daemon. Mainly used during development.
 
 Enables debugging log for selected client connections. Other connections will use logging level set by the [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) directive. Debugged connections are specified by IPv4 or IPv6 (1.3.0, 1.2.1) address or network. A connection may also be specified using a hostname. For connections using UNIX-domain sockets (1.3.0, 1.2.1), debugging log is enabled by the “`unix:`” parameter.
 
-​	为选定的客户端连接启用调试日志。其他连接将使用由 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令设置的日志级别。调试的连接由 IPv4 或 IPv6（1.3.0、1.2.1 版本）地址或网络指定。也可以使用主机名来指定连接。对于使用 UNIX 域套接字（1.3.0、1.2.1 版本）的连接，可以通过 "unix:" 参数来启用调试日志。
+​	为选定的客户端连接启用调试日志。其他连接将使用由 [error_log]({{< ref "/mod_ref/ngx_core_module#error_log">}}) 指令设置的日志级别。调试的连接由 IPv4 或 IPv6（1.3.0、1.2.1 版本）地址或网络指定。也可以使用主机名来指定连接。对于使用 UNIX 域套接字（1.3.0、1.2.1 版本）的连接，可以通过 "`unix:`" 参数来启用调试日志。
 
 ```
 events {
@@ -117,9 +117,9 @@ events {
 
 
 
-For this directive to work, nginx needs to be built with `--with-debug`, see “[A debugging log](https://nginx.org/en/docs/debugging_log.html)”.
+For this directive to work, nginx needs to be built with `--with-debug`, see “[A debugging log]({{< ref "/introduction/aDebuggingLog">}})”.
 
-​	为了使此指令正常工作，nginx 需要使用 `--with-debug` 编译，详见 "[调试日志](https://nginx.org/en/docs/debugging_log.html)"。
+​	为了使此指令正常工作，nginx 需要使用 `--with-debug` 编译，详见 "[调试日志]({{< ref "/introduction/aDebuggingLog">}})"。
 
 
 
@@ -202,9 +202,9 @@ The second parameter determines the `level` of logging, and can be one of the fo
 
 ​	第二个参数确定日志的 `level`，可以是以下之一: `debug`, `info`, `notice`, `warn`, `error`, `crit`, `alert`, 或 `emerg`。上面的日志级别按严重性递增的顺序列出。设置特定的日志级别会导致将指定和更严重日志级别的所有消息记录。例如，默认级别 `error` 会导致记录 `error`、`crit`、`alert` 和 `emerg` 消息。如果省略此参数，则使用 `error`。
 
-For `debug` logging to work, nginx needs to be built with `--with-debug`, see “[A debugging log](https://nginx.org/en/docs/debugging_log.html)”.
+For `debug` logging to work, nginx needs to be built with `--with-debug`, see “[A debugging log]({{< ref "/introduction/aDebuggingLog">}})”.
 
-​	要使 `debug` 记录工作，nginx 需要使用 `--with-debug` 构建，详见 “[调试日志](https://nginx.org/en/docs/debugging_log.html)”。
+​	要使 `debug` 记录工作，nginx 需要使用 `--with-debug` 构建，详见 “[调试日志]({{< ref "/introduction/aDebuggingLog">}})”。
 
 The directive can be specified on the `stream` level starting from version 1.7.11, and on the `mail` level starting from version 1.9.0.
 

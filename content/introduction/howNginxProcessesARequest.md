@@ -56,6 +56,7 @@ server {
 
 
 The `default_server` parameter has been available since version 0.8.21. In earlier versions the `default` parameter should be used instead.
+
 ​	`default_server` 参数自版本 0.8.21 可用。在早期版本中，应使用 `default` 参数。
 
 Note that the default server is a property of the listen port and not of the server name. More about this later.
@@ -85,6 +86,7 @@ Here, the server name is set to an empty string that will match requests without
 ​	在这里，服务器名称设置为空字符串，将与不带 “Host” 标头字段的请求匹配，并返回特殊的非标准 nginx 代码 444，从而关闭连接。
 
 Since version 0.8.48, this is the default setting for the server name, so the `server_name ""` can be omitted. In earlier versions, the machine’s *hostname* was used as a default server name.
+
 ​	自版本 0.8.48 起，这是服务器名称的默认设置，因此可以省略 `server_name ""`。在早期版本中，机器的 *主机名* 用作默认服务器名称。
 
 
@@ -210,7 +212,7 @@ Now let’s look at how requests would be processed in the configuration above:
 - A request “`/logo.gif`” is matched by the prefix location “`/`” first and then by the regular expression “`\.(gif|jpg|png)$`”, therefore, it is handled by the latter location. Using the directive “`root /data/www`” the request is mapped to the file `/data/www/logo.gif`, and the file is sent to the client.
 - 请求 “`/logo.gif`” 首先与前缀位置 “`/`” 匹配，然后与正则表达式 “`\.(gif|jpg|png)$`” 匹配，因此，它由后者位置处理。使用指令 “`root /data/www`”，请求将映射到文件 `/data/www/logo.gif`，然后将文件发送给客户端。
 - A request “`/index.php`” is also matched by the prefix location “`/`” first and then by the regular expression “`\.(php)$`”. Therefore, it is handled by the latter location and the request is passed to a FastCGI server listening on localhost:9000. The [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) directive sets the FastCGI parameter `SCRIPT_FILENAME` to “`/data/www/index.php`”, and the FastCGI server executes the file. The variable `$document_root` is equal to the value of the [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) directive and the variable `$fastcgi_script_name` is equal to the request URI, i.e. “`/index.php`”.
-- 请求 “`/index.php`” 也首先与前缀位置 “`/`” 匹配，然后与正则表达式 “`\.(php)$`” 匹配。因此，它由后者位置处理，并将请求传递给在 localhost:9000 上侦听的 FastCGI 服务器。[fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令将 FastCGI 参数 `SCRIPT_FILENAME` 设置为 “`/data/www/index.php`”，FastCGI 服务器执行文件。变量 `$document_root` 等于 [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) 指令的值，变量 `$fastcgi_script_name` 等于请求 URI，即 “`/index.php`”。
+- 请求 “`/index.php`” 也首先与前缀位置 “`/`” 匹配，然后与正则表达式 “`\.(php)$`” 匹配。因此，它由后者位置处理，并将请求传递给在 localhost:9000 上侦听的 FastCGI 服务器。[fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令将 FastCGI 参数 `SCRIPT_FILENAME` 设置为 “`/data/www/index.php`”，FastCGI 服务器执行该文件。变量 `$document_root` 等于 [root]({{< ref "/mod_ref/ngx_http_core_module#root">}}) 指令的值，变量 `$fastcgi_script_name` 等于请求 URI，即 “`/index.php`”。
 - A request “`/about.html`” is matched by the prefix location “`/`” only, therefore, it is handled in this location. Using the directive “`root /data/www`” the request is mapped to the file `/data/www/about.html`, and the file is sent to the client.
 - 请求 “`/about.html`” 仅与前缀位置 “`/`” 匹配，因此，在此位置处理。使用指令 “`root /data/www`”，请求将映射到文件 `/data/www/about.html`，然后将文件发送给客户端。
 - Handling a request “`/`” is more complex. It is matched by the prefix location “`/`” only, therefore, it is handled by this location. Then the [index]({{< ref "/mod_ref/ngx_http_index_module#index">}}) directive tests for the existence of index files according to its parameters and the “`root /data/www`” directive. If the file `/data/www/index.html` does not exist, and the file `/data/www/index.php` exists, then the directive does an internal redirect to “`/index.php`”, and nginx searches the locations again as if the request had been sent by a client. As we saw before, the redirected request will eventually be handled by the FastCGI server.
