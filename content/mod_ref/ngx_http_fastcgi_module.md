@@ -1247,13 +1247,13 @@ HTTP request header fields are passed to a FastCGI server as parameters. In appl
 
 ​	HTTP 请求头字段会作为参数传递给 FastCGI 服务器。在作为 FastCGI 服务器运行的应用程序和脚本中，这些参数通常以环境变量的形式提供。例如，“User-Agent”头字段将作为 `HTTP_USER_AGENT` 参数传递。除了 HTTP 请求头字段外，还可以使用 [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令传递任意参数。
 
-## 嵌入式变量 Embedded Variables
+## Embedded Variables
 
 The `ngx_http_fastcgi_module` module supports embedded variables that can be used to set parameters using the [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) directive:
 
 ​	`ngx_http_fastcgi_module` 模块支持嵌入式变量，可以使用 [fastcgi_param]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_param">}}) 指令来设置参数：
 
-- `$fastcgi_script_name`
+### `$fastcgi_script_name`
 
   request URI or, if a URI ends with a slash, request URI with an index file name configured by the [fastcgi_index]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_index">}}) directive appended to it. This variable can be used to set the `SCRIPT_FILENAME` and `PATH_TRANSLATED` parameters that determine the script name in PHP. For example, for the “`/info/`” request with the following directives 
 
@@ -1268,7 +1268,7 @@ The `ngx_http_fastcgi_module` module supports embedded variables that can be use
 
   `SCRIPT_FILENAME` 参数将等于“`/home/www/scripts/php/info/index.php`”。在使用 [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) 指令时，`$fastcgi_script_name` 变量等于由该指令设置的第一个捕获组的值。
 
-- `$fastcgi_path_info`
+###  `$fastcgi_path_info`
 
   the value of the second capture set by the [fastcgi_split_path_info]({{< ref "/mod_ref/ngx_http_fastcgi_module#fastcgi_split_path_info">}}) directive. This variable can be used to set the `PATH_INFO` parameter.
   

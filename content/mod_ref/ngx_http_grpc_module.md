@@ -20,8 +20,6 @@ The `ngx_http_grpc_module` module allows passing requests to a gRPC server (1.13
 
 ## Example Configuration
 
-
-
 ```
 server {
     listen 9000;
@@ -33,10 +31,6 @@ server {
     }
 }
 ```
-
-
-
-
 
 ## Directives
 
