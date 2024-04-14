@@ -206,10 +206,10 @@ Enables or disables inserting the “Vary: Accept-Encoding” response header fi
 
 
 
-Embedded Variables
+## Embedded Variables
 
 
 
-- `$gzip_ratio`
+### `$gzip_ratio`
 
   achieved compression ratio, computed as the ratio between the original and compressed response sizes.

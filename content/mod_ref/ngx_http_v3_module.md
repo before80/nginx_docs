@@ -196,10 +196,10 @@ Enables the [QUIC Address Validation](https://datatracker.ietf.org/doc/html/rfc9
 
 
 
-Embedded Variables
+## Embedded Variables
 
 The `ngx_http_v3_module` module supports the following embedded variables:
 
-- `$http3`
+### `$http3`
 
   negotiated protocol identifier: “`h3`” for HTTP/3 connections, “`hq`” for hq connections, or an empty string otherwise.

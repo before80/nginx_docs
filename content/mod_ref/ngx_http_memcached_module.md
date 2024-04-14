@@ -249,10 +249,10 @@ Configures the “TCP keepalive” behavior for outgoing connections to a memcac
 
 
 
-Embedded Variables
+## Embedded Variables
 
 
 
-- `$memcached_key`
+### `$memcached_key`
 
   Defines a key for obtaining response from a memcached server.

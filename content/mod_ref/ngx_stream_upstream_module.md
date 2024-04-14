@@ -386,30 +386,30 @@ This directive is available as part of our [commercial subscription](http://ngin
 
 
 
-Embedded Variables
+## Embedded Variables
 
 The `ngx_stream_upstream_module` module supports the following embedded variables:
 
-- `$upstream_addr`
+### `$upstream_addr`
 
   keeps the IP address and port, or the path to the UNIX-domain socket of the upstream server (1.11.4). If several servers were contacted during proxying, their addresses are separated by commas, e.g. “`192.168.1.1:12345, 192.168.1.2:12345, unix:/tmp/sock`”. If a server cannot be selected, the variable keeps the name of the server group.
 
-- `$upstream_bytes_received`
+### `$upstream_bytes_received`
 
   number of bytes received from an upstream server (1.11.4). Values from several connections are separated by commas like addresses in the [$upstream_addr](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_addr) variable.
 
-- `$upstream_bytes_sent`
+### `$upstream_bytes_sent`
 
   number of bytes sent to an upstream server (1.11.4). Values from several connections are separated by commas like addresses in the [$upstream_addr](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_addr) variable.
 
-- `$upstream_connect_time`
+### `$upstream_connect_time`
 
   time to connect to the upstream server (1.11.4); the time is kept in seconds with millisecond resolution. Times of several connections are separated by commas like addresses in the [$upstream_addr](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_addr) variable.
 
-- `$upstream_first_byte_time`
+### `$upstream_first_byte_time`
 
   time to receive the first byte of data (1.11.4); the time is kept in seconds with millisecond resolution. Times of several connections are separated by commas like addresses in the [$upstream_addr](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_addr) variable.
 
-- `$upstream_session_time`
+### `$upstream_session_time`
 
   session duration in seconds with millisecond resolution (1.11.4). Times of several connections are separated by commas like addresses in the [$upstream_addr](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#var_upstream_addr) variable.

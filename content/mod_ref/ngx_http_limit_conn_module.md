@@ -183,10 +183,10 @@ This directive was made obsolete in version 1.1.8 and was removed in version 1.7
 
 
 
-Embedded Variables
+## Embedded Variables
 
 
 
-- `$limit_conn_status`
+### `$limit_conn_status`
 
   keeps the result of limiting the number of connections (1.17.6): `PASSED`, `REJECTED`, or `REJECTED_DRY_RUN`

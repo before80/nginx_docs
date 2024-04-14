@@ -53,14 +53,14 @@ Defines trusted addresses that are known to send correct replacement addresses. 
 
 
 
-Embedded Variables
+## Embedded Variables
 
 
 
-- `$realip_remote_addr`
+### `$realip_remote_addr`
 
   keeps the original client address
 
-- `$realip_remote_port`
+### `$realip_remote_port`
 
   keeps the original client port

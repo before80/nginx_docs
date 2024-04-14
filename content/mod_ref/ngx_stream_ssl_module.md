@@ -532,82 +532,82 @@ Sets the verification depth in the client certificates chain.
 
 
 
-Embedded Variables
+## Embedded Variables
 
 The `ngx_stream_ssl_module` module supports variables since 1.11.2.
 
-- `$ssl_alpn_protocol`
+### `$ssl_alpn_protocol`
 
   returns the protocol selected by ALPN during the SSL handshake, or an empty string otherwise (1.21.4);
 
-- `$ssl_cipher`
+### `$ssl_cipher`
 
   returns the name of the cipher used for an established SSL connection;
 
-- `$ssl_ciphers`
+### `$ssl_ciphers`
 
   returns the list of ciphers supported by the client (1.11.7). Known ciphers are listed by names, unknown are shown in hexadecimal, for example:`AES128-SHA:AES256-SHA:0x00ff `The variable is fully supported only when using OpenSSL version 1.0.2 or higher. With older versions, the variable is available only for new sessions and lists only known ciphers.
 
-- `$ssl_client_cert`
+### `$ssl_client_cert`
 
   returns the client certificate in the PEM format for an established SSL connection, with each line except the first prepended with the tab character (1.11.8);
 
-- `$ssl_client_fingerprint`
+### `$ssl_client_fingerprint`
 
   returns the SHA1 fingerprint of the client certificate for an established SSL connection (1.11.8);
 
-- `$ssl_client_i_dn`
+### `$ssl_client_i_dn`
 
   returns the “issuer DN” string of the client certificate for an established SSL connection according to [RFC 2253](https://datatracker.ietf.org/doc/html/rfc2253) (1.11.8);
 
-- `$ssl_client_raw_cert`
+### `$ssl_client_raw_cert`
 
   returns the client certificate in the PEM format for an established SSL connection (1.11.8);
 
-- `$ssl_client_s_dn`
+### `$ssl_client_s_dn`
 
   returns the “subject DN” string of the client certificate for an established SSL connection according to [RFC 2253](https://datatracker.ietf.org/doc/html/rfc2253) (1.11.8);
 
-- `$ssl_client_serial`
+### `$ssl_client_serial`
 
   returns the serial number of the client certificate for an established SSL connection (1.11.8);
 
-- `$ssl_client_v_end`
+### `$ssl_client_v_end`
 
   returns the end date of the client certificate (1.11.8);
 
-- `$ssl_client_v_remain`
+### `$ssl_client_v_remain`
 
   returns the number of days until the client certificate expires (1.11.8);
 
-- `$ssl_client_v_start`
+### `$ssl_client_v_start`
 
   returns the start date of the client certificate (1.11.8);
 
-- `$ssl_client_verify`
+### `$ssl_client_verify`
 
   returns the result of client certificate verification (1.11.8): “`SUCCESS`”, “`FAILED:``reason`”, and “`NONE`” if a certificate was not present;
 
-- `$ssl_curve`
+### `$ssl_curve`
 
   returns the negotiated curve used for SSL handshake key exchange process (1.21.5). Known curves are listed by names, unknown are shown in hexadecimal, for example:`prime256v1 `The variable is supported only when using OpenSSL version 3.0 or higher. With older versions, the variable value will be an empty string.
 
-- `$ssl_curves`
+### `$ssl_curves`
 
   returns the list of curves supported by the client (1.11.7). Known curves are listed by names, unknown are shown in hexadecimal, for example:`0x001d:prime256v1:secp521r1:secp384r1 `The variable is supported only when using OpenSSL version 1.0.2 or higher. With older versions, the variable value will be an empty string.The variable is available only for new sessions.
 
-- `$ssl_protocol`
+### `$ssl_protocol`
 
   returns the protocol of an established SSL connection;
 
-- `$ssl_server_name`
+### `$ssl_server_name`
 
   returns the server name requested through [SNI](http://en.wikipedia.org/wiki/Server_Name_Indication);
 
-- `$ssl_session_id`
+### `$ssl_session_id`
 
   returns the session identifier of an established SSL connection;
 
-- `$ssl_session_reused`
+### `$ssl_session_reused`
 
   returns “`r`” if an SSL session was reused, or “`.`” otherwise.

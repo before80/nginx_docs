@@ -1709,18 +1709,18 @@ See also the `use_temp_path` parameter of the [proxy_cache_path]({{< ref "/mod_r
 
 
 
-Embedded Variables
+## Embedded Variables
 
 The `ngx_http_proxy_module` module supports embedded variables that can be used to compose headers using the [proxy_set_header]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_set_header">}}) directive:
 
-- `$proxy_host`
+### `$proxy_host`
 
   name and port of a proxied server as specified in the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive;
 
-- `$proxy_port`
+### `$proxy_port`
 
   port of a proxied server as specified in the [proxy_pass]({{< ref "/mod_ref/ngx_http_proxy_module#proxy_pass">}}) directive, or the protocol’s default port;
 
-- `$proxy_add_x_forwarded_for`
+### `$proxy_add_x_forwarded_for`
 
   the “X-Forwarded-For” client request header field with the `$remote_addr` variable appended to it, separated by a comma. If the “X-Forwarded-For” field is not present in the client request header, the `$proxy_add_x_forwarded_for` variable is equal to the `$remote_addr` variable.

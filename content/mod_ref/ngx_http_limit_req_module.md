@@ -188,10 +188,10 @@ Additionally, as part of our [commercial subscription](http://nginx.com/products
 
 
 
-Embedded Variables
+## Embedded Variables
 
 
 
-- `$limit_req_status`
+### `$limit_req_status`
 
   keeps the result of limiting the request processing rate (1.17.6): `PASSED`, `DELAYED`, `REJECTED`, `DELAYED_DRY_RUN`, or `REJECTED_DRY_RUN`
