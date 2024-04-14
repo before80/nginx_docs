@@ -625,9 +625,9 @@ This causes an internal redirect to the specified `uri` with the client request 
 
 ​	​这会导致内部重定向到指定的 `uri` ，其中客户端请求方法更改为“ `GET` ”（对于除“ `GET` ”和“ `HEAD` ”之外的所有方法）。
 
-Furthermore, it is possible to change the response code to another using the “`=``response`” syntax, for example:
+Furthermore, it is possible to change the response code to another using the “`=` `response`” syntax, for example:
 
-​	​此外，可以使用“ `=``response` ”语法将响应代码更改为另一个，例如：
+​	​此外，可以使用“ `=` `response` ”语法将响应代码更改为另一个，例如：
 
 ```
 error_page 404 =200 /empty.gif;
@@ -2664,7 +2664,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
 ​	​ `ngx_http_core_module` 模块支持名称与 Apache 服务器变量匹配的嵌入式变量。首先，这些变量表示客户端请求头字段，例如 `$http_user_agent` 、 `$http_cookie` 等。此外还有其他变量：
 
-### `$arg_``name`
+### `$arg_name`
 
   argument `name` in the request line
 
@@ -2724,7 +2724,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
   ​	​“Content-Type” 请求头字段
 
-### `$cookie_``name`
+### `$cookie_` `name`
 
   the `name` cookie
 
@@ -2754,7 +2754,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
   ​	​主机名
 
-### `$http_``name`
+### `$http_` `name`
 
   arbitrary request header field; the last part of a variable name is the field name converted to lower case with dashes replaced by underscores
 
@@ -2826,7 +2826,7 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
   ​	​PROXY 协议头中的服务器端口（1.17.6）必须通过在 listen 指令中设置 `proxy_protocol` 参数来预先启用 PROXY 协议。
 
-### `$proxy_protocol_tlv_``name`
+### `$proxy_protocol_tlv_` `name`
 
   TLV from the PROXY Protocol header (1.23.2). The `name` can be a TLV type name or its numeric value. In the latter case, the value is hexadecimal and should be prefixed with `0x`:`$proxy_protocol_tlv_alpn $proxy_protocol_tlv_0x01 `SSL TLVs can also be accessed by TLV type name or its numeric value, both prefixed by `ssl_`:`$proxy_protocol_tlv_ssl_version $proxy_protocol_tlv_ssl_0x21 `The following TLV type names are supported:`alpn` (`0x01`) - upper layer protocol used over the connection`authority` (`0x02`) - host name value passed by the client`unique_id` (`0x05`) - unique connection id`netns` (`0x30`) - name of the namespace`ssl` (`0x20`) - binary SSL TLV structureThe following SSL TLV type names are supported:`ssl_version` (`0x21`) - SSL version used in client connection`ssl_cn` (`0x22`) - SSL certificate Common Name`ssl_cipher` (`0x23`) - name of the used cipher`ssl_sig_alg` (`0x24`) - algorithm used to sign the certificate`ssl_key_alg` (`0x25`) - public-key algorithmAlso, the following special SSL TLV type name is supported:`ssl_verify` - client SSL certificate verification result, `0` if the client presented a certificate and it was successfully verified, non-zero otherwise.The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://before80.github.io/nginx_docs/mod_ref/ngx_http_core_module/#listen) directive.
 
@@ -2928,13 +2928,13 @@ The `ngx_http_core_module` module supports embedded variables with names matchin
 
   ​	​请求方案，“ `http` ”或“ `https` ”
 
-### `$sent_http_``name`
+### `$sent_http_` `name`
 
   arbitrary response header field; the last part of a variable name is the field name converted to lower case with dashes replaced by underscores
 
   ​	​任意响应标头字段；变量名称的最后部分是将字段名称转换为小写并用下划线替换破折号
 
-### `$sent_trailer_``name`
+### `$sent_trailer_` `name`
 
   arbitrary field sent at the end of the response (1.13.2); the last part of a variable name is the field name converted to lower case with dashes replaced by underscores
 

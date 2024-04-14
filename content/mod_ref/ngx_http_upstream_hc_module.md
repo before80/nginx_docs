@@ -87,11 +87,11 @@ The following parameters are supported:
 
   Selects a [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html) upstream server group. Without this parameter, selects an [http](https://nginx.org/en/docs/http/ngx_http_upstream_module.html) upstream server group.
 
-- `upstream=``name`
+- `upstream=` `name`
 
   Selects a group to work with. This parameter is mandatory.
 
-- `id=``number`
+- `id=` `number`
 
   Selects a server for viewing, modifying, or removing.
 
@@ -107,31 +107,31 @@ The following parameters are supported:
 
   Required to add a backup server.Before version 1.7.2, `backup=` was also required to view, modify, or remove existing backup servers.
 
-- `server=``address`
+- `server=` `address`
 
   Same as the “`address`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#server">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#server) upstream server.When adding a server, it is possible to specify it as a domain name. In this case, changes of the IP addresses that correspond to a domain name will be monitored and automatically applied to the upstream configuration without the need of restarting nginx (1.7.2). This requires the “`resolver`” directive in the [http]({{< ref "/mod_ref/ngx_http_core_module#resolver">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#resolver) block. See also the “`resolve`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#resolve">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#resolve) upstream server.
 
-- `service=``name`
+- `service=` `name`
 
   Same as the “`service`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#service">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#service) upstream server (1.9.13).
 
-- `weight=``number`
+- `weight=` `number`
 
   Same as the “`weight`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#weight">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#weight) upstream server.
 
-- `max_conns=``number`
+- `max_conns=` `number`
 
   Same as the “`max_conns`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#max_conns">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_conns) upstream server.
 
-- `max_fails=``number`
+- `max_fails=` `number`
 
   Same as the “`max_fails`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#max_fails">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#max_fails) upstream server.
 
-- `fail_timeout=``time`
+- `fail_timeout=` `time`
 
   Same as the “`fail_timeout`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#fail_timeout">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#fail_timeout) upstream server.
 
-- `slow_start=``time`
+- `slow_start=` `time`
 
   Same as the “`slow_start`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#slow_start">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#slow_start) upstream server.
 
@@ -147,7 +147,7 @@ The following parameters are supported:
 
   The opposite of the “`down`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#down">}}) or [stream](https://nginx.org/en/docs/stream/ngx_stream_upstream_module.html#down) upstream server.
 
-- `route=``string`
+- `route=` `string`
 
   Same as the “`route`” parameter of the [http]({{< ref "/mod_ref/ngx_http_upstream_module#route">}}) upstream server.
 

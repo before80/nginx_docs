@@ -586,7 +586,7 @@ The `ngx_stream_ssl_module` module supports variables since 1.11.2.
 
 ### `$ssl_client_verify`
 
-  returns the result of client certificate verification (1.11.8): “`SUCCESS`”, “`FAILED:``reason`”, and “`NONE`” if a certificate was not present;
+  returns the result of client certificate verification (1.11.8): “`SUCCESS`”, “`FAILED:` `reason`”, and “`NONE`” if a certificate was not present;
 
 ### `$ssl_curve`
 

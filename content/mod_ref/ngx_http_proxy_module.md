@@ -1293,7 +1293,7 @@ Allows redefining the request body passed to the proxied server. The `value` can
 
   Syntax:  `proxy_set_header field value;`
 
-  Default: `proxy_set_header Host $proxy_host;``proxy_set_header Connection close;`
+  Default: `proxy_set_header Host $proxy_host;` `proxy_set_header Connection close;`
 
   Context: `http`, `server`, `location`
 

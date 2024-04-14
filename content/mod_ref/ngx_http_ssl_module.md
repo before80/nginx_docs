@@ -848,7 +848,7 @@ The `ngx_http_ssl_module` module supports embedded variables:
 
 ### `$ssl_client_verify`
 
-  returns the result of client certificate verification: “`SUCCESS`”, “`FAILED:``reason`”, and “`NONE`” if a certificate was not present;Prior to version 1.11.7, the “`FAILED`” result did not contain the `reason` string.
+  returns the result of client certificate verification: “`SUCCESS`”, “`FAILED:` `reason`”, and “`NONE`” if a certificate was not present;Prior to version 1.11.7, the “`FAILED`” result did not contain the `reason` string.
 
 ### `$ssl_curve`
 

@@ -187,7 +187,7 @@ Auth-SMTP-To: RCPT TO: <postmaster@mail.example.com>
 
 
 
-For the SSL/TLS client connection (1.7.11), the “Auth-SSL” header is added, and “Auth-SSL-Verify” will contain the result of client certificate verification, if [enabled](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_verify_client): “`SUCCESS`”, “`FAILED:``reason`”, and “`NONE`” if a certificate was not present.
+For the SSL/TLS client connection (1.7.11), the “Auth-SSL” header is added, and “Auth-SSL-Verify” will contain the result of client certificate verification, if [enabled](https://nginx.org/en/docs/mail/ngx_mail_ssl_module.html#ssl_verify_client): “`SUCCESS`”, “`FAILED:` `reason`”, and “`NONE`” if a certificate was not present.
 
 Prior to version 1.11.7, the “`FAILED`” result did not contain the `reason` string.
 

@@ -417,7 +417,7 @@ The `ngx_stream_core_module` module supports variables since 1.11.2.
 
   server port from the PROXY protocol header (1.17.6)The PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive.
 
-- `$proxy_protocol_tlv_``name`
+- `$proxy_protocol_tlv_` `name`
 
   TLV from the PROXY Protocol header (1.23.2). The `name` can be a TLV type name or its numeric value. In the latter case, the value is hexadecimal and should be prefixed with `0x`:`$proxy_protocol_tlv_alpn $proxy_protocol_tlv_0x01 `SSL TLVs can also be accessed by TLV type name or its numeric value, both prefixed by `ssl_`:`$proxy_protocol_tlv_ssl_version $proxy_protocol_tlv_ssl_0x21 `The following TLV type names are supported:`alpn` (`0x01`) - upper layer protocol used over the connection`authority` (`0x02`) - host name value passed by the client`unique_id` (`0x05`) - unique connection id`netns` (`0x30`) - name of the namespace`ssl` (`0x20`) - binary SSL TLV structureThe following SSL TLV type names are supported:`ssl_version` (`0x21`) - SSL version used in client connection`ssl_cn` (`0x22`) - SSL certificate Common Name`ssl_cipher` (`0x23`) - name of the used cipher`ssl_sig_alg` (`0x24`) - algorithm used to sign the certificate`ssl_key_alg` (`0x25`) - public-key algorithmAlso, the following special SSL TLV type name is supported:`ssl_verify` - client SSL certificate verification result, zero if the client presented a certificate and it was successfully verified, and non-zero otherwiseThe PROXY protocol must be previously enabled by setting the `proxy_protocol` parameter in the [listen](https://nginx.org/en/docs/stream/ngx_stream_core_module.html#listen) directive.
 
